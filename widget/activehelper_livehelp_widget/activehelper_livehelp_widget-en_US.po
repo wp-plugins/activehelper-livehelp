@@ -1,0 +1,142 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ActiveHelper LiveHelp\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-09-11 16:36-0500\n"
+"PO-Revision-Date: 2011-09-11 16:36-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: C:\\Servidor\\www\\activehelper.com\\wordpress\\wp-content\\plugins\\activehelper_livehelp\\widget\\activehelper_livehelp_widget\n"
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:32
+msgid "Use this widget to add your Live Help status on any sidebar."
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:80
+msgid "ActiveHelper Live Help Widget"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:89
+msgid "Title"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:93
+msgid "Language"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:97
+msgid "English"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:98
+msgid "Spanish"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:99
+msgid "Deutsch"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:100
+msgid "Portuguese"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:101
+msgid "Italian"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:102
+msgid "French"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:103
+msgid "Czech"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:104
+msgid "Swedish"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:105
+msgid "Norwegian"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:106
+msgid "Turkey"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:107
+msgid "Greek"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:108
+msgid "Hebrew"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:109
+msgid "Farsi"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:110
+msgid "Serbian"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:111
+msgid "Rusian"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:112
+msgid "Hungarian"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:113
+msgid "Traditional Chinese"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:114
+msgid "Arab"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:115
+msgid "Dutch"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:116
+msgid "Finnish"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:117
+msgid "Danish"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:118
+msgid "Polish"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:119
+msgid "Simplified Chinese"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:130
+msgid "Tracking"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:131
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:136
+msgid "Enable"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:132
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:137
+msgid "Disable"
+msgstr ""
+
+#: C:\Servidor\www\activehelper.com\wordpress\wp-content\plugins\activehelper_livehelp\widget\activehelper_livehelp_widget/activehelper_livehelp_widget.php:135
+msgid "Status indicator"
+msgstr ""
+
