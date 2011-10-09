@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ActiveHelper LiveHelp\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-05 10:10-0500\n"
-"PO-Revision-Date: 2011-10-05 10:10-0500\n"
+"PO-Revision-Date: 2011-10-09 12:22-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -236,7 +236,7 @@ msgstr "Versión"
 
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper_livehelp/activehelper_livehelp.php:717
 msgid "2.6.0"
-msgstr "2.6.0"
+msgstr "2.6.1"
 
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper_livehelp/activehelper_livehelp.php:720
 msgid "Check for Update"
