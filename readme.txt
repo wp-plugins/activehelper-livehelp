@@ -3,7 +3,7 @@ Contributors: activehelper
 Tags: live chat, live help, live support, customer service, wordpress plugin, livechat,  customer service, visitor tracking, visitor statistics
 Requires at least: 3.2
 Tested up to: 3.2.1
-Stable tag: 2.6.0
+Stable tag: 2.6.1
 
 ActiveHelper LiveHelp is a powerful Live Chat Server Plugin for Joomla. 
 
@@ -106,7 +106,14 @@ For further help you may choose any of following options:
 = 2.6.0 =
 * The first release of the plugin.
 
+= 2.6.1 =
+* Fix a issue in the database configuration
+
+
 == Upgrade Notice ==
 
 = 2.6.0 =
 * Initial version.
+
+= 2.6.1 =
+* Fix a issue in the database configuration

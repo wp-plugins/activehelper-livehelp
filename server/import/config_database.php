@@ -8,10 +8,10 @@ if (!defined('__CONFIG_DATABASE_INC'))
 	include_once('constants.php');   
 	include_once('jlhconst.php');
 
-	define("DB_HOST", "localhost");
-	define("DB_USER", "root");
-	define("DB_PASS", "paco25");
-	define("DB_NAME", "wordpress");
+	define("DB_HOST", "");
+	define("DB_USER", "");
+	define("DB_PASS", "");
+	define("DB_NAME", "");
 
 	$table_prefix = 'wp_livehelp_';
 }
