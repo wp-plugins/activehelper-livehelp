@@ -3,9 +3,9 @@ Contributors: activehelper
 Tags: live chat, live help, live support, customer service, wordpress plugin, livechat,  customer service, visitor tracking, visitor statistics
 Requires at least: 3.2
 Tested up to: 3.2.1
-Stable tag: 2.6.1
+Stable tag: 2.6.2
 
-ActiveHelper LiveHelp is a powerful Live Chat Server Plugin for Joomla. 
+ActiveHelper LiveHelp is a powerful Live Chat Server Plugin for WordPress. 
 
 == Description ==
 
@@ -25,7 +25,7 @@ The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system i
 * SSL Support
 * Chat Re-branding
 * Image for each agent
-* Multi Language Joomla admin panel
+* Multi Language WordPress admin panel
 * Real-time Chats
 * Multiple Chat Requests
 * Auto Save Transcripts
@@ -58,6 +58,7 @@ The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system i
 * Online/Offline status images
 * Proxy support
 * Multi Language Images
+* 23 Language Translations.
 * Support Panel from your desktop
 * Customizable Look & Feel
 
@@ -88,6 +89,7 @@ Download the Support Panel Console, the agent app is available in the follow lin
 For further help you may choose any of following options:
 
 * Step by Step Configuration Guide [Quick Start Guide](http://www.slideshare.net/activehelper/activehelper-livehelp-quick-start-for-wordpress).
+* Video demos [Video Demos](http://www.activehelper.com/livehelp/live-chat/take-the-tour.html). 
 * For technical FAQ, please visit [FAQ](http://www.activehelper.com/livehelp/live-chat/faqs.html).
 * You can also contact us by our Live Chat [Live Chat](http://www.activehelper.com).
 
@@ -99,7 +101,7 @@ For further help you may choose any of following options:
 4.  Offline Form Multi Language Support
 5.  LiveHelp Server Dashboard - Plugin admin area
 6.  Support Panel Windows Console - The agennt app
-
+7.  Live Chat Domain Settings.
 
 == Changelog ==
 
@@ -107,7 +109,10 @@ For further help you may choose any of following options:
 * The first release of the plugin.
 
 = 2.6.1 =
-* Fix a issue in the database configuration
+* Fix a issue in the database configuration.
+
+= 2.6.2 =
+* Fix a issue in the Generate script option.
 
 
 == Upgrade Notice ==
@@ -117,3 +122,6 @@ For further help you may choose any of following options:
 
 = 2.6.1 =
 * Fix a issue in the database configuration
+
+= 2.6.2 =
+* Fix a issue in the Generate script option.
