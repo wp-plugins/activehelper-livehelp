@@ -51,7 +51,7 @@ class activeHelper_liveHelp_externalWidget extends WP_Widget
 
 		echo '<script type="text/javascript" src="http://localhost/wordpress/wp-content/plugins/activehelper-livehelp/server/import/javascript.php"></script>
 <script type="text/javascript">
-	_vlDomain = 2;
+	_vlDomain = 1;
 	_vlService = 1;
 	_vlLanguage = "' . $instance['script_language'] . '";
 	_vlTracking = ' . $instance['script_tracking'] . ';
@@ -116,7 +116,8 @@ class activeHelper_liveHelp_externalWidget extends WP_Widget
 			'fi' => __('Finnish', 'activehelper_livehelp_externalwidget'),
 			'dk' => __('Danish', 'activehelper_livehelp_externalwidget'),
 			'pl' => __('Polish', 'activehelper_livehelp_externalwidget'),
-			'cn' => __('Simplified Chinese', 'activehelper_livehelp_externalwidget')
+			'cn' => __('Simplified Chinese', 'activehelper_livehelp_externalwidget'),
+            'bg' => __('Bulgarian', 'activehelper_livehelp_externalwidget')
 		);
 
 		foreach ($__text as $code => $name)

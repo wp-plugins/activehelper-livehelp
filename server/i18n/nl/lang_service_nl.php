@@ -6,7 +6,7 @@
   $login_account_incorrect = 'Login of account incorrect';
   $unavailable_label = 'niet beschikbaar';
   $initiated_default_label = 'Live Help verzoek is niet geinitieerd';
-  $initiated_sending_label = 'de Live Help Verzoek initiatie wordt verstuurd...';
+  $initiated_sending_label = 'De Live Help Verzoek initiatie wordt verstuurd...';
   $initiated_waiting_label = 'Wachtende op de Live Help antwoord initiatie  ...';
   $initiated_accepted_label = 'Live Help verzoek initiatie werd AANVAARD';
   $initiated_declined_label = 'Live Help verzoek initiatie is GEWEIGERD';

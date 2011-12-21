@@ -2,8 +2,8 @@
 Contributors: activehelper
 Tags: live chat, live help, live support, customer service, wordpress plugin, livechat,  customer service, visitor tracking, visitor statistics
 Requires at least: 3.2
-Tested up to: 3.2.1
-Stable tag: 2.6.2
+Tested up to: 3.3
+Stable tag: 2.6.5
 
 ActiveHelper LiveHelp is a powerful Live Chat Server Plugin for WordPress. 
 
@@ -13,7 +13,7 @@ Monitor in real time your website visitors. Know how many visitors are in the we
 
 Geo Location based on IP to location for the visitors on your website. See the visitors hometown map. Run the Live Help on your web server having 100% control over your data and many domains that you have.
 
-The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system is translated to English, Spanish, German, Portuguese, Italian, French, Czech, Swedish, Norwegian, Turkey, Farsi, Greek, Hebrew, Serbo-Croatian, Russian , Hungarian ,Dutch, Finnish, Danish, Traditional Chinese, Simplified Chinese , Arab and Polish.
+The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system is translated to English, Spanish, German, Portuguese, Italian, French, Czech, Swedish, Norwegian, Turkey, Farsi, Greek, Hebrew, Serbo-Croatian, Russian , Hungarian ,Dutch, Finnish, Danish, Traditional Chinese, Simplified Chinese , Arab , Polish and Bulgarian.
 
 = Main Features =
 
@@ -73,7 +73,10 @@ Visit the <a href="http://www.activehelper.com/">ActiveHelper LiveHelp website</
 
 <h4>Support Panel Console</h4>
 
-Download the Support Panel Console, the agent app is available in the follow link: <a href="http://www.activehelper.com/livehelp/live-chat/download.html/">Download Area</a>.
+Download the Support Panel Multi Platform Console, the agent app is available in the follow link for Windows and MAC: <a href="http://www.activehelper.com/livehelp/live-chat/download.html/">Download Area</a>.
+
+<h4>Support Panel Multi Platform Console Guide</h4>
+Visit the follow link to see the <a href="http://www.slideshare.net/activehelper/support-panel-console-3-user-guide"> user guide.</a>
 
 
 == Installation ==
@@ -100,7 +103,7 @@ For further help you may choose any of following options:
 3.  Proactive Invitation
 4.  Offline Form Multi Language Support
 5.  LiveHelp Server Dashboard - Plugin admin area
-6.  Support Panel Windows Console - The agennt app
+6.  Support Panel Multi Platform Console - The agennt app
 7.  Live Chat Domain Settings.
 
 == Changelog ==
@@ -114,6 +117,12 @@ For further help you may choose any of following options:
 = 2.6.2 =
 * Fix a issue in the Generate script option.
 
+= 2.6.5 =
+* Full Bulgarian language support to the Live Chat.
+* Add images tracking for in Bulgarian language.
+* Tracking widget support Bulgarian language.
+* Fix some issue with Dutch language.
+* Other small improvements and bug fixes.
 
 == Upgrade Notice ==
 
@@ -125,3 +134,10 @@ For further help you may choose any of following options:
 
 = 2.6.2 =
 * Fix a issue in the Generate script option.
+
+= 2.6.5 =
+* Full Bulgarian language support to the Live Chat.
+* Add images tracking for in Bulgarian language.
+* Tracking widget support Bulgarian language.
+* Fix some issue with Dutch language.
+* Other small improvements and bug fixes.

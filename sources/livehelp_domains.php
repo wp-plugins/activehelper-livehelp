@@ -122,7 +122,7 @@ function activeHelper_liveHelp_domainsGenerateScript()
 	
 	$generatedScript = '<script type="text/javascript" src="' . $activeHelper_liveHelp['serverUrl'] . '/import/javascript.php"></script>
 <script type="text/javascript">
-	_vlDomain = ' . $_REQUEST['id'] . ';
+	_vlDomain = 1;
 	_vlService = 1;
 	_vlLanguage = "en";
 	_vlTracking = 1;
@@ -133,7 +133,7 @@ function activeHelper_liveHelp_domainsGenerateScript()
 	echo '
 <div class="wrap">
 	<h2 style="padding-right: 0;">
-		Live Help » ' . __('Domains', 'activehelper_livehelp') . ' <span style="font-size: 70%;">(' . $_POST['domain_name'] . ')</span> » ' . __('Generate script', 'activehelper_livehelp') . '
+		LiveHelp » ' . __('Domains', 'activehelper_livehelp') . ' <span style="font-size: 70%;">(' . $_POST['domain_name'] . ')</span> » ' . __('Generate script', 'activehelper_livehelp') . '
 	</h2>
 		<div id="poststuff" class="metabox-holder has-right-sidebar">
 			<div class="inner-sidebar"><div class="meta-box-sortables ui-sortable">
@@ -186,7 +186,8 @@ function activeHelper_liveHelp_domainsGenerateScript()
 		'fi' => __('Finnish', 'activehelper_livehelp'),
 		'dk' => __('Danish', 'activehelper_livehelp'),
 		'pl' => __('Polish', 'activehelper_livehelp'),
-		'cn' => __('Simplified Chinese', 'activehelper_livehelp')
+		'cn' => __('Simplified Chinese', 'activehelper_livehelp'),
+        'bg' => __('Bulgarian', 'activehelper_livehelp')
 	);
 
 	foreach ($activeHelper_liveHelp['languages'] as $language)
@@ -242,7 +243,7 @@ function activeHelper_liveHelp_domainsGenerateScript()
 			var html = "<" + "script type=\"text/javascript\" src=\"' . $activeHelper_liveHelp['serverUrl'] . '/import/javascript.php\">";
 			html += "</" + "script>\n";
 			html += "<" + "script type=\"text/javascript\">\n";
-			html += "	_vlDomain = ' . $_REQUEST['id'] . ';\n";
+			html += "	_vlDomain = 1;\n";
 			html += "	_vlService = 1;\n";
 			html += "	_vlLanguage = \"" + scriptLanguage + "\";\n";
 			html += "	_vlTracking = " + scriptTracking + ";\n";
@@ -289,7 +290,7 @@ function activeHelper_liveHelp_domainsList()
 	echo '
 <div class="wrap">
 	<h2 style="padding-right: 0;">
-		Live Help » ' . __('Domains', 'activehelper_livehelp') . '
+		LiveHelp » ' . __('Domains', 'activehelper_livehelp') . '
 		<a class="button add-new-h2" href="admin.php?page=' . strtolower('activeHelper_liveHelp_domains') . '&amp;action=register">' . __('add new', 'activehelper_livehelp') . '</a>
 	</h2>';
 
@@ -580,7 +581,7 @@ function activeHelper_liveHelp_domainsRegister()
 <div class="wrap">
 	<div id="icon-edit" class="icon32 icon32-posts-post"><br /></div>
 	<h2>
-		Live Help » ' . __('Domains', 'activehelper_livehelp') . (!empty($_REQUEST['id']) ? ' <span style="font-size: 70%;">(' . $_POST['domain_name'] . ')</span>' : '') . ' » ' . (!empty($_REQUEST['id']) ? __('Edit', 'activehelper_livehelp') : __('Add new', 'activehelper_livehelp')) . '
+		LiveHelp » ' . __('Domains', 'activehelper_livehelp') . (!empty($_REQUEST['id']) ? ' <span style="font-size: 70%;">(' . $_POST['domain_name'] . ')</span>' : '') . ' » ' . (!empty($_REQUEST['id']) ? __('Edit', 'activehelper_livehelp') : __('Add new', 'activehelper_livehelp')) . '
 	</h2>
 	<form action="admin.php?page=' . strtolower('activeHelper_liveHelp_domains') . '&amp;action=' . (!empty($_REQUEST['id']) ? 'edit': 'register') . '" method="post" accept-charset="utf-8" id="activeHelper_liveHelp_form" enctype="multipart/form-data">
 		<div id="poststuff" class="metabox-holder has-right-sidebar">
@@ -872,7 +873,7 @@ function activeHelper_liveHelp_domainsSettings()
 <div class="wrap">
 	<div id="icon-edit" class="icon32 icon32-posts-post"><br /></div>
 	<h2>
-		Live Help » ' . __('Domains', 'activehelper_livehelp') . (!empty($_REQUEST['id']) ? ' <span style="font-size: 70%;">(' . $activeHelper_liveHelp['domain']['domain_name'] . ')</span>' : '') . ' » ' . __('Settings', 'activehelper_livehelp') . '
+		LiveHelp » ' . __('Domains', 'activehelper_livehelp') . (!empty($_REQUEST['id']) ? ' <span style="font-size: 70%;">(' . $activeHelper_liveHelp['domain']['domain_name'] . ')</span>' : '') . ' » ' . __('Settings', 'activehelper_livehelp') . '
 	</h2>
 	<form action="admin.php?page=' . strtolower('activeHelper_liveHelp_domains') . '&amp;action=settings" method="post" accept-charset="utf-8" id="activeHelper_liveHelp_form" enctype="multipart/form-data">
 		<div id="poststuff" class="metabox-holder has-right-sidebar">
@@ -930,7 +931,8 @@ function activeHelper_liveHelp_domainsSettings()
 		'fi' => __('Finnish', 'activehelper_livehelp'),
 		'dk' => __('Danish', 'activehelper_livehelp'),
 		'pl' => __('Polish', 'activehelper_livehelp'),
-		'cn' => __('Simplified Chinese', 'activehelper_livehelp')
+		'cn' => __('Simplified Chinese', 'activehelper_livehelp'),
+        'bg' => __('Bulgarian', 'activehelper_livehelp')
 	);
 
 	foreach ($activeHelper_liveHelp['languages'] as $language)
@@ -951,7 +953,7 @@ function activeHelper_liveHelp_domainsSettings()
 					<h3 style="cursor: pointer;">' . __('General', 'activehelper_livehelp') . '</h3>
 					<div class="inside" style="display: none;"><div id="postcustomstuff" style="padding: .6ex 0;">
 						<table><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
-							<label for="livehelp_name">' . __('Live Help Name', 'activehelper_livehelp') . '</label>
+							<label for="livehelp_name">' . __('LiveHelp Name', 'activehelper_livehelp') . '</label>
 						</th></thead><tbody><tr><td id="newmetaleft" class="left">
 							<input tabindex="' . $tabindex++ . '" maxlength="255" type="text" style="width: 96%;" value="' . $_POST['livehelp_name'] . '" id="livehelp_name" name="livehelp_name" />
 						</td></tr></tbody></table>
