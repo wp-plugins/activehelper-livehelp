@@ -6,7 +6,7 @@
 Plugin Name: ActiveHelper Live Help
 Plugin URI: http://www.activehelper.com
 Description: Provide superior service by real time chat with your website visitors and interact them through your website. Create a more efficient connection with your website visitors, increase your sales and customer satisfaction.
-Version: 2.6.5
+Version: 2.6.7
 Author: ActiveHelper Inc
 Author URI: http://www.activehelper.com
 */
@@ -714,7 +714,7 @@ function activeHelper_liveHelp_about()
 							<table><tbody><tr><td class="first t">
 								' . __('Version', 'activehelper_livehelp') . '
 							</td><td class="b">
-								' . __('2.6.5', 'activehelper_livehelp') . '
+								' . __('2.6.7', 'activehelper_livehelp') . '
 							</td></tr></tbody></table>
 							<table><tbody><tr><td class="first t">
 								' . __('Check for Update', 'activehelper_livehelp') . '
@@ -744,7 +744,7 @@ function activeHelper_liveHelp_about()
 							<table><tbody><tr><td class="first t">
 								' . __('Copyright', 'activehelper_livehelp') . '
 							</td><td class="b">
-								' . __('Copyright © 2009 - 2010. Activehelper - 2009 - 2011 - All Rights Reserved', 'activehelper_livehelp') . '
+								' . __('Copyright © 2010 - 2012. Activehelper - 2010 - 2012 - All Rights Reserved', 'activehelper_livehelp') . '
 							</td></tr></tbody></table>
 						</div>
 						<div style="clear: both;"></div>

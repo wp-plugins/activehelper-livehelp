@@ -2,8 +2,8 @@
 Contributors: activehelper
 Tags: live chat, live help, live support, customer service, wordpress plugin, livechat,  customer service, visitor tracking, visitor statistics
 Requires at least: 3.2
-Tested up to: 3.3
-Stable tag: 2.6.5
+Tested up to: 3.3.1
+Stable tag: 2.6.7
 
 ActiveHelper LiveHelp is a powerful Live Chat Server Plugin for WordPress. 
 
@@ -13,7 +13,7 @@ Monitor in real time your website visitors. Know how many visitors are in the we
 
 Geo Location based on IP to location for the visitors on your website. See the visitors hometown map. Run the Live Help on your web server having 100% control over your data and many domains that you have.
 
-The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system is translated to English, Spanish, German, Portuguese, Italian, French, Czech, Swedish, Norwegian, Turkey, Farsi, Greek, Hebrew, Serbo-Croatian, Russian , Hungarian ,Dutch, Finnish, Danish, Traditional Chinese, Simplified Chinese , Arab , Polish and Bulgarian.
+The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system is translated to English, Spanish, German, Portuguese, Italian, French, Czech, Swedish, Norwegian, Turkey, Farsi, Greek, Hebrew, Serbo-Croatian, Russian , Hungarian ,Dutch, Finnish, Danish, Traditional Chinese, Simplified Chinese , Arab , Polish , Bulgarian , Slovak and Croatian.
 
 = Main Features =
 
@@ -58,7 +58,7 @@ The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system i
 * Online/Offline status images
 * Proxy support
 * Multi Language Images
-* 23 Language Translations.
+* 25 Language Translations.
 * Support Panel from your desktop
 * Customizable Look & Feel
 
@@ -124,6 +124,15 @@ For further help you may choose any of following options:
 * Fix some issue with Dutch language.
 * Other small improvements and bug fixes.
 
+= 2.6.7 =
+* Full Slovak language support to the Live Chat.
+* Add images tracking for in Slovak language.
+* Tracking widget support Slovak language.
+* Full Croatian language support to the Live Chat.
+* Add images tracking for in Croatian language.
+* Tracking widget support Croatian language.
+* Other small improvements and bug fixes.
+
 == Upgrade Notice ==
 
 = 2.6.0 =
@@ -140,4 +149,13 @@ For further help you may choose any of following options:
 * Add images tracking for in Bulgarian language.
 * Tracking widget support Bulgarian language.
 * Fix some issue with Dutch language.
+* Other small improvements and bug fixes.
+
+= 2.6.7 =
+* Full Slovak language support to the Live Chat.
+* Add images tracking for in Slovak language.
+* Tracking widget support Slovak language.
+* Full Croatian language support to the Live Chat.
+* Add images tracking for in Croatian language.
+* Tracking widget support Croatian language.
 * Other small improvements and bug fixes.

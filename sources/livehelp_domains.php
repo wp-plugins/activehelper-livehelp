@@ -187,7 +187,9 @@ function activeHelper_liveHelp_domainsGenerateScript()
 		'dk' => __('Danish', 'activehelper_livehelp'),
 		'pl' => __('Polish', 'activehelper_livehelp'),
 		'cn' => __('Simplified Chinese', 'activehelper_livehelp'),
-        'bg' => __('Bulgarian', 'activehelper_livehelp')
+        'bg' => __('Bulgarian', 'activehelper_livehelp'),
+        'sk' => __('Slovak', 'activehelper_livehelp'),
+        'cr' => __('Croatian', 'activehelper_livehelp')
 	);
 
 	foreach ($activeHelper_liveHelp['languages'] as $language)
@@ -932,7 +934,9 @@ function activeHelper_liveHelp_domainsSettings()
 		'dk' => __('Danish', 'activehelper_livehelp'),
 		'pl' => __('Polish', 'activehelper_livehelp'),
 		'cn' => __('Simplified Chinese', 'activehelper_livehelp'),
-        'bg' => __('Bulgarian', 'activehelper_livehelp')
+        'bg' => __('Bulgarian', 'activehelper_livehelp'),
+        'sk' => __('Slovak', 'activehelper_livehelp'),
+        'cr' => __('Croatian', 'activehelper_livehelp')
 	);
 
 	foreach ($activeHelper_liveHelp['languages'] as $language)

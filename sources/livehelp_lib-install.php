@@ -179,6 +179,8 @@ function activeHelper_liveHelp_installQuery()
 		INSERT INTO wp_livehelp_languages VALUES ('pl', 'Polish', 'utf-8');
 		INSERT INTO wp_livehelp_languages VALUES ('cn', 'Simplified Chinese', 'utf-8');
         INSERT INTO wp_livehelp_languages VALUES ('bg', 'Bulgarian', 'utf-8');
+        INSERT INTO wp_livehelp_languages VALUES ('sk', 'Slovak', 'utf-8');
+        INSERT INTO wp_livehelp_languages VALUES ('cr', 'Croatian', 'utf-8');
 
 		CREATE TABLE IF NOT EXISTS `wp_livehelp_languages_domain` (
 			`Id_domain` int(11) NOT NULL default '0',
