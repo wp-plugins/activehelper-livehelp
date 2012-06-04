@@ -9,13 +9,13 @@ include('./import/config.php');
 ignore_user_abort(true);
 
 if (isset($_REQUEST['DOMAINID'])){
-  $domainId = $_REQUEST['DOMAINID'];
+  $domainId = (int) $_REQUEST['DOMAINID'];
 }
 
-if (!isset($_REQUEST['RATING'])){ $_REQUEST['RATING'] = ''; }
-if (!isset($_REQUEST['COMPLETE'])){ $_REQUEST['COMPLETE'] = ''; }
-if (!isset($_REQUEST['SEND_SESSION'])){ $_REQUEST['SEND_SESSION'] = ''; }
-if (!isset($_REQUEST['EMAIL'])){ $_REQUEST['EMAIL'] = ''; }
+$_REQUEST['RATING'] = !isset( $_REQUEST['RATING'] ) ? '' : (string) $_REQUEST['RATING'];
+$_REQUEST['COMPLETE'] = !isset( $_REQUEST['COMPLETE'] ) ? '' : (string) $_REQUEST['COMPLETE'];
+$_REQUEST['SEND_SESSION'] = !isset( $_REQUEST['SEND_SESSION'] ) ? '' : (string) $_REQUEST['SEND_SESSION'];
+$_REQUEST['EMAIL'] = !isset( $_REQUEST['EMAIL'] ) ? '' : htmlspecialchars( (string) $_REQUEST['EMAIL'], ENT_QUOTES );
 
 //Declaration variables
 $complete = $_REQUEST['COMPLETE'];
@@ -81,7 +81,7 @@ if ($rating != '') {
         
      }   
         
-       header('Location: ./logout.php?COMPLETE=1&LANGUAGE='.$_REQUEST['LANGUAGE'].'&DOMAINID='.$domainId.'&URL='.$_REQUEST['URL']);
+       header('Location: ./logout.php?COMPLETE=1&LANGUAGE='.$_REQUEST['LANGUAGE'].'&DOMAINID='.$domainId.'&URL='. urlencode( $_REQUEST['URL'] ) );
 
 }
 
@@ -159,7 +159,7 @@ if ($complete != '') {
 else {
 ?>
         
-  <form name="rateSession" method="post" action="logout.php?client_domain_id=<?php echo($domain_id);?><?echo('&DOMAINID='.$domainId);?>&URL=<?php echo($_REQUEST['URL']); ?>">
+  <form name="rateSession" method="post" action="logout.php?client_domain_id=<?php echo($domain_id);?><?echo('&DOMAINID='.$domainId);?>&URL=<?php echo urlencode($_REQUEST['URL']); ?>">
     <table border="0" cellspacing="0" cellpadding="0" width="90%" align="center">    
      
          

@@ -7,20 +7,20 @@ include('import/class.mysql.php');
 include('import/config.php');
 
 
-if (!isset($_REQUEST['USER'])){ $_REQUEST['USER'] = ''; }
-if (!isset($_REQUEST['EMAIL'])){ $_REQUEST['EMAIL'] = ''; }
+$_REQUEST['USER'] = !isset( $_REQUEST['USER'] ) ? '' : htmlspecialchars( (string) $_REQUEST['USER'], ENT_QUOTES );
+$_REQUEST['EMAIL'] = !isset( $_REQUEST['EMAIL'] ) ? '' : htmlspecialchars( (string) $_REQUEST['EMAIL'], ENT_QUOTES );
 if (!isset($_REQUEST['DEPARTMENT'])){ $_REQUEST['DEPARTMENT'] = ''; }
-if (!isset($_REQUEST['DEPARTMENT'])){ $_REQUEST['DEPARTMENT'] = ''; }
-if (!isset($_REQUEST['SERVER'])){ $_REQUEST['SERVER'] = ''; }
-if (!isset($_REQUEST['URL'])){ $_REQUEST['URL'] = ''; }
-if (!isset($_REQUEST['COOKIE'])){ $_REQUEST['COOKIE'] = ''; }
+$_REQUEST['DEPARTMENT'] = !isset( $_REQUEST['DEPARTMENT'] ) ? '' : htmlspecialchars( (string) $_REQUEST['DEPARTMENT'], ENT_QUOTES );
+$_REQUEST['SERVER'] = !isset( $_REQUEST['SERVER'] ) ? '' : htmlspecialchars( (string) $_REQUEST['SERVER'], ENT_QUOTES );
+$_REQUEST['URL'] = !isset( $_REQUEST['URL'] ) ? '' : (string) $_REQUEST['URL'];
+$_REQUEST['COOKIE'] = !isset( $_REQUEST['COOKIE'] ) ? '' : htmlspecialchars( (string) $_REQUEST['COOKIE'], ENT_QUOTES );
 
 $username = $_REQUEST['USER'];
 $email = $_REQUEST['EMAIL'];
 $department = $_REQUEST['DEPARTMENT'];
 $referer = $_REQUEST['URL'];
 $ip_address = $_SERVER['REMOTE_ADDR'];
- 
+$domain_id = !isset( $domain_id ) ? 0 : (int) $domain_id;
  
 //error_log("FRAMES ------------>>  username:".$username."\n", 3, "error.log");
 //error_log("FRAMES ------------>>  email:".$email."\n", 3, "error.log");
@@ -216,7 +216,7 @@ if(!stripos("-".$campaign_image, "http") == 1){
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title><?php echo($livehelp_name); ?></title>
-<script language="JavaScript" type="text/JavaScript" src="frames.js.php?LANGUAGE=<?=LANGUAGE_TYPE?>&URL=<?=$URL?>&DOMAINID=<?php echo($domain_id); ?>">
+<script language="JavaScript" type="text/JavaScript" src="frames.js.php?LANGUAGE=<?=LANGUAGE_TYPE?>&URL=<?=urlencode( $URL )?>&DOMAINID=<?php echo($domain_id); ?>">
 </script>
 <style type="text/css">
 <!--
@@ -228,7 +228,7 @@ if(!stripos("-".$campaign_image, "http") == 1){
 
 -->
 </style>
-<link href="style/styles.php?URL=<?=$URL?><?echo('&DOMAINID='.$domain_id)?>" rel="stylesheet" type="text/css">
+<link href="style/styles.php?URL=<?=urlencode( $URL )?><?echo('&DOMAINID='.$domain_id)?>" rel="stylesheet" type="text/css">
 </head>
 <body text="<?php echo($font_color); ?>" link="<?php echo($font_link_color); ?>" vlink="<?php echo($font_link_color); ?>" alink="<?php echo($font_link_color); ?>" onLoad="preloadImages('<?=$install_directory?>./domains/<?php echo($domain_id);?>/i18n/<?php echo(LANGUAGE_TYPE); ?>/pictures/send_hover.gif'); LoadMessages();" onUnload="windowLogout();" onBeforeUnload="windowLogout();" oncontextmenu="return true;" class="background" bottommargin="0">
 
@@ -242,7 +242,7 @@ if(!stripos("-".$campaign_image, "http") == 1){
                 <tr>
                         <td width="3" height="3" style="background-image:url(pictures/border-left.gif); background-repeat:repeat-y"></td>
                         <td width="350" height="215" bgcolor="#FFFFFF">
-                                <iframe name="displayFrame" id="displayFrame" src="displayer.php?LANGUAGE=<?=LANGUAGE_TYPE?>&URL=<?=$referer?><?echo('&DOMAINID='.$domain_id);?>" frameborder="0" width="100%" height="100%" style="border-style:none">
+                                <iframe name="displayFrame" id="displayFrame" src="displayer.php?LANGUAGE=<?=LANGUAGE_TYPE?>&URL=<?=urlencode( $referer )?><?echo('&DOMAINID='.$domain_id);?>" frameborder="0" width="100%" height="100%" style="border-style:none">
                                         <script language="JavaScript" type="text/JavaScript">top.location.href = 'offline.php?LANGUAGE=<?=LANGUAGE_TYPE?><?echo('&DOMAINID='.$domain_id)?>';</script>
                                 </iframe>
                         </td>
@@ -296,7 +296,7 @@ if ($agent_bannner == 0) {
         </div>
 </div-->
 
-<iframe name="sendMessageFrame" id="sendMessageFrame" src="./blank.php?LANGUAGE=<?=LANGUAGE_TYPE?>&URL=<?=$referer?><?echo('&DOMAINID='.$domain_id)?>" frameborder="0" border="0" width="0" height="0" style="visibility: hidden"></iframe>
+<iframe name="sendMessageFrame" id="sendMessageFrame" src="./blank.php?LANGUAGE=<?=LANGUAGE_TYPE?>&URL=<?=urlencode( $referer )?><?echo('&DOMAINID='.$domain_id)?>" frameborder="0" border="0" width="0" height="0" style="visibility: hidden"></iframe>
 <form action="send.php<?echo('?DOMAINID='.$domain_id)?>" method="POST" name="message_form" target="sendMessageFrame" style="margin: 0px; position: relative; top: -20px;">
         <div style="POSITION: absolute; LEFT: 10px; TOP: 260px;">
                 <table border="0" cellpadding="0" cellspacing="0">
@@ -357,7 +357,7 @@ if ($agent_bannner == 0) {
       <input type="Hidden" name="URL" value="<?=$_REQUEST['URL']?>">
 
 </form>
-<script language="JavaScript" type="text/JavaScript" src="frames2.js.php?username=<?=$username?>&URL=<?=$referer?><?echo('&DOMAINID='.$domain_id)?>">
+<script language="JavaScript" type="text/JavaScript" src="frames2.js.php?username=<?=$username?>&URL=<?=urlencode( $referer )?><?echo('&DOMAINID='.$domain_id)?>">
 </script>
 <span id="messSoundSpan"></span>
 

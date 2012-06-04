@@ -15,24 +15,24 @@ $SQL->connect();
 if (!isset($_REQUEST['ID']))
 {
    $_REQUEST['ID'] = '';
-}
+} else $_REQUEST['ID'] = (int) $_REQUEST['ID'];
 if (!isset($_REQUEST['MESSAGE']))
 {
    $_REQUEST['MESSAGE'] = '';
-}
+} else $_REQUEST['MESSAGE'] = htmlspecialchars ( (string) $_REQUEST['MESSAGE'], ENT_QUOTES );
 if (!isset($_REQUEST['STAFF']))
 {
    $_REQUEST['STAFF'] = '';
-}
+} else $_REQUEST['STAFF'] = (bool) $_REQUEST['STAFF'];
 if (!isset($_REQUEST['TYPING']))
 {
    $_REQUEST['TYPING'] = '';
-}
+} else $_REQUEST['TYPING'] = (bool) $_REQUEST['TYPING'];
 
 if (!isset($_REQUEST['OPERATORID']))
 {
    $operator_login_id = $_REQUEST['OPERATORID'];
-}
+} $operator_login_id = $_REQUEST['OPERATORID'] = (int) $_REQUEST['OPERATORID'];
 
 $current_typing_status = $_REQUEST['TYPING'];
 $guest_login_id = $_REQUEST['ID'];

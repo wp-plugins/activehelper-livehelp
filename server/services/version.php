@@ -9,10 +9,10 @@ include('../import/version.php');
 if (!isset($_REQUEST['WEB'])){ $_REQUEST['WEB'] = ''; }
 if (!isset($_REQUEST['WINDOWS'])){ $_REQUEST['WINDOWS'] = ''; }
 
-$current_web_version = $_REQUEST['WEB'];
-$current_windows_version = $_REQUEST['WINDOWS'];
+$current_web_version = htmlspecialchars( (string) $_REQUEST['WEB'], ENT_QUOTES );
+$current_windows_version = htmlspecialchars( (string) $_REQUEST['WINDOWS'], ENT_QUOTES );
 
-if ($current_windows_version == $windows_application_version) { $result = 'true'; } else { $result = 'false'; }
+if ( $current_windows_version == $windows_application_version ) { $result = 'true'; } else { $result = 'false'; }
 
 $charset = 'utf-8';
 header('Content-type: text/xml; charset=' . $charset);

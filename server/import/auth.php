@@ -1,8 +1,8 @@
 <?php
 include_once('constants.php');
 
-if (!isset($_REQUEST['USERNAME'])){ $_REQUEST['USERNAME'] = ''; }
-if (!isset($_REQUEST['PASSWORD'])){ $_REQUEST['PASSWORD'] = ''; }
+if (!isset($_REQUEST['USERNAME'])){ $_REQUEST['USERNAME'] = ''; } else $_REQUEST['USERNAME'] = htmlspecialchars( (string) $_REQUEST['USERNAME'], ENT_QUOTES );
+if (!isset($_REQUEST['PASSWORD'])){ $_REQUEST['PASSWORD'] = ''; } else $_REQUEST['PASSWORD'] = htmlspecialchars( (string) $_REQUEST['PASSWORD'], ENT_QUOTES );
 
 if (isset($_COOKIE['LiveHelpOperator'])) {
         $session = array();

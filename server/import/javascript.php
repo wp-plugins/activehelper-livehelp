@@ -3,42 +3,40 @@
 include_once('constants.php');
 include_once('string_util.php');
 
-//error_log("entro:"."\n", 3, "javascript.log");
+#error_log("\n1:"."\n", 3, "trackerror.log");
 
 if (!isset($_SERVER['DOCUMENT_ROOT'])){ $_SERVER['DOCUMENT_ROOT'] = ''; }
-if (!isset($_REQUEST['DEPARTMENT'])){ $_REQUEST['DEPARTMENT'] = ''; }
-if (!isset($_REQUEST['SERVER'])){ $_REQUEST['SERVER'] = ''; }
-if (!isset($_REQUEST['TRACKER'])){ $_REQUEST['TRACKER'] = ''; }
-if (!isset($_REQUEST['STATUS'])){ $_REQUEST['STATUS'] = ''; }
-if (!isset($_REQUEST['TITLE'])){ $_REQUEST['TITLE'] = ''; }
-$_REQUEST['USERID'] = "";
+if (!isset($_REQUEST['DEPARTMENT'])){ $_REQUEST['DEPARTMENT'] = ''; } else $_REQUEST['DEPARTMENT'] = htmlspecialchars( (string) $_REQUEST['DEPARTMENT'], ENT_QUOTES );
+if (!isset($_REQUEST['SERVER'])){ $_REQUEST['SERVER'] = ''; } else $_REQUEST['SERVER'] = htmlspecialchars( (string) $_REQUEST['SERVER'], ENT_QUOTES );
+if (!isset($_REQUEST['TRACKER'])){ $_REQUEST['TRACKER'] = ''; } else $_REQUEST['TRACKER'] = (bool) $_REQUEST['TRACKER'];
+if (!isset($_REQUEST['STATUS'])){ $_REQUEST['STATUS'] = ''; } else $_REQUEST['STATUS'] = htmlspecialchars( (string) $_REQUEST['STATUS'], ENT_QUOTES );
+if (!isset($_REQUEST['TITLE'])){ $_REQUEST['TITLE'] = ''; } else $_REQUEST['TITLE'] = htmlspecialchars( (string) $_REQUEST['TITLE'], ENT_QUOTES );
+
+$_REQUEST['USERID'] = ""; 
+
+if (!isset($_REQUEST['services'])) {$_REQUEST['services'] = '';} else $_REQUEST['services'] = htmlspecialchars( (string) $_REQUEST['services'], ENT_QUOTES );
 
 if (isset($_SERVER['PATH_TRANSLATED']) && $_SERVER['PATH_TRANSLATED'] != '') { $env_path = $_SERVER['PATH_TRANSLATED']; } else { $env_path = $_SERVER['SCRIPT_FILENAME']; }
 $full_path = str_replace("\\\\", "\\", $env_path);
 $livehelp_path = $_SERVER['PHP_SELF'];
 
-
 if (strpos($full_path, '/') === false)
 { $livehelp_path = str_replace("/", "\\", $livehelp_path);
 }
- 
 
-$pos = strpos($full_path, $livehelp_path);
+$pos = strpos($full_path, $livehelp_path);    
 
 if ($pos === false) {
-        $install_path = $full_path;
-        
+        $install_path = $full_path; 
 }
 else {
 
-        $install_path = substr($full_path, 0, $pos);                
+        $install_path = substr($full_path, 0, $pos);           
 }
 
 $installed = false;
 
 $database = include($install_path . $install_directory . '/import/config_database.php');
-
-
 
 if ($database) {
         include($install_path . $install_directory . '/import/block_spiders.php');
@@ -242,7 +240,7 @@ var longitude   = '';
 
 function initgeo(geoDict)
  { countrycode = geoDict['CountryCode'];
-   country     =  geoDict['CountryName'];
+   country     = geoDict['CountryName'];
    city        = geoDict['City'];
    latitude    = geoDict['Latitude'];
    longitude   = geoDict['Longitude'];
@@ -1005,6 +1003,19 @@ else {
 
 ?>
 
+<?php 
+
+// Not allowed Conuntries
+  $not_allowed_country = 0;
+   
+  $query = "SELECT jlnac.`id_domain`  FROM " . $table_prefix . "requests jlr , " . $table_prefix ."not_allowed_countries jlnac WHERE jlr.`id` = '$request_id' and jlr.id_domain = '$domain_id' and jlr.id_domain = jlnac.id_domain and  jlr.country_code =  jlnac.code"; 
+  $row = $SQL->selectquery($query);
+if (is_array($row)) {
+   $not_allowed_country = 1;
+   }
+                   
+                         
+?>            
 
 <?php if (($time_refresh !=0) and ($disable_invitation !=1)) {  ?>
 
@@ -1032,6 +1043,8 @@ function startLivehelp()
   document.writeln('var s1 = new statusClass(' + _vlService  + ',' + _vlDomain + ');');
   document.writeln('</script>');
 
+ _vlnot_allowed_country="<?php echo($not_allowed_country); ?>";
+
  // Insert invitation script
  
   _vldisableinvitation =<?php echo($disable_invitation); ?>;
@@ -1051,21 +1064,24 @@ function startLivehelp()
    }
 
 // Custom offline form
-
  var _vlExternalLink = 0;
-   
+
+// not allowed conuntries restriction   
+if (_vlnot_allowed_country ==0) { 
+    
+  // Offline 
    if ( _vlStatus_indicator  &&  _vloffline ==1 &&_custom_offline_form !='') {
       document.writeln('<a href="<?php echo($offline_custom_link);?>" id="livechatLink">');
       document.writeln('<img src="<?php echo($server); echo($server_directory); ?>/<? echo($eserverName); ?>/import/status.php?service_id=' + _vlService + '&LANGUAGE=' + _vlLanguage + '&DOMAINID=' + _vlDomain + '" id="LiveHelpStatus_1" name="LiveHelpStatus_1" border="0" onmouseover="s1.openInfo(this, event);" onmouseout="s1.closeInfo();"/></a>');
       _vlExternalLink =1;
    }
 
-
+// Online 
    if(_vlStatus_indicator  && _vlExternalLink ==0 && _vlofftracking ==0){
     document.writeln('<a href="<?php echo($server);  echo($server_directory); ?>/<? echo($eserverName); ?>/index.php" id="livechatLink" target="_blank" onclick="s1.openLiveHelp(); s1.closeInfo(); return false">');
     document.writeln('<img src="<?php echo($server); echo($server_directory); ?>/<? echo($eserverName); ?>/import/status.php?service_id=' + _vlService + '&LANGUAGE=' + _vlLanguage + '&DOMAINID=' + _vlDomain + '" id="LiveHelpStatus_1" name="LiveHelpStatus_1" border="0" onmouseover="s1.openInfo(this, event);" onmouseout="s1.closeInfo();"/></a>');
    }
-
+ }
 }
 
 //-->

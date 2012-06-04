@@ -2,11 +2,13 @@
 include_once('constants.php');
 
 if (!isset($_SERVER['HTTP_REFERER'])){ $_SERVER['HTTP_REFERER'] = ''; }
-if (!isset($_REQUEST['DEPARTMENT'])){ $_REQUEST['DEPARTMENT'] = ''; }
-if (!isset($_REQUEST['SERVER'])){ $_REQUEST['SERVER'] = ''; }
-if (!isset($_REQUEST['STATUS'])){ $_REQUEST['STATUS'] = ''; }
+if (!isset($_REQUEST['DEPARTMENT'])){ $_REQUEST['DEPARTMENT'] = ''; } else $_REQUEST['DEPARTMENT'] = htmlspecialchars( (string) $_REQUEST['DEPARTMENT'], ENT_QUOTES );
+if (!isset($_REQUEST['SERVER'])){ $_REQUEST['SERVER'] = ''; } else $_REQUEST['SERVER'] = htmlspecialchars( (string) $_REQUEST['SERVER'], ENT_QUOTES );
+if (!isset($_REQUEST['STATUS'])){ $_REQUEST['STATUS'] = ''; } else $_REQUEST['STATUS'] = (bool) $_REQUEST['STATUS'];
 
-$showImage = true;
+$showImage = true; if (!isset($_REQUEST['USERID'])){ $_REQUEST['USERID'] = null; } else $_REQUEST['USERID'] = (int) $_REQUEST['USERID'];
+
+$_REQUEST['service_id'] = isset( $_REQUEST['service_id'] ) ? (int) $_REQUEST['service_id'] : '';
 
 if (isset($_SERVER['PATH_TRANSLATED']) && $_SERVER['PATH_TRANSLATED'] != '') { $env_path = $_SERVER['PATH_TRANSLATED']; } else { $env_path = $_SERVER['SCRIPT_FILENAME']; }
 $full_path = str_replace("\\\\", "\\", $env_path);
@@ -36,6 +38,8 @@ if($domainIsValid == false){
 
 
 $service_id = $_REQUEST['service_id'];
+
+if (!isset($_REQUEST['oUSERID'])){ $_REQUEST['oUSERID'] = null; } else $_REQUEST['oUSERID'] = (int) $_REQUEST['oUSERID'];
 
 if(isset($_REQUEST['oUSERID'])) {
         $query = "SELECT id_domain FROM " . $table_prefix . "domain_user WHERE id_user = ".$_REQUEST['oUSERID']." Limit 1";

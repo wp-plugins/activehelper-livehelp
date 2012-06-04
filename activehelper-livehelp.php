@@ -6,7 +6,7 @@
 Plugin Name: ActiveHelper Live Help
 Plugin URI: http://www.activehelper.com
 Description: Provide superior service by real time chat with your website visitors and interact them through your website. Create a more efficient connection with your website visitors, increase your sales and customer satisfaction.
-Version: 2.6.7
+Version: 2.7.0
 Author: ActiveHelper Inc
 Author URI: http://www.activehelper.com
 */
@@ -56,6 +56,7 @@ require_once($activeHelper_liveHelp['sourcesDir'] . '/livehelp_chats-by-country.
 require_once($activeHelper_liveHelp['sourcesDir'] . '/livehelp_chats-by-keyword.php');
 require_once($activeHelper_liveHelp['sourcesDir'] . '/livehelp_offline-messages.php');
 require_once($activeHelper_liveHelp['sourcesDir'] . '/livehelp_server-settings.php');
+require_once($activeHelper_liveHelp['sourcesDir'] . '/livehelp_restricted-countries.php');
 
 add_action('init', 'activeHelper_liveHelp_mainLanguages');
 add_action('admin_init', 'activeHelper_liveHelp_mainInstall');
@@ -101,6 +102,7 @@ function activeHelper_liveHelp_mainPost()
 		strtolower('activeHelper_liveHelp_offlineMessages') => 'activeHelper_liveHelp_offlineMessagesPost',
 		strtolower('activeHelper_liveHelp_serverSettings') => 'activeHelper_liveHelp_serverSettingsPost',
 		strtolower('activeHelper_liveHelp_about') => 'activeHelper_liveHelp_aboutPost',
+		strtolower('activeHelper_liveHelp_restrictedCountries') => 'activeHelper_liveHelp_restrictedCountriesPost',
 		strtolower('activehelper_livehelp_uninstall') => 'activehelper_livehelp_uninstallPost'
 	);
 
@@ -213,6 +215,14 @@ function activeHelper_liveHelp_mainMenu()
 		'manage_options', // type
 		strtolower('activeHelper_liveHelp_serverSettings'), // id
 		'activeHelper_liveHelp_serverSettings' // callback
+	);
+	add_submenu_page(
+		strtolower('activeHelper_liveHelp'), // parent
+		__('Not allowed countries', 'activehelper_livehelp') . ' ‹ ActiveHelper LiveHelp', // page title
+		__('Not allowed countries', 'activehelper_livehelp'), // menu title
+		'manage_options', // type
+		strtolower('activeHelper_liveHelp_restrictedCountries'), // id
+		'activeHelper_liveHelp_restrictedCountries' // callback
 	);
 
 	add_submenu_page(
@@ -423,6 +433,12 @@ function activeHelper_liveHelp_welcome()
 							<a style="display: block;" href="admin.php?page=' . strtolower('activeHelper_liveHelp_serverSettings') . '">
 								<img style="margin: 0 auto .5ex auto; display: block;" src="' . $activeHelper_liveHelp['imagesUrl'] . '/settings.png" />
 								<span style="display: inline-block;">' . __('Server settings', 'activehelper_livehelp') . '</span>
+							</a>
+						</div>
+						<div style="margin-top: 15px; float: left; padding-right: 5ex; text-align: center;">
+							<a style="display: block;" href="admin.php?page=' . strtolower('activeHelper_liveHelp_restrictedCountries') . '">
+								<img style="margin: 0 auto .5ex auto; display: block;" src="' . $activeHelper_liveHelp['imagesUrl'] . '/restriction.png" />
+								<span style="display: inline-block;">' . __('Not allowed countries', 'activehelper_livehelp') . '</span>
 							</a>
 						</div>
 						<div style="margin-top: 15px; float: left; padding-right: 5ex; text-align: center;">
@@ -714,7 +730,7 @@ function activeHelper_liveHelp_about()
 							<table><tbody><tr><td class="first t">
 								' . __('Version', 'activehelper_livehelp') . '
 							</td><td class="b">
-								' . __('2.6.7', 'activehelper_livehelp') . '
+								' . __('2.7.0', 'activehelper_livehelp') . '
 							</td></tr></tbody></table>
 							<table><tbody><tr><td class="first t">
 								' . __('Check for Update', 'activehelper_livehelp') . '

@@ -1,12 +1,12 @@
 <?php
 include_once('import/constants.php');
 
-if (!isset($_REQUEST['REFERER'])){ $_REQUEST['REFERER'] = ''; }
-if (!isset($_REQUEST['URL'])){ $_REQUEST['URL'] = ''; }
-if (!isset($_REQUEST['SERVER'])){ $_REQUEST['SERVER'] = ''; }
-if (!isset($_REQUEST['TITLE'])){ $_REQUEST['TITLE'] = ''; }
-if (!isset($_REQUEST['DEPARTMENT'])){ $_REQUEST['DEPARTMENT'] = ''; }
-if (!isset($_REQUEST['ERROR'])){ $_REQUEST['ERROR'] = ''; }
+$_REQUEST['REFERER'] = !isset( $_REQUEST['REFERER'] ) ? '' : (string) $_REQUEST['REFERER'];
+$_REQUEST['URL'] = !isset( $_REQUEST['URL'] ) ? '' : (string) $_REQUEST['URL'];
+$_REQUEST['SERVER'] = !isset( $_REQUEST['SERVER'] ) ? '' : htmlspecialchars( (string) $_REQUEST['SERVER'], ENT_QUOTES );
+$_REQUEST['TITLE'] = !isset( $_REQUEST['TITLE'] ) ? '' : htmlspecialchars( (string) $_REQUEST['TITLE'], ENT_QUOTES );
+$_REQUEST['DEPARTMENT'] = !isset( $_REQUEST['DEPARTMENT'] ) ? '' : htmlspecialchars( (string) $_REQUEST['DEPARTMENT'], ENT_QUOTES );
+$_REQUEST['ERROR'] = !isset( $_REQUEST['ERROR'] ) ? '' : htmlspecialchars( (string) $_REQUEST['ERROR'], ENT_QUOTES );
 
 if (isset($_SERVER['PATH_TRANSLATED']) && $_SERVER['PATH_TRANSLATED'] != '') { $env_path = $_SERVER['PATH_TRANSLATED']; } else { $env_path = $_SERVER['SCRIPT_FILENAME']; }
 $full_path = str_replace("\\\\", "\\", $env_path);
@@ -80,7 +80,7 @@ padding: 15px;
 }
 -->
 </style>
-<link href="./style/styles.php?<?echo('DOMAINID='.$domain_id);?>" rel="stylesheet" type="text/css">
+<link href="./style/styles.php?<?echo('DOMAINID='. ( (int) $domain_id ) );?>" rel="stylesheet" type="text/css">
 <script language="JavaScript" type="text/JavaScript">
 <!--
 

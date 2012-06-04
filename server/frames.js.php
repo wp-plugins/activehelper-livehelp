@@ -13,7 +13,7 @@ else {
         $install_path = substr($full_path, 0, $pos);
 }
 
-$URL = $_REQUEST['URL'];
+$URL = !isset( $_REQUEST['URL'] ) ? '' : (string) $_REQUEST['URL'];
 
 $installed = false;
 $database = include($install_path . $install_directory . '/import/config_database.php');
@@ -192,10 +192,25 @@ function display(username, message, align, status) {
                 output += '</font></div></td></tr></table>';
                 top.displayFrame.displayContentsFrame.document.write(output); top.bottom();
         }
-        //alert(message);
+         //alert(message);
         if("<?=$guest_username?>" != username) {
-                //document.getElementById("messSoundSpan").innerHTML = "<EMBED src='panel/sound/Message.wav' width='0' height='0' loop='False'>"
-                window.focus()
+            
+          if ("<?=$sound_alert_new_message?>" != 0)
+            {
+                 var snd = new Audio();
+                         
+             if(!!(snd.canPlayType && snd.canPlayType('audio/ogg; codecs="vorbis"').replace(/no/, '')))
+               snd.src = "sounds/receive.ogg";
+             else if(!!(snd.canPlayType && snd.canPlayType('audio/mpeg;').replace(/no/, '')))
+               snd.src = "sounds/receive.mp3";
+             else if(!!(snd.canPlayType && snd.canPlayType('audio/mp4; codecs="mp4a.40.2"').replace(/no/, '')))
+               snd.src = "sounds/receive.m4a";
+             else
+               snd.src = "sounds/receive.wav";
+                
+               snd.play();
+              }
+            window.focus()
         }
 }
 
@@ -248,8 +263,8 @@ function LoadMessagesFrame() {
         if (top.displayFrame && chatEnded == false) {
                 //
                 top.displayFrame.displayRefreshFrame.document.onload = window.setTimeout('LoadMessagesFrame();', 3000);
-//              alert('<?=$install_directory?>/refresher.php?LANGUAGE=<?=LANGUAGE_TYPE?>&DOMAINID=<?php echo($domain_id); ?>&URL=<?=$URL?>&lastMessageID=' + lastMessageID);
-                top.displayFrame.displayRefreshFrame.location.href = '<?=$install_directory?>/refresher.php?DOMAINID=<?php echo($domain_id); ?>&LANGUAGE=<?=LANGUAGE_TYPE?>&URL=<?=$URL?>&lastMessageID=' + lastMessageID;
+//              alert('<?=$install_directory?>/refresher.php?LANGUAGE=<?=LANGUAGE_TYPE?>&DOMAINID=<?php echo( (int) $domain_id ); ?>&URL=<?= urlencode( $URL ) ?>&lastMessageID=' + lastMessageID);
+                top.displayFrame.displayRefreshFrame.location.href = '<?=$install_directory?>/refresher.php?DOMAINID=<?php echo( (int) $domain_id ); ?>&LANGUAGE=<?=LANGUAGE_TYPE?>&URL=<?= urlencode( $URL ) ?>&lastMessageID=' + lastMessageID;
         }
 }
 
@@ -266,7 +281,7 @@ function LoadMessages() {
                 }
 
                 var time = currentTime();
-                var URL = '<?=$install_directory?>/refresher.php?LANGUAGE=<?=LANGUAGE_TYPE?>&DOMAINID=<?php echo($domain_id); ?>&JS=1&TYPING=' + currentlyTyping + '&INIT=' + initalisedChat + '&COOKIE=<?php echo($cookie_domain); ?>&TIME=' + time + '&URL=<?=$URL?>&lastMessageID=' + lastMessageID;
+                var URL = '<?=$install_directory?>/refresher.php?LANGUAGE=<?=LANGUAGE_TYPE?>&DOMAINID=<?php echo( (int) $domain_id ); ?>&JS=1&TYPING=' + currentlyTyping + '&INIT=' + initalisedChat + '&COOKIE=<?php echo($cookie_domain); ?>&TIME=' + time + '&URL=<?= urlencode( $URL ) ?>&lastMessageID=' + lastMessageID;
 //              alert(URL);
                 LiveHelpXMLHTTP.open('GET', URL, true);
 

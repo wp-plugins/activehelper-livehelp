@@ -4,7 +4,7 @@ include_once('import/constants.php');
 include('import/config_database.php');
 include('import/class.mysql.php');
 include('import/config.php');
-
+$domain_id = (int) $domain_id;
 if (isset($_SERVER['PATH_TRANSLATED']) && $_SERVER['PATH_TRANSLATED'] != '') { $env_path = $_SERVER['PATH_TRANSLATED']; } else { $env_path = $_SERVER['SCRIPT_FILENAME']; }
 $full_path = str_replace("\\\\", "\\", $env_path);
 $livehelp_path = $_SERVER['PHP_SELF'];
@@ -18,7 +18,7 @@ else {
 }
 
 if (!isset($_COOKIE['LiveHelpSession_'.$domain_id])) {
-        header('Location: ' . $install_directory . '/cookies.php?SERVER=' . $_REQUEST['SERVER'] . '&COOKIE=true');
+        header('Location: ' . $install_directory . '/cookies.php?SERVER=' . ( urlencode( htmlspecialchars( (string) $_REQUEST['SERVER'], ENT_QUOTES ) ) ) . '&COOKIE=true');
         exit();
 }
 
@@ -44,8 +44,8 @@ if(isset($_REQUEST["sbmt"])) {
                         ini_set('sendmail_from', $from_email);
                 }
 
-                $from_name = $_REQUEST["name"];
-                $from_email = $_REQUEST["email"];
+                $from_name = htmlspecialchars( (string) $_REQUEST["name"], ENT_QUOTES );
+                $from_email = htmlspecialchars( (string) $_REQUEST["email"], ENT_QUOTES );
                 $query = "SELECT value FROM " . $table_prefix . "settings WHERE name = 'offline_email' And id_domain = $domain_id";
                 $row = $SQL->selectquery($query);
                 if (is_array($row)) {
@@ -58,14 +58,14 @@ if(isset($_REQUEST["sbmt"])) {
                 $headers .= "Return-Path: " . $from_name . " <" . $from_email . ">\n";
                 $message .= "\n\n--------------------------\n";
                 $message .= "IP Logged:  " . $_SERVER['REMOTE_ADDR'] . "\n";
-                $message .= "Name:  " . $_REQUEST['name'] . "\n";
-                $message .= "Question:  " . $_REQUEST['question'] . "\n";
-                $message .= "Email:  " . $_REQUEST['email'] . "\n";
-                $message .= "Language:  " . $_REQUEST['language'] . "\n";
-                $message .= "Phone code:  " . $_REQUEST['phone_code'] . "\n";
-                $message .= "Code area:  " . $_REQUEST['code'] . "\n";
-                $message .= "Phone:  " . $_REQUEST['phone'] . "\n";
-                $message .= "Message:  " . $_REQUEST['offlineMessage'] . "\n";
+                $message .= "Name:  " . htmlspecialchars( (string) $_REQUEST['name'], ENT_QUOTES ) . "\n";
+                $message .= "Question:  " . htmlspecialchars( (string) $_REQUEST['question'], ENT_QUOTES ) . "\n";
+                $message .= "Email:  " . htmlspecialchars( (string) $_REQUEST['email'], ENT_QUOTES ) . "\n";
+                $message .= "Language:  " . htmlspecialchars( (string) $_REQUEST['language'], ENT_QUOTES ) . "\n";
+                $message .= "Phone code:  " . htmlspecialchars( (string) $_REQUEST['phone_code'], ENT_QUOTES ) . "\n";
+                $message .= "Code area:  " . htmlspecialchars( (string) $_REQUEST['code'], ENT_QUOTES ) . "\n";
+                $message .= "Phone:  " . htmlspecialchars( (string) $_REQUEST['phone'], ENT_QUOTES ) . "\n";
+                $message .= "Message:  " . htmlspecialchars( (string) $_REQUEST['offlineMessage'], ENT_QUOTES ) . "\n";
 
                 $sendmail_path = ini_get('sendmail_path');
                 if ($sendmail_path == '') {
@@ -83,7 +83,7 @@ if(isset($_REQUEST["sbmt"])) {
 Offline message was sent!
 <?
         } else {
-                $query = "Insert into " . $table_prefix . "webcall (id_webcall, request, Name, Question, Email, Language, Department, country, code, phone, status, request_time) Values ('', '".$request_id."', '".$_REQUEST["name"]."', '".$_REQUEST["question"]."', '".$_REQUEST["email"]."', '".$_REQUEST["language"]."', '".$_REQUEST["department"]."', '".$_REQUEST["country"]."', '".$_REQUEST["code"]."', '".$_REQUEST["phone"]."', 0, now())";
+                $query = "Insert into " . $table_prefix . "webcall (id_webcall, request, Name, Question, Email, Language, Department, country, code, phone, status, request_time) Values ('', '".$request_id."', '".htmlspecialchars( (string) $_REQUEST["name"], ENT_QUOTES )."', '".htmlspecialchars( (string) $_REQUEST["question"], ENT_QUOTES )."', '".htmlspecialchars( (string) $_REQUEST["email"], ENT_QUOTES )."', '".htmlspecialchars( (string) $_REQUEST["language"], ENT_QUOTES )."', '".htmlspecialchars( (string) $_REQUEST["department"], ENT_QUOTES )."', '".htmlspecialchars( (string) $_REQUEST["country"], ENT_QUOTES )."', '".htmlspecialchars( (string) $_REQUEST["code"], ENT_QUOTES )."', '".htmlspecialchars( (string) $_REQUEST["phone"], ENT_QUOTES )."', 0, now())";
                 $webCall_id = $SQL->insertquery($query);
 
                 $session = array();

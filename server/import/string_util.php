@@ -49,7 +49,7 @@ function str_replace_count($search,$replace,$subject,$times) {
 
   function getReferrer() {
 
-    $refDomain = $_REQUEST['URL'] == "" ? $_SERVER['HTTP_REFERER'] : $_REQUEST['URL'];
+    $refDomain = $_REQUEST['URL'] == "" ? $_SERVER['HTTP_REFERER'] : (string) $_REQUEST['URL'];
 
     $refDomain = strtolower($refDomain);
 

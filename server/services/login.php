@@ -17,23 +17,23 @@ header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // Date in the past
   if (!isset($_REQUEST['USERNAME']))
   {
      $_REQUEST['USERNAME'] = '';
-  }
+  } else $_REQUEST['USERNAME'] = htmlspecialchars( (string) $_REQUEST['USERNAME'], ENT_QUOTES );
   if (!isset($_REQUEST['PASSWORD']))
   {
      $_REQUEST['PASSWORD'] = '';
-  }
+  } else $_REQUEST['PASSWORD'] = htmlspecialchars( (string) $_REQUEST['PASSWORD'], ENT_QUOTES );
   if (!isset($_REQUEST['ACCOUNT']))
   {
      $_REQUEST['ACCOUNT'] = '';
-  }
+  } else $_REQUEST['ACCOUNT'] = htmlspecialchars( (string) $_REQUEST['ACCOUNT'], ENT_QUOTES );
   if (!isset($_REQUEST['SERVER']))
   {
      $_REQUEST['SERVER'] = '';
-  }
+  } else $_REQUEST['SERVER'] = htmlspecialchars( (string) $_REQUEST['SERVER'], ENT_QUOTES );
   if (!isset($_REQUEST['LANGUAGE']))
   {
      $_REQUEST['LANGUAGE'] = '';
-  }
+  } else $_REQUEST['LANGUAGE'] = htmlspecialchars( (string) $_REQUEST['LANGUAGE'], ENT_QUOTES );
 
   $login_timeout = 20;
 

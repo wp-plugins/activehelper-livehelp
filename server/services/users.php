@@ -17,22 +17,22 @@ $SQL->connect();
 if (!isset($_REQUEST['ACTION']))
 {
    $_REQUEST['ACTION'] = '';
-}
+} else $_REQUEST['ACTION'] = htmlspecialchars ( (string) $_REQUEST['ACTION'], ENT_QUOTES );
 if (!isset($_REQUEST['ID']))
 {
    $_REQUEST['ID'] = '';
-}
+} else $_REQUEST['ID'] = (int) $_REQUEST['ID'];
 if (!isset($_REQUEST['TRANSFER']))
 {
    $_REQUEST['TRANSFER'] = '';
-}
+} else $_REQUEST['TRANSFER'] = htmlspecialchars ( (string) $_REQUEST['TRANSFER'], ENT_QUOTES );
 
 $action = $_REQUEST['ACTION'];
 $login_id = $_REQUEST['ID'];
 $transfer_id = $_REQUEST['TRANSFER'];
-$id_service = isset($_REQUEST['IDSERVICE']) ? $_REQUEST['IDSERVICE']: "";
+$id_service = isset($_REQUEST['IDSERVICE']) ? (int) $_REQUEST['IDSERVICE']: "";
 
-$operator_login_id = $_REQUEST['OPERATORID'];
+$operator_login_id = $_REQUEST['OPERATORID'] = (int) $_REQUEST['OPERATORID'];
 
 
 

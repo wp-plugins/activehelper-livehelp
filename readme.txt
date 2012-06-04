@@ -2,8 +2,8 @@
 Contributors: activehelper
 Tags: live chat, live help, live support, customer service, wordpress plugin, livechat,  customer service, visitor tracking, visitor statistics
 Requires at least: 3.2
-Tested up to: 3.3.1
-Stable tag: 2.6.7
+Tested up to: 3.3.2
+Stable tag: 2.7.0
 
 ActiveHelper LiveHelp is a powerful Live Chat Server Plugin for WordPress. 
 
@@ -59,7 +59,10 @@ The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system i
 * Proxy support
 * Multi Language Images
 * 25 Language Translations.
-* Support Panel from your desktop
+* Support Panel desktop for Windows and MAC 
+* Support panel mobile for your iPhone/ipad 
+* Support panel mobile for your Android phone and tablet
+* Support panel mobile for your BlackBerry PlayBook
 * Customizable Look & Feel
 
 
@@ -103,8 +106,8 @@ For further help you may choose any of following options:
 3.  Proactive Invitation
 4.  Offline Form Multi Language Support
 5.  LiveHelp Server Dashboard - Plugin admin area
-6.  Support Panel Multi Platform Console - The agennt app
-7.  Live Chat Domain Settings.
+6.  Support Panel Desktop App
+7.  Support Panel Mobile App
 
 == Changelog ==
 
@@ -158,4 +161,15 @@ For further help you may choose any of following options:
 * Full Croatian language support to the Live Chat.
 * Add images tracking for in Croatian language.
 * Tracking widget support Croatian language.
+* Other small improvements and bug fixes.
+
+= 2.7.0 =
+* New Support panel Mobile for iPhone/iPad.
+* New Support panel Mobile for Android.
+* New Support panel Mobile for BlackBerry PlayBook.
+* New country restriction.
+* Web chat messages sound alert.
+* Core security update.
+* French language updated.
+* Arab images updated.
 * Other small improvements and bug fixes.

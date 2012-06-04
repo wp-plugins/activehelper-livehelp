@@ -13,7 +13,7 @@ if ($pos === false) {
 else {
         $install_path = substr($full_path, 0, $pos);
 }
-
+$domain_id = (int) $domain_id;
 $installed = false;
 $database = include('import/config_database.php');
 if ($database) {

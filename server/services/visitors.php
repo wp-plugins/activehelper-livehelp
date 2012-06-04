@@ -22,27 +22,27 @@ $SQL->connect();
 if (!isset($_REQUEST['ACTION']))
 {
    $_REQUEST['ACTION'] = '';
-}
+} else $_REQUEST['ACTION'] = htmlspecialchars( (string) $_REQUEST['ACTION'], ENT_QUOTES );
 if (!isset($_REQUEST['REQUEST']))
 {
    $_REQUEST['REQUEST'] = '';
-}
+} else $_REQUEST['REQUEST'] = (int) $_REQUEST['REQUEST'];
 if (!isset($_REQUEST['RECORD']))
 {
    $_REQUEST['RECORD'] = '';
-}
+} else $_REQUEST['RECORD'] = htmlspecialchars( (string) $_REQUEST['RECORD'], ENT_QUOTES );
 if (!isset($_REQUEST['DATETIME']))
 {
    $_REQUEST['DATETIME'] = '';
-}
+} else $_REQUEST['DATETIME'] = htmlspecialchars( (string) $_REQUEST['DATETIME'], ENT_QUOTES );
 if (!isset($_REQUEST['LANGUAGE']))
 {
    $_REQUEST['LANGUAGE'] = '';
-}
+} else $_REQUEST['LANGUAGE'] = htmlspecialchars( (string) $_REQUEST['LANGUAGE'], ENT_QUOTES );
 
 if (!isset($_REQUEST['OPERATORID']))
 {
-   $operator_login_id = $_REQUEST['OPERATORID'];
+   $operator_login_id = (int) $_REQUEST['OPERATORID'];
 }
 
 $language = $_REQUEST['LANGUAGE'];
@@ -50,8 +50,8 @@ $action = $_REQUEST['ACTION'];
 $request = $_REQUEST['REQUEST'];
 $record = $_REQUEST['RECORD'];
 $date = $_REQUEST['DATETIME'];
-$responceType = !isset($_REQUEST['DATA']) ? "full": $_REQUEST['DATA'];
-$visitorId = !isset($_REQUEST['visitorId']) ? "": $_REQUEST['visitorId'];
+$responceType = !isset($_REQUEST['DATA']) ? "full": htmlspecialchars( (string) $_REQUEST['DATA'], ENT_QUOTES );
+$visitorId = !isset($_REQUEST['visitorId']) ? "": (int) $_REQUEST['visitorId'];
 
 define('LANGUAGE_TYPE', $language);
 
@@ -140,7 +140,7 @@ if (is_array($row))
    if ($totalvisitors > 0 && $record != '')
    {
 
-      //$query = "SELECT requests.*, ((UNIX_TIMESTAMP(requests.refresh) - UNIX_TIMESTAMP(requests.datetime))) AS `sitetime`, ((UNIX_TIMESTAMP(requests.refresh) - UNIX_TIMESTAMP(requests.request))) AS `pagetime` FROM " . $table_prefix . "requests AS requests, " . $table_prefix . "sessions AS sessions WHERE requests.id = sessions.request AND DATE_FORMAT(requests.datetime, '%Y-%m-%d') = '$date' AND `status` = '0' AND (`active` = '-1' OR `active` = '-3') and id_domain in (". $domains_set .") ORDER BY requests.request LIMIT $record, 6";
+      //$query = "SELECT requests.*, ((UNIX_TIMESTAMP(requests.refresh) - UNIX_TIMESTAMP(requests.datetime))) AS `sitetime`, ((UNIX_TIMESTAMP(requests.refresh) - UNIX_TIMESTAMP(requests.request))) AS `pagetime` FROM " . $table_prefix . "requests AS requests, " . $table_prefix . "sessions AS sessions WHERE requests.id = sessions.request AND DATE_FORMAT(requests.datetime, '%Y-%m-%d') = '$date' AND `status` = '0' AND (`active` = '-1' OR `active` = '-3') and id_domain in (". $domains_set .") ORDER BY requests.request LIMIT " . ( (int) $record ) . ", 6";
       //error_log("visitor.php:query ------------>>:".$query."\n", 3, "../error.log");
       if ($date != '')
       {
@@ -154,7 +154,7 @@ if (is_array($row))
                            " - UNIX_TIMESTAMP(r.request)) AS `pagetime` , r.city ,r.region, r.country_code,r.country,r.latitude,r.longitude FROM " . $table_prefix . "requests AS r LEFT JOIN " .
                            "(select id, request, active, username, department, rating from ".$table_prefix."sessions where request = ".$visitorId." order by id desc LIMIT 1) AS s on r.id = s.request WHERE DATE_FORMAT(r.datetime, '%Y-%m-%d') = '$date' ".
                            "AND `status` = '0' AND `active` in (-1, -3) and id_domain in (" . $domains_set . ") " .
-                           ($visitorId == "" ? "": "And r.id=" . $visitorId) . " group by r.id ORDER BY r.request LIMIT $record, 6 ";
+                           ($visitorId == "" ? "": "And r.id=" . $visitorId) . " group by r.id ORDER BY r.request LIMIT " . ( (int) $record ) . ", 6 ";
 
 
 
@@ -167,7 +167,7 @@ if (is_array($row))
                            "UNIX_TIMESTAMP(r.request)) AS `pagetime` FROM " . $table_prefix . "requests AS r LEFT JOIN ".
                            "(select id, request, active, username, department, rating from ".$table_prefix."sessions order by id desc) AS s on r.id = s.request WHERE DATE_FORMAT(r.datetime, '%Y-%m-%d') = '$date' AND `status` = '0' AND".
                            " `active` in (-1, -3) and id_domain in (" . $domains_set . ") " . ($visitorId == "" ? "": "And r.id=" .
-                           $visitorId) . " group by r.id ORDER BY r.request LIMIT $record, 100";
+                           $visitorId) . " group by r.id ORDER BY r.request LIMIT " . ( (int) $record ) . ", 100";
 
 
 
@@ -179,7 +179,7 @@ if (is_array($row))
                            "(r.datetime)) AS `sitetime`, (UNIX_TIMESTAMP(r.refresh) - UNIX_TIMESTAMP(r.request)) AS `pagetime` FROM " .
                            $table_prefix . "requests AS r WHERE DATE_FORMAT".
                            "(r.datetime, '%Y-%m-%d') = '$date' AND `status` = '0' AND `active` in (-1, -3) and id_domain in (".$domains_set.
-                           ") " . ($visitorId == "" ? "": "And r.id=" . $visitorId) . "  group by r.id ORDER BY r.request LIMIT $record, 100";
+                           ") " . ($visitorId == "" ? "": "And r.id=" . $visitorId) . "  group by r.id ORDER BY r.request LIMIT " . ( (int) $record ) . ", 100";
 
 
 
@@ -198,7 +198,7 @@ if (is_array($row))
                   "AS `sitetime`, (UNIX_TIMESTAMP(r.refresh) - UNIX_TIMESTAMP(r.request)) AS `pagetime` , r.city ,r.region, r.country_code,r.country,r.latitude,r.longitude FROM " . $table_prefix .
                   "requests AS r LEFT JOIN (select id, request, active, username, department, rating from ".$table_prefix."sessions where request = ".$visitorId." order by id desc LIMIT 1) AS s on r.id = s.request WHERE (UNIX_TIMESTAMP(NOW())  - ".
                   "UNIX_TIMESTAMP(r.refresh)) < '45' AND r.status = '0' and r.id_domain in (" . $domains_set . ") " .
-                  ($visitorId == "" ? "": "And r.id=" . $visitorId) . " group by r.id ORDER BY r.request LIMIT $record, 6";
+                  ($visitorId == "" ? "": "And r.id=" . $visitorId) . " group by r.id ORDER BY r.request LIMIT " . ( (int) $record ) . ", 6";
 
 
 
@@ -211,7 +211,7 @@ if (is_array($row))
                   "(r.request)) AS `pagetime` FROM " . $table_prefix . "requests AS r LEFT JOIN (select id, request, active, username, department, rating from ".$table_prefix."sessions order by id desc) AS s on r.id =".
                   " s.request WHERE (UNIX_TIMESTAMP(NOW())  - UNIX_TIMESTAMP(r.refresh)) < '45' AND r.status = '0' and ".
                   "r.id_domain in (".$domains_set . ") " . ($visitorId == "" ? "": "And r.id=" . $visitorId) . " group by r.id ".
-                  "ORDER BY r.request LIMIT $record, 100";
+                  "ORDER BY r.request LIMIT " . ( (int) $record ) . ", 100";
 
 
 
@@ -224,7 +224,7 @@ if (is_array($row))
                   $table_prefix . "requests AS r WHERE ".
                   "(UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(r.refresh)) < '45' AND r.status = '0' and r.id_domain in (" .
                   $domains_set . ") " . ($visitorId == "" ? "": "And r.id=" . $visitorId) .
-                  " group by r.id ORDER BY r.request LIMIT $record, 100";
+                  " group by r.id ORDER BY r.request LIMIT " . ( (int) $record ) . ", 100";
 
 
 
@@ -466,7 +466,7 @@ if (is_array($row))
    else
    {
 ?>
-<SiteVisitors TotalVisitors=""/>
+<SiteVisitors TotalVisitors="" />
 <?php
    }
 }

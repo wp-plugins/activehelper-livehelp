@@ -17,7 +17,7 @@ else {
         $install_path = substr($full_path, 0, $pos);
 }
 
-$webCallId = $_REQUEST["webCallId"];
+$webCallId = (int) $_REQUEST["webCallId"];
 ?>
 <html>
 <head>
@@ -26,7 +26,7 @@ $webCallId = $_REQUEST["webCallId"];
 </head>
 <body>
 <?
-echo $query = "SELECT s.service_description FROM " . $table_prefix . "webcall wc, " . $table_prefix . "statuses s WHERE wc.id_webcall = '".$webCall_id."' and s.id_status = wc.status And s.id_service = 4";
+echo $query = "SELECT s.service_description FROM " . $table_prefix . "webcall wc, " . $table_prefix . "statuses s WHERE wc.id_webcall = '". ( (int) $webCall_id )."' and s.id_status = wc.status And s.id_service = 4";
 $rows = $SQL->selectquery($query);
 ?>
 <script>

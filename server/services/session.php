@@ -13,7 +13,7 @@
   if (!isset($_REQUEST['ID']))
   {
      $_REQUEST['ID'] = '';
-  }
+  } else $_REQUEST['ID'] = (int) $_REQUEST['ID'];
 
   $id = $_REQUEST['ID'];
 

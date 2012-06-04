@@ -12,13 +12,13 @@ if (!isset($_REQUEST['TYPING'])){ $_REQUEST['TYPING'] = ''; }
 if (!isset($_REQUEST['TIME'])){ $_REQUEST['TIME'] = ''; }
 if (!isset($_REQUEST['COOKIE'])){ $_REQUEST['COOKIE'] = ''; }
 
-$javascript = $_REQUEST['JS'];
+$javascript = (bool) $_REQUEST['JS'];
 $initalised = $_REQUEST['INIT'];
-$status = $_REQUEST['TYPING'];
-$lastMessageID = $_REQUEST['lastMessageID'];
+$status = (int) $_REQUEST['TYPING'];
+$lastMessageID = (int) $_REQUEST['lastMessageID'];
 
 if ($_REQUEST['COOKIE'] != '') {
-        $cookie_domain = $_REQUEST['COOKIE'];
+        $cookie_domain = htmlspecialchars( (string) $_REQUEST['COOKIE'], ENT_QUOTES );
 }
 /*
 //error_log("Refresher:setCookie      \n", 3, "/var/www/html/error.log");

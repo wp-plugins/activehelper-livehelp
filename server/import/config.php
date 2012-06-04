@@ -52,8 +52,8 @@ if (!defined('__CONFIG_INC')) {
 
 
         if (!isset($_SERVER['HTTP_REFERER'])){ $_SERVER['HTTP_REFERER'] = ''; }
-        if (!isset($_REQUEST['COOKIE'])){ $_REQUEST['COOKIE'] = ''; }
-        if (!isset($_REQUEST['SERVER'])){ $_REQUEST['SERVER'] = ''; }
+        if (!isset($_REQUEST['COOKIE'])){ $_REQUEST['COOKIE'] = ''; } else $_REQUEST['COOKIE'] = htmlspecialchars( (string) $_REQUEST['COOKIE'], ENT_QUOTES );
+        if (!isset($_REQUEST['SERVER'])){ $_REQUEST['SERVER'] = ''; } else $_REQUEST['SERVER'] = htmlspecialchars( (string) $_REQUEST['SERVER'], ENT_QUOTES );
 
         // Set a custom cookie domain or automatically create domain inc. sub domains.
         $cookie_domain = '.' . $_SERVER['HTTP_HOST'];
@@ -89,14 +89,14 @@ if (!defined('__CONFIG_INC')) {
         $domain_id = 0;
         $domainIsValid = true;
         if (isset($_REQUEST['DOMAINID'])){
-          $domain_id = $_REQUEST['DOMAINID'];
+          $domain_id = (int) $_REQUEST['DOMAINID'];
         }
 
         if (isset($_REQUEST['LANGUAGE'])){
-          $language = $_REQUEST['LANGUAGE'];
+          $language = htmlspecialchars( (string) $_REQUEST['LANGUAGE'], ENT_QUOTES);
         }
 
-        if(isset($_REQUEST['oUSERID'])) {
+        if(isset($_REQUEST['oUSERID'])) { $_REQUEST['oUSERID'] = (int) $_REQUEST['oUSERID'];
           $query = "SELECT id_domain FROM " . $table_prefix . "domain_user WHERE id_user = ".$_REQUEST['oUSERID']." Limit 1";
           $rows = $SQL->selectquery($query);
           $row = mysql_fetch_array($rows);
@@ -233,7 +233,7 @@ if (!defined('__CONFIG_INC')) {
 
         if (!isset($_REQUEST['IMAGES'])){
           $_REQUEST['IMAGES'] = '';
-        }
+        } else $_REQUEST['IMAGES'] = htmlspecialchars( (string) $_REQUEST['IMAGES'], ENT_QUOTES );
         $custom_images_directory = $_REQUEST['IMAGES'];
         if ($custom_images_directory != '')
         {

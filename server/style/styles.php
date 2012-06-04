@@ -2,7 +2,7 @@
 include_once('../import/constants.php');
 
 if (isset($_REQUEST['DOMAINID'])){
-  $domain_id = $_REQUEST['DOMAINID'];
+  $domain_id = (int) $_REQUEST['DOMAINID'];
 }
 
 if (isset($_SERVER['PATH_TRANSLATED']) && $_SERVER['PATH_TRANSLATED'] != '') { $env_path = $_SERVER['PATH_TRANSLATED']; } else { $env_path = $_SERVER['SCRIPT_FILENAME']; }

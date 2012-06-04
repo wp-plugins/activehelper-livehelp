@@ -1,16 +1,15 @@
 <?php
 include_once('import/constants.php');
 
-if (!isset($_REQUEST['URL'])){ $_REQUEST['URL'] = ''; }
-if (!isset($_REQUEST['SERVER'])){ $_REQUEST['SERVER'] = ''; }
-if (!isset($_REQUEST['TITLE'])){ $_REQUEST['TITLE'] = ''; }
-if (!isset($_REQUEST['DEPARTMENT'])){ $_REQUEST['DEPARTMENT'] = ''; }
-if (!isset($_REQUEST['ERROR'])){ $_REQUEST['ERROR'] = ''; }
-if (!isset($_REQUEST['COOKIE'])){ $_REQUEST['COOKIE'] = ''; }
-
+$_REQUEST['URL'] = !isset( $_REQUEST['URL'] ) ? '' : (string) $_REQUEST['URL'];
+$_REQUEST['TITLE'] = !isset( $_REQUEST['TITLE'] ) ? '' : htmlspecialchars( (string) $_REQUEST['TITLE'], ENT_QUOTES );
+$_REQUEST['DEPARTMENT'] = !isset( $_REQUEST['DEPARTMENT'] ) ? '' : htmlspecialchars( (string) $_REQUEST['DEPARTMENT'], ENT_QUOTES );
+$_REQUEST['ERROR'] = !isset( $_REQUEST['ERROR'] ) ? '' : htmlspecialchars( (string) $_REQUEST['ERROR'], ENT_QUOTES );
+$_REQUEST['COOKIE'] = !isset( $_REQUEST['COOKIE'] ) ? '' : htmlspecialchars( (string) $_REQUEST['COOKIE'], ENT_QUOTES );
+$_REQUEST['SERVER'] = !isset( $_REQUEST['SERVER'] ) ? '' : htmlspecialchars( (string) $_REQUEST['SERVER'], ENT_QUOTES );
 
 if (isset($_REQUEST['DOMAINID'])){
-  $domain_id = $_REQUEST['DOMAINID'];
+  $domain_id = (int) $_REQUEST['DOMAINID'];
 }
 
 
@@ -47,7 +46,7 @@ if ($database) {
 //$domain_Id = $domain_id;
 
 if ($installed == false) {      
-        header('Location: ' . $install_directory . '/offline.php?URL='.$_REQUEST['URL'].'&DOMAINID='.$domain_id.'&LANGUAGE='.LANGUAGE_TYPE);
+        header('Location: ' . $install_directory . '/offline.php?URL=' . urlencode( $_REQUEST['URL'] ) . '&DOMAINID='.$domain_id.'&LANGUAGE='.LANGUAGE_TYPE);
         exit();
 }
 
@@ -99,7 +98,7 @@ if ($installed == true) {
          $disable_department = $departments;
 
         // Joomla Auto Login
-        $query = "SELECT visitor_name , visitor_email FROM " . $table_prefix . "requests WHERE id = $request_id";
+        $query = "SELECT visitor_name , visitor_email FROM " . $table_prefix . "requests WHERE id = " . ( (int) $request_id );
         $row = $SQL->selectquery($query);
         
          if (is_array($row)) {
@@ -122,14 +121,14 @@ if ($installed == true) {
                 
  //  User Recognition Auto Start
  if ($disable_login_details == false && $autologin == true && $dep_num ==1 ) {       
-      header('Location: ' . $install_directory . '/frames.php?URL=' . $_REQUEST['URL'] . '&SERVER=' . $_REQUEST['SERVER'].'&DOMAINID='.$domain_id .'&USER='.$username .'&EMAIL='.$email . '&LANGUAGE='.LANGUAGE_TYPE);
+      header('Location: ' . $install_directory . '/frames.php?URL=' . urlencode( $_REQUEST['URL'] ) . '&SERVER=' . $_REQUEST['SERVER'].'&DOMAINID='.$domain_id .'&USER='.$username .'&EMAIL='.$email . '&LANGUAGE='.LANGUAGE_TYPE);
     exit();
     }
   
         // Update the current URL statistics within the requests tables
         if ($current_page == '') { $current_page = '/'; }
 
-        $query = "SELECT `path` FROM " . $table_prefix . "requests WHERE `id` = '$request_id'";
+        $query = "SELECT `path` FROM " . $table_prefix . "requests WHERE `id` = '" . ( (int) $request_id ) . "'";
         $row = $SQL->selectquery($query);
         if (is_array($row)) {
                 $current_page = urldecode($current_page);
@@ -162,14 +161,14 @@ if ($installed == true) {
                 if(!is_array($row))
                    {
               
-                      header('Location: ' . $install_directory . '/offline.php?DOMAINID='.$domain_id.'&SERVER='.$_REQUEST['SERVER'].'&URL='.$_REQUEST['URL'].'&LANGUAGE='.LANGUAGE_TYPE);                        
+                      header('Location: ' . $install_directory . '/offline.php?DOMAINID='.$domain_id.'&SERVER='.$_REQUEST['SERVER'].'&URL='. urlencode( $_REQUEST['URL'] ) .'&LANGUAGE='.LANGUAGE_TYPE);                        
                       
                         exit();
                 }
         }
 
         if ($disable_login_details == true) {
-                header('Location: ' . $install_directory . '/frames.php?URL=' . $_REQUEST['URL'] . '&SERVER=' . $_REQUEST['SERVER'].'&DOMAINID='.$domain_id.'&LANGUAGE='.LANGUAGE_TYPE);
+                header('Location: ' . $install_directory . '/frames.php?URL=' . urlencode( $_REQUEST['URL'] ) . '&SERVER=' . $_REQUEST['SERVER'].'&DOMAINID='.$domain_id.'&LANGUAGE='.LANGUAGE_TYPE);
                 
                 exit();
         }
@@ -295,7 +294,7 @@ if ($error == 'empty') {
                         <td colspan="2" ><?php echo($enter_guest_details_label); ?></td>
                 </tr>
                 <tr>
-                        <td colspan="2" class="subheader"><?php echo($else_send_message_label); ?> <a href="offline.php?SERVER=<?php echo($_REQUEST['SERVER']); ?>&URL=<?=$_REQUEST['URL']?><?echo('&DOMAINID='.$domain_id.'&LANGUAGE='.LANGUAGE_TYPE);?>" class="normlink"><?php echo($offline_message_label); ?></a></td>
+                        <td colspan="2" class="subheader"><?php echo($else_send_message_label); ?> <a href="offline.php?SERVER=<?php echo($_REQUEST['SERVER']); ?>&URL=<?= urlencode( $_REQUEST['URL']) ?><?echo('&DOMAINID='.$domain_id.'&LANGUAGE='.LANGUAGE_TYPE);?>" class="normlink"><?php echo($offline_message_label); ?></a></td>
                 </tr>
                 <tr>
                         <td width="250"><strong><?php echo($name_label); ?></strong>:</td>

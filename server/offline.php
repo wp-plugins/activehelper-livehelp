@@ -1,7 +1,7 @@
 <?php
 include('import/constants.php');
 
-$domain_id = $_REQUEST['DOMAINID'];
+if (isset($_REQUEST['DOMAINID'])){ $domain_id = (int) $_REQUEST['DOMAINID']; }
 
 header('Content-type: text/html; charset=utf-8');
 
@@ -31,12 +31,12 @@ if ($installed == false) {
         include('import/settings_default.php');
 }
 
-if (!isset($_REQUEST['SERVER'])){ $_REQUEST['SERVER'] = ''; }
-if (!isset($_REQUEST['URL'])){ $_REQUEST['URL'] = ''; }
-if (!isset($_REQUEST['TITLE'])){ $_REQUEST['TITLE'] = ''; }
-if (!isset($_REQUEST['COMPLETE'])){ $_REQUEST['COMPLETE'] = ''; }
-if (!isset($_REQUEST['SECURITY'])){ $_REQUEST['SECURITY'] = ''; }
-if (!isset($_REQUEST['BCC'])){ $_REQUEST['BCC'] = ''; }
+$_REQUEST['SERVER'] = !isset( $_REQUEST['SERVER'] ) ? '' : htmlspecialchars( (string) $_REQUEST['SERVER'],ENT_QUOTES );
+$_REQUEST['URL'] = !isset( $_REQUEST['URL'] ) ? '' : (string) $_REQUEST['URL'];
+$_REQUEST['TITLE'] = !isset( $_REQUEST['TITLE'] ) ? '' : htmlspecialchars( (string) $_REQUEST['TITLE'], ENT_QUOTES );
+$_REQUEST['COMPLETE'] = !isset( $_REQUEST['COMPLETE'] ) ? '' : (string) $_REQUEST['COMPLETE'];
+$_REQUEST['SECURITY'] = !isset( $_REQUEST['SECURITY'] ) ? '' : (string) $_REQUEST['SECURITY'];
+$_REQUEST['BCC'] = !isset( $_REQUEST['BCC'] ) ? '' : (string) $_REQUEST['BCC'];
 
 
 $error = '';
@@ -283,7 +283,7 @@ if($_REQUEST['COMPLETE'] == '' || $error != '' || $invalid_email != '' || $inval
         <td align="left" valign="middle">
                     <strong><?php echo($security_code_label); ?></strong>:<br>
                          <span style="height: 32px; vertical-align: middle;"><input name="SECURITY" type="text" id="SECURITY" value="" size="6" style="width:100px;"></span>
-                         <img src="security.php?URL=<?=$_REQUEST['URL']?>">
+                         <img src="security.php?URL=<?=urlencode($_REQUEST['URL'])?>">
              </td>
       </tr>
 <?php
@@ -300,7 +300,7 @@ if($_REQUEST['COMPLETE'] == '' || $error != '' || $invalid_email != '' || $inval
       <tr>
         <td colspan="2" align="left" valign="top">
             <input name="COMPLETE" type="hidden" id="COMPLETE" value="1">
-            <input name="SERVER" type="hidden" id="SERVER" value="<?php echo($_REQUEST['SERVER']); ?>">
+            <input name="SERVER" type="hidden" id="SERVER" value="<?php echo htmlspecialchars($_REQUEST['SERVER'], ENT_QUOTES ); ?>">
 
             <table border="0" cellpadding="2" cellspacing="2">
               <tr>
@@ -375,7 +375,7 @@ if($_REQUEST['COMPLETE'] == '' || $error != '' || $invalid_email != '' || $inval
       
   </table>
 
-<input name="URL" type="hidden" id="URL" value="<?php echo($_REQUEST['URL']); ?>">
+	 <input name="URL" type="hidden" id="URL" value="<?php echo htmlspecialchars($_REQUEST['URL'], ENT_QUOTES); ?>">
   </form>
 <!--/div-->
 <?php

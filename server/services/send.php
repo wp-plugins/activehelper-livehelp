@@ -16,27 +16,27 @@ ignore_user_abort(true);
 if (!isset($_REQUEST['ID']))
 {
    $_REQUEST['ID'] = '';
-}
+} else $_REQUEST['ID'] = (int) $_REQUEST['ID'];
 if (!isset($_REQUEST['MESSAGE']))
 {
    $_REQUEST['MESSAGE'] = '';
-}
+} else $_REQUEST['MESSAGE'] = (string) $_REQUEST['MESSAGE'];
 if (!isset($_REQUEST['STAFF']))
 {
    $_REQUEST['STAFF'] = '';
-}
+} else $_REQUEST['STAFF'] = (bool) $_REQUEST['STAFF'];
 if (!isset($_REQUEST['TYPE']))
 {
    $_REQUEST['COMMANDTYPE'] = '';
-}
+}  else $_REQUEST['TYPE'] = htmlspecialchars( (string) $_REQUEST['TYPE'], ENT_QUOTES );
 if (!isset($_REQUEST['NAME']))
 {
    $_REQUEST['COMMANDNAME'] = '';
-}
+} else $_REQUEST['NAME'] = htmlspecialchars( (string) $_REQUEST['NAME'], ENT_QUOTES );
 if (!isset($_REQUEST['CONTENT']))
 {
    $_REQUEST['CONTENT'] = '';
-}
+} else $_REQUEST['CONTENT'] = htmlspecialchars( (string) $_REQUEST['CONTENT'], ENT_QUOTES );
 
 $current_username = $operator_name;
 

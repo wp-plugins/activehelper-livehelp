@@ -50,7 +50,7 @@ function processForm() {
         var message = document.message_form.MESSAGE.value;
         message = replaceCharacters(message);
         typing(false);
-        top.display('<?php echo($_REQUEST["username"]); ?>', message, '1', '0');
+        top.display('<?php echo( htmlspecialchars( (string) $_REQUEST["username"], ENT_QUOTES ) ); ?>', message, '1', '0');
         void(document.message_form.submit());
         document.message_form.MESSAGE.value = '';
 

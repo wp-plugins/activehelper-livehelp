@@ -6,11 +6,11 @@ include('./import/class.mysql.php');
 include('./import/config.php');
 
 if (isset($_REQUEST['DOMAINID'])){
-  $domainId = $_REQUEST['DOMAINID'];
+  $domainId = (int) $_REQUEST['DOMAINID'];
 }
 
 if (!isset($_REQUEST['COMPLETE'])){ $_REQUEST['COMPLETE'] = ''; }
-$complete = $_REQUEST['COMPLETE'];
+$complete = (bool) $_REQUEST['COMPLETE'];
 if ($complete == '') { $complete = false; }
 
 $query = "UPDATE " . $table_prefix . "sessions SET `datetime` = NOW() WHERE `id` = '$guest_login_id'";

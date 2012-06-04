@@ -6,11 +6,11 @@ include_once('import/config.php');
 include_once('import/block_spiders.php');
 
 if (isset($_REQUEST['DOMAINID'])){
-  $domainId = $_REQUEST['DOMAINID'];
+  $domainId = (int) $_REQUEST['DOMAINID'];
 }
 
 // Find total guest visitors that are pending within the selected department
-$query = "SELECT `department` FROM " . $table_prefix . "sessions WHERE `id` = '$guest_login_id'";
+$query = "SELECT `department` FROM " . $table_prefix . "sessions WHERE `id` = '" . ( (int) $guest_login_id ) . "'";
 $row = $SQL->selectquery($query);
 if (is_array($row)) {
         $department = $row['department'];

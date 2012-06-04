@@ -19,8 +19,8 @@ else {
 
 ignore_user_abort(true);
 
-$id = $_REQUEST['ID'];
-$status = $_REQUEST['STATUS'];
+$id = (int) $_REQUEST['ID'];
+$status = (bool) $_REQUEST['STATUS'];
 
 $query = "SELECT `typing` FROM " . $table_prefix . "sessions WHERE `id` = '$id'";
 $row = $SQL->selectquery($query);

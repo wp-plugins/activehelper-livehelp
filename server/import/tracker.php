@@ -3,14 +3,14 @@ include_once('constants.php');
 
 
 if (!isset($_SERVER['DOCUMENT_ROOT'])){ $_SERVER['DOCUMENT_ROOT'] = ''; }
-if (!isset($_REQUEST['TITLE'])){ $_REQUEST['TITLE'] = ''; }
-if (!isset($_REQUEST['URL'])){ $_REQUEST['URL'] = ''; }
-if (!isset($_REQUEST['INITIATE'])){ $_REQUEST['INITIATE'] = ''; }
-if (!isset($_REQUEST['REFERRER'])){ $_REQUEST['REFERRER'] = ''; }
-if (!isset($_REQUEST['WIDTH'])){ $_REQUEST['WIDTH'] = ''; }
-if (!isset($_REQUEST['HEIGHT'])){ $_REQUEST['HEIGHT'] = ''; }
-if (!isset($_REQUEST['COOKIE'])){ $_REQUEST['COOKIE'] = ''; }
-
+if (!isset($_REQUEST['TITLE'])){ $_REQUEST['TITLE'] = ''; } else $_REQUEST['TITLE'] = htmlspecialchars( (string) $_REQUEST['TITLE'], ENT_QUOTES );
+if (!isset($_REQUEST['URL'])){ $_REQUEST['URL'] = ''; } else $_REQUEST['URL'] = (string) $_REQUEST['URL'];
+if (!isset($_REQUEST['INITIATE'])){ $_REQUEST['INITIATE'] = ''; } else $_REQUEST['INITIATE'] = htmlspecialchars( (string) $_REQUEST['INITIATE'], ENT_QUOTES );
+if (!isset($_REQUEST['REFERRER'])){ $_REQUEST['REFERRER'] = ''; } else $_REQUEST['REFERRER'] = (string) $_REQUEST['REFERRER'];
+if (!isset($_REQUEST['WIDTH'])){ $_REQUEST['WIDTH'] = ''; } else $_REQUEST['WIDTH'] = (int) $_REQUEST['WIDTH'];
+if (!isset($_REQUEST['HEIGHT'])){ $_REQUEST['HEIGHT'] = ''; } else $_REQUEST['HEIGHT'] = (int) $_REQUEST['HEIGHT'];
+if (!isset($_REQUEST['COOKIE'])){ $_REQUEST['COOKIE'] = ''; } else $_REQUEST['COOKIE'] = htmlspecialchars( (string) $_REQUEST['COOKIE'], ENT_QUOTES );
+$domain_id = (int) $domain_id;
 $command = 'tracker';
 if (isset($_SERVER['PATH_TRANSLATED']) && $_SERVER['PATH_TRANSLATED'] != '')
 {
@@ -45,15 +45,15 @@ $initiate = $_REQUEST['INITIATE'];
 $referrer = $_REQUEST['REFERRER'];
 $width = $_REQUEST['WIDTH'];
 $height = $_REQUEST['HEIGHT'];
-$userid = $_REQUEST['USERID'];
-$service_id = $_REQUEST['service_id'];
+$userid = $_REQUEST['USERID'] = (int) $_REQUEST['USERID'];
+$service_id = $_REQUEST['service_id'] = (int) $_REQUEST['service_id'];
 // Google geo
-$region      = $_REQUEST['region'];
-$city        = $_REQUEST['city'];
-$country     = $_REQUEST['country'];
-$countrycode = $_REQUEST['countrycode'];
-$latitude    = $_REQUEST['latitude'];
-$longitude   = $_REQUEST['longitude'];
+$region      = $_REQUEST['region'] = htmlspecialchars( (string) $_REQUEST['region'], ENT_QUOTES );
+$city        = $_REQUEST['city'] = htmlspecialchars( (string) $_REQUEST['city'], ENT_QUOTES );
+$country     = $_REQUEST['country'] = htmlspecialchars( (string) $_REQUEST['country'], ENT_QUOTES );
+$countrycode = $_REQUEST['countrycode'] = htmlspecialchars( (string) $_REQUEST['countrycode'], ENT_QUOTES );
+$latitude    = $_REQUEST['latitude'] = htmlspecialchars( (string) $_REQUEST['latitude'], ENT_QUOTES );
+$longitude   = $_REQUEST['longitude'] = htmlspecialchars( (string) $_REQUEST['longitude'], ENT_QUOTES );
 
 if ($cookie_domain != '') {
         $cookie_domain = $_REQUEST['COOKIE'];

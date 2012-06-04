@@ -14,33 +14,33 @@ $SQL->connect();
 if (!isset($_REQUEST['ACTION']))
 {
    $_REQUEST['ACTION'] = '';
-}
+} else $_REQUEST['ACTION'] = htmlspecialchars ( (string) $_REQUEST['ACTION'], ENT_QUOTES );
 if (!isset($_REQUEST['REQUEST']))
 {
    $_REQUEST['REQUEST'] = '';
-}
+} else $_REQUEST['REQUEST'] = htmlspecialchars ( (string) $_REQUEST['REQUEST'], ENT_QUOTES );
 if (!isset($_REQUEST['VISITOR_EMAIL']))
 {
    $_REQUEST['VISITOR_EMAIL'] = '';
-}
+} else $_REQUEST['VISITOR_EMAIL'] = htmlspecialchars ( (string) $_REQUEST['VISITOR_EMAIL'], ENT_QUOTES );
 if (!isset($_REQUEST['DATE_START']))
 {
    $_REQUEST['DATE_START'] = '';
-}
+} else $_REQUEST['DATE_START'] = htmlspecialchars ( (string) $_REQUEST['DATE_START'], ENT_QUOTES );
 if (!isset($_REQUEST['DATE_END']))
 {
    $_REQUEST['DATE_END'] = '';
-}
+} else $_REQUEST['DATE_END'] = htmlspecialchars ( (string) $_REQUEST['DATE_END'], ENT_QUOTES );
 
 if (!isset($_REQUEST['TRANSCRIPTION']))
 {
    $_REQUEST['TRANSCRIPTION'] = '';
-}
+} else $_REQUEST['TRANSCRIPTION'] = htmlspecialchars ( (string) $_REQUEST['TRANSCRIPTION'], ENT_QUOTES );
 
 if (!isset($_REQUEST['OPERATORID']))
 {
    $operator_login_id = $_REQUEST['OPERATORID'];
-}
+} $operator_login_id = $_REQUEST['OPERATORID'] = (int) $_REQUEST['OPERATORID'];
 
 $action           = $_REQUEST['ACTION'];
 $request          = $_REQUEST['REQUEST'];

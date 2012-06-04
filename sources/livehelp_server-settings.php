@@ -22,7 +22,8 @@ function activeHelper_liveHelp_serverSettingsPost()
 			'connection_timeout' => $connection_timeout,
 			'keep_alive_timeout' => $keep_alive_timeout,
 			'guest_login_timeout' => $guest_login_timeout,
-			'chat_refresh_rate' => $chat_refresh_rate
+			'chat_refresh_rate' => $chat_refresh_rate,
+			'sound_alert_new_message' => $sound_alert_new_message
 		);
 
 		return;
@@ -42,6 +43,8 @@ function activeHelper_liveHelp_serverSettingsPost()
 		'$guest_login_timeout= ' . $_POST['guest_login_timeout'] . ';', $content);
 	$content = str_replace('$chat_refresh_rate = ' . $chat_refresh_rate . ';',
 		'$chat_refresh_rate = ' . $_POST['chat_refresh_rate'] . ';', $content);
+	$content = str_replace('$sound_alert_new_message = ' . $sound_alert_new_message . ';',
+		'$sound_alert_new_message = ' . $_POST['sound_alert_new_message'] . ';', $content);
 
 	$fhandle = fopen($settingsFile, "w");
 	fwrite($fhandle, $content);
@@ -117,6 +120,15 @@ function activeHelper_liveHelp_serverSettings()
 							<label for="chat_refresh_rate">' . __('Chat Refresh Rate (sec)', 'activehelper_livehelp') . '</label>
 						</th></thead><tbody><tr><td id="newmetaleft" class="left">
 							<input tabindex="' . $tabindex++ . '" maxlength="255" type="text" style="width: 96%;" value="' . $_POST['chat_refresh_rate'] . '" id="chat_refresh_rate" name="chat_refresh_rate" />
+						</td></tr></tbody></table>
+						
+						<table style="margin-top: 1.5ex;"><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
+							<label for="sound_alert_new_message">' . __('Sound alert when a new message arrive', 'activehelper_livehelp') . '</label>
+						</th></thead><tbody><tr><td id="newmetaleft" class="left">
+							<select tabindex="' . $tabindex++ . '"  style="width: 150px;" id="sound_alert_new_message" name="sound_alert_new_message">
+								<option value="1" ' . ( $_POST['sound_alert_new_message'] == '1' ? 'selected="selected"' : '' ) . '>' . __( 'Enable', 'activehelper_livehelp' ) . '</option>
+								<option value="0" ' . ( $_POST['sound_alert_new_message'] == '0' ? 'selected="selected"' : '' ) . '>' . __( 'Disable', 'activehelper_livehelp' ) . '</option>
+							</select>
 						</td></tr></tbody></table>
 
 					</div></div>

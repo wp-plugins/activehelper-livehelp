@@ -13,11 +13,11 @@ if (!isset($_REQUEST['MESSAGE'])){ $_REQUEST['MESSAGE'] = ''; }
 if (!isset($_REQUEST['RESPONSE'])){ $_REQUEST['RESPONSE'] = ''; }
 if (!isset($_REQUEST['COMMAND'])){ $_REQUEST['COMMAND'] = ''; }
 
-$id = $_REQUEST['ID'];
+$id = $_REQUEST['ID'] != '' ? (int) $_REQUEST['ID'] : '';
 $staff = $_REQUEST['STAFF'];
-$message = $_REQUEST['MESSAGE'];
-$response = $_REQUEST['RESPONSE'];
-$command = $_REQUEST['COMMAND'];
+$message = htmlspecialchars( (string) $_REQUEST['MESSAGE'], ENT_QUOTES );
+$response = htmlspecialchars( (string) $_REQUEST['RESPONSE'], ENT_QUOTES );
+$command = $_REQUEST['COMMAND'] != '' ? (int) $_REQUEST['COMMAND'] : '';
 
 // Check if the message contains any content else return headers
 if ($message == '' && $response == '' && $command == '') { exit(); }

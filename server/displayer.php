@@ -2,7 +2,7 @@
 include_once('import/constants.php');
 
 if (isset($_REQUEST['DOMAINID'])){
-  $domainId = $_REQUEST['DOMAINID'];
+  $domainId = (int) $_REQUEST['DOMAINID'];
 }
 
 include('./import/config_database.php');
