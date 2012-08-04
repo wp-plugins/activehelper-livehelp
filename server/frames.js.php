@@ -235,7 +235,7 @@ function updateMessages() {
 
 function bottom() {
         if (top.displayFrame) {
-                top.displayFrame.displayContentsFrame.window.scrollTo( 0, 99999999 );
+                top.displayFrame.displayContentsFrame.window.scrollTo(0,9999999);
         }
 }
 
