@@ -17,7 +17,8 @@ $_REQUEST['COOKIE'] = !isset( $_REQUEST['COOKIE'] ) ? '' : htmlspecialchars( (st
 
 $username = $_REQUEST['USER'];
 $email = $_REQUEST['EMAIL'];
-$department = $_REQUEST['DEPARTMENT'];
+//$department = $_REQUEST['DEPARTMENT'];
+$department =  htmlspecialchars_decode ($_REQUEST['DEPARTMENT'] , ENT_QUOTES );
 $referer = $_REQUEST['URL'];
 $ip_address = $_SERVER['REMOTE_ADDR'];
 $domain_id = !isset( $domain_id ) ? 0 : (int) $domain_id;

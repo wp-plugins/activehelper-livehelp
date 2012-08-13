@@ -9,11 +9,19 @@ if (!defined('ACTIVEHELPER_LIVEHELP'))
 function activeHelper_liveHelp_serverSettingsPost()
 {
 	global $wpdb, $activeHelper_liveHelp;
+	
+	if ( isset( $_GET['reset'] ) ) {
+		activeHelper_liveHelp_resetSettings();
 
-	$_POST['connection_timeout'] = !empty($_POST['connection_timeout']) ? (int) $_POST['connection_timeout'] : 0;
-	$_POST['keep_alive_timeout'] = !empty($_POST['keep_alive_timeout']) ? (int) $_POST['keep_alive_timeout'] : 0;
-	$_POST['guest_login_timeout'] = !empty($_POST['guest_login_timeout']) ? (int) $_POST['guest_login_timeout'] : 0;
-	$_POST['chat_refresh_rate'] = !empty($_POST['chat_refresh_rate']) ? (int) $_POST['chat_refresh_rate'] : 0;
+		wp_redirect('admin.php?page=' . strtolower('activeHelper_liveHelp_serverSettings') . '&update');
+		exit;
+	}
+
+	$_POST['connection_timeout'] = !empty($_POST['connection_timeout']) ? (int) $_POST['connection_timeout'] : 60;
+	$_POST['keep_alive_timeout'] = !empty($_POST['keep_alive_timeout']) ? (int) $_POST['keep_alive_timeout'] : 30;
+	$_POST['guest_login_timeout'] = !empty($_POST['guest_login_timeout']) ? (int) $_POST['guest_login_timeout'] : 60;
+	$_POST['chat_refresh_rate'] = !empty($_POST['chat_refresh_rate']) ? (int) $_POST['chat_refresh_rate'] : 6;
+	$_POST['sound_alert_new_message'] = !empty($_POST['sound_alert_new_message']) ? (int) $_POST['sound_alert_new_message'] : 1;
 
 	include($activeHelper_liveHelp['importDir'] . '/constants.php');
 	if (!isset($_POST['submit']))
@@ -65,6 +73,7 @@ function activeHelper_liveHelp_serverSettings()
 	<div id="icon-edit" class="icon32 icon32-posts-post"><br /></div>
 	<h2>
 		LiveHelp » ' . __('Server settings', 'activehelper_livehelp') . '
+		<a class="button add-new-h2" href="admin.php?page=' . strtolower('activeHelper_liveHelp_serverSettings') . '&amp;reset">' . __('reset settings', 'activehelper_livehelp') . '</a>
 	</h2>';
 
 	if (isset($_GET['update']))

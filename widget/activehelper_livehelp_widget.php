@@ -79,7 +79,6 @@ class activeHelper_liveHelp_externalWidget extends WP_Widget
 		else
 			$title = __( 'ActiveHelper Live Help External Widget', 'activehelper_livehelp_externalwidget' );
 
-		$instance['script_domain'] = !empty($instance['script_domain']) ? $instance['script_domain'] : $domains[0]['id_domain'];
 		$instance['script_language'] = !empty($instance['script_language']) ? $instance['script_language'] : 'en';
 		$instance['script_tracking'] = isset($instance['script_tracking']) ? $instance['script_tracking'] : 1;
 		$instance['script_status'] = isset($instance['script_status']) ? $instance['script_status'] : 1;

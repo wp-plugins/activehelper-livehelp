@@ -264,7 +264,7 @@ header('Cache-Control: post-check=0, pre-check=0', false);
 // HTTP/1.0
 header('Pragma: no-cache');
 //header('Content-type: text/html; charset=iso-8859-5');
-header('Content-type: text/html; charset=' . CHARSET);
+header('Content-type: text/javascript; charset=' . CHARSET);
 
 if ($domain_id > 0) {
 $lan = $session['LANGUAGE'];
@@ -326,20 +326,29 @@ if ($active > 0 && $chatting == 0) {
 <?php
         }
 ?>
+
 top.display('', '<?php echo($css); ?>', '2', '1');
+
+
 <?php
+
+error_log("CSS : " .$css, 3, "error.log");
+
 
 if (isset($message)) {
         $message = $now_chatting_with_label . ' ' . $message;
         $message = addslashes($message);
 ?>
+
 top.display('', '<?php echo($message); ?>', '1', '1');
+
 <?php
 }
 
 $welcome = addslashes($wel_messg_18);
 $ref_nomber_message = addslashes($ref_nomber_message_i18).$guest_login_id;
 $img_path ="./pictures/agents/";
+
 
 // Get aget photo
   $query = "SELECT `photo` FROM " . $table_prefix . "sessions jls, "  . $table_prefix . "users jlu  WHERE jls.`id` = '$guest_login_id' and jlu.`id` = jls.`id_user` ";
@@ -349,8 +358,9 @@ $img_path ="./pictures/agents/";
     }
 
 ?>
-top.display('', '<?php echo($ref_nomber_message); ?>', '1', '1');
-top.display('<?php echo($first." ".$last); ?>', '<?php echo($welcome); ?>', '1', '1');
+
+ top.display('', '<?php echo($ref_nomber_message); ?>', '1', '1');
+ top.display('<?php echo($first." ".$last); ?>', '<?php echo($welcome); ?>', '1', '1');
 
 <?php if ($agent_img !='') {  ?>
   window.parent.document.getElementById('ImageID').src ='<?php echo( $img_path . $agent_img ); ?>';

@@ -6,7 +6,7 @@
 Plugin Name: ActiveHelper Live Help
 Plugin URI: http://www.activehelper.com
 Description: Provide superior service by real time chat with your website visitors and interact them through your website. Create a more efficient connection with your website visitors, increase your sales and customer satisfaction.
-Version: 2.7.2
+Version: 2.7.3
 Author: ActiveHelper Inc
 Author URI: http://www.activehelper.com
 */
@@ -730,7 +730,7 @@ function activeHelper_liveHelp_about()
 							<table><tbody><tr><td class="first t">
 								' . __('Version', 'activehelper_livehelp') . '
 							</td><td class="b">
-								' . __('2.7.2', 'activehelper_livehelp') . '
+								' . __('2.7.3', 'activehelper_livehelp') . '
 							</td></tr></tbody></table>
 							<table><tbody><tr><td class="first t">
 								' . __('Check for Update', 'activehelper_livehelp') . '
@@ -805,4 +805,31 @@ function activehelper_livehelp_uninstall()
 	</div>
 </div>';
 }
+
+function activehelper_livehelp_plugin_backup()
+{
+	$f = dirname( __FILE__ );
+	$t = dirname( dirname( __FILE__ ) ) . '/activehelper-livehelp-backup';
+	@mkdir( $t );
+
+	activeHelper_liveHelp_filesDuplicate( $f . '/server/domains', $t . '/domains' );
+	activeHelper_liveHelp_filesDuplicate( $f . '/server/import/config_database.php', $t . '/config_database.php' );
+	activeHelper_liveHelp_filesDuplicate( $f . '/server/import/constants.php', $t . '/constants.php' );
+	activeHelper_liveHelp_filesDuplicate( $f . '/server/import/jlhconst.php', $t . '/jlhconst.php' );
+}
+
+function activehelper_livehelp_plugin_recover()
+{
+	$f = dirname( dirname( __FILE__ ) ) . '/activehelper-livehelp-backup';
+	$t = dirname( __FILE__ ) . '/server';
+
+	activeHelper_liveHelp_filesDuplicate( $f . '/domains', $t . '/server/domains' );
+	activeHelper_liveHelp_filesDuplicate( $f . '/config_database.php', $t . '/server/import/config_database.php' );
+	activeHelper_liveHelp_filesDuplicate( $f . '/constants.php', $t . '/server/import/constants.php' );
+	activeHelper_liveHelp_filesDuplicate( $f . '/jlhconst.php', $t . '/server/import/jlhconst.php' );
+	activeHelper_liveHelp_filesDelete( $f );
+}
+
+add_filter( 'upgrader_pre_install', 'activehelper_livehelp_plugin_backup', 10, 2 );
+add_filter( 'upgrader_post_install', 'activehelper_livehelp_plugin_recover', 10, 2 );
 

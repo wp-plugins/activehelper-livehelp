@@ -122,7 +122,7 @@ function activeHelper_liveHelp_domainsGenerateScript()
 	
 	$generatedScript = '<script type="text/javascript" src="' . $activeHelper_liveHelp['serverUrl'] . '/import/javascript.php"></script>
 <script type="text/javascript">
-	_vlDomain = 1;
+	_vlDomain = ' . $_REQUEST['id'] . ';
 	_vlService = 1;
 	_vlLanguage = "en";
 	_vlTracking = 1;
@@ -245,7 +245,7 @@ function activeHelper_liveHelp_domainsGenerateScript()
 			var html = "<" + "script type=\"text/javascript\" src=\"' . $activeHelper_liveHelp['serverUrl'] . '/import/javascript.php\">";
 			html += "</" + "script>\n";
 			html += "<" + "script type=\"text/javascript\">\n";
-			html += "	_vlDomain = 1;\n";
+			html += "	_vlDomain = ' . $_REQUEST['id'] . ';\n";
 			html += "	_vlService = 1;\n";
 			html += "	_vlLanguage = \"" + scriptLanguage + "\";\n";
 			html += "	_vlTracking = " + scriptTracking + ";\n";
@@ -442,6 +442,10 @@ function activeHelper_liveHelp_domainsDeletePost()
 	");
 	$wpdb->query("
 		DELETE FROM {$wpdb->prefix}livehelp_settings
+		WHERE id_domain = '{$_REQUEST['id']}'
+	");
+	$wpdb->query("
+		DELETE FROM {$wpdb->prefix}livehelp_domains
 		WHERE id_domain = '{$_REQUEST['id']}'
 	");
 
@@ -717,6 +721,7 @@ function activeHelper_liveHelp_domainsSettingsPost()
 	if (!isset($_POST['submit']))
 	{
 		$_POST = $settingsValues;
+		$_POST['domain_language_selector'] = 'en';
 	}
 	else
 	{

@@ -193,9 +193,10 @@ function display(username, message, align, status) {
                 top.displayFrame.displayContentsFrame.document.write(output); top.bottom();
         }
          //alert(message);
-        if("<?=$guest_username?>" != username) {
+               
+         if("<?=$guest_username?>" != username) {
             
-          if ("<?=$sound_alert_new_message?>" != 0)
+          if ("<?=$sound_alert_new_message?>" != 0 && typeof( Audio ) != "undefined" )
             {
                  var snd = new Audio();
                          
@@ -210,6 +211,7 @@ function display(username, message, align, status) {
                 
                snd.play();
               }
+              
             window.focus()
         }
 }
@@ -235,7 +237,7 @@ function updateMessages() {
 
 function bottom() {
         if (top.displayFrame) {
-                top.displayFrame.displayContentsFrame.window.scrollTo(0,9999999);
+          top.displayFrame.displayContentsFrame.window.scrollTo(0,9999999);             
         }
 }
 

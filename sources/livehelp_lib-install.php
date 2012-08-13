@@ -45,18 +45,70 @@ function activeHelper_liveHelp_install()
 	foreach ($installQuery as $query)
 		dbDelta($query);
 
+	activeHelper_liveHelp_resetSettings();
+}
+
+function activeHelper_liveHelp_resetSettings()
+{
+	global $activeHelper_liveHelp;
+	
+	// Create constant file
+	$settingsFile = $activeHelper_liveHelp['importDir'] . '/constants.php';
+
+	$content = '<?php 
+ 
+if (!defined(\'__CONSTANTS_INC\')) {  
+define(\'__CONSTANTS_INC\', 1);  
+ 
+include_once(\'jlhconst.php\');  
+ 
+$eserverHostname = J_HOST;  
+$eserverName = "server";
+$domainSettings =J_DOMAIN_SET_PATH;  
+$server_directory =J_DIR_PATH;  
+$ssl =J_CONF_SSL;  
+ 
+$install_directory = $server_directory."/".$eserverName;
+ 
+// Set advanced settings, ie. timers  
+ 
+$connection_timeout = 60;
+$keep_alive_timeout = 30;
+$guest_login_timeout= 60;
+$chat_refresh_rate = 6;
+$user_panel_refresh_rate = 10;
+$sound_alert_new_message = 1;
+ 
+} /* __CONSTANTS_INC */
+ 
+?>';
+
+	$fhandle = fopen($settingsFile, "w");
+	fwrite($fhandle, $content);
+	fclose($fhandle);
+
 	// modifying prefix in database config file
 	$configFile = $activeHelper_liveHelp['baseDir'] . '/server/import/config_database.php';
 
-	$fhandle = fopen($configFile, "r");
-	$content = fread($fhandle, filesize($configFile));
+	$content = '<?php
 
-	$content = str_replace('$table_prefix = \'wp_livehelp_\';', '$table_prefix = \'' . $wpdb->prefix . 'livehelp_\';', $content);
-	
-	$content = str_replace('define("DB_HOST", "");', 'define("DB_HOST", "' . DB_HOST . '");', $content);
-	$content = str_replace('define("DB_USER", "");', 'define("DB_USER", "' . DB_USER . '");', $content);
-	$content = str_replace('define("DB_PASS", "");', 'define("DB_PASS", "' . DB_PASSWORD . '");', $content);
-	$content = str_replace('define("DB_NAME", "");', 'define("DB_NAME", "' . DB_NAME . '");', $content);
+if (!defined(\'__CONFIG_DATABASE_INC\'))
+{
+	define(\'__CONFIG_DATABASE_INC\', 1);
+	define( \'DS\', DIRECTORY_SEPARATOR );
+
+	include_once(\'constants.php\');   
+	include_once(\'jlhconst.php\');
+
+	define("DB_HOST", "' . DB_HOST . '");
+	define("DB_USER", "' . DB_USER . '");
+	define("DB_PASS", "' . DB_PASSWORD . '");
+	define("DB_NAME", "' . DB_NAME . '");
+
+	$table_prefix = \'wp_livehelp_\';
+}
+
+?>';
 
 	$fhandle = fopen($configFile, "w");
 	fwrite($fhandle, $content);
