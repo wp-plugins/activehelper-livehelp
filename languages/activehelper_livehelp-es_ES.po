@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ActiveHelper LiveHelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-13 09:11-0500\n"
-"PO-Revision-Date: 2012-08-13 11:07-0500\n"
+"POT-Creation-Date: 2012-08-20 11:38-0500\n"
+"PO-Revision-Date: 2012-08-20 11:39-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: E:\\dev\\Source\\wordpress\\trunk\n"
+"X-Poedit-SearchPath-0: E:\\dev\\Source\\wordpress\\trunk\\languages\n"
 
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:132
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:133
@@ -241,9 +241,8 @@ msgid "Version"
 msgstr "Versión"
 
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:733
-#, fuzzy
-msgid "2.7.3"
-msgstr "2.7.3"
+msgid "2.7.4"
+msgstr "2.7.4"
 
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:736
 msgid "Check for Update"

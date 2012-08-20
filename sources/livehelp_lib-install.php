@@ -89,6 +89,11 @@ $sound_alert_new_message = 1;
 
 	// modifying prefix in database config file
 	$configFile = $activeHelper_liveHelp['baseDir'] . '/server/import/config_database.php';
+    
+    // Database prefix
+    
+    global $wpdb;
+    $table_name =  $wpdb->prefix . "livehelp_";
 
 	$content = '<?php
 
@@ -104,10 +109,11 @@ if (!defined(\'__CONFIG_DATABASE_INC\'))
 	define("DB_USER", "' . DB_USER . '");
 	define("DB_PASS", "' . DB_PASSWORD . '");
 	define("DB_NAME", "' . DB_NAME . '");
-
-	$table_prefix = \'wp_livehelp_\';
-}
-
+    
+    $table_prefix = "' . $table_name .'"; 
+        
+ }
+ 
 ?>';
 
 	$fhandle = fopen($configFile, "w");

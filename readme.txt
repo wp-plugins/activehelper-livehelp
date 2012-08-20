@@ -3,7 +3,7 @@ Contributors: activehelper
 Tags: live chat, live help, live support, customer service, wordpress plugin, livechat,  customer service, visitor tracking, visitor statistics
 Requires at least: 3.2
 Tested up to: 3.4.1
-Stable tag: 2.7.3
+Stable tag: 2.7.4
 
 ActiveHelper LiveHelp is a powerful Live Chat Server Plugin for WordPress. 
 
@@ -161,6 +161,12 @@ For further help you may choose any of following options:
 * Fixed issue on the department name with &
 * Other small improvements and bug fixes.
 
+= 2.7.4 =
+* Fixed database prefix on the installation
+* Fixed status indicator space on iPhone/iPad
+* Core security update
+* Other small improvements and bug fixes.
+
 == Upgrade Notice ==
 
 = 2.6.0 =
@@ -211,4 +217,10 @@ For further help you may choose any of following options:
 * Fixed welcome message display problem on IE and Safari
 * Fixed delete domain issue
 * Fixed issue on the department name with &
+* Other small improvements and bug fixes.
+
+= 2.7.4 =
+* Fixed database prefix on the installation
+* Fixed status indicator space on iPhone/iPad
+* Core security update
 * Other small improvements and bug fixes.
