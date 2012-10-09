@@ -1570,7 +1570,9 @@ function activeHelper_liveHelp_domainsSettingsQuery($domain)
 			('disable_geolocation', 0, {$domain}),
 			('disable_tracking_offline', 0, {$domain}),
 			('captcha', 1, {$domain}),
-			('disable_agent_bannner', 0, {$domain})
+			('disable_agent_bannner', 0, {$domain}),
+            ('company', 0, {$domain}),
+            ('phone', 0, {$domain})
 	";
 
 	return $settingsQuery;

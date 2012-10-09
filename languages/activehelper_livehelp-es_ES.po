@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ActiveHelper LiveHelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-20 11:38-0500\n"
-"PO-Revision-Date: 2012-08-20 11:39-0500\n"
+"POT-Creation-Date: 2012-10-09 15:13-0500\n"
+"PO-Revision-Date: 2012-10-09 15:13-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -12,310 +12,306 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: E:\\dev\\Source\\wordpress\\trunk\\languages\n"
+"X-Poedit-SearchPath-0: E:\\dev\\htdocs\\wordpress\\wp-content\\plugins\\activehelper-livehelp\n"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:132
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:133
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:134
 msgid "Dashboard"
 msgstr "Panel de Control"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:140
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:141
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:381
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:142
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:382
 msgid "Manage domains"
 msgstr "Administración de Dominios"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:148
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:149
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:387
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:150
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:388
 msgid "Manage agents"
 msgstr "Administración de Agentes"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:156
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:157
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:393
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:158
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:394
 #, fuzzy
 msgid "Monthly chats"
 msgstr "Chats Mensuales"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:164
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:165
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:399
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:166
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:400
 msgid "Time by chat"
 msgstr "Tiempo por Chat"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:173
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:174
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:405
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:480
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:175
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:406
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:481
 msgid "Failed chats"
 msgstr "Chats Fallidos"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:181
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:182
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:411
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:183
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:412
 #, fuzzy
 msgid "Chats by department"
 msgstr "Departamentos"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:189
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:190
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:417
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:191
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:418
 #, fuzzy
 msgid "Chats by country"
 msgstr "Tipo de fuente del chat"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:197
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:198
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:423
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:199
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:424
 msgid "Chats by keyword"
 msgstr "Chats por palabra clave"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:205
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:206
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:429
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:207
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:430
 #, fuzzy
 msgid "Offline messages"
 msgstr "Almacenar mensajes fuera de linea"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:213
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:214
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:435
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:215
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:436
 #, fuzzy
 msgid "Server settings"
 msgstr "Configuración"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:221
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:222
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:441
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:223
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:442
 msgid "Not allowed countries"
 msgstr ""
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:230
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:231
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:447
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:707
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:713
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:232
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:448
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:708
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:714
 msgid "About"
 msgstr "Acerca de"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:238
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:239
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:789
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:240
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:790
 msgid "Uninstall"
 msgstr "Desinstalar"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:369
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:370
 msgid "Welcome to ActiveHelper LiveHelp"
 msgstr "Bienvenido al ActiveHelper LiveHelp"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:370
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:371
 msgid "Thank you for choosing ActiveHelper LiveHelp as your Live Chat solution. This screen will give you a quick overview of your LiveHelp statistics. The links on the left-hand side of this screen allow you to a LiveHelp special reports."
 msgstr "Gracias por escoger ActiveHelper LiveHelp como su solución de Live Chat. En esta interfaz usted podra tener todo el control del sistema de ayuda."
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:375
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:455
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:519
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:550
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:581
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:615
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:647
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:376
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:456
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:520
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:551
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:582
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:616
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:648
 msgid "Click to toggle"
 msgstr "Click to contraer"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:376
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:377
 msgid "Navigation"
 msgstr "Navegación"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:456
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:457
 msgid "General stats"
 msgstr "Estadísticas Generales"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:460
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:461
 msgid "Domains"
 msgstr "Dominios"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:465
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:466
 msgid "Departments"
 msgstr "Departamentos"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:470
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:471
 msgid "Chats today"
 msgstr "Chats Diarios"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:475
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:476
 msgid "Latest aggent connected"
 msgstr "Ultimo Agente Conectado"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:477
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:504
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:533
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:564
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:595
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:629
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:661
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:478
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:505
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:534
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:565
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:596
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:630
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:662
 #, fuzzy
 msgid "No records found"
 msgstr "No %s fue encontrado."
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:487
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:488
 msgid "Agents"
 msgstr "Agentes"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:492
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:527
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:589
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:493
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:528
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:590
 msgid "Chats"
 msgstr "Chats"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:497
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:498
 msgid "Visitors today"
 msgstr "Visitantes Diarios"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:502
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:503
 msgid "Oldest aggent connected"
 msgstr "Ultimo Agente sin Conexión"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:507
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:508
 msgid "AVG chat rating"
 msgstr "Promedio de Calificación de Chats"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:520
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:521
 msgid "Top 5 most active domains"
 msgstr "5 Dominios más activos"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:524
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:525
 msgid "Domain"
 msgstr "Dominios"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:551
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:552
 msgid "Top 5 avg agents raiting"
 msgstr "5 Agentes por calificación"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:555
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:586
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:620
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:652
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:556
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:587
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:621
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:653
 msgid "Username"
 msgstr "Usurio"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:558
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:559
 msgid "AVG raiting"
 msgstr "Promedio Calificación"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:582
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:583
 msgid "Top 5 most active users"
 msgstr "5 Visitantes más activos"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:616
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:617
 msgid "Top 5 most active agents by duration"
 msgstr "5 Agentes  más activos por duración"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:623
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:655
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:624
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:656
 msgid "Duration"
 msgstr "Duración"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:648
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:649
 msgid "Top 5 most active agents"
 msgstr "5 Agentes más activos"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:720
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:721
 msgid "LiveHelp support system"
 msgstr "LiveHelp support system"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:723
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:724
 msgid "Info"
 msgstr "Información"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:726
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:727
 msgid "Name"
 msgstr "Nombre"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:728
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:729
 msgid "LiveHelp system for WordPress"
 msgstr "LiveHelp system for WordPress"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:731
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:732
 msgid "Version"
 msgstr "Versión"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:733
-msgid "2.7.4"
-msgstr "2.7.4"
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:734
+msgid "2.9.1"
+msgstr "2.9.1"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:736
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:737
 msgid "Check for Update"
 msgstr "Revisar para Actualizaciones"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:738
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:739
 msgid "<a href=\"http://www.activehelper.com/\">http://www.activehelper.com/</a>"
 msgstr "<a href=\"http://www.activehelper.com/\">http://www.activehelper.com/</a>"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:741
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:742
 msgid "Help"
 msgstr "Ayuda"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:743
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:744
 msgid "<a href=\"http://www.activehelper.com/livehelp/live-chat/faqs.html\">http://www.activehelper.com/livehelp/live-chat/faqs.html</a>"
 msgstr "<a href=\"http://www.activehelper.com/livehelp/live-chat/faqs.html\">http://www.activehelper.com/livehelp/live-chat/faqs.html</a>"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:746
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:747
 msgid "Support Forum"
 msgstr "Foro de Soporte"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:748
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:749
 msgid "<a href=\"http://www.activehelper.com/contact-us/community-forum\">http://www.activehelper.com/contact-us/community-forum</a>"
 msgstr "<a href=\"http://www.activehelper.com/contact-us/community-forum\">http://www.activehelper.com/contact-us/community-forum</a>"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:751
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:752
 msgid "Follow at Twitter"
 msgstr "Seguir en Twietter"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:753
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:754
 msgid "<a href=\"https://twitter.com/activehelper\">https://twitter.com/activehelper</a>"
 msgstr "<a href=\"https://twitter.com/activehelper\">https://twitter.com/activehelper</a>"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:756
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:757
 msgid "License"
 msgstr "Licencia"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:758
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:759
 #, fuzzy
 msgid "GNU/GPL v2 - <a href=\"http://www.activehelper.com/license.txt\">http://www.activehelper.com/license.txt</a>"
 msgstr "GNU/GPLv2 - <a href=\"http://www.activehelper.com/license.txt\">http://www.activehelper.com/license.txt</a>"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:761
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:762
 msgid "Copyright"
 msgstr "Marca reservada"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:763
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:764
 #, fuzzy
 msgid "Copyright © 2010 - 2012. Activehelper - 2010 - 2012 - All Rights Reserved"
 msgstr "Copyright © 2009 - 2011. Activehelper - 2009 - 2011 - All Rights Reserved"
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:796
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:797
 #, fuzzy
 msgid "Are you sure you want to uninstall the ActiveHelper LiveHelp plugin?"
 msgstr "Esta seguro de querer borrarlo definitivamente."
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:797
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:798
 msgid "To deactivate this plugin, go to <a href=\"plugins.php\">Plugins</a> | To uninstall this plugin, click on the link below"
 msgstr "Para desactivar el plugin, ir a <a href=\"plugins.php\">Plugins</a> | para desinstalar el plugin, haga click en el link."
 
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:799
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/activehelper-livehelp.php:800
 msgid "Delete all files and database tables related with this plugin permanently"
 msgstr "Borrar todos los archivos y tablas en la base de datos de manera permanente"
 
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:98
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:296
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_restricted-countries.php:72
 msgid "add new"
 msgstr "Nuevo"
 
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:104
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:302
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_restricted-countries.php:78
 #, php-format
 msgid "The %s was successfully registered."
 msgstr "El %s fue correctamente almacenado."
@@ -328,24 +324,16 @@ msgid "agent"
 msgstr "Agente"
 
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:110
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:308
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_offline-messages.php:178
 #, php-format
 msgid "The %s was successfully updated."
 msgstr "El %s fue correctamente actualizado."
 
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:116
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:314
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_offline-messages.php:172
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_restricted-countries.php:84
 #, php-format
 msgid "The %s was deleted permanently."
 msgstr "EL %s fue borrado permanentemente."
 
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:122
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:320
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_offline-messages.php:184
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_restricted-countries.php:90
 #, php-format
 msgid "The %s was not found."
 msgstr "El %s no fue encontrado."
@@ -354,8 +342,6 @@ msgstr "El %s no fue encontrado."
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:145
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_chats-by-keyword.php:153
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_chats-by-keyword.php:173
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:329
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:343
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_failed-chats.php:172
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_failed-chats.php:188
 msgid "ID"
@@ -364,9 +350,6 @@ msgstr "Código"
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:135
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:149
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:565
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1244
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_offline-messages.php:219
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_offline-messages.php:235
 msgid "Email"
 msgstr "E-mail"
 
@@ -382,9 +365,6 @@ msgstr "Departamentos"
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:139
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:153
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:598
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:337
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:351
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:626
 msgid "Status"
 msgstr "Estado"
 
@@ -392,11 +372,8 @@ msgstr "Estado"
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_chats-by-country.php:168
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_chats-by-department.php:174
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_chats-by-keyword.php:196
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:360
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_failed-chats.php:207
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_monthly-chats.php:180
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_offline-messages.php:250
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_restricted-countries.php:130
 #, php-format
 msgid "No %s found."
 msgstr "No %s fue encontrado."
@@ -407,24 +384,14 @@ msgstr "Agentes"
 
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:180
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:520
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:378
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:590
 msgid "Edit"
 msgstr "Editar"
 
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:181
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:381
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_offline-messages.php:268
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_restricted-countries.php:153
 msgid "Are you sure you want to delete this item permanently?"
 msgstr "Esta seguro de querer borrarlo definitivamente."
 
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:182
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:382
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_offline-messages.php:269
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_restricted-countries.php:107
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_restricted-countries.php:121
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_restricted-countries.php:154
 msgid "Delete"
 msgstr "Borrar"
 
@@ -439,28 +406,6 @@ msgstr "Información the Conexión"
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:601
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:611
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:640
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:209
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:219
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:396
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:629
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:986
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:996
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1006
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1016
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1056
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1088
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1146
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1204
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1214
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1224
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1234
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1262
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1278
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1288
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1366
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1391
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1401
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_server-settings.php:138
 msgid "Enable"
 msgstr "Habilitar"
 
@@ -468,35 +413,11 @@ msgstr "Habilitar"
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:603
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:613
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:642
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:211
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:221
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:396
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:631
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:988
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:998
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1008
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1018
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1058
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1090
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1148
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1206
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1216
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1226
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1236
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1264
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1280
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1290
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1368
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1393
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1403
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_server-settings.php:139
 msgid "Disable"
 msgstr "Deshabilitar"
 
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:232
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:385
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:474
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:558
 #, php-format
 msgid "You must insert a %s"
 msgstr "Usted debe insertar %s"
@@ -527,30 +448,15 @@ msgstr "El username se en cuentra en uso"
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:520
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:528
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:535
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:590
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:598
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:605
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_restricted-countries.php:223
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_restricted-countries.php:231
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_restricted-countries.php:238
 msgid "Add new"
 msgstr "Nuevo"
 
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:528
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:535
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:598
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:605
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:891
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:898
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_server-settings.php:92
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_server-settings.php:96
 msgid "Update"
 msgstr "Actualizar"
 
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:532
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:602
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:895
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_restricted-countries.php:235
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -560,8 +466,6 @@ msgstr "Cancelar"
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:580
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:587
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:594
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:620
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:641
 #, fuzzy
 msgid "Error"
 msgstr "Errores"
@@ -597,7 +501,6 @@ msgid "Active domains"
 msgstr "5 Dominios más activos"
 
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_agents.php:718
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:147
 msgid "Close"
 msgstr "Cerrar"
 
@@ -627,7 +530,6 @@ msgstr "SSL"
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_chats-by-keyword.php:128
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_failed-chats.php:141
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_monthly-chats.php:126
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_offline-messages.php:166
 msgid "export to CSV"
 msgstr "Exportar a CSV"
 
@@ -635,7 +537,6 @@ msgstr "Exportar a CSV"
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_chats-by-department.php:125
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_failed-chats.php:150
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_monthly-chats.php:135
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_offline-messages.php:193
 msgid "Start date"
 msgstr "Fecha Inicial"
 
@@ -643,7 +544,6 @@ msgstr "Fecha Inicial"
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_chats-by-department.php:131
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_failed-chats.php:156
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_monthly-chats.php:141
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_offline-messages.php:199
 msgid "End date"
 msgstr "fecha Final"
 
@@ -651,14 +551,10 @@ msgstr "fecha Final"
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_chats-by-department.php:137
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_failed-chats.php:162
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_monthly-chats.php:147
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_offline-messages.php:205
 msgid "Apply"
 msgstr "Aplicar"
 
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_chats-by-country.php:145
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_restricted-countries.php:105
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_restricted-countries.php:119
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_restricted-countries.php:266
 msgid "Country"
 msgstr "Pais"
 
@@ -675,7 +571,6 @@ msgstr "Calificación"
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_chats-by-department.php:174
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_chats-by-keyword.php:196
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_failed-chats.php:207
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_offline-messages.php:250
 msgid "chats"
 msgstr "Chats"
 
@@ -687,10 +582,6 @@ msgstr "Chats"
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_failed-chats.php:192
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_monthly-chats.php:159
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_monthly-chats.php:169
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_offline-messages.php:221
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_offline-messages.php:237
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_restricted-countries.php:103
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_restricted-countries.php:117
 msgid "Domain name"
 msgstr "Nombre de Dominio"
 
@@ -734,470 +625,12 @@ msgstr "E-mail del Visitante"
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_chats-by-keyword.php:187
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_failed-chats.php:182
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_failed-chats.php:198
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_offline-messages.php:223
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_offline-messages.php:239
 msgid "Date"
 msgstr "Fecha"
 
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_chats-by-keyword.php:214
 msgid "View"
 msgstr "Vista"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:136
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:143
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:393
-msgid "Generate script"
-msgstr "Generar Script"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:159
-msgid "Options"
-msgstr "Opciones"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:162
-msgid "Language"
-msgstr "Lenguaje"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:167
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:919
-msgid "English"
-msgstr "Ingles"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:168
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:920
-msgid "Spanish"
-msgstr "Español"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:169
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:921
-msgid "Deutsch"
-msgstr "Aleman"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:170
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:922
-msgid "Portuguese"
-msgstr "Portugués"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:171
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:923
-msgid "Italian"
-msgstr "Italiano"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:172
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:924
-msgid "French"
-msgstr "Frances"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:173
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:925
-msgid "Czech"
-msgstr "Checo"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:174
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:926
-msgid "Swedish"
-msgstr "Sueco"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:175
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:927
-msgid "Norwegian"
-msgstr "Noruego"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:176
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:928
-msgid "Turkey"
-msgstr "Turco"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:177
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:929
-msgid "Greek"
-msgstr "Griego"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:178
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:930
-msgid "Hebrew"
-msgstr "Hebreo"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:179
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:931
-msgid "Farsi"
-msgstr "Persa"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:180
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:932
-msgid "Serbian"
-msgstr "Serbio"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:181
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:933
-msgid "Rusian"
-msgstr "Russo"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:182
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:934
-msgid "Hungarian"
-msgstr "Hungaro"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:183
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:935
-msgid "Traditional Chinese"
-msgstr "Chino tradicional"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:184
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:936
-msgid "Arab"
-msgstr "Arabe"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:185
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:937
-msgid "Dutch"
-msgstr "Holandes"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:186
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:938
-msgid "Finnish"
-msgstr "Finlandés"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:187
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:939
-msgid "Danish"
-msgstr "Danés"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:188
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:940
-msgid "Polish"
-msgstr "Polaco"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:189
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:941
-msgid "Simplified Chinese"
-msgstr "Chino Simplificado"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:190
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:942
-#, fuzzy
-msgid "Bulgarian"
-msgstr "Hungaro"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:191
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:943
-msgid "Slovak"
-msgstr ""
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:192
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:944
-#, fuzzy
-msgid "Croatian"
-msgstr "Duración"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:206
-msgid "Tracking"
-msgstr "Rastreo"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:216
-msgid "Status indicator"
-msgstr "Indicador de estado"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:229
-#, fuzzy
-msgid "Generated script"
-msgstr "Generar Script"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:302
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:308
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:314
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:320
-msgid "domain"
-msgstr "dominio"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:333
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:347
-msgid "Tracking widget"
-msgstr "Tracking Widget"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:335
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:349
-msgid "Tracking script"
-msgstr "Tracking Script"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:360
-msgid "domains"
-msgstr "dominios"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:380
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:883
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:910
-msgid "Settings"
-msgstr "Configuración"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:387
-msgid "Configure widget"
-msgstr "Configurar widget"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:389
-msgid "Download widget"
-msgstr "Descargar widget"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:474
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:558
-msgid "name"
-msgstr "nombre"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:619
-msgid "Example"
-msgstr "Ejemplo"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:638
-msgid "Global Configuration"
-msgstr "Configuración Global"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:914
-msgid "Images' language"
-msgstr "Imagenes por idioma"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:955
-msgid "Select the language you would like for to edit the images below"
-msgstr "Seleccione el lenguaje para el cual desea editar las imágenes"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:962
-msgid "General"
-msgstr "General"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:965
-#, fuzzy
-msgid "LiveHelp Name"
-msgstr "Live Help Name"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:971
-msgid "Site Name"
-msgstr "Nombre del sitio"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:977
-msgid "Site Address"
-msgstr "Dirección del sitio"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:993
-msgid "Disable Geolocation"
-msgstr "Deshabilitar Geolocalización"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1003
-msgid "Disable status indicator in offline mode"
-msgstr "Deshabilitar indicador cuando esta fuera de linea"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1013
-msgid "Captcha"
-msgstr "Captcha"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1026
-msgid "Display"
-msgstr "Mostrar"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1029
-msgid "Background color"
-msgstr "Color del fondo"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1035
-msgid "Chat font type"
-msgstr "Tipo de fuente del chat"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1041
-msgid "Guest chat font size"
-msgstr "Fuente para el chat guest"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1047
-msgid "Admin chat font size"
-msgstr "Fuente para el admin"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1053
-msgid "Disable popup help"
-msgstr "eshabilitar ayuda"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1063
-msgid "Chat Background"
-msgstr "Fondo del chat"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1067
-msgid "Blue"
-msgstr "Azul"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1069
-msgid "Green"
-msgstr "Verde"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1071
-msgid "Dark blue"
-msgstr "Azul oscuro"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1073
-msgid "Grey"
-msgstr "Gris"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1079
-msgid "Chat Image Link"
-msgstr "Link imagen del chat"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1085
-msgid "Disable Chat Image"
-msgstr "Deshabilitar Image de Chat"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1095
-msgid "Chat Image"
-msgstr "Imagen del chat"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1104
-msgid "Chat Send Button"
-msgstr "Boton de enviar"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1113
-msgid "Chat Send Hand Over"
-msgstr "Boton de enviar presionado"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1125
-msgid "Proactive"
-msgstr "Proactivo"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1128
-msgid "Chat Invitation Image"
-msgstr "Imagen de invitación"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1137
-msgid "Auto Start Invitation Refresh (Sec)"
-msgstr "Inicio automático de la invitación (Sec)"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1143
-msgid "Disable Invitation"
-msgstr "Deshabilitar Invitación"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1156
-msgid "Fonts"
-msgstr "Fuente"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1159
-msgid "Font type"
-msgstr "Tipo de fuente"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1165
-msgid "Font size"
-msgstr "Tamaño de la fuente"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1171
-msgid "Font color"
-msgstr "Color de la fuente"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1177
-msgid "Font link color"
-msgstr "Color fuente para link"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1183
-msgid "Sent font color"
-msgstr "Color fuente enviar"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1189
-msgid "Received font color"
-msgstr "Color fuente recivir"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1198
-msgid "Chat"
-msgstr "Chat"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1201
-msgid "Disable login"
-msgstr "Deshabilitar Login"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1211
-msgid "Disable chat username"
-msgstr "Deshabilitar chat username"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1221
-msgid "Require guest details"
-msgstr "Require datos para el invitado"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1231
-msgid "Disable language selection"
-msgstr "Deshabilitar Lenguaje"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1247
-msgid "Offline email"
-msgstr "E-mail fuera de línea"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1253
-msgid "From email"
-msgstr "E-mail de enviar"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1259
-msgid "Disable offline email"
-msgstr "Deshabilitar E-mail fuera de línea"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1269
-msgid "Custom offline form"
-msgstr "Mensaje fuera de linea propietario"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1275
-msgid "Log offline message"
-msgstr "Almacenar mensajes fuera de linea"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1285
-msgid "SMTP"
-msgstr "SMTP"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1295
-msgid "SMTP Server"
-msgstr "Servidor SMTP"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1301
-msgid "SMTP Port"
-msgstr "Puerto SMTP"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1310
-msgid "Images"
-msgstr "Imagenes"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1314
-msgid "Online image (gif)"
-msgstr "Imagen en línea (gif)"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1323
-msgid "Offline image (gif)"
-msgstr "Imagen fuera de línea (gif)"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1332
-msgid "Away image (gif)"
-msgstr "Imagen no disponible (gif)"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1341
-msgid "BRB image (gif)"
-msgstr "Imagen ya regreso (gif)"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1353
-msgid "Languages and welcome message"
-msgstr "Lenguaje y Mensaje de Bienvenida"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1385
-msgid "Rebranding"
-msgstr "Re Maracdo"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1398
-msgid "Image banner"
-msgstr "Image"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1408
-msgid "Company image"
-msgstr "Imagen de la empresa"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1417
-msgid "Company image link"
-msgstr "URL de la empresa"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1423
-msgid "Company slogan"
-msgstr "Consigna de la empresa"
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1432
-msgid "Google Analytics integration"
-msgstr "Integración Google Analytics "
-
-#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_domains.php:1435
-msgid "Analytics account"
-msgstr "Cuenta de Analytics "
 
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_monthly-chats.php:180
 #, fuzzy
@@ -1207,6 +640,10 @@ msgstr "Chats Mensuales"
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_offline-messages.php:172
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_offline-messages.php:178
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_offline-messages.php:184
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_time-by-chat.php:515
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_time-by-chat.php:521
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_time-by-chat.php:730
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_time-by-chat.php:736
 #, fuzzy
 msgid "chat"
 msgstr "Chats"
@@ -1393,6 +830,182 @@ msgstr "Titulo"
 msgid "You must register %s to use this widget"
 msgstr "Usted debe registrar %s para usar el Widget"
 
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:153
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:92
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:92
+msgid "Language"
+msgstr "Lenguaje"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:157
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:96
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:96
+msgid "English"
+msgstr "Ingles"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:158
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:97
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:97
+msgid "Spanish"
+msgstr "Español"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:159
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:98
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:98
+msgid "Deutsch"
+msgstr "Aleman"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:160
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:99
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:99
+msgid "Portuguese"
+msgstr "Portugués"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:161
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:100
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:100
+msgid "Italian"
+msgstr "Italiano"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:162
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:101
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:101
+msgid "French"
+msgstr "Frances"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:163
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:102
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:102
+msgid "Czech"
+msgstr "Checo"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:164
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:103
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:103
+msgid "Swedish"
+msgstr "Sueco"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:165
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:104
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:104
+msgid "Norwegian"
+msgstr "Noruego"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:166
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:105
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:105
+msgid "Turkey"
+msgstr "Turco"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:167
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:106
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:106
+msgid "Greek"
+msgstr "Griego"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:168
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:107
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:107
+msgid "Hebrew"
+msgstr "Hebreo"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:169
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:108
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:108
+msgid "Farsi"
+msgstr "Persa"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:170
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:109
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:109
+msgid "Serbian"
+msgstr "Serbio"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:171
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:110
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:110
+msgid "Rusian"
+msgstr "Russo"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:172
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:111
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:111
+msgid "Hungarian"
+msgstr "Hungaro"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:173
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:112
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:112
+msgid "Traditional Chinese"
+msgstr "Chino tradicional"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:174
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:113
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:113
+msgid "Arab"
+msgstr "Arabe"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:175
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:114
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:114
+msgid "Dutch"
+msgstr "Holandes"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:176
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:115
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:115
+msgid "Finnish"
+msgstr "Finlandés"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:177
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:116
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:116
+msgid "Danish"
+msgstr "Danés"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:178
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:117
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:117
+msgid "Polish"
+msgstr "Polaco"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:179
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:118
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:118
+msgid "Simplified Chinese"
+msgstr "Chino Simplificado"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:180
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:119
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:119
+#, fuzzy
+msgid "Bulgarian"
+msgstr "Hungaro"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:181
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:120
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:120
+msgid "Slovak"
+msgstr ""
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:182
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:121
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:121
+#, fuzzy
+msgid "Croatian"
+msgstr "Duración"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:193
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:132
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:132
+msgid "Tracking"
+msgstr "Rastreo"
+
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/sources/livehelp_widget.php:198
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:137
+#: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:137
+msgid "Status indicator"
+msgstr "Indicador de estado"
+
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget.php:32
 #: E:\dev\htdocs\wordpress\wp-content\plugins\activehelper-livehelp/widget/activehelper_livehelp_widget/activehelper_livehelp_widget.php:32
 msgid "Use this widget to add your Live Help status on any sidebar."
@@ -1403,6 +1016,233 @@ msgstr "Use este widget para adicionar el indicador de estado en cualquier área
 #, fuzzy
 msgid "ActiveHelper Live Help External Widget"
 msgstr "Bienvenido al ActiveHelper LiveHelp"
+
+#~ msgid "Generate script"
+#~ msgstr "Generar Script"
+
+#~ msgid "Options"
+#~ msgstr "Opciones"
+
+#, fuzzy
+#~ msgid "Generated script"
+#~ msgstr "Generar Script"
+
+#~ msgid "domain"
+#~ msgstr "dominio"
+
+#~ msgid "Tracking widget"
+#~ msgstr "Tracking Widget"
+
+#~ msgid "Tracking script"
+#~ msgstr "Tracking Script"
+
+#~ msgid "domains"
+#~ msgstr "dominios"
+
+#~ msgid "Settings"
+#~ msgstr "Configuración"
+
+#~ msgid "Configure widget"
+#~ msgstr "Configurar widget"
+
+#~ msgid "Download widget"
+#~ msgstr "Descargar widget"
+
+#~ msgid "name"
+#~ msgstr "nombre"
+
+#~ msgid "Example"
+#~ msgstr "Ejemplo"
+
+#~ msgid "Global Configuration"
+#~ msgstr "Configuración Global"
+
+#~ msgid "Images' language"
+#~ msgstr "Imagenes por idioma"
+
+#~ msgid "Select the language you would like for to edit the images below"
+#~ msgstr "Seleccione el lenguaje para el cual desea editar las imágenes"
+
+#~ msgid "General"
+#~ msgstr "General"
+
+#, fuzzy
+#~ msgid "LiveHelp Name"
+#~ msgstr "Live Help Name"
+
+#~ msgid "Site Name"
+#~ msgstr "Nombre del sitio"
+
+#~ msgid "Site Address"
+#~ msgstr "Dirección del sitio"
+
+#~ msgid "Disable Geolocation"
+#~ msgstr "Deshabilitar Geolocalización"
+
+#~ msgid "Disable status indicator in offline mode"
+#~ msgstr "Deshabilitar indicador cuando esta fuera de linea"
+
+#~ msgid "Captcha"
+#~ msgstr "Captcha"
+
+#~ msgid "Display"
+#~ msgstr "Mostrar"
+
+#~ msgid "Background color"
+#~ msgstr "Color del fondo"
+
+#~ msgid "Chat font type"
+#~ msgstr "Tipo de fuente del chat"
+
+#~ msgid "Guest chat font size"
+#~ msgstr "Fuente para el chat guest"
+
+#~ msgid "Admin chat font size"
+#~ msgstr "Fuente para el admin"
+
+#~ msgid "Disable popup help"
+#~ msgstr "eshabilitar ayuda"
+
+#~ msgid "Chat Background"
+#~ msgstr "Fondo del chat"
+
+#~ msgid "Blue"
+#~ msgstr "Azul"
+
+#~ msgid "Green"
+#~ msgstr "Verde"
+
+#~ msgid "Dark blue"
+#~ msgstr "Azul oscuro"
+
+#~ msgid "Grey"
+#~ msgstr "Gris"
+
+#~ msgid "Chat Image Link"
+#~ msgstr "Link imagen del chat"
+
+#~ msgid "Disable Chat Image"
+#~ msgstr "Deshabilitar Image de Chat"
+
+#~ msgid "Chat Image"
+#~ msgstr "Imagen del chat"
+
+#~ msgid "Chat Send Button"
+#~ msgstr "Boton de enviar"
+
+#~ msgid "Chat Send Hand Over"
+#~ msgstr "Boton de enviar presionado"
+
+#~ msgid "Proactive"
+#~ msgstr "Proactivo"
+
+#~ msgid "Chat Invitation Image"
+#~ msgstr "Imagen de invitación"
+
+#~ msgid "Auto Start Invitation Refresh (Sec)"
+#~ msgstr "Inicio automático de la invitación (Sec)"
+
+#~ msgid "Disable Invitation"
+#~ msgstr "Deshabilitar Invitación"
+
+#~ msgid "Fonts"
+#~ msgstr "Fuente"
+
+#~ msgid "Font type"
+#~ msgstr "Tipo de fuente"
+
+#~ msgid "Font size"
+#~ msgstr "Tamaño de la fuente"
+
+#~ msgid "Font color"
+#~ msgstr "Color de la fuente"
+
+#~ msgid "Font link color"
+#~ msgstr "Color fuente para link"
+
+#~ msgid "Sent font color"
+#~ msgstr "Color fuente enviar"
+
+#~ msgid "Received font color"
+#~ msgstr "Color fuente recivir"
+
+#~ msgid "Chat"
+#~ msgstr "Chat"
+
+#~ msgid "Disable login"
+#~ msgstr "Deshabilitar Login"
+
+#~ msgid "Disable chat username"
+#~ msgstr "Deshabilitar chat username"
+
+#~ msgid "Require guest details"
+#~ msgstr "Require datos para el invitado"
+
+#~ msgid "Disable language selection"
+#~ msgstr "Deshabilitar Lenguaje"
+
+#~ msgid "Offline email"
+#~ msgstr "E-mail fuera de línea"
+
+#~ msgid "From email"
+#~ msgstr "E-mail de enviar"
+
+#~ msgid "Disable offline email"
+#~ msgstr "Deshabilitar E-mail fuera de línea"
+
+#~ msgid "Custom offline form"
+#~ msgstr "Mensaje fuera de linea propietario"
+
+#~ msgid "Log offline message"
+#~ msgstr "Almacenar mensajes fuera de linea"
+
+#~ msgid "SMTP"
+#~ msgstr "SMTP"
+
+#~ msgid "SMTP Server"
+#~ msgstr "Servidor SMTP"
+
+#~ msgid "SMTP Port"
+#~ msgstr "Puerto SMTP"
+
+#~ msgid "Images"
+#~ msgstr "Imagenes"
+
+#~ msgid "Online image (gif)"
+#~ msgstr "Imagen en línea (gif)"
+
+#~ msgid "Offline image (gif)"
+#~ msgstr "Imagen fuera de línea (gif)"
+
+#~ msgid "Away image (gif)"
+#~ msgstr "Imagen no disponible (gif)"
+
+#~ msgid "BRB image (gif)"
+#~ msgstr "Imagen ya regreso (gif)"
+
+#~ msgid "Languages and welcome message"
+#~ msgstr "Lenguaje y Mensaje de Bienvenida"
+
+#~ msgid "Rebranding"
+#~ msgstr "Re Maracdo"
+
+#~ msgid "Image banner"
+#~ msgstr "Image"
+
+#~ msgid "Company image"
+#~ msgstr "Imagen de la empresa"
+
+#~ msgid "Company image link"
+#~ msgstr "URL de la empresa"
+
+#~ msgid "Company slogan"
+#~ msgstr "Consigna de la empresa"
+
+#~ msgid "Google Analytics integration"
+#~ msgstr "Integración Google Analytics "
+
+#~ msgid "Analytics account"
+#~ msgstr "Cuenta de Analytics "
 
 #~ msgid "1.0"
 #~ msgstr "2.6.0"
