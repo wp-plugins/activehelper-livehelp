@@ -2,8 +2,8 @@
 Contributors: activehelper
 Tags: live chat, live help, live support, customer service, wordpress plugin, livechat,  customer service, visitor tracking, visitor statistics
 Requires at least: 3.2
-Tested up to: 3.4.1
-Stable tag: 2.7.4
+Tested up to: 3.4.2
+Stable tag: 2.9.0
 
 ActiveHelper LiveHelp is a powerful Live Chat Server Plugin for WordPress. 
 
@@ -13,7 +13,7 @@ Monitor in real time your website visitors. Know how many visitors are in the we
 
 Geo Location based on IP to location for the visitors on your website. See the visitors hometown map. Run the Live Help on your web server having 100% control over your data and many domains that you have.
 
-The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system is translated to English, Spanish, German, Portuguese, Italian, French, Czech, Swedish, Norwegian, Turkey, Farsi, Greek, Hebrew, Serbo-Croatian, Russian , Hungarian ,Dutch, Finnish, Danish, Traditional Chinese, Simplified Chinese , Arab , Polish , Bulgarian , Slovak and Croatian.
+The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system is translated to English, Spanish, German, Portuguese, Italian, French, Czech, Swedish, Norwegian, Turkey, Farsi, Greek, Hebrew, Serbo-Croatian, Russian , Hungarian ,Dutch, Finnish, Danish, Traditional Chinese, Simplified Chinese , Arab , Polish , Bulgarian , Slovak , Lithuanian ,  Croatian and Indonesian.
 
 = Main Features =
 
@@ -40,7 +40,8 @@ The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system i
 * Transfer Chats
 * Visitors Tracking
 * Visitors Navigation History
-* Chat Invitations
+* Proactive Chat Invitations
+* Proactive Messages
 * Auto start invitation
 * Disable Invitation
 * Redirect URL offline form
@@ -167,6 +168,23 @@ For further help you may choose any of following options:
 * Core security update
 * Other small improvements and bug fixes.
 
+= 2.9.0 =
+* New Proactive Messages.
+* Redesign the proactive invitation.
+* Fixed issue with the invitations and templates.
+* Fixed issue invitation and tracking time.
+* New 1 minute invitation and messages timer.
+* New invitation image size.
+* The proactive options now work on the right side.
+* New Company field add.
+* New Phone field add.
+* Full Indonesian language support to the Live Chat.
+* Add images tracking for in Indonesian language.
+* Full Lithuanian language support to the Live Chat.
+* Add images tracking for in Lithuanian language.
+* Core security update
+* Other small improvements and bug fixes
+
 == Upgrade Notice ==
 
 = 2.6.0 =
@@ -224,3 +242,20 @@ For further help you may choose any of following options:
 * Fixed status indicator space on iPhone/iPad
 * Core security update
 * Other small improvements and bug fixes.
+
+= 2.9.0 =
+* New Proactive Messages.
+* Redesign the proactive invitation.
+* Fixed issue with the invitations and templates.
+* Fixed issue invitation and tracking time.
+* New 1 minute invitation and messages timer.
+* New invitation image size.
+* The proactive options now work on the right side.
+* New Company field add.
+* New Phone field add.
+* Full Indonesian language support to the Live Chat.
+* Add images tracking for in Indonesian language.
+* Full Lithuanian language support to the Live Chat.
+* Add images tracking for in Lithuanian language.
+* Core security update
+* Other small improvements and bug fixes

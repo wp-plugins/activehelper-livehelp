@@ -82,7 +82,7 @@ if ($action == 'update')
 
    if ($privilege == '0' )
    {
-       $query = "select  jlom.id , jlom.name , jlom.email , DATE_FORMAT(jlom.datetime,'%m/%d/%Y') date , jld.name Domain ,  jlom.message ".
+       $query = "select  jlom.id , jlom.name , jlom.email ,  jlom.company, jlom.phone, DATE_FORMAT(jlom.datetime,'%m/%d/%Y') date , jld.name Domain ,  jlom.message ".
                 " from " . $table_prefix . "offline_messages jlom , " . $table_prefix . "domains jld , " . $table_prefix . "domain_user  jldu ".
                 " where jldu.id_user =" . $operator_login_id . " and  jlom.id_domain = jldu.id_domain and DATE_FORMAT(jlom.datetime, '%Y-%m-%d')>= '$date_start' and DATE_FORMAT(jlom.datetime, '%Y-%m-%d')<='$date_end' and " . 
                 " jlom.id_domain =jld.id_domain and jlom.answered = 0 "; 
@@ -91,7 +91,7 @@ if ($action == 'update')
    else
  if ($privilege == '1' )  
    {
-            $query = "select  jlom.id , jlom.name , jlom.email , DATE_FORMAT(jlom.datetime,'%m/%d/%Y') date , jld.name Domain ,  jlom.message ".
+            $query = "select  jlom.id , jlom.name , jlom.email , jlom.company, jlom.phone, DATE_FORMAT(jlom.datetime,'%m/%d/%Y') date , jld.name Domain ,  jlom.message ".
                      " from " . $table_prefix . "offline_messages jlom , " . $table_prefix . "domains jld " .
                      " where DATE_FORMAT(jlom.datetime, '%Y-%m-%d')>= '$date_start' and DATE_FORMAT(jlom.datetime, '%Y-%m-%d')<='$date_end' and ".
                      " jlom.id_domain =jld.id_domain and jlom.answered = 0 ";                     
@@ -115,6 +115,8 @@ if ($action == 'update')
                $current_date         = $row['date'];
                $current_domain       = $row['Domain'];
                $current_message      = $row['message'];
+               $current_company  = $row['company'];
+               $current_phone    = $row['phone'];
             }  
               
 ?>
@@ -122,6 +124,8 @@ if ($action == 'update')
 <Id><?php echo(xmlinvalidchars($current_message_id));?></Id>
 <Name><?php echo(xmlinvalidchars($current_message_name));?></Name>
 <Email><?php echo(xmlinvalidchars($current_email));?></Email>
+<Compnay><?php echo(xmlinvalidchars($current_company));?></Compnay>
+<Phone><?php echo(xmlinvalidchars($current_phone));?></Phone>
 <Date><?php echo(xmlinvalidchars($current_date));?></Date>
 <Domain><?php echo(xmlinvalidchars($current_domain));?></Domain>
 <Comment><?php echo(xmlinvalidchars($current_message));?></Comment>

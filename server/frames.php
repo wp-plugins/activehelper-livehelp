@@ -9,20 +9,27 @@ include('import/config.php');
 
 $_REQUEST['USER'] = !isset( $_REQUEST['USER'] ) ? '' : htmlspecialchars( (string) $_REQUEST['USER'], ENT_QUOTES );
 $_REQUEST['EMAIL'] = !isset( $_REQUEST['EMAIL'] ) ? '' : htmlspecialchars( (string) $_REQUEST['EMAIL'], ENT_QUOTES );
+$_REQUEST['PHONE'] = !isset( $_REQUEST['EMAIL'] ) ? '' : htmlspecialchars( (string) $_REQUEST['PHONE'], ENT_QUOTES );
+$_REQUEST['COMPANY'] = !isset( $_REQUEST['EMAIL'] ) ? '' : htmlspecialchars( (string) $_REQUEST['COMPANY'], ENT_QUOTES );
 if (!isset($_REQUEST['DEPARTMENT'])){ $_REQUEST['DEPARTMENT'] = ''; }
 $_REQUEST['DEPARTMENT'] = !isset( $_REQUEST['DEPARTMENT'] ) ? '' : htmlspecialchars( (string) $_REQUEST['DEPARTMENT'], ENT_QUOTES );
+
 $_REQUEST['SERVER'] = !isset( $_REQUEST['SERVER'] ) ? '' : htmlspecialchars( (string) $_REQUEST['SERVER'], ENT_QUOTES );
 $_REQUEST['URL'] = !isset( $_REQUEST['URL'] ) ? '' : (string) $_REQUEST['URL'];
 $_REQUEST['COOKIE'] = !isset( $_REQUEST['COOKIE'] ) ? '' : htmlspecialchars( (string) $_REQUEST['COOKIE'], ENT_QUOTES );
 
-$username = $_REQUEST['USER'];
-$email = $_REQUEST['EMAIL'];
+$username   = $_REQUEST['USER'];
+$email      = $_REQUEST['EMAIL'];
+$phone      = $_REQUEST['PHONE'];
+$company    = $_REQUEST['COMPANY'];
+// Chnage
 //$department = $_REQUEST['DEPARTMENT'];
 $department =  htmlspecialchars_decode ($_REQUEST['DEPARTMENT'] , ENT_QUOTES );
-$referer = $_REQUEST['URL'];
+
+$referer    = $_REQUEST['URL'];
 $ip_address = $_SERVER['REMOTE_ADDR'];
-$domain_id = !isset( $domain_id ) ? 0 : (int) $domain_id;
- 
+$domain_id  = !isset( $domain_id ) ? 0 : (int) $domain_id;
+
 //error_log("FRAMES ------------>>  username:".$username."\n", 3, "error.log");
 //error_log("FRAMES ------------>>  email:".$email."\n", 3, "error.log");
 
@@ -61,7 +68,7 @@ if ($require_guest_details == true && $disable_login_details == false) {
         }
 }
 
-if ($department == '') { $department = $_REQUEST['DEPARTMENT']; }
+if ($department == '') { $department  = $_REQUEST['DEPARTMENT'];  }
 
 // Query to see if panel/Operators are Online
 $query = "SELECT UNIX_TIMESTAMP(`datetime`) AS `datetime` FROM " . $table_prefix . "users WHERE (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(`refresh`)) < '$connection_timeout' AND `status` = '1'";
@@ -117,7 +124,7 @@ $guest_login_id = 0;
 if ($guest_login_id == 0) {
 //error_log("FRAMES:New Session:username:".$username."\n", 3, "error.log");
         // Add session details
-        $query = "INSERT INTO " . $table_prefix . "sessions (`request`, `username`, `datetime`, `email`, `server`, `department`, `refresh`, `language`, rating, id_domain) VALUES ('$request_id', '$username', NOW(), '$email', '$current_host', '$department', NOW(), '".LANGUAGE_TYPE."', -1, $domain_id)";
+        $query = "INSERT INTO " . $table_prefix . "sessions (`request`, `username`, `datetime`, `email`,  `phone` , `company`, `server`, `department`, `refresh`, `language`, rating, id_domain) VALUES ('$request_id', '$username', NOW(), '$email', '$phone', '$company', '$current_host', '$department', NOW(), '".LANGUAGE_TYPE."', -1, $domain_id)";
        // echo("query1: " . $query);
        // exit('Termina...1');
         $login_id = $SQL->insertquery($query);
@@ -138,7 +145,7 @@ else {
         }
         else {
                 // Add session details
-                $query = "INSERT INTO " . $table_prefix . "sessions (`request`, `username`, `datetime`, `email`, `server`, `department`, `refresh`, `language`, rating, id_domain) VALUES ('$request_id', '$username', NOW(), '$email', '$current_host', '$department', NOW(), '".LANGUAGE_TYPE."', -1, $domain_id)";
+                $query = "INSERT INTO " . $table_prefix . "sessions (`request`, `username`, `datetime`, `email`,  `phone` , `company`, `server`, `department`, `refresh`, `language`, rating, id_domain) VALUES ('$request_id', '$username', NOW(), '$email', '$phone', '$company', '$current_host', '$department', NOW(), '".LANGUAGE_TYPE."', -1, $domain_id)";
                // echo("query2: " . $query);
 
         //exit('Termina... 2');

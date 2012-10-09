@@ -392,7 +392,19 @@ function statusClass (s_id, _vlDomain) {
 
 // JavaScript Initiate Chat Layer Functions
 
-        function initiateFloatLayer() {
+				var invitationIsOpen = false;
+				var invitationCloseTimer = false;
+				
+        function initiateFloatLayer( has_message ) {
+					if ( invitationCloseTimer !== false ) { window.clearTimeout( invitationCloseTimer ); }
+
+					if ( has_message == true ) {
+						invitationCloseTimer = window.setTimeout( 's1.declineInitiateChat( true );', 60 * 1000 );
+					} else {
+						invitationCloseTimer = window.setTimeout( 's1.declineInitiateChat( false );', 60 * 1000 );
+					}
+
+					invitationIsOpen = true;
 
           var trkUrl = "";
           //var openingTrackerStatus = new Image;
@@ -428,7 +440,7 @@ function get_vertical_scroll( )
         window.floatRefresh = function() {
                 var trkUrl = "";
                 window.clearTimeout(timerInitiateLayer);
-                window.clearTimeout(timerTracker);
+                // window.clearTimeout(timerTracker);
                 if (countTracker == 10000) {
                     var time = currentTime();
                     trkUrl = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time;
@@ -440,8 +452,8 @@ function get_vertical_scroll( )
                         countTracker = countTracker + 10;
                         //timerInitiateLayer = window.setTimeout('mainPositions();floatRefresh();', 10);
                         //timerInitiateLayer = window.setTimeout('floatRefresh();', 10);
-document.getElementById( 'floatLayer_1' ).style.top = ( get_vertical_scroll( ) + 10 ) + "px";
-setTimeout( function(){ glue( document.getElementById( 'floatLayer_1' )); }, 10 );
+// document.getElementById( 'floatLayer_1' ).style.top = ( get_vertical_scroll( ) + 10 ) + "px";
+// setTimeout( function(){ glue( document.getElementById( 'floatLayer_1' )); }, 10 );
 
                 }
         }
@@ -603,7 +615,9 @@ var newTargetX = this.scrollLeft + this.leftMargin;
                 }
         }
 
-        function acceptInitiateChat() {
+        function acceptInitiateChat( has_message ) {
+						if ( invitationCloseTimer !== false ) { window.clearTimeout( invitationCloseTimer ); }
+
                 var trkUrl = "";
                 //var acceptTrackerStatus = new Image;
                 var time = currentTime();
@@ -615,15 +629,21 @@ var newTargetX = this.scrollLeft + this.leftMargin;
                 if ( ns6 )document.getElementById('initiateChatResponse_' + s_id).location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Accepted';
 
                 if (initiateOpen == 1) {
-                        toggle('floatLayer_' + s_id);
+									if  ( has_message == true ) {
+											toggle('floatLayer_message_' + s_id);
+									} else {
+											toggle('floatLayer_' + s_id);
+									}
                 }
                 initiateLoaded = 0;
                 stopLayer();
                 onlineTracker();
         }
 
-        function declineInitiateChat() {
-          var trkUrl = "";
+        function declineInitiateChat( has_message ) {
+					if ( invitationCloseTimer !== false ) { window.clearTimeout( invitationCloseTimer ); }
+
+					var trkUrl = "";
           //var declineTrackerStatus = new Image;
           var time = currentTime();
 
@@ -635,12 +655,17 @@ var newTargetX = this.scrollLeft + this.leftMargin;
           if ( ns6 )document.getElementById('initiateChatResponse_' + s_id).location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Declined';
 
           if (initiateOpen == 1) {
-                  toggle('floatLayer_' + s_id);
-                  initiateOpen = 0;
+							if ( has_message == true )
+                  toggle('floatLayer_message_' + s_id);
+								else
+								 toggle('floatLayer_' + s_id);
+               initiateOpen = 0;
           }
           initiateLoaded = 0;
           stopLayer();
-          onlineTracker();
+          // onlineTracker();
+					
+					invitationIsOpen = false;
         }
 
         window.onload = onloadEvent;
@@ -733,11 +758,40 @@ if ($initiate_request_flag > 0 || $initiate_request_flag == -1) {
   function checkInitiate() {
     // Check if site visitor has an Initiate Chat Request Pending for display...
     var imageWidth = this.width; var imageHeight = this.height;
+	
+    if ( ( ( ( imageWidth == 2 && imageHeight == 2 ) || ( imageWidth == 3 && imageHeight == 3 ) ) && initiateOpen == 0) || initiateLoaded == 1 ) {
+			if ( ! invitationIsOpen ) {
+				if ( imageWidth == 3 && imageHeight == 3 ) {
+				
+					var ajax_request = new XMLHttpRequest();
+					ajax_request.onreadystatechange = function() {
+						if ( ajax_request.readyState == 4 && ajax_request.status == 200 ) {
+							var text = ajax_request.responseText;
+							if ( typeof( text ) == "undefined" ) {
+								text = '';
+							}
+							
+							document.getElementById('floatLayer_message_text_' + s_id).innerHTML = text;
+							
+							initiateFloatLayer( true );
+							toggle('floatLayer_message_' + s_id);
+							initiateOpen = 1;
+						}
+					};
 
-    if ((imageWidth == 2 && imageHeight == 2 && initiateOpen == 0) || initiateLoaded == 1) {
-      initiateFloatLayer();
-      toggle('floatLayer_' + s_id);
-      initiateOpen = 1;
+					var time = currentTime();
+					var ajax_request_url = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=' + s_id + '&TIME=' + time + '&USERID=<?=$_REQUEST['USERID']?>&services=<?=$_REQUEST['services']?>'+ '&DOMAINID=' + _vlDomain + '&LANGUAGE=' + _vlLanguage + '&SERVICE=' + _vlService + '&GET_INVITATION_MESSAGE=1';
+
+					ajax_request.open( "GET", ajax_request_url, true );
+					ajax_request.send( null );
+				}
+				else
+				{
+					initiateFloatLayer( false );
+					toggle('floatLayer_' + s_id);
+					initiateOpen = 1;
+				}
+			}
     }
   }
 
@@ -1050,17 +1104,33 @@ function startLivehelp()
   _vldisableinvitation =<?php echo($disable_invitation); ?>;
 
    if( _vlTracking &&  _vldisableinvitation !=1 ){
-    document.writeln('<map name="LiveHelpInitiateChatMap_1">');
-    document.writeln('<area id="areaAccept" shape="rect" coords="75,146,155,169" href="javascript:none();" onClick="s1.openLiveHelp();s1.acceptInitiateChat();" alt="Accept"/>');
-    document.writeln('<area id="areaDecline"  shape="rect" coords="170,146,245,169" href="javascript:none();" onClick="s1.declineInitiateChat();" alt="Decline"/>');
-    document.writeln('</map>');
+	  
+		// 377 - 238
+		// 75,146,155,169
+		// 170,146,245,169
 
-    document.writeln('<div id="floatLayer_1" style="position:fixed; left:633px; top:10px; visibility:hidden; z-index:100000;">');
-    document.writeln('<div align="center"><img id="initiateDialog" src="<?php echo($server); echo($server_directory); ?>/<? echo($eserverName); ?>/domains/'+_vlDomain +'/i18n/'+ _vlLanguage + '/pictures/<? echo($invitation_name); ?>" alt="<?php echo($server); ?> Platform" width="377" height="238" border="0" usemap="#LiveHelpInitiateChatMap_1"/></div>');
+    html = '<map name="LiveHelpInitiateChatMap_1">';
+    html += '<area id="areaAccept" shape="rect" coords="52,130,132,153" href="javascript:none();" onClick="s1.openLiveHelp();s1.acceptInitiateChat( false );" alt="Accept"/>';
+    html += '<area id="areaDecline"  shape="rect" coords="147,130,222,153" href="javascript:none();" onClick="s1.declineInitiateChat( false );" alt="Decline"/>';
+    html += '</map>';
+
+    html += '<div id="floatLayer_1" style="position:fixed; left: auto !important; top: auto !important; visibility: hidden; right: 0 !important; bottom: 0 !important; z-index:2147483647;">'; // Max z-index value.
+		html += '<div align="center"><img id="initiateDialog" src="<?php echo($server); echo($server_directory); ?>/<? echo($eserverName); ?>/domains/'+_vlDomain +'/i18n/'+ _vlLanguage + '/pictures/<? echo($invitation_name); ?>?v2" alt="<?php echo($server); ?> Platform" width="277" height="164" border="0" usemap="#LiveHelpInitiateChatMap_1"/></div>';
+    html += '</div>';
+
+    html += '<div id="floatLayer_message_1" style="position: fixed; left: auto !important; top: auto !important; visibility: hidden; right: 0 !important; bottom: 0 !important; z-index:2147483647;">'; // Max z-index value.
+		html += '<div align="center" style="background: url(\'<?php echo($server); echo($server_directory); ?>/<? echo($eserverName); ?>/pictures/message-box.gif\') no-repeat top left; width: 230px; height: 101px; overflow: hidden;"><div style="height: 23px;"><a href="javascript:;" onclick="s1.declineInitiateChat( true );" style="display: block; float: right; height: 23px; width: 23px;"></a><a href="javascript:;" onclick="s1.openLiveHelp();s1.acceptInitiateChat( true );" style="display: block; float: right; height: 23px; width: 23px;"></a></div><div onclick="s1.openLiveHelp();s1.acceptInitiateChat( true );" id="floatLayer_message_text_1" style="font-size: 11px !important; line-height: normal !important; font-family: Verdana !important; cursor: pointer; text-align: center; padding: 18px 10px 5px 10px;"></div></div>';
+    html += '</div>';
+
+		var div = document.createElement( 'div' );
+		div.innerHTML = html;
+        
+
+	document.body.insertBefore( div, document.body.firstChild );
+   
+    document.writeln('<div iframe name="initiateChatResponse_1" id="initiateChatResponse_1" src="<?php echo($server); echo($server_directory); ?>/<? echo($eserverName); ?>/blank.php?&LANGUAGE=' + _vlLanguage + ' frameborder="0" width="1" height="1" style="visibility: hidden; border-style:none"></iframe>');           
     document.writeln('</div>');
-
-    document.writeln('<iframe name="initiateChatResponse_1" id="initiateChatResponse_1" src="<?php echo($server); echo($server_directory); ?>/<? echo($eserverName); ?>/blank.php?&LANGUAGE=' + _vlLanguage + ' frameborder="0" width="1" height="1" style="visibility: hidden; border-style:none"></iframe>');
-
+     
    }
 
 // Custom offline form

@@ -1,6 +1,7 @@
 <?php
 /**
  * @package ActiveHelper Live Help
+ * @Version 2.9.0 
  */
 
 if (!defined('ACTIVEHELPER_LIVEHELP'))
@@ -239,6 +240,8 @@ function activeHelper_liveHelp_installQuery()
         INSERT INTO wp_livehelp_languages VALUES ('bg', 'Bulgarian', 'utf-8');
         INSERT INTO wp_livehelp_languages VALUES ('sk', 'Slovak', 'utf-8');
         INSERT INTO wp_livehelp_languages VALUES ('cr', 'Croatian', 'utf-8');
+        INSERT INTO wp_livehelp_languages VALUES ('id', 'Indonesian', 'utf-8');
+        INSERT INTO wp_livehelp_languages VALUES ('lt', 'Lithuanian', 'utf-8')
 
 		CREATE TABLE IF NOT EXISTS `wp_livehelp_languages_domain` (
 			`Id_domain` int(11) NOT NULL default '0',
@@ -284,10 +287,11 @@ function activeHelper_liveHelp_installQuery()
 			`country_code` varchar(6) default NULL,
 			`country` varchar(50) default NULL,
 			`latitude` varchar(20) default NULL,
-			`longitude` varchar(20) default NULL, 
+			`longitude` varchar(20) default NULL,
 			`visitor_name` varchar(30) default NULL,
 			`visitor_email` varchar(50) default NULL,
 			`visitor_id` bigint(20) default NULL,
+			`init_message` varchar(90) default NULL,
 			PRIMARY KEY  (`id`),
 			KEY `IDX_R_DOMAIN` (`id_domain`)
 		) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -335,6 +339,8 @@ function activeHelper_liveHelp_installQuery()
 			`datetime` datetime NOT NULL default '0000-00-00 00:00:00',
 			`refresh` datetime NOT NULL default '0000-00-00 00:00:00',
 			`email` varchar(50) NOT NULL default '',
+            `phone` varchar(20) DEFAULT NULL,
+            `company` varchar(30) DEFAULT NULL,
 			`server` varchar(100) NOT NULL default '',
 			`department` varchar(50) NOT NULL default '',
 			`rating` int(1) NOT NULL default '0',
@@ -418,7 +424,9 @@ function activeHelper_liveHelp_installQuery()
 		INSERT INTO wp_livehelp_settings VALUES (52, 'disable_geolocation', 0, 0);
 		INSERT INTO wp_livehelp_settings VALUES (53, 'disable_tracking_offline', 0, 0);
 		INSERT INTO wp_livehelp_settings VALUES (54, 'captcha', 1, 0);
-		INSERT INTO wp_livehelp_settings VALUES (55, 'disable_agent_bannner', 0, 0);
+		INSERT INTO wp_livehelp_settings VALUES (55, 'disable_agent_bannner', 0, 0);        
+        INSERT INTO wp_livehelp_settings VALUES (56, 'company', '0', 0);
+        INSERT INTO wp_livehelp_settings VALUES (57, 'phone', '0', 0);
 
 		CREATE TABLE IF NOT EXISTS `wp_livehelp_statuses` (
 			`id_status` int(11) NOT NULL default '0',
@@ -456,6 +464,8 @@ function activeHelper_liveHelp_installQuery()
 			`id` bigint(20) NOT NULL auto_increment,
 			`name` varchar(30) NOT NULL default '',
 			`email` varchar(30) NOT NULL default '',
+            `phone` varchar(20) DEFAULT NULL,
+            `company` varchar(30) DEFAULT NULL,
 			`message` text NOT NULL,
 			`id_domain` bigint(20) NOT NULL,
 			`datetime` datetime NOT NULL default '0000-00-00 00:00:00',	

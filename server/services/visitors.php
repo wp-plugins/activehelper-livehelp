@@ -45,6 +45,12 @@ if (!isset($_REQUEST['OPERATORID']))
    $operator_login_id = (int) $_REQUEST['OPERATORID'];
 }
 
+if (!isset($_REQUEST['PMESSAGE']))
+{
+   $_REQUEST['PMESSAGE'] = '';
+} else $_REQUEST['PMESSAGE'] = (string) $_REQUEST['PMESSAGE'];
+
+
 $language = $_REQUEST['LANGUAGE'];
 $action = $_REQUEST['ACTION'];
 $request = $_REQUEST['REQUEST'];
@@ -52,6 +58,7 @@ $record = $_REQUEST['RECORD'];
 $date = $_REQUEST['DATETIME'];
 $responceType = !isset($_REQUEST['DATA']) ? "full": htmlspecialchars( (string) $_REQUEST['DATA'], ENT_QUOTES );
 $visitorId = !isset($_REQUEST['visitorId']) ? "": (int) $_REQUEST['visitorId'];
+$popmessage = $_REQUEST['PMESSAGE'];
 
 define('LANGUAGE_TYPE', $language);
 
@@ -69,6 +76,17 @@ else {
 $charset = 'utf-8';
 header('Content-type: text/xml; charset=' . $charset);
 echo('<?xml version="1.0" encoding="' . $charset . '"?>' . "\n");
+
+if ($action == 'pmessage' && $request != '')
+{
+   if ($popmessage != '')
+   {
+      // Update active field of user to the ID of the operator that initiated support
+      $query = "UPDATE " . $table_prefix . "requests SET `initiate` = 2 , `init_message` = '$popmessage'  WHERE `id` = '$request'";
+      $SQL->miscquery($query);
+   }  
+    
+}
 
 
 if ($action == 'Initiate' && $current_privilege < 3)

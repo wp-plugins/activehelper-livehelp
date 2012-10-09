@@ -101,14 +101,14 @@ if ($action == 'list')
 
    if ($privilege == '0' )
    {
-       $query = "select  jls.id, jls.username , jld.name , DATE_FORMAT(jls.refresh,'%m/%d/%Y') date , (TIMEDIFF(jls.refresh, jls.datetime)) Duration ,  jls.email ".
+       $query = "select  jls.id, jls.username , jls.company, jls.phone, jld.name , DATE_FORMAT(jls.refresh,'%m/%d/%Y') date , (TIMEDIFF(jls.refresh, jls.datetime)) Duration ,  jls.email ".
                 "from " . $table_prefix . "sessions  jls , " . $table_prefix . "domains jld  ".
                 "where ". "$query_where" . " and jls.id_user = '$operator_login_id'  and  jls.id_domain =  jld.id_domain";
    }
    else
  if ($privilege == '1' )  
    {
-            $query = "select  jls.id, jls.username , jld.name , DATE_FORMAT(jls.refresh,'%m/%d/%Y') date , (TIMEDIFF(jls.refresh, jls.datetime)) Duration ,  jls.email ".
+            $query = "select  jls.id, jls.username , jls.company, jls.phone, jld.name , DATE_FORMAT(jls.refresh,'%m/%d/%Y') date , (TIMEDIFF(jls.refresh, jls.datetime)) Duration ,  jls.email ".
                 "from " . $table_prefix . "sessions  jls , "  . $table_prefix . "domain_user jldu , " . $table_prefix . "domains jld  ".
                 "where jldu.id_user = '$operator_login_id' and jls.id_domain = jldu.id_domain and " . "$query_where" .  " and  jls.id_domain =  jld.id_domain";
    }
@@ -132,6 +132,8 @@ if ($action == 'list')
                $current_date     = $row['date'];
                $current_duration = $row['Duration'];
                $current_email    = $row['email'];
+               $current_company  = $row['company'];
+               $current_phone    = $row['phone'];
                
               
 ?>
@@ -140,6 +142,8 @@ if ($action == 'list')
 <domain><?php echo(xmlinvalidchars($current_domain));?></domain>
 <Username><?php echo(xmlinvalidchars($current_username));?></Username>
 <Email><?php echo(xmlinvalidchars($current_email));?></Email>
+<Compnay><?php echo(xmlinvalidchars($current_company));?></Compnay>
+<Phone><?php echo(xmlinvalidchars($current_phone));?></Phone>
 <Date><?php echo(xmlinvalidchars($current_date));?></Date>
 <Duration><?php echo(xmlinvalidchars($current_duration));?></Duration>
 </Transcription>

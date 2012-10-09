@@ -1,6 +1,7 @@
 <?php
 /**
  * @package ActiveHelper Live Help
+ * @Version 2.9.0 
  */
 
 if (!defined('ACTIVEHELPER_LIVEHELP'))
@@ -189,7 +190,10 @@ function activeHelper_liveHelp_domainsGenerateScript()
 		'cn' => __('Simplified Chinese', 'activehelper_livehelp'),
         'bg' => __('Bulgarian', 'activehelper_livehelp'),
         'sk' => __('Slovak', 'activehelper_livehelp'),
-        'cr' => __('Croatian', 'activehelper_livehelp')
+        'cr' => __('Croatian', 'activehelper_livehelp'),
+        'id' => __('Indonesian', 'activehelper_livehelp'),
+        'lt' => __('Lithuanian', 'activehelper_livehelp')
+        
 	);
 
 	foreach ($activeHelper_liveHelp['languages'] as $language)
@@ -941,7 +945,10 @@ function activeHelper_liveHelp_domainsSettings()
 		'cn' => __('Simplified Chinese', 'activehelper_livehelp'),
         'bg' => __('Bulgarian', 'activehelper_livehelp'),
         'sk' => __('Slovak', 'activehelper_livehelp'),
-        'cr' => __('Croatian', 'activehelper_livehelp')
+        'cr' => __('Croatian', 'activehelper_livehelp'),
+        'id' => __('Indonesian', 'activehelper_livehelp'),
+        'lt' => __('Lithuanian', 'activehelper_livehelp') 
+        
 	);
 
 	foreach ($activeHelper_liveHelp['languages'] as $language)
@@ -1018,6 +1025,26 @@ function activeHelper_liveHelp_domainsSettings()
 								<input tabindex="' . $tabindex++ . '" style="float: left;  margin: 0 .5ex 0 0; width: auto;" type="radio" name="captcha" ' . (empty($_POST['captcha']) ? 'checked="checked"' : '') . ' value="0" /> ' . __('Disable', 'activehelper_livehelp') . '</label>
 							<div style="clear: both;"></div>
 						</td></tr></tbody></table>
+                        
+                       		<table style="margin-top: 1.5ex;"><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
+							' . __('Phone', 'activehelper_livehelp') . '
+						</th></thead><tbody><tr><td id="newmetaleft" class="left" style="padding: 1ex;">
+							<label style="margin-left: .5ex; display: block; float: left; margin-right: 1ex; line-height: 15px;">
+								<input tabindex="' . $tabindex++ . '" style="float: left; margin: 0 .5ex 0 0; width: auto;" type="radio" name="phone" ' . (!empty($_POST['phone']) ? 'checked="checked"' : '') . ' value="1" /> ' . __('Enable', 'activehelper_livehelp') . '</label>
+							<label style="display: block; margin: 0 .5ex 0 0; float: left; line-height: 15px;">
+								<input tabindex="' . $tabindex++ . '" style="float: left;  margin: 0 .5ex 0 0; width: auto;" type="radio" name="phone" ' . (empty($_POST['phone']) ? 'checked="checked"' : '') . ' value="0" /> ' . __('Disable', 'activehelper_livehelp') . '</label>
+							<div style="clear: both;"></div>
+						</td></tr></tbody></table>
+                        
+                        		<table style="margin-top: 1.5ex;"><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
+							' . __('Company', 'activehelper_livehelp') . '
+						</th></thead><tbody><tr><td id="newmetaleft" class="left" style="padding: 1ex;">
+							<label style="margin-left: .5ex; display: block; float: left; margin-right: 1ex; line-height: 15px;">
+								<input tabindex="' . $tabindex++ . '" style="float: left; margin: 0 .5ex 0 0; width: auto;" type="radio" name="company" ' . (!empty($_POST['company']) ? 'checked="checked"' : '') . ' value="1" /> ' . __('Enable', 'activehelper_livehelp') . '</label>
+							<label style="display: block; margin: 0 .5ex 0 0; float: left; line-height: 15px;">
+								<input tabindex="' . $tabindex++ . '" style="float: left;  margin: 0 .5ex 0 0; width: auto;" type="radio" name="company" ' . (empty($_POST['company']) ? 'checked="checked"' : '') . ' value="0" /> ' . __('Disable', 'activehelper_livehelp') . '</label>
+							<div style="clear: both;"></div>
+						</td></tr></tbody></table> 
 					</div></div>
 				</div>
 

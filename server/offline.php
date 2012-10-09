@@ -46,25 +46,47 @@ $captcha =1;
 $email = '';
 $name = '';
 $message = '';
+$phone = '';
+$company = '';
 $code = '';
 $status = '';
+$setting = $row['name'];
+$form_high = 430;
 
-        // captcha 
-        $query = "SELECT value FROM " . $table_prefix . "settings WHERE name = 'captcha' And id_domain = $domain_id";
-                                $row = $SQL->selectquery($query);
-                                if (is_array($row)) {
-                                        $captcha = $row['value'];
+
+        // Settings 
+          $query = "SELECT name, value FROM " . $table_prefix . "settings WHERE name in ('captcha','phone','company') and id_domain = $domain_id";
+                   $rows = $SQL->selectall($query);
+                            if(is_array($rows)) {
+                             foreach ($rows as $key => $row) {                                                                                                       
+                              if (is_array($row)) {                                                               
+                                 $setting = $row['name'];     
+                                                                                             
+                                if($setting == "captcha") {
+                                     $captcha = $row['value'];                                    
+                                      $form_high = $form_high + ( $captcha * 30);}                                                                                                                         
+                                   elseif($setting == "phone") {
+                                      $use_phone = $row['value'];
+                                       $form_high = $form_high + ( $use_phone * 40);}
+                                   else { 
+                                       $use_company = $row['value'];
+                                       $form_high = $form_high + ( $use_company * 40);}    
                                 }
-
-
+                              }
+                             } 
+                             
+    
+                                       
 if($_REQUEST['COMPLETE'] == true) {
     
 
-        $name = stripslashes($_REQUEST['NAME']);
-        $email = stripslashes($_REQUEST['EMAIL']);
+        $name    = stripslashes($_REQUEST['NAME']);
+        $email   = stripslashes($_REQUEST['EMAIL']);
+        $phone   = stripslashes($_REQUEST['PHONE']);
+        $company = stripslashes($_REQUEST['COMPANY']);
         $message = stripslashes($_REQUEST['MESSAGE']);
-        $code = stripslashes($_REQUEST['SECURITY']);
-        $bcc = stripslashes($_REQUEST['BCC']);
+        $code    = stripslashes($_REQUEST['SECURITY']);
+        $bcc     = stripslashes($_REQUEST['BCC']);
 
         
 
@@ -167,7 +189,7 @@ if($_REQUEST['COMPLETE'] == true) {
                                 }
                                 
                                 if ($log_offline_email == 1) {
-                                $query = "INSERT INTO " . $table_prefix . "offline_messages (`name`, `email`, `message`, `id_domain` , `datetime`) VALUES ('$name', '$email', '$msg', $domain_id, NOW())";
+                                $query = "INSERT INTO " . $table_prefix . "offline_messages (`name`, `email`,  `phone`,  `company`, `message`, `id_domain` , `datetime`) VALUES ('$name', '$email', '$phone','$company','$msg', $domain_id, NOW())";
                                 $SQL->insertquery($query);
                                  }
                                 
@@ -181,7 +203,7 @@ if($_REQUEST['COMPLETE'] == true) {
                                         $message = stripslashes($_REQUEST['MESSAGE']);
 
                                         if ($sendmail_path == '') { $headers = str_replace("\n", "\r\n", $headers); $message = str_replace("\n", "\r\n", $message); }
-                                        mail($to_email, $subject, $message, $headers);
+                                        mail($to_email, $subject, $message , $headers);
                                 }
                         }
                 }
@@ -210,7 +232,7 @@ else {
 <title><?php echo($livehelp_name); ?></title>
 <link href="<?= $install_directory ?>/style/styles.php?<?echo('DOMAINID='.$domain_id);?>" rel="stylesheet" type="text/css">
 <script>
-window.resizeTo(470, 469);
+window.resizeTo(490, <?php echo($form_high); ?>);
 </script>
 <style type="text/css">
 <!--
@@ -265,10 +287,33 @@ if($_REQUEST['COMPLETE'] == '' || $error != '' || $invalid_email != '' || $inval
                          <input name="EMAIL" type="text" id="EMAIL" value="<?php echo($email); ?>" size="40" style="width:420px;">
                   </td>
       </tr>
+      
+      <?php if  ($use_phone ==1) { ?>         
+      <tr>
+        <td align="left">
+                    <strong><?php echo($your_phone_label); ?></strong>:<br>
+                         <input name="PHONE" type="text" id="PHONE" value="<?php echo($phone); ?>" size="20" style="width:420px;">
+                  </td>
+      </tr>
+      
+      <?php
+        } 
+      if  ($use_company ==1) {    
+       ?>
+      
+      <tr>
+        <td align="left">
+                    <strong><?php echo($your_company_label); ?></strong>:<br>
+                         <input name="COMPANY" type="text" id="COMPANY" value="<?php echo($company); ?>" size="30" style="width:420px;">
+                  </td>
+      </tr>
+     
+       <?php }  ?>
+        
       <tr>
         <td align="left">
                     <strong><?php echo($message_label); ?></strong>:<br>
-          <textarea name="MESSAGE" cols="30" rows="3" id="MESSAGE" style="width:420px; vertical-align: middle; font-family:<?php echo($chat_font_type); ?>; font-size:<?php echo($guest_chat_font_size); ?>;"><?php echo($message); ?></textarea>
+          <textarea name="MESSAGE" cols="30" rows="4" id="MESSAGE" style="width:420px; vertical-align: middle; font-family:<?php echo($chat_font_type); ?>; font-size:<?php echo($guest_chat_font_size); ?>;"><?php echo($message); ?></textarea>
         </td>
       </tr>
       

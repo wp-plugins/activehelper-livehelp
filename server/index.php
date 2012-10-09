@@ -8,6 +8,9 @@ $_REQUEST['ERROR'] = !isset( $_REQUEST['ERROR'] ) ? '' : htmlspecialchars( (stri
 $_REQUEST['COOKIE'] = !isset( $_REQUEST['COOKIE'] ) ? '' : htmlspecialchars( (string) $_REQUEST['COOKIE'], ENT_QUOTES );
 $_REQUEST['SERVER'] = !isset( $_REQUEST['SERVER'] ) ? '' : htmlspecialchars( (string) $_REQUEST['SERVER'], ENT_QUOTES );
 
+$use_phone   =1;
+$use_company =1;
+
 if (isset($_REQUEST['DOMAINID'])){
   $domain_id = (int) $_REQUEST['DOMAINID'];
 }
@@ -283,6 +286,29 @@ if ($error == 'empty') {
 }
 ?>
 
+<?php 
+// Settings 
+          $query = "SELECT name, value FROM " . $table_prefix . "settings WHERE name in ('disable_language','phone','company') and id_domain = $domain_id";
+                   $rows = $SQL->selectall($query);
+                            if(is_array($rows)) {
+                             foreach ($rows as $key => $row) {                                                                                                       
+                              if (is_array($row)) {                                                               
+                                 $setting = $row['name'];     
+                                                                                             
+                                if($setting == "disable_language") {
+                                     $disable_language = $row['value'];                                    
+                                      }                                                                                                                         
+                                   elseif($setting == "phone") {
+                                      $use_phone = $row['value'];
+                                       }
+                                   else { 
+                                       $use_company = $row['value'];
+                                       }    
+                                }
+                              }
+                             }                                        
+  ?>
+
 <form name="login" id="login" method="POST" action="frames.php?SERVER=<?php echo($_REQUEST['SERVER']); ?>&URL=<?php echo($_REQUEST['URL']); ?><?echo('&DOMAINID='.$domain_id.'&LANGUAGE='.LANGUAGE_TYPE);?>">
 
   <input type="hidden" name="DOMAINID" value="<?php echo($domain_id); ?>"/>
@@ -315,15 +341,33 @@ if ($error == 'empty') {
                         <? } else { ?>
                           <td><font face="arial" size="2"><input type="text"  name="EMAIL" id="EMAIL" style="width:175px;filter:alpha(opacity=75);moz-opacity:0.75"></font></td>
                          <? } ?>
-                </tr>
+                </tr> 
+                 <?php if  ($use_phone ==1) { ?>  
+                      <tr>
+                        <td><strong><?php echo($your_phone_label); ?></strong>:</td>                        
+                         <? if ($phone !='') { ?>
+                         <td><font face="arial" size="2"><input type="text" name="PHONE" id="PHONE" style="width:175px;filter:alpha(opacity=75);moz-opacity:0.75"></font></td>
+                        <? } ?>
+                </tr> 
+                  <?php
+                        } 
+                   if  ($use_company ==1) {    
+                   ?>
                 
+                 <tr>
+                        <td><strong><?php echo($your_company_label); ?></strong>:</td>                        
+                         <? if ($company !='') { ?>
+                         <td><font face="arial" size="2"><input type="text" name="COMPANY" id="COMPANY" style="width:175px;filter:alpha(opacity=75);moz-opacity:0.75"></font></td>
+                        <? } ?>
+                </tr>  
+               <?php }  ?>                    
              <?
              // Languague display option 
              
               $query = "SELECT code, name FROM " . $table_prefix . "languages_domain Where Id_domain = " . $domain_id . " Order By name";
               $lang_count = $SQL->selcount($query);  
               
-              $disable_language =0; 
+            /*  $disable_language =0; 
     
               // find the custom form link
               $query = "SELECT `value` FROM " . $table_prefix . "settings WHERE `id_domain`= '$domain_id' and name ='disable_language'";
@@ -332,7 +376,7 @@ if ($error == 'empty') {
              if (is_array($row)) {
                $disable_language = $row['value'];                                  
                }
-            
+            */
              ?>        
             
             <? if ($lang_count > 1 && $disable_language ==0) { ?>

@@ -10,7 +10,7 @@ if (!isset($_REQUEST['REFERRER'])){ $_REQUEST['REFERRER'] = ''; } else $_REQUEST
 if (!isset($_REQUEST['WIDTH'])){ $_REQUEST['WIDTH'] = ''; } else $_REQUEST['WIDTH'] = (int) $_REQUEST['WIDTH'];
 if (!isset($_REQUEST['HEIGHT'])){ $_REQUEST['HEIGHT'] = ''; } else $_REQUEST['HEIGHT'] = (int) $_REQUEST['HEIGHT'];
 if (!isset($_REQUEST['COOKIE'])){ $_REQUEST['COOKIE'] = ''; } else $_REQUEST['COOKIE'] = htmlspecialchars( (string) $_REQUEST['COOKIE'], ENT_QUOTES );
-$domain_id = (int) $domain_id;
+$domain_id = isset( $domain_id ) ? (int) $domain_id : null;
 $command = 'tracker';
 if (isset($_SERVER['PATH_TRANSLATED']) && $_SERVER['PATH_TRANSLATED'] != '')
 {
@@ -186,9 +186,25 @@ if ($request_id > 0) {
         }
 }
 
+if ( isset( $_GET[ 'GET_INVITATION_MESSAGE' ] ) ) {
+	$query = "SELECT init_message FROM " . $table_prefix . "requests WHERE id = '". (int) $request_id ."'";
+	$row = $SQL->selectquery($query);
+
+	if ( !empty( $row['init_message'] ) ) {
+		die( $row['init_message'] );
+	}
+
+	die( '' );
+}
+
+
 header('Content-type: image/gif');
 if ($request_initiated == true) {
+	if ( $request_initiate_flag == 2 ) {
+        readfile($install_path . $install_directory . '/import/initiate-message.gif');
+	} else {
         readfile($install_path . $install_directory . '/import/initiate.gif');
+	}
 }
 else {
         readfile($install_path . $install_directory . '/import/tracker.gif');
