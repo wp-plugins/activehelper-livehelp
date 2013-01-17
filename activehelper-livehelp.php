@@ -6,7 +6,7 @@
 Plugin Name: ActiveHelper Live Help
 Plugin URI: http://www.activehelper.com
 Description: Provide superior service by real time chat with your website visitors and interact them through your website. Create a more efficient connection with your website visitors, increase your sales and customer satisfaction.
-Version: 2.9.1
+Version: 2.9.5
 Author: ActiveHelper Inc
 Author URI: http://www.activehelper.com
 */
@@ -85,7 +85,40 @@ function activeHelper_liveHelp_mainInstall()
 
 	$activeHelper_liveHelp['is_installed'] = $is_installed !== null;
 	if (!$activeHelper_liveHelp['is_installed'])
-		activeHelper_liveHelp_install();
+	return activeHelper_liveHelp_install();
+
+  // Run an SQL to update Database
+  $plugin_data = get_plugin_data( __FILE__ );
+  // Plugin version
+  $plugin_version = $plugin_data['Version'];
+
+  // Database version
+  $database_version = $wpdb->get_var("
+    SELECT value
+    FROM {$wpdb->prefix}livehelp_settings
+    WHERE name = 'database_version' AND id_domain = '0'
+    LIMIT 1
+  ");
+  if (empty($database_version)) {
+    $database_version = $plugin_version;
+
+    $wpdb->query("
+      INSERT INTO {$wpdb->prefix}livehelp_settings
+        (name, value, id_domain)
+      VALUES ('database_version', '" . $plugin_version . "', 0);
+    ");
+  }
+
+  if ( $plugin_version != $database_version ) {
+    $new_database_version = activeHelper_liveHelp_updateDatabase($database_version, $plugin_version);
+
+    $wpdb->query("
+      UPDATE {$wpdb->prefix}livehelp_settings
+      SET value = '" . $new_database_version . "'
+      WHERE name = 'database_version' AND id_domain = '0'
+      LIMIT 1
+    ");
+  }
 }
 
 function activeHelper_liveHelp_mainPost()
@@ -731,7 +764,7 @@ function activeHelper_liveHelp_about()
 							<table><tbody><tr><td class="first t">
 								' . __('Version', 'activehelper_livehelp') . '
 							</td><td class="b">
-								' . __('2.9.1', 'activehelper_livehelp') . '
+								' . __('2.9.5', 'activehelper_livehelp') . '
 							</td></tr></tbody></table>
 							<table><tbody><tr><td class="first t">
 								' . __('Check for Update', 'activehelper_livehelp') . '
@@ -741,12 +774,12 @@ function activeHelper_liveHelp_about()
 							<table><tbody><tr><td class="first t">
 								' . __('Help', 'activehelper_livehelp') . '
 							</td><td class="b">
-								' . __('<a href="http://www.activehelper.com/livehelp/live-chat/faqs.html">http://www.activehelper.com/livehelp/live-chat/faqs.html</a>', 'activehelper_livehelp') . '
+								' . __('<a href="http://www.activehelper.com/faq.html">http://www.activehelper.com/faq.html</a>', 'activehelper_livehelp') . '
 							</td></tr></tbody></table>
 							<table><tbody><tr><td class="first t">
 								' . __('Support Forum', 'activehelper_livehelp') . '
 							</td><td class="b">
-								' . __('<a href="http://www.activehelper.com/contact-us/community-forum">http://www.activehelper.com/contact-us/community-forum</a>', 'activehelper_livehelp') . '
+								' . __('<a href="http://www.activehelper.com/forum/wordpress-extension">http://www.activehelper.com/forum/wordpress-extension</a>', 'activehelper_livehelp') . '
 							</td></tr></tbody></table>
 							<table><tbody><tr><td class="first t">
 								' . __('Follow at Twitter', 'activehelper_livehelp') . '
@@ -822,7 +855,7 @@ function activehelper_livehelp_plugin_backup()
 function activehelper_livehelp_plugin_recover()
 {
 	$f = dirname( dirname( __FILE__ ) ) . '/activehelper-livehelp-backup';
-	$t = dirname( __FILE__ ) . '/server';
+	$t = dirname( __FILE__ ) . '';
 
 	activeHelper_liveHelp_filesDuplicate( $f . '/domains', $t . '/server/domains' );
 	activeHelper_liveHelp_filesDuplicate( $f . '/config_database.php', $t . '/server/import/config_database.php' );

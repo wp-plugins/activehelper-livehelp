@@ -118,7 +118,10 @@ class activeHelper_liveHelp_externalWidget extends WP_Widget
 			'cn' => __('Simplified Chinese', 'activehelper_livehelp_externalwidget'),
             'bg' => __('Bulgarian', 'activehelper_livehelp_externalwidget'),
             'sk' => __('Slovak', 'activehelper_livehelp_externalwidget'),
-            'cr' => __('Croatian', 'activehelper_livehelp_externalwidget')
+            'cr' => __('Croatian', 'activehelper_livehelp_externalwidget'),
+            'id' => __('Indonesian', 'activehelper_livehelp_externalwidget'),
+            'lt' => __('Lithuanian', 'activehelper_livehelp_externalwidget'),
+            'ro' => __('Romanian', 'activehelper_livehelp_externalwidget')
 		);
 
 		foreach ($__text as $code => $name)

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package ActiveHelper Live Help
- * @Version 2.9.0 
+ * @Version 2.9.2 
  */
 
 if (!defined('ACTIVEHELPER_LIVEHELP'))
@@ -241,7 +241,8 @@ function activeHelper_liveHelp_installQuery()
         INSERT INTO wp_livehelp_languages VALUES ('sk', 'Slovak', 'utf-8');
         INSERT INTO wp_livehelp_languages VALUES ('cr', 'Croatian', 'utf-8');
         INSERT INTO wp_livehelp_languages VALUES ('id', 'Indonesian', 'utf-8');
-        INSERT INTO wp_livehelp_languages VALUES ('lt', 'Lithuanian', 'utf-8')
+        INSERT INTO wp_livehelp_languages VALUES ('lt', 'Lithuanian', 'utf-8');
+        INSERT INTO wp_livehelp_languages VALUES ('ro', 'Romanian', 'utf-8');
 
 		CREATE TABLE IF NOT EXISTS `wp_livehelp_languages_domain` (
 			`Id_domain` int(11) NOT NULL default '0',
@@ -427,6 +428,7 @@ function activeHelper_liveHelp_installQuery()
 		INSERT INTO wp_livehelp_settings VALUES (55, 'disable_agent_bannner', 0, 0);        
         INSERT INTO wp_livehelp_settings VALUES (56, 'company', '0', 0);
         INSERT INTO wp_livehelp_settings VALUES (57, 'phone', '0', 0);
+		INSERT INTO wp_livehelp_settings VALUES (58, 'database_version', '2.9.2', 0);
 
 		CREATE TABLE IF NOT EXISTS `wp_livehelp_statuses` (
 			`id_status` int(11) NOT NULL default '0',
@@ -777,3 +779,49 @@ function activeHelper_liveHelp_uninstallQuery()
 	return $uninstallQuery;
 }
 
+function activeHelper_liveHelp_updateDatabase($database_version, $plugin_version) {
+  global $wpdb;
+
+  /*
+  Para consultas comunes (INSERT, SELECT, UPDATE, DELETE):
+    $wpdb->query($query);
+  Para cualquier consulta común y que involucre tablas (CREATE, ALTER, DROP):
+    dbDelta($query);
+  */
+
+  
+  // Por ejemplo, si estamos actualmente en la versión 2.9.5 y vamos a la 2.9.6
+  if ($database_version == "2.9.1") {
+    $wpdb->query("UPDATE __tabla__ SET __valor__ = 'nuevo valor' WHERE __nombre__ = 'condicion'");
+    // Aquí colocamos la versión después de las consultas.
+    $database_version = "2.9.2";
+  }
+
+/*  // Ahora, supongamos que actualizamos de la versión 2.9.5 a la versión 2.9.8
+  // ya que el usuario no descargó la versión 2.9.6 ni 2.9.7, así que tendrá
+  // que actualizar la DB primero a la 2.9.6, y luego a la 2.9.7 y finalmente a la 2.9.8
+  if ($database_version == "2.9.5") {
+    $wpdb->query("UPDATE __tabla__ SET __valor__ = 'nuevo valor' WHERE __nombre__ = 'condicion'");
+    // Aquí colocamos la versión después de las consultas.
+    $database_version = "2.9.6";
+  }
+  if ($database_version == "2.9.6") {
+    dbDelta("ALTER TABLE __tabla__ ALTER COLUMN __nombre__ VARCHAR(120)");
+    // Aquí colocamos la versión después de las consultas.
+    $database_version = "2.9.7";
+  }
+  if ($database_version == "2.9.7") {
+    // Para la versión 2.9.7 no hay actualizaciones al pasar a la 2.9.8
+    // así que esto lo podemos dejar sin consultas, o simplemente no colocar ningún condicional
+    // ya que al final la versión se auto ajusta a la actual versión del plugin
+
+    // Aquí colocamos la versión después de las consultas.
+    $database_version = "2.9.8";
+  }
+*/
+
+  if ($database_version != $plugin_version) {
+    $database_version = $plugin_version;
+  }
+  return $database_version;
+}

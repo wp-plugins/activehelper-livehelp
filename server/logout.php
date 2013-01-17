@@ -73,11 +73,10 @@ if ($rating != '') {
                 
                      
         
-        $headers = "From: " . str_ireplace("www.", "", $from_name). " <" . $from_email . ">\n";
         
-        $subject = str_ireplace("www.", "", $from_name) .' Chat Transcript (' . $guest_login_id . ' )';
-                        
-        mail($email, $subject, $msg, $headers);
+        
+        //$subject = str_ireplace("www.", "", $from_name) .' Chat Transcript (' . $guest_login_id . ' )';                        
+        //mail($email, $subject, $msg, $headers);
         
      }   
         
@@ -116,6 +115,17 @@ if (file_exists($language_file)) {
 else {
         include('./i18n/en/lang_guest_en.php');
 }
+
+// Send transcription
+
+if ($send_session == true) {  
+    
+ $headers = "From: " . str_ireplace("www.", "", $from_name). " <" . $from_email . ">\n";   
+ $subject = str_ireplace("www.", "", $from_name). " " . $chat_transcript_label . ' (' . $guest_login_id . ' )'; 
+ mail($email, $subject, $msg, $headers);
+ 
+ }
+ 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>

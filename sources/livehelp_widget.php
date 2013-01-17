@@ -1,6 +1,10 @@
 <?php
 /**
  * @package ActiveHelper Live Help
+ * @version   : 2.9.5
+ * @author    : ActiveHelper Inc.
+ * @copyright : (C) 2013- ActiveHelper Inc.
+ * @license   : GNU/GPL http://www.gnu.org/copyleft/gpl.html
  */
 
 if (!defined('ACTIVEHELPER_LIVEHELP'))
@@ -179,7 +183,10 @@ class activeHelper_liveHelp_widget extends WP_Widget
 			'cn' => __('Simplified Chinese', 'activehelper_livehelp'),
             'bg' => __('Bulgarian', 'activehelper_livehelp'),
             'sk' => __('Slovak', 'activehelper_livehelp'),
-            'cr' => __('Croatian', 'activehelper_livehelp')
+            'cr' => __('Croatian', 'activehelper_livehelp'),
+            'id' => __('Indonesian', 'activehelper_livehelp'),
+            'lt' => __('Lithuanian', 'activehelper_livehelp'), 
+            'ro' => __('Romanian', 'activehelper_livehelp')
 		);
 
 		foreach ($__text as $code => $name)

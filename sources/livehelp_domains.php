@@ -1,7 +1,10 @@
 <?php
 /**
  * @package ActiveHelper Live Help
- * @Version 2.9.0 
+ * @Version 2.9.5
+ * @author    : ActiveHelper Inc.
+ * @copyright : (C) 2013- ActiveHelper Inc.
+ * @license   : GNU/GPL http://www.gnu.org/copyleft/gpl.html 
  */
 
 if (!defined('ACTIVEHELPER_LIVEHELP'))
@@ -192,7 +195,8 @@ function activeHelper_liveHelp_domainsGenerateScript()
         'sk' => __('Slovak', 'activehelper_livehelp'),
         'cr' => __('Croatian', 'activehelper_livehelp'),
         'id' => __('Indonesian', 'activehelper_livehelp'),
-        'lt' => __('Lithuanian', 'activehelper_livehelp')
+        'lt' => __('Lithuanian', 'activehelper_livehelp'),
+        'ro' => __('Romanian', 'activehelper_livehelp')
         
 	);
 
@@ -947,7 +951,8 @@ function activeHelper_liveHelp_domainsSettings()
         'sk' => __('Slovak', 'activehelper_livehelp'),
         'cr' => __('Croatian', 'activehelper_livehelp'),
         'id' => __('Indonesian', 'activehelper_livehelp'),
-        'lt' => __('Lithuanian', 'activehelper_livehelp') 
+        'lt' => __('Lithuanian', 'activehelper_livehelp'), 
+        'ro' => __('Romanian', 'activehelper_livehelp')
         
 	);
 

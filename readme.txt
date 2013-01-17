@@ -2,8 +2,8 @@
 Contributors: activehelper
 Tags: live chat, live help, live support, customer service, wordpress plugin, livechat,  customer service, visitor tracking, visitor statistics
 Requires at least: 3.2
-Tested up to: 3.4.2
-Stable tag: 2.9.1
+Tested up to: 3.5
+Stable tag: 2.9.5
 
 ActiveHelper LiveHelp is a powerful Live Chat Server Plugin for WordPress. 
 
@@ -13,7 +13,7 @@ Monitor in real time your website visitors. Know how many visitors are in the we
 
 Geo Location based on IP to location for the visitors on your website. See the visitors hometown map. Run the Live Help on your web server having 100% control over your data and many domains that you have.
 
-The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system is translated to English, Spanish, German, Portuguese, Italian, French, Czech, Swedish, Norwegian, Turkey, Farsi, Greek, Hebrew, Serbo-Croatian, Russian , Hungarian ,Dutch, Finnish, Danish, Traditional Chinese, Simplified Chinese , Arab , Polish , Bulgarian , Slovak , Lithuanian ,  Croatian and Indonesian.
+The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system is translated to English, Spanish, German, Portuguese, Italian, French, Czech, Swedish, Norwegian, Turkey, Farsi, Greek, Hebrew, Serbo-Croatian, Russian , Hungarian ,Dutch, Finnish, Danish, Traditional Chinese, Simplified Chinese , Arab , Polish , Bulgarian , Slovak , Lithuanian ,  Croatian , Indonesian and Romanian.
 
 = Main Features =
 
@@ -77,7 +77,7 @@ Visit the <a href="http://www.activehelper.com/">ActiveHelper LiveHelp website</
 
 <h4>Support Panel Console</h4>
 
-Download the Support Panel Multi Platform Console, the agent app is available in the follow link for Windows and MAC: <a href="http://www.activehelper.com/livehelp/live-chat/download.html/">Download Area</a>.
+Download the Support Panel Multi Platform Console, the agent app is available in the follow link for Windows and MAC: <a href="http://www.activehelper.com/extensions/wordpress-live-chat.html">Download Area</a>.
 
 <h4>Support Panel Multi Platform Console Guide</h4>
 Visit the follow link to see the <a href="http://www.slideshare.net/activehelper/support-panel-console-3-user-guide"> user guide.</a>
@@ -96,8 +96,8 @@ Visit the follow link to see the <a href="http://www.slideshare.net/activehelper
 For further help you may choose any of following options:
 
 * Step by Step Configuration Guide [Quick Start Guide](http://www.slideshare.net/activehelper/activehelper-livehelp-quick-start-for-wordpress).
-* Video demos [Video Demos](http://www.activehelper.com/livehelp/live-chat/take-the-tour.html). 
-* For technical FAQ, please visit [FAQ](http://www.activehelper.com/livehelp/live-chat/faqs.html).
+* Video demos [Video Demos](http://www.activehelper.com/extensions/wordpress-live-chat.html). 
+* For technical FAQ, please visit [FAQ](http://www.activehelper.com/faq.html).
 * You can also contact us by our Live Chat [Live Chat](http://www.activehelper.com).
 
 == Screenshots ==
@@ -189,6 +189,25 @@ For further help you may choose any of following options:
 * Language Issues.
 * Other small improvements and bug fixes
 
+= 2.9.2 =
+* Online update error fixed.
+* Domain settings language issue fixed.
+* New German dashboard translation.
+* Other small improvements and bug fixes
+
+= 2.9.5 =
+* Fixed automatic updates.
+* Sign in Window size on IE fixed.
+* Offline Message window size on IE fixed.
+* Language issue fixed on the send trasncription.
+* Special characters on the offline form  Fixed.
+* Full Romanian  language support to the Live Chat.
+* Add images tracking for in Romanian  language.
+* Poland Language updated.
+* German dashboard translation.
+* Core security update
+* Other small improvements and bug fixes
+
 == Upgrade Notice ==
 
 = 2.6.0 =
@@ -266,4 +285,23 @@ For further help you may choose any of following options:
 
 = 2.9.1 =
 * Language Issues.
+* Other small improvements and bug fixes
+
+= 2.9.2 =
+* Online update error fixed.
+* Domain settings language issue fixed.
+* New German dashboard translation.
+* Other small improvements and bug fixes
+
+= 2.9.5 =
+* Fixed automatic updates.
+* Sign in Window size on IE fixed.
+* Offline Message window size on IE fixed.
+* Language issue fixed on the send trasncription.
+* Special characters on the offline form  Fixed.
+* Full Romanian  language support to the Live Chat.
+* Add images tracking for in Romanian  language.
+* Poland Language updated.
+* German dashboard translation.
+* Core security update
 * Other small improvements and bug fixes

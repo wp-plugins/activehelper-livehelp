@@ -64,13 +64,13 @@ $form_high = 430;
                                                                                              
                                 if($setting == "captcha") {
                                      $captcha = $row['value'];                                    
-                                      $form_high = $form_high + ( $captcha * 30);}                                                                                                                         
+                                      $form_high = $form_high + ( $captcha * 50);}                                                                                                                         
                                    elseif($setting == "phone") {
                                       $use_phone = $row['value'];
-                                       $form_high = $form_high + ( $use_phone * 40);}
+                                       $form_high = $form_high + ( $use_phone * 60);}
                                    else { 
                                        $use_company = $row['value'];
-                                       $form_high = $form_high + ( $use_company * 40);}    
+                                       $form_high = $form_high + ( $use_company * 60);}    
                                 }
                               }
                              } 
@@ -165,7 +165,9 @@ if($_REQUEST['COMPLETE'] == true) {
                                 $headers = "From: " . $from_name . " <" . $from_email . ">\n";
                                 $headers .= "Reply-To: " . $from_name . " <" . $from_email . ">\n";
                                 $headers .= "Return-Path: " . $from_name . " <" . $from_email . ">\n";
-                                $msg      = $message;
+                                
+                                $msg      = mysql_real_escape_string($message);
+                                
                                 $message .= "\n\n--------------------------\n";
                                 $message .= "IP Logged:  " . $_SERVER['REMOTE_ADDR'] . "\n";
                                 if ($ip2country_installed == true) { $message .= "Country:  $country\n"; }
@@ -189,6 +191,12 @@ if($_REQUEST['COMPLETE'] == true) {
                                 }
                                 
                                 if ($log_offline_email == 1) {
+                                    
+                                $name      = mysql_real_escape_string($name);
+                                $email     = mysql_real_escape_string($email);
+                                $phone     = mysql_real_escape_string($phone);
+                                $company   = mysql_real_escape_string($company);
+                                    
                                 $query = "INSERT INTO " . $table_prefix . "offline_messages (`name`, `email`,  `phone`,  `company`, `message`, `id_domain` , `datetime`) VALUES ('$name', '$email', '$phone','$company','$msg', $domain_id, NOW())";
                                 $SQL->insertquery($query);
                                  }
