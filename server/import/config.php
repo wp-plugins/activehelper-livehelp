@@ -38,11 +38,11 @@ if (!defined('__CONFIG_INC')) {
         include('../import/functions.php');
         if (!get_magic_quotes_gpc()) {
                 foreach ($_REQUEST as $key => $value) {
-                        $_REQUEST[$key] = addslashes($value);
+                        $_REQUEST[$key] = addslashes($value);                                             
                 }
         } else {
                 foreach ($_COOKIE as $key => $value) {
-                        $_COOKIE[$key] = stripslashes($value);
+                        $_COOKIE[$key] = stripslashes($value);      
                 }
         }
         // Open MySQL Connection
@@ -90,6 +90,13 @@ if (!defined('__CONFIG_INC')) {
         $domainIsValid = true;
         if (isset($_REQUEST['DOMAINID'])){
           $domain_id = (int) $_REQUEST['DOMAINID'];
+        }
+        
+         // Agent ID
+         $agent_id = 0;
+        
+        if (isset($_REQUEST['AGENTID'])){
+            $agent_id = (int) $_REQUEST['AGENTID'];                    
         }
 
         if (isset($_REQUEST['LANGUAGE'])){
@@ -147,7 +154,13 @@ if (!defined('__CONFIG_INC')) {
                 if (isset($session['DOMAINID']) && $session['DOMAINID'] != '0'){
                   $domain_id = $session['DOMAINID'];
                 }
-
+              
+                if (isset($session['AGENTID']) && $session['AGENTID'] != 0){
+                  $agent_id = $session['AGENTID'];
+                //  error_log("agent_id config:".$agent_id."\n", 3, "config.log");
+                }
+                
+                               
                 $user_id = $session['USERID'];
                 $webCall_id = $session['WEBCALLID'];
                 unset($session);
@@ -229,6 +242,7 @@ if (!defined('__CONFIG_INC')) {
 
 
         $lang_images_directory = $install_directory."/domains/";
+        $lang_images_directory_agents = $install_directory."/agents/";
 
 
         if (!isset($_REQUEST['IMAGES'])){
@@ -243,16 +257,27 @@ if (!defined('__CONFIG_INC')) {
 
 
         $showImage =1;
-
-        if(($domain_id != 0) && ($showImage == true) && ($domain_id != ''))
+        // Domain status indicator 
+        if(($domain_id != 0) && ($showImage == true) && ($domain_id != '') && ($agent_id ==0) )
         {
-
-          $livehelp_logo = $lang_images_directory.$domain_id."/i18n/".LANGUAGE_TYPE."/pictures/"."online.gif";
-          $offline_logo = $lang_images_directory.$domain_id."/i18n/".LANGUAGE_TYPE."/pictures/"."offline.gif";
-          $online_logo = $lang_images_directory.$domain_id."/i18n/".LANGUAGE_TYPE."/pictures/"."online.gif";
-          $offline_logo_without_email = $lang_images_directory.$domain_id."/i18n/".LANGUAGE_TYPE."/pictures/"."offline.gif";
-          $online_brb_logo = $lang_images_directory.$domain_id."/i18n/".LANGUAGE_TYPE."/pictures/"."brb.gif";
-          $online_away_logo = $lang_images_directory.$domain_id."/i18n/".LANGUAGE_TYPE."/pictures/"."away.gif";
+          $livehelp_logo = $lang_images_directory.$domain_id."/i18n/".LANGUAGE_TYPE."/pictures/"."online" . '.' . $status_indicator_img_type ;
+          $offline_logo = $lang_images_directory.$domain_id."/i18n/".LANGUAGE_TYPE."/pictures/"."offline" . '.' . $status_indicator_img_type;
+          $online_logo = $lang_images_directory.$domain_id."/i18n/".LANGUAGE_TYPE."/pictures/"."online" . '.' . $status_indicator_img_type;
+          $offline_logo_without_email = $lang_images_directory.$domain_id."/i18n/".LANGUAGE_TYPE."/pictures/"."offline" . '.' . $status_indicator_img_type;
+          $online_brb_logo = $lang_images_directory.$domain_id."/i18n/".LANGUAGE_TYPE."/pictures/"."brb" . '.' . $status_indicator_img_type;
+          $online_away_logo = $lang_images_directory.$domain_id."/i18n/".LANGUAGE_TYPE."/pictures/"."away" . '.' . $status_indicator_img_type;
+        } 
+        else
+        
+         // Agents status indicator 
+        if( ($showImage == true) && ($agent_id !=0) )
+        {
+          $livehelp_logo = $lang_images_directory_agents.$agent_id."/i18n/".LANGUAGE_TYPE."/"."online" . '.' . $status_indicator_img_type;
+          $offline_logo = $lang_images_directory_agents.$agent_id."/i18n/".LANGUAGE_TYPE."/"."offline" . '.' . $status_indicator_img_type;
+          $online_logo = $lang_images_directory_agents.$agent_id."/i18n/".LANGUAGE_TYPE."/"."online" . '.' . $status_indicator_img_type;
+          $offline_logo_without_email = $lang_images_directory_agents.$agent_id."/i18n/".LANGUAGE_TYPE."/"."offline" . '.' . $status_indicator_img_type;
+          $online_brb_logo = $lang_images_directory_agents.$agent_id."/i18n/".LANGUAGE_TYPE."/"."brb" . '.' . $status_indicator_img_type;
+          $online_away_logo = $lang_images_directory_agents.$agent_id."/i18n/".LANGUAGE_TYPE."/"."away" . '.' . $status_indicator_img_type;
         }
 
         $disable_chat_username =0;

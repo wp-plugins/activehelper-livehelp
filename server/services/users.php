@@ -36,7 +36,7 @@ $operator_login_id = $_REQUEST['OPERATORID'] = (int) $_REQUEST['OPERATORID'];
 
 
 
-$query = "SELECT datetime, ((UNIX_TIMESTAMP(NOW())  - UNIX_TIMESTAMP(refresh))) as time_session FROM " . $table_prefix .
+$query = "SELECT datetime, ((UNIX_TIMESTAMP(NOW())  - UNIX_TIMESTAMP(refresh))) as time_session , answers FROM " . $table_prefix .
          "users WHERE id = ".$operator_login_id;
 
 
@@ -58,6 +58,7 @@ else
 {
    $time_session = $row['time_session'];
    $login_datetime = $row['datetime'];
+   $indicator_type = $row['answers'];
 
    // Update the username, password and make no mode changes
    if($time_session >= 6){
@@ -182,10 +183,25 @@ echo('<?xml version="1.0" encoding="' . $charset . '"?>' . "\n");
         <Staff>
 <?php
 // ONLINE ADMIN USERS QUERY
-$query = "SELECT `id`, `username`, `status` FROM " . $table_prefix . "users WHERE (UNIX_TIMESTAMP(NOW()) - ".
+ $query = "SELECT `id`, `username`, `status` FROM " . $table_prefix . "users WHERE (UNIX_TIMESTAMP(NOW()) - ".
          "UNIX_TIMESTAMP(`refresh`)) < '$connection_timeout' AND (`status` = '1' OR `status` = '2' OR `status` = '3') and id in (" .
          $users_set . ") ORDER BY `username`";
 
+//error_log("query: ".$query."\n", 3, "users.log");
+
+// ONLINE ADMIN USERS QUERY
+
+ /*$agent_id = 1;
+
+ $query = "SELECT `id`, `username`, `status` FROM " . $table_prefix . "users WHERE (UNIX_TIMESTAMP(NOW()) - ".
+         "UNIX_TIMESTAMP(`refresh`)) < '$connection_timeout' AND (`status` = '1' OR `status` = '2' OR `status` = '3') and id =" . $agent_id ." ORDER BY `username`";
+  
+  error_log("agent_id : ".$agent_id."\n", 3, "users.log");
+  error_log("query: ".$query."\n", 3, "users.log");       
+   */ 
+ 
+ $agent_id = 1;
+        
 $rows = $SQL->selectall($query);
 
 
@@ -198,7 +214,6 @@ if (is_array($rows))
          $login_id = $row['id'];
          $status = $row['status'];
          $username = xmlinvalidchars($row['username']);
-
 
        /*
          // Count the total NEW messages that have been sent to the current login
@@ -227,12 +242,13 @@ if (is_array($rows))
         <Online>
   <?php
 // ONLINE GUEST USERS QUERY
+
+
 if($sessions_set != ""){
   $query = "SELECT `id`, `username`, email, language, request FROM " . $table_prefix . "sessions WHERE (UNIX_TIMESTAMP(NOW())".
            " - UNIX_TIMESTAMP(`refresh`)) < '$connection_timeout' AND `active` = '$operator_login_id' And id in (" .
            $sessions_set . ") ORDER BY `username`";
-
-
+   
 
   $rows = $SQL->selectall($query);
 }
@@ -285,24 +301,47 @@ if (is_array($rows) && $sessions_set != "")
 include('../import/settings_default.php');
 
 //error_log("department:".$departments."\n", 3, "users.log");
-
+  
+if ($indicator_type == 1) {
 if ($departments == true && $current_department !='')
-{
+{  
    $sql = departmentsSQL($current_department);
    $query = "SELECT DISTINCT `id`, `username`, email, language, request FROM " . $table_prefix . "sessions WHERE (UNIX_TIMESTAMP(NOW())".
-            " - UNIX_TIMESTAMP(`refresh`)) < '$connection_timeout' AND `active` = '0' And id in (" . $sessions_set .
-            ") AND $sql ORDER BY `username`";
-                    
+            " - UNIX_TIMESTAMP(`refresh`)) < '$connection_timeout' AND `active` = '0' and id_agent='0' ";
+            
+   if ( $sessions_set !='')                
+      { $query .= " and id in (" . $sessions_set . ") AND $sql ORDER BY `username`"; }
+   else
+     { $query .= " and $sql ORDER BY `username`"; }            
+                      
 }
 else
+
 {
    $query = "SELECT DISTINCT `id`, `username`, email, language, request FROM " . $table_prefix . "sessions WHERE (UNIX_TIMESTAMP(NOW())".
-            " - UNIX_TIMESTAMP(`refresh`)) < '$connection_timeout' AND `active` = '0' And id in (" . $sessions_set . ") ORDER BY `username`";                       
+            " - UNIX_TIMESTAMP(`refresh`)) < '$connection_timeout' AND `active` = '0' and id_agent=0 ";  
+            
+            
+    if ( $sessions_set !='')                
+      { $query .= " and id in (" . $sessions_set . ")  ORDER BY `username`"; }
+   else
+     { $query .= " ORDER BY `username`"; }                                             
 }
+
+}
+else
+if ($indicator_type == 2) {
+   $query = "SELECT DISTINCT `id`, `username`, email, language, request FROM " . $table_prefix . "sessions WHERE (UNIX_TIMESTAMP(NOW())".
+            " - UNIX_TIMESTAMP(`refresh`)) < '$connection_timeout' and `active` = '0' " .
+            " and id_agent=".$operator_login_id." ORDER BY `username`";
+                    
+}
+
+  
 if($sessions_set != ""){
   $rows = $SQL->selectall($query);
 }
-
+  
 if (is_array($rows) && ($sessions_set != ""))
 {
    foreach ($rows as $key => $row)
@@ -390,5 +429,27 @@ if (is_array($rows) && ($sessions_set != ""))
    }
 }
 ?>
-        </Offline>
+ </Offline>
+ <Admins>
+<?php
+// OFFLINE USERS QUERY
+    
+    $query = "SELECT `operator_id` FROM " . $table_prefix . "administration  WHERE (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(`datetime`)) < '45' and user ='$operator_login_id' group by operator_id";  
+    $rows = $SQL->selectall($query);
+
+if (is_array($rows))
+{
+   foreach ($rows as $key => $row)
+   {
+      if (is_array($row))
+      {
+         $agent_id = $row['operator_id'];   
+?>
+  <User Agent='<?php echo($agent_id);?>'></User>
+<?php
+      }
+   }
+}
+?>
+        </Admins>        
 </UserList>

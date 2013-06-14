@@ -2,8 +2,8 @@
 Contributors: activehelper
 Tags: live chat, live help, live support, customer service, wordpress plugin, livechat,  customer service, visitor tracking, visitor statistics
 Requires at least: 3.2
-Tested up to: 3.5
-Stable tag: 2.9.5
+Tested up to: 3.5.1
+Stable tag: 3.0.0
 
 ActiveHelper LiveHelp is a powerful Live Chat Server Plugin for WordPress. 
 
@@ -13,7 +13,7 @@ Monitor in real time your website visitors. Know how many visitors are in the we
 
 Geo Location based on IP to location for the visitors on your website. See the visitors hometown map. Run the Live Help on your web server having 100% control over your data and many domains that you have.
 
-The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system is translated to English, Spanish, German, Portuguese, Italian, French, Czech, Swedish, Norwegian, Turkey, Farsi, Greek, Hebrew, Serbo-Croatian, Russian , Hungarian ,Dutch, Finnish, Danish, Traditional Chinese, Simplified Chinese , Arab , Polish , Bulgarian , Slovak , Lithuanian ,  Croatian , Indonesian and Romanian.
+The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system is translated to English, Spanish, German, Portuguese, Italian, French, Czech, Swedish, Norwegian, Turkey, Farsi, Greek, Hebrew, Serbo-Croatian, Russian , Hungarian ,Dutch, Finnish, Danish, Traditional Chinese, Simplified Chinese , Arab , Polish , Bulgarian , Slovak , Lithuanian ,  Croatian , Indonesian , Romanian, Slovenian and Estonian.
 
 = Main Features =
 
@@ -208,6 +208,28 @@ For further help you may choose any of following options:
 * Core security update
 * Other small improvements and bug fixes
 
+= 3.0.0 =
+* New Agent status indicator
+* New Agent settings section
+* New Live Chat skins
+* New Live chat better look
+* New Skins 
+* New Tracking widget and script "Agent ID" parameter
+* New Server statistic panel
+* New Clean Up request option
+* New Sound alert when a new invitation arrive
+* New Sound alert when a new proactive message arrive
+* New setting that allow to change the status indicator image type
+* New setting the allow to change the proactive message and invitation position
+* New Slovenian Langauge
+* New Estonian Language
+* Polonian language updated.
+* Enhanced "client info" window
+* Fixed live chat scroll issue on IOS Iphone/Ipad
+* Fixed proactive messages in third-party domains
+* Core security update
+* Other small improvements and bug fixes
+
 == Upgrade Notice ==
 
 = 2.6.0 =
@@ -303,5 +325,27 @@ For further help you may choose any of following options:
 * Add images tracking for in Romanian  language.
 * Poland Language updated.
 * German dashboard translation.
+* Core security update
+* Other small improvements and bug fixes
+
+= 3.0.0 =
+* New Agent status indicator
+* New Agent settings section
+* New Live Chat skins
+* New Live chat better look
+* New Skins 
+* New Tracking widget and script "Agent ID" parameter
+* New Server statistic panel
+* New Clean Up request option
+* New Sound alert when a new invitation arrive
+* New Sound alert when a new proactive message arrive
+* New setting that allow to change the status indicator image type
+* New setting the allow to change the proactive message and invitation position
+* New Slovenian Langauge
+* New Estonian Language
+* Polonian language updated.
+* Enhanced "client info" window
+* Fixed live chat scroll issue on IOS Iphone/Ipad
+* Fixed proactive messages in third-party domains
 * Core security update
 * Other small improvements and bug fixes

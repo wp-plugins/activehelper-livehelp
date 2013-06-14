@@ -51,6 +51,7 @@ class activeHelper_liveHelp_widget extends WP_Widget
 			return;
 
 		$instance['script_domain'] = !empty($instance['script_domain']) ? $instance['script_domain'] : $defaultDomain;
+		$instance['script_agent'] = !empty($instance['script_agent']) ? $instance['script_agent'] : 0;
 		$instance['script_language'] = !empty($instance['script_language']) ? $instance['script_language'] : 'en';
 		$instance['script_tracking'] = isset($instance['script_tracking']) ? $instance['script_tracking'] : 1;
 		$instance['script_status'] = isset($instance['script_status']) ? $instance['script_status'] : 1;
@@ -64,6 +65,7 @@ class activeHelper_liveHelp_widget extends WP_Widget
 		echo '<script type="text/javascript" src="' . $activeHelper_liveHelp['serverUrl'] . '/import/javascript.php"></script>
 <script type="text/javascript">
 	_vlDomain = ' . $instance['script_domain'] . ';
+	_vlAgent = ' . $instance['script_agent'] . ';
 	_vlService = 1;
 	_vlLanguage = "' . $instance['script_language'] . '";
 	_vlTracking = ' . $instance['script_tracking'] . ';
@@ -79,6 +81,7 @@ class activeHelper_liveHelp_widget extends WP_Widget
 		$instance = $old_instance;
 		$instance['title'] = strip_tags($new_instance['title']);
 		$instance['script_domain'] = strip_tags($new_instance['script_domain']);
+		$instance['script_agent'] = strip_tags($new_instance['script_agent']);
 		$instance['script_language'] = strip_tags($new_instance['script_language']);
 		$instance['script_tracking'] = strip_tags($new_instance['script_tracking']);
 		$instance['script_status'] = strip_tags($new_instance['script_status']);
@@ -114,6 +117,7 @@ class activeHelper_liveHelp_widget extends WP_Widget
 		$domainName = $domainName['host'];
 
 		$instance['script_domain'] = !empty($instance['script_domain']) ? $instance['script_domain'] : $defaultDomain;
+		$instance['script_agent'] = !empty($instance['script_agent']) ? $instance['script_agent'] : 0;
 		$instance['script_language'] = !empty($instance['script_language']) ? $instance['script_language'] : 'en';
 		$instance['script_tracking'] = isset($instance['script_tracking']) ? $instance['script_tracking'] : 1;
 		$instance['script_status'] = isset($instance['script_status']) ? $instance['script_status'] : 1;
@@ -135,6 +139,12 @@ class activeHelper_liveHelp_widget extends WP_Widget
 		<p>
 			<label>' . __( 'Domain', 'activehelper_livehelp' ) . ':</label>
 			<br /><span style="color: #f00;">' . sprintf(__( 'You must register %s to use this widget', 'activehelper_livehelp' ), $domainName) . '</span>
+		</p>';
+
+		echo '
+		<p>
+			<label for="' . $this->get_field_id( 'script_agent' ) . '">' . __( 'Agent', 'activehelper_livehelp' ) . ':</label> 
+			<input class="widefat" id="' . $this->get_field_id( 'script_agent' ) . '" name="' . $this->get_field_name('script_agent') . '" type="text" value="' . $instance['script_agent'] . '" />
 		</p>';
 
 		/*
@@ -186,7 +196,10 @@ class activeHelper_liveHelp_widget extends WP_Widget
             'cr' => __('Croatian', 'activehelper_livehelp'),
             'id' => __('Indonesian', 'activehelper_livehelp'),
             'lt' => __('Lithuanian', 'activehelper_livehelp'), 
-            'ro' => __('Romanian', 'activehelper_livehelp')
+            'ro' => __('Romanian', 'activehelper_livehelp'),
+
+			'sl' => __('Slovenian', 'activehelper_livehelp'),
+			'et' => __('Estonian', 'activehelper_livehelp'),
 		);
 
 		foreach ($__text as $code => $name)

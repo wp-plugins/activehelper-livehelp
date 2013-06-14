@@ -22,8 +22,11 @@ $username   = $_REQUEST['USER'];
 $email      = $_REQUEST['EMAIL'];
 $phone      = $_REQUEST['PHONE'];
 $company    = $_REQUEST['COMPANY'];
+$agent_id   = $_REQUEST['AGENTID'];
+
 // Chnage
 //$department = $_REQUEST['DEPARTMENT'];
+
 $department =  htmlspecialchars_decode ($_REQUEST['DEPARTMENT'] , ENT_QUOTES );
 
 $referer    = $_REQUEST['URL'];
@@ -122,13 +125,10 @@ if ($guest_username != '' || $guest_login_id == 0) {
 $guest_login_id = 0;
 // If the site visitor has chatted previously then start new session
 if ($guest_login_id == 0) {
-//error_log("FRAMES:New Session:username:".$username."\n", 3, "error.log");
         // Add session details
-        $query = "INSERT INTO " . $table_prefix . "sessions (`request`, `username`, `datetime`, `email`,  `phone` , `company`, `server`, `department`, `refresh`, `language`, rating, id_domain) VALUES ('$request_id', '$username', NOW(), '$email', '$phone', '$company', '$current_host', '$department', NOW(), '".LANGUAGE_TYPE."', -1, $domain_id)";
-       // echo("query1: " . $query);
-       // exit('Termina...1');
-        $login_id = $SQL->insertquery($query);
-}
+        $query = "INSERT INTO " . $table_prefix . "sessions (`request`, `username`, `datetime`, `email`,  `phone` , `company`, `server`, `department`, `refresh`, `language`, rating, id_domain , id_agent) VALUES ('$request_id', '$username', NOW(), '$email', '$phone', '$company', '$current_host', '$department', NOW(), '".LANGUAGE_TYPE."', -1, $domain_id , $agent_id)";
+        $login_id = $SQL->insertquery($query);                                                                 
+  }
 else {
         $login_id = $guest_login_id;
         $username = $guest_username;
@@ -145,7 +145,7 @@ else {
         }
         else {
                 // Add session details
-                $query = "INSERT INTO " . $table_prefix . "sessions (`request`, `username`, `datetime`, `email`,  `phone` , `company`, `server`, `department`, `refresh`, `language`, rating, id_domain) VALUES ('$request_id', '$username', NOW(), '$email', '$phone', '$company', '$current_host', '$department', NOW(), '".LANGUAGE_TYPE."', -1, $domain_id)";
+                $query = "INSERT INTO " . $table_prefix . "sessions (`request`, `username`, `datetime`, `email`,  `phone` , `company`, `server`, `department`, `refresh`, `language`, rating, id_domain , id_agent) VALUES ('$request_id', '$username', NOW(), '$email', '$phone', '$company', '$current_host', '$department', NOW(), '".LANGUAGE_TYPE."', -1, $domain_id, $agent_id)";
                // echo("query2: " . $query);
 
         //exit('Termina... 2');
@@ -226,45 +226,67 @@ if(!stripos("-".$campaign_image, "http") == 1){
 <title><?php echo($livehelp_name); ?></title>
 <script language="JavaScript" type="text/JavaScript" src="frames.js.php?LANGUAGE=<?=LANGUAGE_TYPE?>&URL=<?=urlencode( $URL )?>&DOMAINID=<?php echo($domain_id); ?>">
 </script>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script language="JavaScript" type="text/JavaScript">
+  jQuery.noConflict();
+  jQuery(document).ready(function(){
+      w = jQuery('.background').width() + 45;//550;
+      h = jQuery('.background').height() + 90;//515;
+      wleft = (screen.width - w) / 2;
+      wtop = (screen.height - h) / 2;
+      if (wleft < 0) {
+        w = screen.width;
+        wleft = 0;
+      }
+      if (wtop < 0) {
+        h = screen.height;
+        wtop = 0;
+      }
+      window.resizeTo(w, h);
+      window.moveTo(wleft, wtop);
+  })
+  
+</script>
+
 <style type="text/css">
 <!--
-.background {
-        background-image: url(./pictures/<?php echo($chat_background_img); ?>);
-        background-repeat: no-repeat;
-        margin: 0px;
+body { background-color: #f2f2f2;}
+div.background {
+        
+        margin: 0 auto;
+        background:#e1e1e1 url(./pictures/skins/<?php echo($chat_background_img); ?>/bg.png) repeat-x;
+        width:20px auto 0;
+        position: relative;
+        width:480px;
+        height:380px;
+        border:1px solid #d4d4d4;
+        border-radius:5px
 }
+
+textarea { background-color: #f8f8f8; border:1px solid #d4d4d4; border-radius:5px}
+
 
 -->
 </style>
 <link href="style/styles.php?URL=<?=urlencode( $URL )?><?echo('&DOMAINID='.$domain_id)?>" rel="stylesheet" type="text/css">
 </head>
-<body text="<?php echo($font_color); ?>" link="<?php echo($font_link_color); ?>" vlink="<?php echo($font_link_color); ?>" alink="<?php echo($font_link_color); ?>" onLoad="preloadImages('<?=$install_directory?>./domains/<?php echo($domain_id);?>/i18n/<?php echo(LANGUAGE_TYPE); ?>/pictures/send_hover.gif'); LoadMessages();" onUnload="windowLogout();" onBeforeUnload="windowLogout();" oncontextmenu="return true;" class="background" bottommargin="0">
-
-<div style="POSITION: absolute; LEFT: 14px; TOP: 14px;">
-        <table width="350" border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                        <td width="3" height="3" style="background-image:url(pictures/border-top-left.gif); background-repeat:no-repeat;"></td>
-                        <td width="350" height="3" style="background-image:url(pictures/border-top.gif); background-repeat:repeat-x;"></td>
-                        <td width="3" height="3" style="background-image:url(pictures/border-top-right.gif); background-repeat:no-repeat;"></td>
-                </tr>
-                <tr>
-                        <td width="3" height="3" style="background-image:url(pictures/border-left.gif); background-repeat:repeat-y"></td>
-                        <td width="350" height="215" bgcolor="#FFFFFF">
-                                <iframe name="displayFrame" id="displayFrame" src="displayer.php?LANGUAGE=<?=LANGUAGE_TYPE?>&URL=<?=urlencode( $referer )?><?echo('&DOMAINID='.$domain_id);?>" frameborder="0" width="100%" height="100%" style="border-style:none">
-                                        <script language="JavaScript" type="text/JavaScript">top.location.href = 'offline.php?LANGUAGE=<?=LANGUAGE_TYPE?><?echo('&DOMAINID='.$domain_id)?>';</script>
-                                </iframe>
-                        </td>
-                        <td width="3" height="3" style="background-image:url(pictures/border-right.gif); background-repeat:repeat-y"></td>
-                </tr>
-                <tr>
-                        <td width="3" height="3" style="background-image:url(pictures/border-bottom-left.gif); background-repeat:no-repeat;"></td>
-                        <td width="300" height="3" style="background-image:url(pictures/border-bottom.gif); background-repeat:repeat-x;"></td>
-                        <td width="3" height="3" style="background-image:url(pictures/border-bottom-right.gif); background-repeat:no-repeat"></td>
-                </tr>
-        </table>
+<body text="<?php echo($font_color); ?>" link="<?php echo($font_link_color); ?>" vlink="<?php echo($font_link_color); ?>" alink="<?php echo($font_link_color); ?>" onLoad="preloadImages('<?=$install_directory?>./domains/<?php echo($domain_id);?>/i18n/<?php echo(LANGUAGE_TYPE); ?>/pictures/send_hover.gif'); LoadMessages();" onUnload="windowLogout();" onBeforeUnload="windowLogout();" oncontextmenu="return true;"  bottommargin="0">
+<div class="background">
+<div style="POSITION: absolute; LEFT: 18px; TOP: 19px;">
+    <table width="350" border="0" cellpadding="0" cellspacing="0" style="background-color: #f8f8f8; border:1px solid #d4d4d4; border-radius:0">
+        <tr>      
+            <td width="350" height="225">
+                <iframe name="displayFrame" id="displayFrame" src="displayer.php?LANGUAGE=<?=LANGUAGE_TYPE?>&URL=<?=urlencode( $referer )?><?echo('&DOMAINID='.$domain_id);?>" frameborder="0" width="100%" height="100%" style="border-style:none">
+                    <script language="JavaScript" type="text/JavaScript">top.location.href = 'offline.php?LANGUAGE=<?=LANGUAGE_TYPE?><?echo('&DOMAINID='.$domain_id)?>';</script>
+                </iframe>
+            </td>    
+        </tr>
+    </table>
 </div>
-<div style="POSITION: absolute; LEFT: 370px; TOP: 20px;">
-        <a href="logout.php?client_domain_id=<?php echo($domain_id);?>&URL=<?php echo($_REQUEST['URL']); ?>&LANGUAGE=<?=LANGUAGE_TYPE?><?echo('&DOMAINID='.$domain_id)?>" onClick="manualLogout();" target="_top" class="normlink"><?php echo($logout_label); ?></a>
+<div style="POSITION: absolute; LEFT: 375px; TOP: 30px;">
+    <p style="margin: 0 0 20px;"><a href="logout.php?client_domain_id=<?php echo($domain_id);?>&URL=<?php echo($_REQUEST['URL']); ?>&LANGUAGE=<?=LANGUAGE_TYPE?><?echo('&DOMAINID='.$domain_id)?>" onClick="manualLogout();" target="_top" class="normlink" style="font-weight:700; text-decoration: underline;"><?php echo($logout_label); ?></a></p>
+      
 </div>
 
 <?php 
@@ -306,15 +328,19 @@ if ($agent_bannner == 0) {
 
 <iframe name="sendMessageFrame" id="sendMessageFrame" src="./blank.php?LANGUAGE=<?=LANGUAGE_TYPE?>&URL=<?=urlencode( $referer )?><?echo('&DOMAINID='.$domain_id)?>" frameborder="0" border="0" width="0" height="0" style="visibility: hidden"></iframe>
 <form action="send.php<?echo('?DOMAINID='.$domain_id)?>" method="POST" name="message_form" target="sendMessageFrame" style="margin: 0px; position: relative; top: -20px;">
-        <div style="POSITION: absolute; LEFT: 10px; TOP: 260px;">
+         <div style="POSITION: absolute; LEFT: 20px; TOP: 270px;">
                 <table border="0" cellpadding="0" cellspacing="0">
                 <tr>
                 <td valign="middle">
                 <div align="right">
                 <table width="100%"  border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                <td><?=$typing_status_label?>: </td>
-                <td>&nbsp;<b><span id="messengerStatus" style="width: 125; height: 20;" name="messengerStatus"><?=$waiting_gif?></span></b></td>
+                 <td style="color:#eb9339">
+                 <p> 
+                   <span style="background-repeat:no-repeat; padding-left:4px; float:left"><?=$typing_status_label?>:</span>
+                   <strong id="messengerStatus" style="width: 125; height: 20;" name="messengerStatus"><?=$waiting_gif?></strong>
+                 </p>
+                </td>
                 </tr>
                 </table>
                 </div>
@@ -322,13 +348,12 @@ if ($agent_bannner == 0) {
                 </tr>
                 </table>
         </div>
-        <div style="POSITION: absolute; LEFT: 10px; TOP: 285px;">
-                <textarea name="MESSAGE" cols="55" rows="3" onKeyPress="return checkEnter(event);" onBlur="typing(false)" style="width:359px; height:65px; font-family:<?php echo($chat_font_type); ?>; font-size:<?php echo($guest_chat_font_size); ?>;" disabled="true"></textarea>
+         <div style="POSITION: absolute; LEFT: 20px; TOP: 292px;">
+            <textarea name="MESSAGE" cols="55" rows="3" onKeyPress="return checkEnter(event);" onBlur="typing(false)" style="width:350px; height:78px; font-family:<?php echo($chat_font_type); ?>; font-size:<?php echo($guest_chat_font_size); ?>; padding:8px" disabled="true"></textarea>
         </div>
-        <div style="POSITION: absolute; LEFT: 375px; TOP: 292px;">
-                <a href="#" onMouseOut="swapImgRestore()" onMouseOver="swapImage('Send','','./domains/<?php echo($domain_id); ?>/i18n/<?php echo(LANGUAGE_TYPE); ?>/pictures/<?php echo($chat_button_hover_img); ?>',1)" onClick="return processForm();"><img src="./domains/<?php echo($domain_id); ?>/i18n/<?php echo(LANGUAGE_TYPE); ?>/pictures/<?php echo($chat_button_img); ?>" alt="<?php echo($send_msg_label); ?>" name="Send" border="0"></a>
+        <div style="POSITION: absolute; LEFT: 375px; TOP: 295px;">
+            <a href="#" onMouseOut="swapImgRestore()" onMouseOver="swapImage('Send','','./domains/<?php echo($domain_id); ?>/i18n/<?php echo(LANGUAGE_TYPE); ?>/pictures/<?php echo($chat_button_hover_img); ?>',1)" onClick="return processForm();"><img src="./domains/<?php echo($domain_id); ?>/i18n/<?php echo(LANGUAGE_TYPE); ?>/pictures/<?php echo($chat_button_img); ?>" alt="<?php echo($send_msg_label); ?>" name="Send" border="0"></a>
         </div>
-
       <?php
        
        $copyright = 1;
@@ -354,7 +379,7 @@ if ($agent_bannner == 0) {
  
         ?>        
 
-      <div style="POSITION: absolute; LEFT: 20px; TOP: 360px;">
+      <div style="POSITION: absolute; LEFT: 25px; TOP: 380px;">
       <span class="small"><a href=" <?php echo($company_link); ?> " target="_blank" class="normlink"><?php echo($company_slogan); ?></span>
       </div>
 
@@ -398,6 +423,6 @@ if ($agent_bannner == 0) {
 
 </script>
 <?php }  ?>
-
+</div>
 </body>
 </html>

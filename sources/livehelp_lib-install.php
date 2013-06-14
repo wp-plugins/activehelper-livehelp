@@ -79,6 +79,9 @@ $guest_login_timeout= 60;
 $chat_refresh_rate = 6;
 $user_panel_refresh_rate = 10;
 $sound_alert_new_message = 1;
+$status_indicator_img_type = "gif";
+$invitation_position = "right";
+$sound_alert_new_pro_msg =1;
  
 } /* __CONSTANTS_INC */
  
@@ -244,6 +247,9 @@ function activeHelper_liveHelp_installQuery()
         INSERT INTO wp_livehelp_languages VALUES ('lt', 'Lithuanian', 'utf-8');
         INSERT INTO wp_livehelp_languages VALUES ('ro', 'Romanian', 'utf-8');
 
+		INSERT INTO wp_livehelp_languages VALUES ('sl', 'Slovenian', 'utf-8');
+		INSERT INTO wp_livehelp_languages VALUES ('et', 'Estonian', 'utf-8');
+
 		CREATE TABLE IF NOT EXISTS `wp_livehelp_languages_domain` (
 			`Id_domain` int(11) NOT NULL default '0',
 			`code` char(2) NOT NULL default '',
@@ -351,6 +357,7 @@ function activeHelper_liveHelp_installQuery()
 			`language` char(2) NOT NULL default '',
 			`id_user` bigint(20) default NULL,
 			`id_domain` bigint(20) default NULL,
+			`id_agent` bigint(20) default NULL,
 			PRIMARY KEY  (`id`),
 			KEY `IDX_R_SESSOION` (`request`)
 		) ENGINE=MyISAM AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
@@ -407,7 +414,9 @@ function activeHelper_liveHelp_installQuery()
 		INSERT INTO wp_livehelp_settings VALUES (34, 'smtp_port', '25', 0);
 		INSERT INTO wp_livehelp_settings VALUES (35, 'from_email', 'support@activehelper.com', 0);
 		INSERT INTO wp_livehelp_settings VALUES (36, 'login_timeout', '20', 0);
-		INSERT INTO wp_livehelp_settings VALUES (37, 'chat_background_img', 'background_chat_grey.jpg', 0);
+
+		INSERT INTO wp_livehelp_settings VALUES (37, 'chat_background_img', 'grey', 0);
+
 		INSERT INTO wp_livehelp_settings VALUES (38, 'chat_invitation_img', 'initiate_dialog.gif', 0);
 		INSERT INTO wp_livehelp_settings VALUES (39, 'chat_button_img', 'send.gif', 0);
 		INSERT INTO wp_livehelp_settings VALUES (40, 'chat_button_hover_img', 'send_hover.gif', 0);
@@ -428,7 +437,7 @@ function activeHelper_liveHelp_installQuery()
 		INSERT INTO wp_livehelp_settings VALUES (55, 'disable_agent_bannner', 0, 0);        
         INSERT INTO wp_livehelp_settings VALUES (56, 'company', '0', 0);
         INSERT INTO wp_livehelp_settings VALUES (57, 'phone', '0', 0);
-		INSERT INTO wp_livehelp_settings VALUES (58, 'database_version', '2.9.2', 0);
+		INSERT INTO wp_livehelp_settings VALUES (58, 'database_version', '3.0.0', 0);
 
 		CREATE TABLE IF NOT EXISTS `wp_livehelp_statuses` (
 			`id_status` int(11) NOT NULL default '0',
@@ -458,6 +467,7 @@ function activeHelper_liveHelp_installQuery()
 			`privilege` int(1) NOT NULL default '0', 
 			`photo` varchar(10) DEFAULT NULL,
 			`status` bigint(20) NOT NULL default '0',
+			`answers` int(1) NOT NULL default '1',
 			PRIMARY KEY  (`id`),
 			UNIQUE KEY `uk_users_username` (`username`)
 		) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -785,43 +795,59 @@ function activeHelper_liveHelp_updateDatabase($database_version, $plugin_version
   /*
   Para consultas comunes (INSERT, SELECT, UPDATE, DELETE):
     $wpdb->query($query);
-  Para cualquier consulta común y que involucre tablas (CREATE, ALTER, DROP):
+  Para cualquier consulta comÃºn y que involucre tablas (CREATE, ALTER, DROP):
     dbDelta($query);
   */
 
-  
-  // Por ejemplo, si estamos actualmente en la versión 2.9.5 y vamos a la 2.9.6
+  /*
+  // Por ejemplo, si estamos actualmente en la versiÃ³n 2.9.5 y vamos a la 2.9.6
   if ($database_version == "2.9.1") {
     $wpdb->query("UPDATE __tabla__ SET __valor__ = 'nuevo valor' WHERE __nombre__ = 'condicion'");
-    // Aquí colocamos la versión después de las consultas.
+    // AquÃ­ colocamos la versiÃ³n despuÃ©s de las consultas.
     $database_version = "2.9.2";
   }
+   */
 
-/*  // Ahora, supongamos que actualizamos de la versión 2.9.5 a la versión 2.9.8
-  // ya que el usuario no descargó la versión 2.9.6 ni 2.9.7, así que tendrá
+/*  // Ahora, supongamos que actualizamos de la versiÃ³n 2.9.5 a la versiÃ³n 2.9.8
+  // ya que el usuario no descargÃ³ la versiÃ³n 2.9.6 ni 2.9.7, asÃ­ que tendrÃ¡
   // que actualizar la DB primero a la 2.9.6, y luego a la 2.9.7 y finalmente a la 2.9.8
   if ($database_version == "2.9.5") {
     $wpdb->query("UPDATE __tabla__ SET __valor__ = 'nuevo valor' WHERE __nombre__ = 'condicion'");
-    // Aquí colocamos la versión después de las consultas.
+    // AquÃ­ colocamos la versiÃ³n despuÃ©s de las consultas.
     $database_version = "2.9.6";
   }
   if ($database_version == "2.9.6") {
     dbDelta("ALTER TABLE __tabla__ ALTER COLUMN __nombre__ VARCHAR(120)");
-    // Aquí colocamos la versión después de las consultas.
+    // AquÃ­ colocamos la versiÃ³n despuÃ©s de las consultas.
     $database_version = "2.9.7";
   }
   if ($database_version == "2.9.7") {
-    // Para la versión 2.9.7 no hay actualizaciones al pasar a la 2.9.8
-    // así que esto lo podemos dejar sin consultas, o simplemente no colocar ningún condicional
-    // ya que al final la versión se auto ajusta a la actual versión del plugin
+    // Para la versiÃ³n 2.9.7 no hay actualizaciones al pasar a la 2.9.8
+    // asÃ­ que esto lo podemos dejar sin consultas, o simplemente no colocar ningÃºn condicional
+    // ya que al final la versiÃ³n se auto ajusta a la actual versiÃ³n del plugin
 
-    // Aquí colocamos la versión después de las consultas.
+    // AquÃ­ colocamos la versiÃ³n despuÃ©s de las consultas.
     $database_version = "2.9.8";
   }
 */
 
   if ($database_version != $plugin_version) {
+	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
+	dbDelta("ALTER TABLE `{$wpdb->prefix}livehelp_users` ADD answers int(1) DEFAULT '1' AFTER status");
+	dbDelta("ALTER TABLE `{$wpdb->prefix}livehelp_sessions` ADD id_agent BIGINT(20) AFTER id_domain");
+
+	dbDelta("INSERT INTO {$wpdb->prefix}livehelp_languages VALUES ('sl', 'Slovenian', 'utf-8')");
+	dbDelta("INSERT INTO {$wpdb->prefix}livehelp_languages VALUES ('et', 'Estonian', 'utf-8')");
+
+	$wpdb->query("UPDATE `{$wpdb->prefix}livehelp_settings` SET value ='grey' WHERE name ='chat_background_img'");
+
+    $database_version = "3.0.0";
+  }
+
+  if ($database_version != $plugin_version) {
     $database_version = $plugin_version;
   }
+
   return $database_version;
 }

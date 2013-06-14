@@ -19,17 +19,23 @@ function activeHelper_liveHelp_imagesUpload($path, $name, $file, $fileExtension 
 
 	$file['tmp_name'] = $tempImage;
 	$size = @getimagesize($file['tmp_name']);
-	if ($size === false || !is_array($size))
+	if ($size === false || !is_array($size)) {
+		@unlink($file['tmp_name']);
 		return false;
+	}
 
 	$extension = array('1' => '.gif', '2' => '.jpg', '3' => '.png', '6' => '.bmp');
 	if (isset($extension[$size[2]]))
 		$extension = $extension[$size[2]];
-	else
+	else {
+		@unlink($file['tmp_name']);
 		return false;
+	}
 
-	if (!empty($fileExtension) && $fileExtension != $extension)
+	if (!empty($fileExtension) && $fileExtension != $extension) {
+		@unlink($file['tmp_name']);
 		return false;
+	}
 
 	$image = $path . '/' . $name . $extension;
 	if (file_exists($image))

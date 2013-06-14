@@ -243,65 +243,109 @@ else {
 window.resizeTo(490, <?php echo($form_high); ?>);
 </script>
 <style type="text/css">
-<!--
-.background {
- /*       background-image: url(./i18n/<?=LANGUAGE_TYPE?>/pictures/background.gif);
-   */     background-repeat: no-repeat;
-        background-position: right top;
-        margin-left: 0px;
-        margin-top: 0px;
-}
--->
+body { background-color: #f2f2f2;}
+
+.background {margin: 5px auto 0; background:#e1e1e1 url(./pictures/skins/<?php echo($chat_background_img); ?>/bg.png) repeat-x; border:1px solid #d4d4d4; border-radius:5px; position: relative;width:410px;}
+.offline_form td{ padding:3px 0}
+.offline_form .security { border-top:1px dotted #ccc; padding:5px 0px 0; margin-top: 5px;}
+.offline_form textarea { height:165px;}
+
+.confirm_form textarea { height: 120px;}
+.confirm_form div.left { width: 120px; float:left}
+.confirm_form td { padding:5px 0}
+
+.tbl_form .inputbox, .tbl_form textarea { background-color: #f8f8f8; border:1px solid #d4d4d4; border-radius:5px; padding-left: 5px;}
+.tbl_form .inputbox { height: 25px; line-height:25px;}
+.tbl_form textarea { padding-top: 15px;}
+
+.label { text-transform: uppercase; color:#0095e1; width:145px; float:left; margin-bottom:0; font-size: 11px;}
+.top{border-bottom:1px dotted #ccc; padding-bottom:25px;}
+
+.bt_submit { background: url(./pictures/skins/<?php echo($chat_background_img); ?>/bg-submit.png) no-repeat 50% 50%; padding:4px 0 0; position: absolute; height: 30px; width:290px; bottom:-20px; left:45px}
+.bt_submit .bt_send, .bt_submit .bt_cancel { background: #222 url(./pictures/skins/<?php echo($chat_background_img); ?>/overlayy.png) repeat-x; display: inline-block; padding: 5px 10px 6px; color: #fff; text-decoration: none; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius:5px; -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5); -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5); text-shadow: 0 -1px 1px rgba(0,0,0,0.25);  position: relative; font-family:Calibri, Arial, sans-serif;}
+.bt_submit .bt_send { background-position: 0 0;}
+.bt_submit .bt_cancel { background-position: 0 -26px;}
+
+.confirm_form .bt_submit { background:#f2f2f2 url(./pictures/skins/<?php echo($chat_background_img); ?>/bg-close-form.png) no-repeat; width:135px; left:265px; padding:0}
+.confirm_form .bt_submit td { padding:0}
+.confirm_form .bt_submit input { margin:0 0 0 7px;}
+.confirm_form em { line-height:25px}
+
 </style>
+
 </head>
-<body bgcolor="<?php echo($background_color); ?>" text="<?php echo($font_color); ?>" link="<?php echo($font_link_color); ?>" vlink="<?php echo($font_link_color); ?>" alink="<?php echo($font_link_color); ?>" class="background">
+<body bgcolor="<?php echo($background_color); ?>" text="<?php echo($font_color); ?>" link="<?php echo($font_link_color); ?>" vlink="<?php echo($font_link_color); ?>" alink="<?php echo($font_link_color); ?>">
  <!--img src="./i18n/<?=LANGUAGE_TYPE?>/pictures/background_offline.gif" alt="<?php echo($offline_message_label); ?>" width="309" height="49" style="position: relative; right: -150px; top: 10px;"-->
 
 <?php
 
 if($_REQUEST['COMPLETE'] == '' || $error != '' || $invalid_email != '' || $invalid_security != '') {
 ?>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script language="JavaScript" type="text/JavaScript">
+  jQuery.noConflict();
+  jQuery(document).ready(function(){
+      w = jQuery('.offline_message_form').width() + 60;//483;
+      h = jQuery('.offline_message_form').height() + 135;//620;
+      wleft = (screen.width - w) / 2;
+      wtop = (screen.height - h) / 2;
+      if (wleft < 0) {
+        w = screen.width;
+        wleft = 0;
+      }
+      if (wtop < 0) {
+        h = screen.height;
+        wtop = 0;
+      }
+      window.resizeTo(w, h);
+      window.moveTo(wleft, wtop);
+  })
+  
+</script>
 <!--div align="center"-->
+<div class="offline_message_form background">
   <form action="offline.php" method="post" name="offline_message_form" id="offline_message_form">
-    <table border="0" align="center" cellspacing="0" cellpadding="0" bordercolor="#111111" style="border:0px solid #CCCCCC;padding:7 20 7 20;" height="350px" width="420px">
+    <div style="padding:15px">
+    <table border="0" align="center" cellspacing="0" cellpadding="0" class="tbl_form offline_form">
      <tr>
-     <td valign="bottom"><strong><?php  echo($unfortunately_offline_label); ?></strong>
-     <br> <?php echo($fill_details_below_label); ?>: </td>
+     <td valign="top" class="top">
+     <p class="title"><?php  echo($unfortunately_offline_label); ?> <?php echo($fill_details_below_label); ?> </p>        
+     </td>
      </tr>
 <?php
         if ($invalid_email != '' || $error == true) {
 ?>
       <tr>
-        <td valign="bottom"><strong><?php echo($invalid_email_error_label); ?></strong></td>
+         <td valign="top"><span><?php echo($invalid_email_error_label); ?></span></td>
       </tr>
 <?php
         } else if ($invalid_security != '') {
 ?>
-      <tr>
-        <td valign="bottom"><strong><?php echo($invalid_security_error_label); ?></strong></td>
+      <tr>        
+        <td valign="top" ><span><?php echo($invalid_security_error_label); ?></span></td>
       </tr>
 <?php
         }
 ?>
       <tr>
-        <td align="left">
-                    <strong><?php echo($your_name_label); ?></strong>:<br>
-                    <input name="NAME" type="text" id="NAME" value="<?php echo($name); ?>" size="40" style="width:420px;">
-                  </td>
+        <td align="left" >
+            <p class="label"><span><?php echo($your_name_label); ?>:</span></p>
+            <input name="NAME" type="text" id="NAME" class="inputbox" value="<?php echo($name); ?>" size="40" style="width:210px" />
+        </td>
       </tr>
       <tr>
-        <td align="left">
-                    <strong><?php echo($your_email_label); ?></strong>:<br>
-                         <input name="EMAIL" type="text" id="EMAIL" value="<?php echo($email); ?>" size="40" style="width:420px;">
-                  </td>
+        <td align="left" >
+            <p class="label"><span><?php echo($your_email_label); ?>:</span></p>
+            <input name="EMAIL" type="text" id="EMAIL" class="inputbox" value="<?php echo($email); ?>" size="40" style="width:210px" />
+        </td>
       </tr>
       
       <?php if  ($use_phone ==1) { ?>         
       <tr>
-        <td align="left">
-                    <strong><?php echo($your_phone_label); ?></strong>:<br>
-                         <input name="PHONE" type="text" id="PHONE" value="<?php echo($phone); ?>" size="20" style="width:420px;">
-                  </td>
+         <td align="left" >  
+            <p class="label"><span><?php echo($your_phone_label); ?>:</span></p>   
+             <input name="PHONE" type="text" id="PHONE" class="inputbox" value="<?php echo($phone); ?>" size="40" style="width:210px" />               
+         </td>
       </tr>
       
       <?php
@@ -310,18 +354,18 @@ if($_REQUEST['COMPLETE'] == '' || $error != '' || $invalid_email != '' || $inval
        ?>
       
       <tr>
-        <td align="left">
-                    <strong><?php echo($your_company_label); ?></strong>:<br>
-                         <input name="COMPANY" type="text" id="COMPANY" value="<?php echo($company); ?>" size="30" style="width:420px;">
-                  </td>
+        <td align="left" >
+            <p class="label"><span><?php echo($your_company_label); ?>:</span></p>                        
+            <input name="COMPANY" type="text" id="COMPANY" class="inputbox" value="<?php echo($company); ?>" size="40" style="width:210px" />                                    
+        </td>
       </tr>
      
        <?php }  ?>
         
       <tr>
-        <td align="left">
-                    <strong><?php echo($message_label); ?></strong>:<br>
-          <textarea name="MESSAGE" cols="30" rows="4" id="MESSAGE" style="width:420px; vertical-align: middle; font-family:<?php echo($chat_font_type); ?>; font-size:<?php echo($guest_chat_font_size); ?>;"><?php echo($message); ?></textarea>
+        <td align="left" >
+          <p class="label" style="width:100%"><span><?php echo($message_label); ?>:</span></p>
+          <textarea name="MESSAGE" cols="30" rows="4" id="MESSAGE" style="width:360px; height: 72px; vertical-align: middle; font-family:<?php echo($chat_font_type); ?>; font-size:<?php echo($guest_chat_font_size); ?>;"><?php echo($message); ?></textarea>
         </td>
       </tr>
       
@@ -333,11 +377,11 @@ if($_REQUEST['COMPLETE'] == '' || $error != '' || $invalid_email != '' || $inval
 //      if (true) {
 ?>
       <tr>
-        <td align="left" valign="middle">
-                    <strong><?php echo($security_code_label); ?></strong>:<br>
-                         <span style="height: 32px; vertical-align: middle;"><input name="SECURITY" type="text" id="SECURITY" value="" size="6" style="width:100px;"></span>
-                         <img src="security.php?URL=<?=urlencode($_REQUEST['URL'])?>">
-             </td>
+        <td align="left" valign="middle" class="security">
+            <p><strong><?php echo($security_code_label); ?>:</strong></p>
+            <span style="height: 25px; vertical-align: middle; float:left; margin-right:10px"><input name="SECURITY" type="text" id="SECURITY" value="" size="6" style="width:120px;"/></span>
+            <img src="security.php?URL=<?=urlencode($_REQUEST['URL'])?>" style="float:left"/>
+        </td>
       </tr>
 <?php
         } 
@@ -345,23 +389,27 @@ if($_REQUEST['COMPLETE'] == '' || $error != '' || $invalid_email != '' || $inval
 ?>
 
       <tr>
-        <td align="left">
-          <input name="BCC" type="checkbox" value="1">
-          <?php echo($send_copy_label); ?>
-                  </td>
+            <td align="left" style="padding-top:0">
+            <input name="BCC" type="checkbox" value="1"/>
+            <?php echo($send_copy_label); ?>
+        </td>
       </tr>
       <tr>
-        <td colspan="2" align="left" valign="top">
-            <input name="COMPLETE" type="hidden" id="COMPLETE" value="1">
-            <input name="SERVER" type="hidden" id="SERVER" value="<?php echo htmlspecialchars($_REQUEST['SERVER'], ENT_QUOTES ); ?>">
+        <td colspan="2" align="left" valign="top" style="padding:0">
+            <input name="COMPLETE" type="hidden" id="COMPLETE" value="1" />
+            <input name="SERVER" type="hidden" id="SERVER" value="<?php echo htmlspecialchars($_REQUEST['SERVER'], ENT_QUOTES ); ?>" />
 
-            <table border="0" cellpadding="2" cellspacing="2">
+            <table border="0" cellpadding="2" cellspacing="2" class="bt_submit">
               <tr>
                 <td align="right">
-                    <input type="Submit" name="Submit" value="<?php echo($send_msg_label); ?>">
-                 </td>
-                <td><input type="Button" name="Close" onClick="self.close();" value="<?php echo($close_window_label); ?>"></td>
-              </tr>
+                    <input type="Submit" name="Submit" value="<?php echo($send_msg_label); ?>" class="bt_send" />
+                  <!--  <input type="Submit" name="Submit" value="" class="bt_send" />-->
+                </td>
+                <td>
+                   <input type="Button" name="Close" onClick="self.close();" value="<?php echo($close_window_label); ?>" class="bt_cancel" />
+                    <!-- <input type="Button" name="Close" onClick="self.close();" value="" class="bt_cancel" />-->
+                </td>
+              </tr> 
             </table>
 
 </td>
@@ -434,40 +482,79 @@ if($_REQUEST['COMPLETE'] == '' || $error != '' || $invalid_email != '' || $inval
 <?php
 } else {
 ?>
-<div align="center">
-  <?php echo($thank_you_enquiry_label); ?><br>
-  <?php echo($contacted_soon_label); ?><br>
-  <table border="0" align="center" cellspacing="0" bordercolor="#111111" style="border-collapse: collapse" width="90%">
-<?php
-        if ($status != '') {
-?>
-<?php
-        }
-?>
-    <tr>
-      <td width="260" valign="bottom"><strong><?php echo($your_email_label); ?></strong>:</td>
-      <td><em><?php echo($email); ?></em></td>
-    </tr>
-    <tr>
-      <td valign="bottom"><?php echo($your_name_label); ?>:</td>
-      <td><em><?php echo($name); ?></em></td>
-    </tr>
-    <tr>
-      <td valign="top"><?php echo($message_label); ?>:</td>
-      <td align="right" valign="top"><div align="center">
-          <textarea name="MESSAGE" cols="20" rows="6" id="MESSAGE" style="width:300px; font-family:<?php echo($chat_font_type); ?>; font-size:<?php echo($guest_chat_font_size); ?>;"><?php echo($message); ?></textarea>
-        </div></td>
-    </tr>
-    <tr>
-      <td colspan="2" align="right" valign="top"><div align="center">
-          <table border="0" cellpadding="2" cellspacing="2">
-            <tr>
-              <td><input type="Button" name="Close" onClick="window.close();" value="<?php echo($close_window_label); ?>">
-              </td>
-            </tr>
-          </table>      
-    </tr>
-  </table>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script language="JavaScript" type="text/JavaScript">
+  jQuery.noConflict();
+  jQuery(document).ready(function(){
+      w = jQuery('.confirm_form').width() + 40;//483;
+      h = jQuery('.confirm_form').height() + 110;//620;
+      wleft = (screen.width - w) / 2;
+      wtop = (screen.height - h) / 2;
+      if (wleft < 0) {
+        w = screen.width;
+        wleft = 0;
+      }
+      if (wtop < 0) {
+        h = screen.height;
+        wtop = 0;
+      }
+      window.resizeTo(w, h);
+      window.moveTo(wleft, wtop);
+  })
+  
+</script>
+
+<div class="confirm_form background">
+<div style="padding:20px">
+    <div class="top">
+        <p class="title"><strong><?php echo($thank_you_enquiry_label); ?></strong></p>
+        <p><?php echo($contacted_soon_label); ?></p>
+    </div>
+    <table border="0" align="center" cellspacing="0" class="tbl_form">
+    <?php
+    if ($status != '') {
+    ?>
+    <?php
+    }
+    ?>
+        <tr>
+            <td valign="bottom">
+                <p class="label"><span><?php echo($your_email_label); ?>:</span></p>
+                <em><?php echo($email); ?></em>
+            </td>
+        </tr>
+        <tr>
+            <td valign="bottom">
+                <p class="label"><span><?php echo($your_name_label); ?>:</span></p>
+                <em><?php echo($name); ?></em>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top"><p class="label" style="width: 100%;"><span><?php echo($message_label); ?>:</span></p></td>
+        </tr>
+        <tr>
+            <td align="right" valign="top">
+                <div align="center">
+                <textarea name="MESSAGE" cols="20" rows="6" id="MESSAGE" style="width:340px; font-family:<?php echo($chat_font_type); ?>; font-size:<?php echo($guest_chat_font_size); ?>;"><?php echo($message); ?></textarea>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right" valign="top">
+            <div align="right">
+            <table border="0" cellpadding="2" cellspacing="2" class="bt_submit">
+                <tr>
+                    <td>
+                       <input type="Button" name="Close" onClick="window.close();" value="<?php echo($close_window_label); ?>" class="bt_cancel"/>
+                        <!-- <input type="Button" name="Close" onClick="window.close();" value="" class="bt_cancel"/>-->
+                    </td>
+                </tr>
+            </table>
+            </div>
+            </td>      
+        </tr>
+    </table>
+</div>
 </div>
 <?php
 }

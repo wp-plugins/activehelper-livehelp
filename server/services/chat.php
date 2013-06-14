@@ -128,15 +128,18 @@ if ($staff)
    */
 
  $query = "SELECT `id`, `user`, `username`, `message`, `align`, `status` FROM " . $table_prefix .
-            "administration WHERE (`user` = '$guest_login_id' OR `user` = '$operator_login_id') AND".
+            "administration WHERE (`user` = '$guest_login_id' OR `user` = '$operator_login_id') AND (`operator_id` = '$guest_login_id' OR `operator_id` = '$operator_login_id') AND".           
             " `status` <= '3' AND `id` > '$message' AND (UNIX_TIMESTAMP(`datetime`) - UNIX_TIMESTAMP".
-            "('$login_datetime')) > '0' ORDER BY `datetime`";
+            "(NOW() - INTERVAL 1 DAY)) > '0' ORDER BY `datetime`";
+
+//  error_log("SQL ". $query. "\n", 3, "chat.log");           
 }
 else
 {
    $query = "SELECT `id`, `session`, `username`, `message`, `align`, `status`, id_user FROM " . $table_prefix .
             "messages WHERE `session` = '$guest_login_id' AND `status` <= '6' AND `id` > '$message' And id_domain in (" .
             $domains_set . ") ORDER BY `datetime`";
+               
 }
 $rows = $SQL->selectall($query);
 if (is_array($rows))

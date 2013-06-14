@@ -190,7 +190,42 @@ function display(username, message, align, status) {
                   //alert(message);
                 }
                 output += '</font></div></td></tr></table>';
-                top.displayFrame.displayContentsFrame.document.write(output); top.bottom();
+				
+				// Detect browser:
+				isAndroid = (/android/gi).test(navigator.appVersion);
+				isIDevice = (/iphone|ipad/gi).test(navigator.appVersion);
+				isTouchPad = (/hp-tablet/gi).test(navigator.appVersion);
+
+				if ( isAndroid || isIDevice || isTouchPad) {
+					var $b = jQuery(
+						jQuery(
+							jQuery("#displayFrame")[0].contentWindow.document
+						)
+						.find("frame[name=displayContentsFrame]")[0].contentWindow.document
+					)
+					.find("body");
+					var w = '<div id="wrapper"><div id="scroller"></div></div>';
+					
+					if (!jQuery("#wrapper", $b).length) {
+						$b.removeClass("background");
+						jQuery($b).html(w);
+					
+						top.displayFrame.displayContentsFrame.load_myScroll();
+					}
+
+					jQuery("#scroller", $b).append(output);
+					top.displayFrame.displayContentsFrame.myScroll.refresh();
+
+					var wH = jQuery("#wrapper", $b).height();
+					var sH = jQuery("#scroller", $b).height();
+					if (sH > wH) {
+						top.displayFrame.displayContentsFrame.myScroll.scrollTo(0, (sH - wH) * -1, 100);
+					}
+				}
+				else {
+					top.displayFrame.displayContentsFrame.document.write(output);
+					top.bottom();
+				}
         }
          //alert(message);
                
@@ -236,8 +271,8 @@ function updateMessages() {
 }
 
 function bottom() {
-        if (top.displayFrame) {
-          top.displayFrame.displayContentsFrame.window.scrollTo(0,9999999);             
+        if (top.displayFrame) {              
+          top.displayFrame.displayContentsFrame.window.scrollTo(0,9999999);         
         }
 }
 

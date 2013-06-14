@@ -133,20 +133,170 @@ if ($send_session == true) {
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title><?php echo($livehelp_name); ?></title>
 <link href="<?=$install_directory?>/style/styles.php?<?echo('DOMAINID='.$domainId);?>" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script language="JavaScript" type="text/JavaScript">
+  jQuery.noConflict();
+  jQuery(document).ready(function(){
+      w = jQuery('.frm_logout').width() + 40;//500;
+      h = jQuery('.frm_logout').height() + 100;//395;
+      wleft = (screen.width - w) / 2;
+      wtop = (screen.height - h) / 2;
+      if (wleft < 0) {
+        w = screen.width;
+        wleft = 0;
+      }
+      if (wtop < 0) {
+        h = screen.height;
+        wtop = 0;
+      }
+      window.resizeTo(w, h);
+      window.moveTo(wleft, wtop);
+  })
+  
+</script>
+
 <style type="text/css">
 <!--
-.background {
- /*       background-image: url(./i18n/<?=LANGUAGE_TYPE?>/pictures/background.gif);
-   */     background-repeat: no-repeat;
-        background-position: right top;
-        margin-left: 0px;
-        margin-top: 0px;
-}
+.background { background-color:#f2f2f2; font: 12px/16px arial;}
 -->
+.frm_logout { background:#e1e1e1 url(./pictures/skins/<?php echo($chat_background_img); ?>/bg.png) repeat-x 0 50%; width:460px; margin:0 auto; border:1px solid #d4d4d4; border-radius:5px}
+.frm_logout .top { border-bottom: 1px dotted #ccc; padding-bottom: 20px;}
+.frm_logout .label { color:#0095e1; text-transform:uppercase; font-size: 11px; float:left; width:185px; float:left; line-height: 25px;}
+.frm_logout td { padding:5px 0}
+
+.bt_rate { background: #222 url(./pictures/skins/<?php echo($chat_background_img); ?>/overlayy.png) repeat-x; display: inline-block; padding: 2px 10px 3px; color: #fff; text-decoration: none; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius:5px; -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5); -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5); text-shadow: 0 -1px 1px rgba(0,0,0,0.25);  position: relative; font-family:Calibri, Arial, sans-serif;}
+
+.frm_logout .inputbox { background-color: #f8f8f8; border:1px solid #d4d4d4; height: 26px; line-height:26px; width:232px; padding-left:5px; float:right; border-radius:5px}
+.frm_logout .title {  color:#0095e1; font-size: 12px; margin: 15px;}
+
+select.f_styled { height:27px}
+span.select { background: url(./pictures/skins/<?php echo($chat_background_img); ?>/select2.png) no-repeat; padding: 0 0 0 5px; width:142px; position: absolute; height:27px; line-height:27px; overflow: hidden; float:left}
 </style>
+<script language="JavaScript" type="text/JavaScript">
+
+var selectWidth = "142";
+
+/* No need to change anything after this */
+
+
+document.write('<style type="text/css">input.f_styled { display: none; } select.f_styled { position: relative; width: ' + selectWidth + 'px; opacity: 0; filter: alpha(opacity=0); z-index: 5; } .disabled { opacity: 0.5; filter: alpha(opacity=50); }</style>');
+
+var Custom = {
+	init: function() {
+		var inputs = document.getElementsByTagName("input"), span = Array(), textnode, option, active;
+		for(a = 0; a < inputs.length; a++) {
+			if((inputs[a].type == "checkbox" || inputs[a].type == "radio") && inputs[a].className == "f_styled") {
+				span[a] = document.createElement("span");
+				span[a].className = inputs[a].type;
+
+				if(inputs[a].checked == true) {
+					if(inputs[a].type == "checkbox") {
+						position = "0 -" + (checkboxHeight*2) + "px";
+						span[a].style.backgroundPosition = position;
+					} else {
+						position = "0 -" + (radioHeight*2) + "px";
+						span[a].style.backgroundPosition = position;
+					}
+				}
+				inputs[a].parentNode.insertBefore(span[a], inputs[a]);
+				inputs[a].onchange = Custom.clear;
+				if(!inputs[a].getAttribute("disabled")) {
+					span[a].onmousedown = Custom.pushed;
+					span[a].onmouseup = Custom.check;
+				} else {
+					span[a].className = span[a].className += " disabled";
+				}
+			}
+		}
+		inputs = document.getElementsByTagName("select");
+		for(a = 0; a < inputs.length; a++) {
+			if(inputs[a].className == "f_styled") {
+				option = inputs[a].getElementsByTagName("option");
+				active = option[0].childNodes[0].nodeValue;
+				textnode = document.createTextNode(active);
+				for(b = 0; b < option.length; b++) {
+					if(option[b].selected == true) {
+						textnode = document.createTextNode(option[b].childNodes[0].nodeValue);
+					}
+				}
+				span[a] = document.createElement("span");
+				span[a].className = "select";
+				span[a].id = "select" + inputs[a].name;
+				span[a].appendChild(textnode);
+				inputs[a].parentNode.insertBefore(span[a], inputs[a]);
+				if(!inputs[a].getAttribute("disabled")) {
+					inputs[a].onchange = Custom.choose;
+				} else {
+					inputs[a].previousSibling.className = inputs[a].previousSibling.className += " disabled";
+				}
+			}
+		}
+		document.onmouseup = Custom.clear;
+	},
+	pushed: function() {
+		element = this.nextSibling;
+		if(element.checked == true && element.type == "checkbox") {
+			this.style.backgroundPosition = "0 -" + checkboxHeight*3 + "px";
+		} else if(element.checked == true && element.type == "radio") {
+			this.style.backgroundPosition = "0 -" + radioHeight*3 + "px";
+		} else if(element.checked != true && element.type == "checkbox") {
+			this.style.backgroundPosition = "0 -" + checkboxHeight + "px";
+		} else {
+			this.style.backgroundPosition = "0 -" + radioHeight + "px";
+		}
+	},
+	check: function() {
+		element = this.nextSibling;
+		if(element.checked == true && element.type == "checkbox") {
+			this.style.backgroundPosition = "0 0";
+			element.checked = false;
+		} else {
+			if(element.type == "checkbox") {
+				this.style.backgroundPosition = "0 -" + checkboxHeight*2 + "px";
+			} else {
+				this.style.backgroundPosition = "0 -" + radioHeight*2 + "px";
+				group = this.nextSibling.name;
+				inputs = document.getElementsByTagName("input");
+				for(a = 0; a < inputs.length; a++) {
+					if(inputs[a].name == group && inputs[a] != this.nextSibling) {
+						inputs[a].previousSibling.style.backgroundPosition = "0 0";
+					}
+				}
+			}
+			element.checked = true;
+		}
+	},
+	clear: function() {
+		inputs = document.getElementsByTagName("input");
+		for(var b = 0; b < inputs.length; b++) {
+			if(inputs[b].type == "checkbox" && inputs[b].checked == true && inputs[b].className == "styled") {
+				inputs[b].previousSibling.style.backgroundPosition = "0 -" + checkboxHeight*2 + "px";
+			} else if(inputs[b].type == "checkbox" && inputs[b].className == "f_styled") {
+				inputs[b].previousSibling.style.backgroundPosition = "0 0";
+			} else if(inputs[b].type == "radio" && inputs[b].checked == true && inputs[b].className == "styled") {
+				inputs[b].previousSibling.style.backgroundPosition = "0 -" + radioHeight*2 + "px";
+			} else if(inputs[b].type == "radio" && inputs[b].className == "f_styled") {
+				inputs[b].previousSibling.style.backgroundPosition = "0 0";
+			}
+		}
+	},
+	choose: function() {
+		option = this.getElementsByTagName("option");
+		for(d = 0; d < option.length; d++) {
+			if(option[d].selected == true) {
+				document.getElementById("select" + this.name).childNodes[0].nodeValue = option[d].childNodes[0].nodeValue;
+			}
+		}
+	}
+}
+window.onload = Custom.init;
+
+</script>
 </head>
 <body bgcolor="<?php echo($background_color); ?>" text="<?php echo($font_color); ?>" link="<?php echo($font_link_color); ?>" vlink="<?php echo($font_link_color); ?>" alink="<?php echo($font_link_color); ?>" class="background">
-<div align="center">
+<div align="center" class="frm_logout">
+<div>
   <iframe name="printFrame" id="printFrame" src="blank.php?<?echo('DOMAINID='.$domainId);?>" frameborder="0" border="0" width="0" height="0" style="visibility: hidden"></iframe>
   <table border="0" align="right" cellpadding="0" cellspacing="0">
     <tr>
@@ -156,30 +306,32 @@ if ($send_session == true) {
         -->
       </td>
     </tr>
-  </table>
-                
-  <p align="left" style="width: 90%;"><b><?php echo($logout_message_label); ?></b></p>
+ </table>                
+  <p align="left" class="title"><b><?php echo($logout_message_label); ?></b></p>
                            
 <?
 if ($complete != '') {
-?>                   
-     <p align="left" style="width: 90%;"><strong><?php echo($rating_thank_you_label); ?></strong></p>
+?>                       
+     <p align="left"><strong><?php echo($rating_thank_you_label); ?></strong></p>
 <?
 }
 else {
 ?>
         
   <form name="rateSession" method="post" action="logout.php?client_domain_id=<?php echo($domain_id);?><?echo('&DOMAINID='.$domainId);?>&URL=<?php echo urlencode($_REQUEST['URL']); ?>">
-    <table border="0" cellspacing="0" cellpadding="0" width="90%" align="center">    
-     
-         
-       <tr>
-            <td colspan="2" align="left">
+    <div style="padding:0 20px 20px">
+    <table border="0" cellspacing="0" cellpadding="0" align="center">
+        <tr>
+            <td colspan="2" align="left" class="top">
                <p><?php echo($please_rate_service_label); ?>:</p>
            </td>
       </tr>
       <tr>
-        <td align="left" width="0"><br><b><?php echo($rate_service_label); ?></b>: <select name="RATING" id="RATING">
+     
+        <td align="left" width="0">
+            <p class="label"><span><?php echo($rate_service_label); ?>:</span></p>
+            <div style="float:left">
+            <select name="RATING" id="RATING" class="f_styled"
 
             <?php
               echo("<option value='5'>".$excellent_label."</option>");
@@ -188,14 +340,16 @@ else {
               echo("<option value='2'>".$fair_label."</option>");
               echo("<option value='1'>".$poor_label."</option>");
            ?>
-          </select>
-                         <input type="submit" name="Submit" value="<?php echo($rate_label); ?>">
-                  </td>
+          </div>
+            <input type="submit" name="Submit" value="<?php echo($rate_label); ?>" class="bt_rate"/>
+            <!--<input type="submit" name="Submit" value="" class="bt_rate"/>-->
+        </td>
       </tr>
             
       <tr>
-        <td colspan="2" align="left"><br><b><strong><?php echo($your_email_label); ?></strong>:
-         <input name="EMAIL"  type="text" id="EMAIL" value="<?php echo($visitor_email); ?>" size="40" style="width:240px;">
+         <td colspan="2" align="left">
+        <p class="label"><span><?php echo($your_email_label); ?>:</span></p>
+        <input name="EMAIL"  type="text" id="EMAIL" value="<?php echo($visitor_email); ?>" size="40" class="inputbox"/>      
         </td>
       </tr>          
       <tr>      
@@ -205,19 +359,14 @@ else {
       </td>
       </tr>            
       
-                <tr>
-                        <td>
-                                <br>
-                          <p><?php echo($further_assistance_label); ?></p>
-                          </p>
-
-
-                        </td>
-                </tr>   
-                                                
-            
+      <tr>
+        <td>
+            <p><?php echo($further_assistance_label); ?></p>
+        </td>
+    </tr>   
+                                                            
     <?php
-    
+        
  $copyright = 1;
  $query = "SELECT value FROM " . $table_prefix . "settings WHERE name = 'disable_copyright' and id_domain = $domain_id";
  $row = $SQL->selectquery($query);
@@ -273,6 +422,7 @@ else {
 <?php
  }
   ?>
+   </div> 
     </table>
          <input type="Hidden" name="LANGUAGE" value="<?=LANGUAGE_TYPE?>">
   </form>
@@ -280,6 +430,7 @@ else {
   <?php
 }
 ?>
+</div>
 </div>
 </body>
 </html>

@@ -118,6 +118,13 @@ function activeHelper_liveHelp_domainsGenerateScript()
 	", ARRAY_A);
 	$activeHelper_liveHelp['languages'] = $languages;
 
+	$agentsList = $wpdb->get_results("
+		SELECT id AS ID, username AS agent_username, status AS agent_status,
+			department AS agent_department, email AS agent_email, answers AS agent_answers
+		FROM {$wpdb->prefix}livehelp_users
+		ORDER BY id
+	", ARRAY_A);
+
 	$languages = array();
 	foreach ($activeHelper_liveHelp['languages'] as $language)
 		$languages[$language['code']] = $language['name'];
@@ -127,6 +134,7 @@ function activeHelper_liveHelp_domainsGenerateScript()
 	$generatedScript = '<script type="text/javascript" src="' . $activeHelper_liveHelp['serverUrl'] . '/import/javascript.php"></script>
 <script type="text/javascript">
 	_vlDomain = ' . $_REQUEST['id'] . ';
+	_vlAgent = 0;
 	_vlService = 1;
 	_vlLanguage = "en";
 	_vlTracking = 1;
@@ -162,6 +170,7 @@ function activeHelper_liveHelp_domainsGenerateScript()
 					<h3 style="cursor: default;">
 						' . __('Options', 'activehelper_livehelp') . '</h3>
 					<div class="inside"><div id="postcustomstuff" style="padding: .6ex 0;">
+
 						<table><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
 							' . __('Language', 'activehelper_livehelp') . '
 						</th></thead><tbody><tr><td id="newmetaleft" class="left">
@@ -196,7 +205,10 @@ function activeHelper_liveHelp_domainsGenerateScript()
         'cr' => __('Croatian', 'activehelper_livehelp'),
         'id' => __('Indonesian', 'activehelper_livehelp'),
         'lt' => __('Lithuanian', 'activehelper_livehelp'),
-        'ro' => __('Romanian', 'activehelper_livehelp')
+        'ro' => __('Romanian', 'activehelper_livehelp'),
+
+        'sl' => __('Slovenian', 'activehelper_livehelp'),
+        'et' => __('Estonian', 'activehelper_livehelp'),
         
 	);
 
@@ -204,6 +216,34 @@ function activeHelper_liveHelp_domainsGenerateScript()
 		echo '
 								<option value="' . $language['code'] . '" ' . ('en' == $language['code'] ? 'selected="selected"' : '') . '>
 									' . $__text[$language['code']] . '</option>';
+
+	echo '
+							</select>
+							<div style="clear: both;"></div>
+						</td></tr></tbody></table>
+
+						<table><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
+							' . __('Status Indicator Type', 'activehelper_livehelp') . '
+						</th></thead><tbody><tr><td id="newmetaleft" class="left">
+							<select size="1" id="script_status_indicator_type" style="width: 200px;" name="script_status_indicator_type" tabindex="' . $tabindex++ . '">';
+
+	echo '
+								<option value="0">' . __('Domain', 'activehelper_livehelp') . '</option>
+								<option value="1">' . __('Agent', 'activehelper_livehelp') . '</option>';
+
+	echo '
+							</select>
+							<div style="clear: both;"></div>
+						</td></tr></tbody></table>
+
+						<table><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
+							' . __('Agent', 'activehelper_livehelp') . '
+						</th></thead><tbody><tr><td id="newmetaleft" class="left">
+							<select size="1" id="script_agent" style="width: 200px;" name="script_agent" tabindex="' . $tabindex++ . '">';
+
+	foreach ($agentsList as $agent)
+		echo '
+								<option value="' . $agent['ID'] . '">' . $agent['agent_username'] . '</option>';
 
 	echo '
 							</select>
@@ -248,12 +288,14 @@ function activeHelper_liveHelp_domainsGenerateScript()
 		var scriptLanguage = "en";
 		var scriptTracking = 1;
 		var scriptStatus = 1;
+		var agentID = 0;
 		function generateScript()
 		{
 			var html = "<" + "script type=\"text/javascript\" src=\"' . $activeHelper_liveHelp['serverUrl'] . '/import/javascript.php\">";
 			html += "</" + "script>\n";
 			html += "<" + "script type=\"text/javascript\">\n";
 			html += "	_vlDomain = ' . $_REQUEST['id'] . ';\n";
+			html += "	_vlAgent = " + agentID + ";\n";
 			html += "	_vlService = 1;\n";
 			html += "	_vlLanguage = \"" + scriptLanguage + "\";\n";
 			html += "	_vlTracking = " + scriptTracking + ";\n";
@@ -273,6 +315,21 @@ function activeHelper_liveHelp_domainsGenerateScript()
 					$("div.inside", postbox).toggle();
 				});
 			});
+
+			$("#script_status_indicator_type").change(function() {
+				if ($("#script_status_indicator_type").val() == 1) {
+					agentID = $("#script_agent").val(); generateScript();
+				}
+				else {
+					agentID = 0; generateScript();
+				}
+			});
+
+			$("#script_agent").change(function(){ 
+				$("#script_status_indicator_type").val(1);
+				agentID = $("#script_agent").val(); generateScript();
+
+				generateScript(); });
 
 			$("#script_status_enable").click(function(){ scriptStatus = 1; generateScript(); });
 			$("#script_status_disable").click(function(){ scriptStatus = 0; generateScript(); });
@@ -952,7 +1009,10 @@ function activeHelper_liveHelp_domainsSettings()
         'cr' => __('Croatian', 'activehelper_livehelp'),
         'id' => __('Indonesian', 'activehelper_livehelp'),
         'lt' => __('Lithuanian', 'activehelper_livehelp'), 
-        'ro' => __('Romanian', 'activehelper_livehelp')
+        'ro' => __('Romanian', 'activehelper_livehelp'),
+
+        'sl' => __('Slovenian', 'activehelper_livehelp'),
+        'et' => __('Estonian', 'activehelper_livehelp'),
         
 	);
 
@@ -1094,16 +1154,22 @@ function activeHelper_liveHelp_domainsSettings()
 						<table style="margin-top: 1.5ex;"><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
 							' . __('Chat Background', 'activehelper_livehelp') . '
 						</th></thead><tbody><tr><td id="newmetaleft" class="left">
-							<select size="1" id="chat_background_img" style="width: 100px;" name="chat_background_img" tabindex="' . $tabindex++ . '">
-								<option value="background_chat_blue.jpg"' . ($_POST['chat_background_img'] == 'background_chat_blue.jpg' ? ' selected="selected"' : '') . '>
-									' . __('Blue', 'activehelper_livehelp') . '</option>
-								<option value="background_chat_green.jpg"' . ($_POST['chat_background_img'] == 'background_chat_green.jpg' ? ' selected="selected"' : '') . '>
-									' . __('Green', 'activehelper_livehelp') . '</option>
-								<option value="background_chat_blue_dark.jpg"' . ($_POST['chat_background_img'] == 'background_chat_blue_dark.jpg' ? ' selected="selected"' : '') . '>
-									' . __('Dark blue', 'activehelper_livehelp') . '</option>
-								<option value="background_chat_grey.jpg"' . ($_POST['chat_background_img'] == 'background_chat_grey.jpg' ? ' selected="selected"' : '') . '>
-									' . __('Grey', 'activehelper_livehelp') . '</option>
+							<select size="1" id="chat_background_img" style="width: 100px;" name="chat_background_img" tabindex="' . $tabindex++ . '">';
+
+	$skins_dir = $activeHelper_liveHelp['baseDir'] . '/server/pictures/skins';
+	$skins = array_filter(glob($skins_dir . '/*'), 'is_dir');
+
+	foreach ($skins as $skin) {
+		$skin = basename($skin);
+
+		echo '
+								<option value="' . $skin . '"' . ($_POST['chat_background_img'] == $skin ? ' selected="selected"' : '') . '>
+									' . $skin . '</option>';
+	}
+
+	echo '
 							</select>
+
 							<div style="clear: both;"></div>
 						</td></tr></tbody></table>
 
@@ -1557,7 +1623,7 @@ function activeHelper_liveHelp_domainsSettingsQuery($domain)
 			('smtp_port', '25', {$domain}),
 			('from_email', 'support@activehelper.com', {$domain}),
 			('login_timeout', '20', {$domain}),
-			('chat_background_img', 'background_chat_grey.jpg', {$domain}),
+			('chat_background_img', 'grey', {$domain}),
 			('chat_invitation_img', 'initiate_dialog.gif', {$domain}),
 			('chat_button_img', 'send.gif', {$domain}),
 			('chat_button_hover_img', 'send_hover.gif', {$domain}),

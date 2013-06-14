@@ -11,6 +11,8 @@ if (!isset($_REQUEST['WIDTH'])){ $_REQUEST['WIDTH'] = ''; } else $_REQUEST['WIDT
 if (!isset($_REQUEST['HEIGHT'])){ $_REQUEST['HEIGHT'] = ''; } else $_REQUEST['HEIGHT'] = (int) $_REQUEST['HEIGHT'];
 if (!isset($_REQUEST['COOKIE'])){ $_REQUEST['COOKIE'] = ''; } else $_REQUEST['COOKIE'] = htmlspecialchars( (string) $_REQUEST['COOKIE'], ENT_QUOTES );
 $domain_id = isset( $domain_id ) ? (int) $domain_id : null;
+$agent_id = isset( $agent_id ) ? (int) $agent_id : null;
+
 $command = 'tracker';
 if (isset($_SERVER['PATH_TRANSLATED']) && $_SERVER['PATH_TRANSLATED'] != '')
 {
@@ -37,6 +39,7 @@ else {
 include_once('config_database.php');
 include_once('class.mysql.php');
 include_once('config.php');
+                
 
 //$domainIsValid = true;
 $title = $_REQUEST['TITLE'];
@@ -132,6 +135,7 @@ if ($request_id > 0) {
                 {
                   $referrer = 'Direct Visit / Bookmark';
                 }
+            
 
                 $query = "SELECT name FROM " . $table_prefix . "domains WHERE id_domain = '".$domain_id."'";
                 $row = $SQL->selectquery($query);
@@ -153,7 +157,8 @@ if ($request_id > 0) {
                     $session['CHARSET'] = CHARSET;
                     $session['USERID'] = $_REQUEST['USERID'];
                     $session['DOMAINID'] = $domain_id;
-
+                    $session['AGENTID'] = $agent_id;
+                         
                     if (isset($_REQUEST['LANGUAGE'])){
                       $session['LANGUAGE'] = $_REQUEST['LANGUAGE'];
                     }else{
@@ -191,7 +196,13 @@ if ( isset( $_GET[ 'GET_INVITATION_MESSAGE' ] ) ) {
 	$row = $SQL->selectquery($query);
 
 	if ( !empty( $row['init_message'] ) ) {
-		die( $row['init_message'] );
+	 if ( isset( $_GET['json'] ) ) {
+      $json = array( 'text' => $row['init_message'] );
+      echo 's1.checkInitiate_json(' . json_encode($json) . ')';
+    }
+    else {
+      echo $row['init_message'];
+    }
 	}
 
 	die( '' );
@@ -199,7 +210,8 @@ if ( isset( $_GET[ 'GET_INVITATION_MESSAGE' ] ) ) {
 
 
 header('Content-type: image/gif');
-if ($request_initiated == true) {
+if ($request_initiated == true) {    
+
 	if ( $request_initiate_flag == 2 ) {
         readfile($install_path . $install_directory . '/import/initiate-message.gif');
 	} else {

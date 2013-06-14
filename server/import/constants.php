@@ -21,6 +21,9 @@ $guest_login_timeout= 60;
 $chat_refresh_rate = 6;
 $user_panel_refresh_rate = 10;
 $sound_alert_new_message = 1;
+$status_indicator_img_type = "gif";
+$invitation_position = "right";
+$sound_alert_new_pro_msg =1;
  
 } /* __CONSTANTS_INC */
  

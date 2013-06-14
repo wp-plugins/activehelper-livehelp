@@ -148,6 +148,7 @@ if (isset($domain_id)){
   $session['DOMAINID'] = $id_domain;
 }
 
+
 if($session['MESSAGE'] != $lastMessageID) {
         writeToLog($guest_login_id."==".$lastMessageID."==".$session['MESSAGE']);
 }
@@ -332,7 +333,7 @@ top.display('', '<?php echo($css); ?>', '2', '1');
 
 <?php
 
-error_log("CSS : " .$css, 3, "error.log");
+//error_log("CSS : " .$css, 3, "error.log");
 
 
 if (isset($message)) {
@@ -347,15 +348,16 @@ top.display('', '<?php echo($message); ?>', '1', '1');
 
 $welcome = addslashes($wel_messg_18);
 $ref_nomber_message = addslashes($ref_nomber_message_i18).$guest_login_id;
-$img_path ="./pictures/agents/";
-
 
 // Get aget photo
-  $query = "SELECT `photo` FROM " . $table_prefix . "sessions jls, "  . $table_prefix . "users jlu  WHERE jls.`id` = '$guest_login_id' and jlu.`id` = jls.`id_user` ";
+  $query = "SELECT jlu.`id`, `photo` FROM " . $table_prefix . "sessions jls, "  . $table_prefix . "users jlu  WHERE jls.`id` = '$guest_login_id' and jlu.`id` = jls.`id_user` ";
   $row = $SQL->selectquery($query);
   if (is_array($row)) {
      $agent_img = $row['photo'];
+     $agent_folder_id = $row['id']; 
     }
+
+$img_path ="./agents/" . $agent_folder_id .'/';
 
 ?>
 

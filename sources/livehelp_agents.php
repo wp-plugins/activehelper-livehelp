@@ -14,6 +14,7 @@ function activeHelper_liveHelp_agents()
 		'list' => 'activeHelper_liveHelp_agentsList',
 		'edit' => 'activeHelper_liveHelp_agentsRegister',
 		'register' => 'activeHelper_liveHelp_agentsRegister',
+		'settings' => 'activeHelper_liveHelp_agentsSettings',
 		'info' => 'activeHelper_liveHelp_agentsInfo'
 	);
 	if (!empty($_REQUEST['action']) && isset($actions[$_REQUEST['action']]))
@@ -27,6 +28,7 @@ function activeHelper_liveHelp_agentsPost()
 	$actions = array(
 		'delete' => 'activeHelper_liveHelp_agentsDeletePost',
 		'edit' => 'activeHelper_liveHelp_agentsEditPost',
+		'settings' => 'activeHelper_liveHelp_agentsSettingsPost',
 		'register' => 'activeHelper_liveHelp_agentsRegisterPost'
 	);
 
@@ -49,7 +51,7 @@ function activeHelper_liveHelp_agentsDeletePost()
 	$agent = $wpdb->get_row("
 		SELECT username AS agent_username, firstname AS agent_firstname, lastname AS agent_lastname,
 			email AS agent_email, department AS agent_department, privilege AS agent_privilege, 
-			status AS agent_status
+			status AS agent_status, answers AS agent_answers
 		FROM {$wpdb->prefix}livehelp_users
 		WHERE id = '{$_REQUEST['id']}'
 		LIMIT 1
@@ -86,7 +88,7 @@ function activeHelper_liveHelp_agentsList()
 
 	$agentsList = $wpdb->get_results("
 		SELECT id AS ID, username AS agent_username, status AS agent_status,
-			department AS agent_department, email AS agent_email
+			department AS agent_department, email AS agent_email, answers AS agent_answers
 		FROM {$wpdb->prefix}livehelp_users
 		ORDER BY id
 	", ARRAY_A);
@@ -178,10 +180,12 @@ function activeHelper_liveHelp_agentsList()
 						<div class="row-actions">
 							<span class="edit"><a href="admin.php?page=' . strtolower('activeHelper_liveHelp_agents') . '&amp;action=edit&amp;id=' . $agent['ID'] . '">
 								' . __('Edit', 'activehelper_livehelp') . '</a> | </span>
-							<span class="trash"><a href="admin.php?page=' . strtolower('activeHelper_liveHelp_agents') . '&amp;action=delete&amp;id=' . $agent['ID'] . '" class="submitdelete" onclick="return window.confirm(\'' . __('Are you sure you want to delete this item permanently?', 'activehelper_livehelp') . '\');">
-								' . __('Delete', 'activehelper_livehelp') . '</a> | </span>
+							<span class="edit"><a href="admin.php?page=' . strtolower('activeHelper_liveHelp_agents') . '&amp;action=settings&amp;id=' . $agent['ID'] . '">
+								' . __('Settings', 'activehelper_livehelp') . '</a> | </span>
 							<span class="edit"><a href="admin.php?page=' . strtolower('activeHelper_liveHelp_agents') . '&amp;action=info&amp;id=' . $agent['ID'] . '">
-								' . __('Client info', 'activehelper_livehelp') . '</a></span>
+								' . __('Client info', 'activehelper_livehelp') . '</a> | </span>
+							<span class="trash"><a href="admin.php?page=' . strtolower('activeHelper_liveHelp_agents') . '&amp;action=delete&amp;id=' . $agent['ID'] . '" class="submitdelete" onclick="return window.confirm(\'' . __('Are you sure you want to delete this item permanently?', 'activehelper_livehelp') . '\');">
+								' . __('Delete', 'activehelper_livehelp') . '</a></span>
 						</div>
 					</td>
 					<td>
@@ -218,6 +222,7 @@ function activeHelper_liveHelp_agentsRegisterPost()
 	$_POST['agent_department'] = !empty($_POST['agent_department']) ? (string) $_POST['agent_department'] : '';
 	$_POST['agent_status'] = !empty($_POST['agent_status']) ? 1 : 0;
 	$_POST['agent_privilege'] = !empty($_POST['agent_privilege']) ? 1 : 0;
+	$_POST['agent_answers'] = !empty($_POST['agent_answers']) ? (int) $_POST['agent_answers'] : 1;
 	
 	$_POST['agent_domains'] = !empty($_POST['agent_domains']) ? (array) $_POST['agent_domains'] : array();
 
@@ -259,12 +264,13 @@ function activeHelper_liveHelp_agentsRegisterPost()
 
 		$wpdb->query("
 			INSERT INTO {$wpdb->prefix}livehelp_users
-				(username, password, firstname, lastname, email, department, privilege, status)
+				(username, password, firstname, lastname, email, department, privilege, status, answers)
 			VALUES
 				('{$_POST['agent_username']}', '{$_POST['agent_password']}',
 					'{$_POST['agent_firstname']}', '{$_POST['agent_lastname']}',
 					'{$_POST['agent_email']}', '{$_POST['agent_department']}',
-					'{$_POST['agent_privilege']}', '{$_POST['agent_status']}')
+					'{$_POST['agent_privilege']}', '{$_POST['agent_status']}',
+					'{$_POST['agent_answers']}')
 		");
 
 		$agent_ID = $wpdb->get_var("
@@ -296,10 +302,14 @@ function activeHelper_liveHelp_agentsRegisterPost()
 			");
 		}
 
+		// Duplicate agent folder with id 0 for this new agent.
+		activeHelper_liveHelp_filesDuplicate($activeHelper_liveHelp['agentsDir'] . '/0',
+			$activeHelper_liveHelp['agentsDir'] . '/' . $agent_ID);
+
 		$agent_picture = '';
 		while (!empty($_FILES['agent_picture']['tmp_name']))
 		{
-			$image = activeHelper_liveHelp_imagesUpload($activeHelper_liveHelp['agentsDir'], 'a' . $agent_ID, $_FILES['agent_picture']);
+			$image = activeHelper_liveHelp_imagesUpload($activeHelper_liveHelp['agentsDir'] . '/' . $agent_ID, 'a' . $agent_ID, $_FILES['agent_picture']);
 			unset($_FILES['agent_picture']);
 
 			if ($image === false)
@@ -314,7 +324,7 @@ function activeHelper_liveHelp_agentsRegisterPost()
 			WHERE id = '{$agent_ID}'
 		");
 
-		wp_redirect('admin.php?page=' . strtolower('activeHelper_liveHelp_agents') . '&register');
+		wp_redirect('admin.php?page=' . strtolower('activeHelper_liveHelp_agents') . '&action=info&id=' . $agent_ID);
 		exit;
 	}
 }
@@ -332,6 +342,7 @@ function activeHelper_liveHelp_agentsEditPost()
 	$_POST['agent_department'] = !empty($_POST['agent_department']) ? (string) $_POST['agent_department'] : '';
 	$_POST['agent_status'] = !empty($_POST['agent_status']) ? 1 : 0;
 	$_POST['agent_privilege'] = !empty($_POST['agent_privilege']) ? 1 : 0;
+	$_POST['agent_answers'] = !empty($_POST['agent_answers']) ? (int) $_POST['agent_answers'] : 1;
 
 	$_POST['agent_domains'] = !empty($_POST['agent_domains']) ? (array) $_POST['agent_domains'] : array();
 
@@ -347,7 +358,7 @@ function activeHelper_liveHelp_agentsEditPost()
 	$agent = $wpdb->get_row("
 		SELECT username AS agent_username, firstname AS agent_firstname, lastname AS agent_lastname,
 			email AS agent_email, department AS agent_department, privilege AS agent_privilege, 
-			status AS agent_status, photo AS agent_picture
+			status AS agent_status, photo AS agent_picture, answers AS agent_answers
 		FROM {$wpdb->prefix}livehelp_users
 		WHERE id = '{$_REQUEST['id']}'
 		LIMIT 1
@@ -414,9 +425,9 @@ function activeHelper_liveHelp_agentsEditPost()
 		while (!empty($_FILES['agent_picture']['tmp_name']))
 		{
 			if (!empty($_POST['agent_picture']))
-				activeHelper_liveHelp_imagesDelete($activeHelper_liveHelp['agentsDir'], $_POST['agent_picture']);
+				activeHelper_liveHelp_imagesDelete($activeHelper_liveHelp['agentsDir'] . '/' . $_REQUEST['id'], $_POST['agent_picture']);
 
-			$image = activeHelper_liveHelp_imagesUpload($activeHelper_liveHelp['agentsDir'], 'a' . $_REQUEST['id'], $_FILES['agent_picture']);
+			$image = activeHelper_liveHelp_imagesUpload($activeHelper_liveHelp['agentsDir'] . '/' . $_REQUEST['id'], 'a' . $_REQUEST['id'], $_FILES['agent_picture']);
 			unset($_FILES['agent_picture']);
 
 			if ($image === false)
@@ -435,6 +446,7 @@ function activeHelper_liveHelp_agentsEditPost()
 				email = '{$_POST['agent_email']}',
 				department = '{$_POST['agent_department']}',
 				privilege = '{$_POST['agent_privilege']}',
+				answers = '{$_POST['agent_answers']}',
 				status = '{$_POST['agent_status']}'" . (!empty($agent_picture) ? ",
 				photo = '{$agent_picture}'" : "") . "
 			WHERE id = '{$_REQUEST['id']}'
@@ -615,10 +627,23 @@ function activeHelper_liveHelp_agentsRegister()
 						</td></tr></tbody></table>
 
 						<table style="margin-top: 1.5ex;"><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
+							<label for="agent_department">' . __('Status indicator type', 'activehelper_livehelp') . '</label>
+						</th></thead><tbody><tr><td id="newmetaleft" class="left">
+            
+              <p style="margin: 0.5em 1em;">' . __('Use "Domain" for the global status indicator, if you select "Agent" remember that this Live Chat operator only will be available for the tracking module with the agent ID.') . '</p>
+							
+							<select tabindex="' . $tabindex++ . '"  style="width: 150px;" id="agent_answers" name="agent_answers">
+								<option value="1" ' . ( $_POST['agent_answers'] == '1' ? 'selected="selected"' : '' ) . '>' . __( 'Domain', 'activehelper_livehelp' ) . '</option>
+								<option value="2" ' . ( $_POST['agent_answers'] == '2' ? 'selected="selected"' : '' ) . '>' . __( 'Agent', 'activehelper_livehelp' ) . '</option>
+							</select>
+
+						</td></tr></tbody></table>
+
+						<table style="margin-top: 1.5ex;"><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
 							' . __('Picture', 'activehelper_livehelp') . '
 						</th></thead><tbody><tr><td id="newmetaleft" class="left">' . (!empty($_POST['agent_picture']) ? '
 							<div style="float: right; padding: .5ex 1ex .5ex 1ex;">
-								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $activeHelper_liveHelp['agentsUrl'] . '/' . $_POST['agent_picture'] . '" alt="" />
+								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $activeHelper_liveHelp['agentsUrl'] . '/' . $_REQUEST['id'] . '/' . $_POST['agent_picture'] . '" alt="" />
 							</div>' : '') . '
 							<input type="file" tabindex="' . $tabindex++ . '" style="width: auto;" size="35" name="agent_picture">
 						</td></tr></tbody></table>
@@ -786,4 +811,222 @@ function activeHelper_liveHelp_agentsInfo()
 </div>';
 }
 
+function activeHelper_liveHelp_agentsSettingsPost() {
+	global $wpdb, $activeHelper_liveHelp;
+
+	$_REQUEST['id'] = !empty($_REQUEST['id']) ? (int) $_REQUEST['id'] : 0;
+	$_REQUEST['lang'] = !empty($_REQUEST['lang']) ? (string) $_REQUEST['lang'] : 'en';
+
+	$activeHelper_liveHelp['agent'] = $wpdb->get_row("
+		SELECT username AS agent_username, firstname AS agent_firstname, lastname AS agent_lastname,
+			email AS agent_email, department AS agent_department, privilege AS agent_privilege, 
+			status AS agent_status, photo AS agent_picture, answers AS agent_answers
+		FROM {$wpdb->prefix}livehelp_users
+		WHERE id = '{$_REQUEST['id']}'
+		LIMIT 1
+	", ARRAY_A);
+
+	$agent_dir = $activeHelper_liveHelp['agentsDir'] . '/' . $_REQUEST['id'] . '/i18n/' . $_REQUEST['lang'];
+
+	while (!empty($_FILES['online']['tmp_name'])) {
+		activeHelper_liveHelp_imagesDelete($agent_dir, 'online.gif');
+
+		activeHelper_liveHelp_imagesUpload($agent_dir, 'online', $_FILES['online'], '.gif');
+		unset($_FILES['online']);
+	}
+
+	while (!empty($_FILES['offline']['tmp_name'])) {
+		activeHelper_liveHelp_imagesDelete($agent_dir, 'offline.gif');
+
+		activeHelper_liveHelp_imagesUpload($agent_dir, 'offline', $_FILES['offline'], '.gif');
+		unset($_FILES['offline']);
+	}
+	
+	while (!empty($_FILES['away']['tmp_name'])) {
+		activeHelper_liveHelp_imagesDelete($agent_dir, 'away.gif');
+
+		activeHelper_liveHelp_imagesUpload($agent_dir, 'away', $_FILES['away'], '.gif');
+		unset($_FILES['away']);
+	}
+
+	while (!empty($_FILES['brb']['tmp_name'])) {
+		activeHelper_liveHelp_imagesDelete($agent_dir, 'brb.gif');
+
+		activeHelper_liveHelp_imagesUpload($agent_dir, 'brb', $_FILES['brb'], '.gif');
+		unset($_FILES['brb']);
+	}
+}
+
+function activeHelper_liveHelp_agentsSettings()
+{
+	global $wpdb, $activeHelper_liveHelp;
+
+	$_REQUEST['id'] = !empty($_REQUEST['id']) ? (int) $_REQUEST['id'] : 0;
+	$_REQUEST['lang'] = !empty($_REQUEST['lang']) ? (string) $_REQUEST['lang'] : 'en';
+
+	$agent_url = $activeHelper_liveHelp['serverUrl'] . '/agents/' . $_REQUEST['id'] . '/i18n/' . $_REQUEST['lang'] . '/';
+
+	$agent_dir = $activeHelper_liveHelp['agentsDir'] . '/' . $_REQUEST['id'];
+	$agent_imgs_paths = array_filter(glob($agent_dir . '/i18n/' . $_REQUEST['lang'] . '/*'), 'is_file');
+	$agent_imgs = array();
+	foreach ($agent_imgs_paths as $path) {
+		$agent_imgs[basename($path, '.gif')] = basename($path, '.gif');
+	}
+
+	$tabindex = 1;
+
+	echo '
+<div class="wrap">
+	<div id="icon-edit" class="icon32 icon32-posts-post"><br /></div>
+	<h2>
+		LiveHelp » ' . __('Agents', 'activehelper_livehelp') . (!empty($_REQUEST['id']) ? ' <span style="font-size: 70%;">(' . $activeHelper_liveHelp['agent']['agent_username'] . ')</span>' : '') . ' » ' . __('Settings', 'activehelper_livehelp') . '
+	</h2>
+	<form action="admin.php?page=' . strtolower('activeHelper_liveHelp_agents') . '&amp;action=settings" method="post" accept-charset="utf-8" id="activeHelper_liveHelp_form" enctype="multipart/form-data">
+		<div id="poststuff" class="metabox-holder has-right-sidebar">
+			<div class="inner-sidebar"><div class="meta-box-sortables ui-sortable">
+				<div id="submitdiv" class="postbox">
+					<div class="handlediv" title="' . __('Click to toggle', 'activehelper_livehelp') . '"><br /></div>
+					<h3 style="cursor: default;"><span style="cursor: default;">
+						' . __('Settings', 'activehelper_livehelp') . '</span></h3>
+					<div class="inside"><div class="submitbox">
+						<div id="major-publishing-actions" style="padding: 1ex;">
+							<div id="delete-action">
+								<a class="submitdelete deletion" href="admin.php?page=' . strtolower('activeHelper_liveHelp_agents') . '">' . __('Close', 'activehelper_livehelp') . '</a>
+							</div>
+							<div id="publishing-action">
+								<input name="submit" value="' . __('Update', 'activehelper_livehelp') . '" type="submit" accesskey="p" tabindex="999" class="button-primary">
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="clear"></div>
+					</div></div>
+				</div>
+			</div></div>
+			<div id="post-body"><div id="post-body-content"><div class="meta-box-sortables ui-sortable">
+				<div class="stuffbox postbox"><div id="postcustomstuff" style="padding: .6ex 0;">
+					<div class="handlediv" title="' . __('Click to toggle', 'activehelper_livehelp') . '"><br /></div>
+					<h3 style="cursor: default;">
+						' . __('Settings', 'activehelper_livehelp') . '</h3>
+					<div class="inside">
+
+
+						<table><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
+							' . __('Language', 'activehelper_livehelp') . '
+						</th></thead><tbody><tr><td id="newmetaleft" class="left">
+							<select size="1" id="agent_settings_language" style="width: 200px;" name="lang" tabindex="' . $tabindex++ . '">';
+
+	$__text = array(
+		'en' => __('English', 'activehelper_livehelp'),
+		'sp' => __('Spanish', 'activehelper_livehelp'),
+		'de' => __('Deutsch', 'activehelper_livehelp'),
+		'pt' => __('Portuguese', 'activehelper_livehelp'),
+		'it' => __('Italian', 'activehelper_livehelp'),
+		'fr' => __('French', 'activehelper_livehelp'),
+		'cz' => __('Czech', 'activehelper_livehelp'),
+		'se' => __('Swedish', 'activehelper_livehelp'),
+		'no' => __('Norwegian', 'activehelper_livehelp'),
+		'tr' => __('Turkey', 'activehelper_livehelp'),
+		'gr' => __('Greek', 'activehelper_livehelp'),
+		'he' => __('Hebrew', 'activehelper_livehelp'),
+		'fa' => __('Farsi', 'activehelper_livehelp'),
+		'sr' => __('Serbian', 'activehelper_livehelp'),
+		'ru' => __('Rusian', 'activehelper_livehelp'),
+		'hu' => __('Hungarian', 'activehelper_livehelp'),
+		'zh' => __('Traditional Chinese', 'activehelper_livehelp'),
+		'ar' => __('Arab', 'activehelper_livehelp'),
+		'nl' => __('Dutch', 'activehelper_livehelp'),
+		'fi' => __('Finnish', 'activehelper_livehelp'),
+		'dk' => __('Danish', 'activehelper_livehelp'),
+		'pl' => __('Polish', 'activehelper_livehelp'),
+		'cn' => __('Simplified Chinese', 'activehelper_livehelp'),
+        'bg' => __('Bulgarian', 'activehelper_livehelp'),
+        'sk' => __('Slovak', 'activehelper_livehelp'),
+        'cr' => __('Croatian', 'activehelper_livehelp'),
+        'id' => __('Indonesian', 'activehelper_livehelp'),
+        'lt' => __('Lithuanian', 'activehelper_livehelp'),
+        'ro' => __('Romanian', 'activehelper_livehelp'),
+
+        'sl' => __('Slovenian', 'activehelper_livehelp'),
+        'et' => __('Estonian', 'activehelper_livehelp'),
+        
+	);
+
+	foreach ($__text as $code => $language)
+		echo '
+								<option value="' . $code . '" ' . ($_REQUEST['lang'] == $code ? 'selected="selected"' : '') . '>
+									' . $language . '</option>';
+
+	echo '
+							</select>
+							<div style="clear: both;"></div>
+						</td></tr></tbody></table>
+
+						<table style="margin-top: 1.5ex;"><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
+							' . __('Online image (gif)', 'activehelper_livehelp') . '
+						</th></thead><tbody><tr><td id="newmetaleft" class="left">' . (!empty($agent_imgs['offline']) ? '
+							<div style="float: right; padding: .5ex 1ex .5ex 1ex;">
+								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $agent_url . 'offline.gif" alt="" />
+							</div>' : '') . '
+							<input type="file" tabindex="' . $tabindex++ . '" style="width: auto;" size="35" name="offline">
+						</td></tr></tbody></table>
+
+						<table style="margin-top: 1.5ex;"><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
+							' . __('Offline image (gif)', 'activehelper_livehelp') . '
+						</th></thead><tbody><tr><td id="newmetaleft" class="left">' . (!empty($agent_imgs['online']) ? '
+							<div style="float: right; padding: .5ex 1ex .5ex 1ex;">
+								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $agent_url . 'online.gif" alt="" />
+							</div>' : '') . '
+							<input type="file" tabindex="' . $tabindex++ . '" style="width: auto;" size="35" name="online">
+						</td></tr></tbody></table>
+
+						<table style="margin-top: 1.5ex;"><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
+							' . __('Away image (gif)', 'activehelper_livehelp') . '
+						</th></thead><tbody><tr><td id="newmetaleft" class="left">' . (!empty($agent_imgs['away']) ? '
+							<div style="float: right; padding: .5ex 1ex .5ex 1ex;">
+								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $agent_url . 'away.gif" alt="" />
+							</div>' : '') . '
+							<input type="file" tabindex="' . $tabindex++ . '" style="width: auto;" size="35" name="away">
+						</td></tr></tbody></table>
+
+						<table style="margin-top: 1.5ex;"><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
+							' . __('BRB image (gif)', 'activehelper_livehelp') . '
+						</th></thead><tbody><tr><td id="newmetaleft" class="left">' . (!empty($agent_imgs['brb']) ? '
+							<div style="float: right; padding: .5ex 1ex .5ex 1ex;">
+								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $agent_url . 'brb.gif" alt="" />
+							</div>' : '') . '
+							<input type="file" tabindex="' . $tabindex++ . '" style="width: auto;" size="35" name="brb">
+						</td></tr></tbody></table>
+
+					</div>
+				</div></div>
+			</div></div></div>
+			<br />
+		</div>';
+
+	if (!empty($_REQUEST['id']))
+		echo '
+		<input type="hidden" name="id" value="' . $_REQUEST['id'] . '" />
+		<input type="hidden" name="lang" value="' . $_REQUEST['lang'] . '" />';
+
+	echo '
+	</form>
+	<script type="text/javascript">
+		jQuery(document).ready(function($){
+      $("#agent_settings_language").change(function(){
+        window.location = window.location.href + "&lang=" +  $("#agent_settings_language").val();
+      });
+    
+			$(".meta-box-sortables .postbox").each(function(){
+				var postbox = $(this);
+				$("h3", postbox).click(function(){
+					$("div.inside", postbox).toggle();
+				});
+				$("div.handlediv", postbox).click(function(){
+					$("div.inside", postbox).toggle();
+				});
+			});
+		});
+	</script>
+</div>';
+}
 

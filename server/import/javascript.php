@@ -187,8 +187,10 @@ if (($domain_id == 0) && (isset($_SERVER['HTTP_REFERER'])))
 }
 
 
-$query = "SELECT u.id FROM " . $table_prefix . "users u, " . $table_prefix . "domain_user du WHERE (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(u.refresh)) < '$connection_timeout' AND u.status = '1' And du.id_user = u.id And du.id_domain = ".$domain_id;
-if ($department != '' && $departments == true) { $query .= " AND department LIKE '%$department%'"; }
+$query = "SELECT u.id FROM " . $table_prefix . "users u, " . $table_prefix . "domain_user du WHERE (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(u.refresh)) < '$connection_timeout' and u.status = '1' and u.answers= '1' and du.id_user = u.id And du.id_domain = ".$domain_id;
+ if ($department != '' && $departments == true)   
+ { $query .= " AND department LIKE '%$department%'"; }
+ 
 $row = $SQL->selectquery($query);
 
 if(!is_array($row))
@@ -301,6 +303,7 @@ function initgeo(geoDict)
 
   //Script tracking and status indicator
   var _vlDomain = 0;
+  var _vlAgent = 0;      
   var _vlLanguage = 'en';
   var _vlService = 1;
   var _vlTracking = new Boolean(true);
@@ -311,8 +314,7 @@ function initgeo(geoDict)
   var _vloffline =<?php echo($offline); ?>;
   var _vlinitiated  = 0;
   var _vldisableinvitation = 0;
-  
-  
+    
    
 function none()
 {
@@ -344,6 +346,7 @@ function none()
 function statusClass (s_id, _vlDomain) {
         this.s_id = s_id;
 
+        this.checkInitiate_json = checkInitiate_json;
         this.currentTime = currentTime;
         this.toggle = toggle;
         this.initiateFloatLayer = initiateFloatLayer;
@@ -687,8 +690,11 @@ var newTargetX = this.scrollLeft + this.leftMargin;
         $num_support_brb_users = 0;
 
         // Counts the total number of support users within each Online/Offline/BRB/Away status mode
-        $query = "SELECT DISTINCT `status`, count(`id`) FROM " . $table_prefix . "users WHERE (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(`refresh`)) < '$connection_timeout'";
-        if($department != '' && $departments) { $query .= " AND `department` LIKE '%$department%'"; }
+        $query = "SELECT DISTINCT `status`, count(`id`) FROM " . $table_prefix . "users WHERE (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(`refresh`)) < '$connection_timeout' and answers= '1' ";
+        if($department != '' && $departments) 
+        { $query .= " and `department` LIKE '%$department%'"; }
+        
+        
         $query .= " GROUP BY `status`";
         $rows = $SQL->selectall($query);
         if(is_array($rows)) {
@@ -755,43 +761,101 @@ if ($initiate_request_flag > 0 || $initiate_request_flag == -1) {
 
 <!--
 
+function checkInitiate_json(data) {
+      var text = data.text;
+      if ( typeof( text ) == "undefined" ) {
+        text = '';
+      }
+      
+      document.getElementById('floatLayer_message_text_' + s_id).innerHTML = text;
+      
+      initiateFloatLayer( true );
+      toggle('floatLayer_message_' + s_id);
+      initiateOpen = 1;
+  }
+
   function checkInitiate() {
     // Check if site visitor has an Initiate Chat Request Pending for display...
     var imageWidth = this.width; var imageHeight = this.height;
 	
+	// Proactive message.
     if ( ( ( ( imageWidth == 2 && imageHeight == 2 ) || ( imageWidth == 3 && imageHeight == 3 ) ) && initiateOpen == 0) || initiateLoaded == 1 ) {
-			if ( ! invitationIsOpen ) {
+		if ( ! invitationIsOpen ) {
 				if ( imageWidth == 3 && imageHeight == 3 ) {
 				
-					var ajax_request = new XMLHttpRequest();
-					ajax_request.onreadystatechange = function() {
-						if ( ajax_request.readyState == 4 && ajax_request.status == 200 ) {
-							var text = ajax_request.responseText;
-							if ( typeof( text ) == "undefined" ) {
-								text = '';
-							}
-							
-							document.getElementById('floatLayer_message_text_' + s_id).innerHTML = text;
-							
-							initiateFloatLayer( true );
-							toggle('floatLayer_message_' + s_id);
-							initiateOpen = 1;
-						}
-					};
+			 if ( typeof( jQuery ) == "undefined" ) {
 
-					var time = currentTime();
-					var ajax_request_url = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=' + s_id + '&TIME=' + time + '&USERID=<?=$_REQUEST['USERID']?>&services=<?=$_REQUEST['services']?>'+ '&DOMAINID=' + _vlDomain + '&LANGUAGE=' + _vlLanguage + '&SERVICE=' + _vlService + '&GET_INVITATION_MESSAGE=1';
+				  var time = currentTime();
+				  var ajax_request_url = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?json&status_id=' + s_id + '&TIME=' + time + '&USERID=<?=$_REQUEST['USERID']?>&services=<?=$_REQUEST['services']?>'+ '&DOMAINID=' + _vlDomain + '&LANGUAGE=' + _vlLanguage + '&SERVICE=' + _vlService + '&GET_INVITATION_MESSAGE=1&callback=?';
+			  
+				  var head= document.getElementsByTagName('head')[0];
+				  var script= document.createElement('script');
+				  script.type= 'text/javascript';
+				  script.src= ajax_request_url;
+				  head.appendChild(script);
+			  
+				/*
+				  var ajax_request = new XMLHttpRequest();
+				  ajax_request.onreadystatechange = function() {
+				if ( ajax_request.readyState == 4 && ajax_request.status == 200 ) {
+				  var text = ajax_request.responseText;
+				  if ( typeof( text ) == "undefined" ) {
+						text = '';
+					  }
+					  
+					  document.getElementById('floatLayer_message_text_' + s_id).innerHTML = text;
+					  
+					  initiateFloatLayer( true );
+					  toggle('floatLayer_message_' + s_id);
+					  initiateOpen = 1;
+					}
+				  };
+						var time = currentTime();
+						var ajax_request_url = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?json&status_id=' + s_id + '&TIME=' + time + '&USERID=<?=$_REQUEST['USERID']?>&services=<?=$_REQUEST['services']?>'+ '&DOMAINID=' + _vlDomain + '&LANGUAGE=' + _vlLanguage + '&SERVICE=' + _vlService + '&GET_INVITATION_MESSAGE=1&callback=?';					
 
-					ajax_request.open( "GET", ajax_request_url, true );
-					ajax_request.send( null );
-				}
-				else
-				{
-					initiateFloatLayer( false );
-					toggle('floatLayer_' + s_id);
-					initiateOpen = 1;
-				}
+						ajax_request.open( "GET", ajax_request_url, true );
+						ajax_request.send( null );
+					*/
+			
+			 }
+			  else {
+			  
+				  var time = currentTime();
+				  var ajax_request_url = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?json&status_id=' + s_id + '&TIME=' + time + '&USERID=<?=$_REQUEST['USERID']?>&services=<?=$_REQUEST['services']?>'+ '&DOMAINID=' + _vlDomain + '&LANGUAGE=' + _vlLanguage + '&SERVICE=' + _vlService + '&GET_INVITATION_MESSAGE=1&callback=?';
+				  
+				  jQuery.getJSON(ajax_request_url); // the result is going to call checkInitiate_json(data)
+				
+			   }     
+				
+			   
 			}
+			else
+			{
+				initiateFloatLayer( false );
+				toggle('floatLayer_' + s_id);
+				initiateOpen = 1;
+			}
+			    
+			   
+			  // We play the sound in proactive message and invitation.
+			  if ("<?=$sound_alert_new_pro_msg?>" != 0 && typeof( Audio ) != "undefined" )
+			  {
+
+				 var snd = new Audio();
+
+				 if(!!(snd.canPlayType && snd.canPlayType('audio/ogg; codecs="vorbis"').replace(/no/, '')))
+				   snd.src = "<?php echo($server); ?><?= $install_directory ?>/sounds/alert.ogg";
+				 else if(!!(snd.canPlayType && snd.canPlayType('audio/mpeg;').replace(/no/, '')))
+				   snd.src = "<?php echo($server); ?><?= $install_directory ?>/sounds/alert.mp3";
+				 else if(!!(snd.canPlayType && snd.canPlayType('audio/mp4; codecs="mp4a.40.2"').replace(/no/, '')))
+				   snd.src = "<?php echo($server); ?><?= $install_directory ?>/sounds/alert.m4a";
+				 else
+				   snd.src = "<?php echo($server); ?><?= $install_directory ?>/sounds/alert.wav";
+					
+				 snd.play();
+			  }
+
+		}
     }
   }
 
@@ -965,7 +1029,7 @@ if (($num_support_available_users == $num_support_hidden_users || $num_support_a
    
                 switch(s_id) {
                         case 1 : {
-                                var winLiveHelp = window.open('<?php echo($server); ?><?= $install_directory ?>/index.php?' + 'DOMAINID=' + _vlDomain + '&URL=' + document.location<?php if ($department != '') { echo(" + '&DEPARTMENT=" . $department . "' "); } ?> + '&TITLE=' + title + '&SERVER=<?php echo($server); ?>&COOKIE=<?php echo($cookie_domain); ?>&LANGUAGE=' + _vlLanguage + '&CHARSET=<?php echo(CHARSET); ?>', 'SUPPORTER' + s_id + '_<?=$domain_id?>', size)
+                                var winLiveHelp = window.open('<?php echo($server); ?><?= $install_directory ?>/index.php?' + 'DOMAINID=' + _vlDomain + '&AGENTID=' + _vlAgent + '&URL=' + document.location<?php if ($department != '') { echo(" + '&DEPARTMENT=" . $department . "' "); } ?> + '&TITLE=' + title + '&SERVER=<?php echo($server); ?>&COOKIE=<?php echo($cookie_domain); ?>&LANGUAGE=' + _vlLanguage + '&CHARSET=<?php echo(CHARSET); ?>', 'SUPPORTER' + s_id + '_<?=$domain_id?>', size)
                                 break
                         }
                         case 4 : {
@@ -995,13 +1059,13 @@ if ($tracker_enabled == true) {
                 if (trackingInitalized == 0)
                 {
                         //-- Geo Location data
-                        trkUrl = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=' + s_id + '&TIME='+ time + '&WIDTH=' + screen.width + '&HEIGHT=' + screen.height + '&TITLE=' + title + '&URL=' + document.location + '&REFERRER=' + referrer + '&COOKIE=<?php echo($cookie_domain); ?>&USERID=<?=$_REQUEST['USERID']?>&services=<?=$_REQUEST['services']?>' + '&LANGUAGE=' + _vlLanguage + '&DOMAINID=' + _vlDomain + '&SERVICE=' + _vlService + '&region=' + region + '&country=' + country + '&city=' + city + '&countrycode=' + countrycode + '&latitude=' + latitude + '&longitude=' + longitude;
+                        trkUrl = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=' + s_id + '&TIME='+ time + '&WIDTH=' + screen.width + '&HEIGHT=' + screen.height + '&TITLE=' + title + '&URL=' + document.location + '&REFERRER=' + referrer + '&COOKIE=<?php echo($cookie_domain); ?>&USERID=<?=$_REQUEST['USERID']?>&services=<?=$_REQUEST['services']?>' + '&LANGUAGE=' + _vlLanguage + '&DOMAINID=' + _vlDomain + '&AGENTID=' + _vlAgent + '&SERVICE=' + _vlService + '&region=' + region + '&country=' + country + '&city=' + city + '&countrycode=' + countrycode + '&latitude=' + latitude + '&longitude=' + longitude;
                         trackerStatus.src = trkUrl;
                         trackingInitalized = 1;
                 }
                 else {
                   if (trackerLoaded == 1) {
-                    trkUrl = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=' + s_id + '&TIME=' + time + '&USERID=<?=$_REQUEST['USERID']?>&services=<?=$_REQUEST['services']?>'+ '&DOMAINID=' + _vlDomain + '&LANGUAGE=' + _vlLanguage + '&SERVICE=' + _vlService;
+                    trkUrl = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=' + s_id + '&TIME=' + time + '&USERID=<?=$_REQUEST['USERID']?>&services=<?=$_REQUEST['services']?>'+ '&DOMAINID=' + _vlDomain + '&AGENTID=' + _vlAgent + '&LANGUAGE=' + _vlLanguage + '&SERVICE=' + _vlService;
                     trackerStatus.onload = checkInitiate;
                     trackerStatus.src = trkUrl;
                   }
@@ -1107,20 +1171,54 @@ function startLivehelp()
 	  
 		// 377 - 238
 		// 75,146,155,169
-		// 170,146,245,169
+ 	    // 170,146,245,169
 
     html = '<map name="LiveHelpInitiateChatMap_1">';
     html += '<area id="areaAccept" shape="rect" coords="52,130,132,153" href="javascript:none();" onClick="s1.openLiveHelp();s1.acceptInitiateChat( false );" alt="Accept"/>';
     html += '<area id="areaDecline"  shape="rect" coords="147,130,222,153" href="javascript:none();" onClick="s1.declineInitiateChat( false );" alt="Decline"/>';
     html += '</map>';
 
-    html += '<div id="floatLayer_1" style="position:fixed; left: auto !important; top: auto !important; visibility: hidden; right: 0 !important; bottom: 0 !important; z-index:2147483647;">'; // Max z-index value.
+	<?php if ( $invitation_position == 'left' ) : ?>
+		html += '<div id="floatLayer_1" style="position:fixed; left: 0 !important; top: auto !important; visibility: hidden; right: auto !important; bottom: 0 !important; z-index:2147483647;">'; // Max z-index value.
+	<?php elseif ( $invitation_position == 'right' ) : ?>
+		html += '<div id="floatLayer_1" style="position:fixed; left: auto !important; top: auto !important; visibility: hidden; right: 0 !important; bottom: 0 !important; z-index:2147483647;">'; // Max z-index value.
+	<?php elseif ( $invitation_position == 'center' ) : ?>
+		html += '<div id="floatLayer_1" style="position:fixed; left: 0 !important; top: auto !important; visibility: hidden; right: 0 !important; bottom: 0 !important; z-index:2147483647;">'; // Max z-index value.
+		html += '<div style="position: relative; left: 50%; float: left;"><div style="position: relative; left: -50%; float: left;">';
+	<?php endif; ?>
+	
+	
+	
 		html += '<div align="center"><img id="initiateDialog" src="<?php echo($server); echo($server_directory); ?>/<? echo($eserverName); ?>/domains/'+_vlDomain +'/i18n/'+ _vlLanguage + '/pictures/<? echo($invitation_name); ?>?v2" alt="<?php echo($server); ?> Platform" width="277" height="164" border="0" usemap="#LiveHelpInitiateChatMap_1"/></div>';
+		
+		
+		
+		<?php if ( $invitation_position == 'center' ) : ?>
+			html += '</div></div>';
+		<?php endif; ?>
+		
     html += '</div>';
 
-    html += '<div id="floatLayer_message_1" style="position: fixed; left: auto !important; top: auto !important; visibility: hidden; right: 0 !important; bottom: 0 !important; z-index:2147483647;">'; // Max z-index value.
+	<?php if ( $invitation_position == 'left' ) : ?>
+		html += '<div id="floatLayer_message_1" style="position: fixed; left: 0 !important; top: auto !important; visibility: hidden; right: auto !important; bottom: 0 !important; z-index: 2147483647;">'; // Max z-index value.
+	<?php elseif ( $invitation_position == 'right' ) : ?>
+		html += '<div id="floatLayer_message_1" style="position: fixed; left: auto !important; top: auto !important; visibility: hidden; right: 0 !important; bottom: 0 !important; z-index: 2147483647;">'; // Max z-index value.
+	<?php elseif ( $invitation_position == 'center' ) : /* center */ ?>
+		html += '<div id="floatLayer_message_1" style="position: fixed; left: 0 !important; top: auto !important; visibility: hidden; right: 0 !important; bottom: 0 !important; z-index: 2147483647;">'; // Max z-index value.
+		
+ 		html += '<div style="position: relative; left: 50%; float: left;"><div style="position: relative; left: -50%; float: left;">'; 
+		
+	<?php endif; ?> 
+	
+	
 		html += '<div align="center" style="background: url(\'<?php echo($server); echo($server_directory); ?>/<? echo($eserverName); ?>/pictures/message-box.gif\') no-repeat top left; width: 230px; height: 101px; overflow: hidden;"><div style="height: 23px;"><a href="javascript:;" onclick="s1.declineInitiateChat( true );" style="display: block; float: right; height: 23px; width: 23px;"></a><a href="javascript:;" onclick="s1.openLiveHelp();s1.acceptInitiateChat( true );" style="display: block; float: right; height: 23px; width: 23px;"></a></div><div onclick="s1.openLiveHelp();s1.acceptInitiateChat( true );" id="floatLayer_message_text_1" style="font-size: 11px !important; line-height: normal !important; font-family: Verdana !important; cursor: pointer; text-align: center; padding: 18px 10px 5px 10px;"></div></div>';
-    html += '</div>';
+			
+			
+	<?php if ( $invitation_position == 'center' ) : ?>
+		 html += '</div></div>'; 
+	<?php endif; ?>
+			
+		html += '</div>';
 
 		var div = document.createElement( 'div' );
 		div.innerHTML = html;
@@ -1130,36 +1228,38 @@ function startLivehelp()
    
     document.writeln('<div iframe name="initiateChatResponse_1" id="initiateChatResponse_1" src="<?php echo($server); echo($server_directory); ?>/<? echo($eserverName); ?>/blank.php?&LANGUAGE=' + _vlLanguage + ' frameborder="0" width="1" height="1" style="visibility: hidden; border-style:none"></iframe>');           
     document.writeln('</div>');
-     
+                                                        
    }
 
 // Custom offline form
  var _vlExternalLink = 0;
 
+  
 // not allowed conuntries restriction   
 if (_vlnot_allowed_country ==0) { 
-    
-  // Offline 
-   if ( _vlStatus_indicator  &&  _vloffline ==1 &&_custom_offline_form !='') {
+     
+  // Offline for custm form 
+  if ( _vlStatus_indicator  &&  _vloffline ==1 &&_custom_offline_form !='') {
       document.writeln('<a href="<?php echo($offline_custom_link);?>" id="livechatLink">');
       document.writeln('<img src="<?php echo($server); echo($server_directory); ?>/<? echo($eserverName); ?>/import/status.php?service_id=' + _vlService + '&LANGUAGE=' + _vlLanguage + '&DOMAINID=' + _vlDomain + '" id="LiveHelpStatus_1" name="LiveHelpStatus_1" border="0" onmouseover="s1.openInfo(this, event);" onmouseout="s1.closeInfo();"/></a>');
       _vlExternalLink =1;
    }
 
-// Online 
-   if(_vlStatus_indicator  && _vlExternalLink ==0 && _vlofftracking ==0){
-    document.writeln('<a href="<?php echo($server);  echo($server_directory); ?>/<? echo($eserverName); ?>/index.php" id="livechatLink" target="_blank" onclick="s1.openLiveHelp(); s1.closeInfo(); return false">');
-    document.writeln('<img src="<?php echo($server); echo($server_directory); ?>/<? echo($eserverName); ?>/import/status.php?service_id=' + _vlService + '&LANGUAGE=' + _vlLanguage + '&DOMAINID=' + _vlDomain + '" id="LiveHelpStatus_1" name="LiveHelpStatus_1" border="0" onmouseover="s1.openInfo(this, event);" onmouseout="s1.closeInfo();"/></a>');
+// Regular chat option for domain
+   if(_vlStatus_indicator  && _vlExternalLink ==0 && _vlofftracking ==0 && _vlAgent ==0){
+     document.writeln('<a href="<?php echo($server);  echo($server_directory); ?>/<? echo($eserverName); ?>/index.php" id="livechatLink" target="_blank" onclick="s1.openLiveHelp(); s1.closeInfo(); return false">');
+     document.writeln('<img src="<?php echo($server); echo($server_directory); ?>/<? echo($eserverName); ?>/import/status.php?service_id=' + _vlService + '&LANGUAGE=' + _vlLanguage + '&DOMAINID=' + _vlDomain + '" id="LiveHelpStatus_1" name="LiveHelpStatus_1" border="0" onmouseover="s1.openInfo(this, event);" onmouseout="s1.closeInfo();"/></a>');
    }
+ else
+    if(_vlStatus_indicator  && _vlExternalLink ==0 && _vlofftracking ==0 && _vlAgent !=0){     
+      document.writeln('<a href="<?php echo($server);  echo($server_directory); ?>/<? echo($eserverName); ?>/index.php" id="livechatLink" target="_blank" onclick="s1.openLiveHelp(); s1.closeInfo(); return false">');
+      document.writeln('<img src="<?php echo($server); echo($server_directory); ?>/<? echo($eserverName); ?>/import/status.php?service_id=' + _vlService + '&LANGUAGE=' + _vlLanguage + '&DOMAINID=' + _vlDomain + '&AGENTID=' + _vlAgent +'" id="LiveHelpStatus_1" name="LiveHelpStatus_1" border="0" onmouseover="s1.openInfo(this, event);" onmouseout="s1.closeInfo();"/></a>');     
+   } 
+  }
  }
-}
 
 //-->
 <?php
 }
 
 ?>
-
-
-
-

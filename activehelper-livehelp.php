@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * @package ActiveHelper Live Help
  */
@@ -6,7 +6,7 @@
 Plugin Name: ActiveHelper Live Help
 Plugin URI: http://www.activehelper.com
 Description: Provide superior service by real time chat with your website visitors and interact them through your website. Create a more efficient connection with your website visitors, increase your sales and customer satisfaction.
-Version: 2.9.5
+Version: 3.0.0
 Author: ActiveHelper Inc
 Author URI: http://www.activehelper.com
 */
@@ -30,13 +30,13 @@ $activeHelper_liveHelp['baseDir'] = dirname(__FILE__);
 $activeHelper_liveHelp['sourcesDir'] = $activeHelper_liveHelp['baseDir'] . '/sources';
 $activeHelper_liveHelp['importDir'] = $activeHelper_liveHelp['baseDir'] . '/server/import';
 $activeHelper_liveHelp['domainsDir'] = $activeHelper_liveHelp['baseDir'] . '/server/domains';
-$activeHelper_liveHelp['agentsDir'] = $activeHelper_liveHelp['baseDir'] . '/server/pictures/agents';
+$activeHelper_liveHelp['agentsDir'] = $activeHelper_liveHelp['baseDir'] . '/server/agents';
 $activeHelper_liveHelp['languagesDir'] = 'activehelper_livehelp/languages';
 
 $activeHelper_liveHelp['baseUrl'] = plugins_url('', __FILE__);
 $activeHelper_liveHelp['serverUrl'] = $activeHelper_liveHelp['baseUrl'] . '/server';
 $activeHelper_liveHelp['domainsUrl'] = $activeHelper_liveHelp['baseUrl'] . '/server/domains';
-$activeHelper_liveHelp['agentsUrl'] = $activeHelper_liveHelp['baseUrl'] . '/server/pictures/agents';
+$activeHelper_liveHelp['agentsUrl'] = $activeHelper_liveHelp['baseUrl'] . '/server/agents';
 $activeHelper_liveHelp['imagesUrl'] = $activeHelper_liveHelp['baseUrl'] . '/images';
 
 require_once($activeHelper_liveHelp['sourcesDir'] . '/livehelp_widget.php');
@@ -764,7 +764,7 @@ function activeHelper_liveHelp_about()
 							<table><tbody><tr><td class="first t">
 								' . __('Version', 'activehelper_livehelp') . '
 							</td><td class="b">
-								' . __('2.9.5', 'activehelper_livehelp') . '
+								' . __('3.0.0', 'activehelper_livehelp') . '
 							</td></tr></tbody></table>
 							<table><tbody><tr><td class="first t">
 								' . __('Check for Update', 'activehelper_livehelp') . '
