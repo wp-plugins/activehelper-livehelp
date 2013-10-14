@@ -172,9 +172,7 @@ if (is_array($row))
                            " - UNIX_TIMESTAMP(r.request)) AS `pagetime` , r.city ,r.region, r.country_code,r.country,r.latitude,r.longitude FROM " . $table_prefix . "requests AS r LEFT JOIN " .
                            "(select id, request, active, username, department, rating from ".$table_prefix."sessions where request = ".$visitorId." order by id desc LIMIT 1) AS s on r.id = s.request WHERE DATE_FORMAT(r.datetime, '%Y-%m-%d') = '$date' ".
                            "AND `status` = '0' AND `active` in (-1, -3) and id_domain in (" . $domains_set . ") " .
-                           ($visitorId == "" ? "": "And r.id=" . $visitorId) . " group by r.id ORDER BY r.request LIMIT " . ( (int) $record ) . ", 6 ";
-
-
+                            ($visitorId == "" ? "": "And r.id=" . $visitorId) . " group by r.id ORDER BY r.request LIMIT " . ( (int) $record ) . ", 6 ";
 
                   break;
                }
@@ -214,24 +212,21 @@ if (is_array($row))
                   $query = "SELECT r.id As rid, s.id As sid, s.active, s.username, r.ipaddress, r.useragent, r.resolution, r.url, r.title, ".
                   "r.referrer, r.path, r.services, r.initiate, s.department, s.rating, (UNIX_TIMESTAMP(r.refresh) - UNIX_TIMESTAMP(r.datetime)) ".
                   "AS `sitetime`, (UNIX_TIMESTAMP(r.refresh) - UNIX_TIMESTAMP(r.request)) AS `pagetime` , r.city ,r.region, r.country_code,r.country,r.latitude,r.longitude FROM " . $table_prefix .
-                  "requests AS r LEFT JOIN (select id, request, active, username, department, rating from ".$table_prefix."sessions where request = ".$visitorId." order by id desc LIMIT 1) AS s on r.id = s.request WHERE (UNIX_TIMESTAMP(NOW())  - ".
-                  "UNIX_TIMESTAMP(r.refresh)) < '45' AND r.status = '0' and r.id_domain in (" . $domains_set . ") " .
+                  "requests AS r LEFT JOIN " . $table_prefix . "sessions  AS s on r.id = s.request  WHERE r.refresh > SUBTIME(NOW(), '45') ".
+                  " AND r.status = '0' and r.id_domain in (" . $domains_set . ") " .
                   ($visitorId == "" ? "": "And r.id=" . $visitorId) . " group by r.id ORDER BY r.request LIMIT " . ( (int) $record ) . ", 6";
-
-
 
                   break;
                }
+               // new standard tracking SQL
             case "standard":
                {
                   $query = "SELECT r.id As rid, s.id As sid, s.active, s.username, r.ipaddress, r.url, r.title, r.number_pages, ".
                   "(UNIX_TIMESTAMP(r.refresh) - UNIX_TIMESTAMP(r.datetime)) AS `sitetime`, (UNIX_TIMESTAMP(r.refresh) - UNIX_TIMESTAMP".
-                  "(r.request)) AS `pagetime` FROM " . $table_prefix . "requests AS r LEFT JOIN (select id, request, active, username, department, rating from ".$table_prefix."sessions order by id desc) AS s on r.id =".
-                  " s.request WHERE (UNIX_TIMESTAMP(NOW())  - UNIX_TIMESTAMP(r.refresh)) < '45' AND r.status = '0' and ".
-                  "r.id_domain in (".$domains_set . ") " . ($visitorId == "" ? "": "And r.id=" . $visitorId) . " group by r.id ".
-                  "ORDER BY r.request LIMIT " . ( (int) $record ) . ", 100";
-
-
+                  "(r.request)) AS `pagetime` FROM " . $table_prefix . "requests AS r LEFT JOIN " .$table_prefix."sessions AS s on r.id = s.request".
+                  " WHERE  r.refresh > SUBTIME(NOW(), '45')  AND r.status = '0' and ".
+                  "r.id_domain in (".$domains_set . ") " . ($visitorId == "" ? "": "And r.id=" . $visitorId) .
+                  " ORDER BY r.request LIMIT " . ( (int) $record ) . ", 100";
 
                   break;
                }
@@ -240,18 +235,19 @@ if (is_array($row))
                   $query = "SELECT r.id As rid, r.title, (UNIX_TIMESTAMP(r.refresh) - UNIX_TIMESTAMP".
                   "(r.datetime)) AS `sitetime`, (UNIX_TIMESTAMP(r.refresh) - UNIX_TIMESTAMP(r.request)) AS `pagetime` FROM " .
                   $table_prefix . "requests AS r WHERE ".
-                  "(UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(r.refresh)) < '45' AND r.status = '0' and r.id_domain in (" .
+                  " r.refresh > SUBTIME(NOW(), '45') AND r.status = '0' and r.id_domain in (" .
                   $domains_set . ") " . ($visitorId == "" ? "": "And r.id=" . $visitorId) .
                   " group by r.id ORDER BY r.request LIMIT " . ( (int) $record ) . ", 100";
 
-
-
                   break;
+                  
+                  
                }
          }
       }
-//error_log("\n query: ".$query."\n", 3, "../error.log");
 
+   
+   
       $rows = $SQL->selectall($query);
       if (is_array($rows))
       {

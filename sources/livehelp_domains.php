@@ -206,9 +206,9 @@ function activeHelper_liveHelp_domainsGenerateScript()
         'id' => __('Indonesian', 'activehelper_livehelp'),
         'lt' => __('Lithuanian', 'activehelper_livehelp'),
         'ro' => __('Romanian', 'activehelper_livehelp'),
-
         'sl' => __('Slovenian', 'activehelper_livehelp'),
         'et' => __('Estonian', 'activehelper_livehelp'),
+        'lv' => __('Latvian', 'activehelper_livehelp'),
         
 	);
 
@@ -1010,10 +1010,9 @@ function activeHelper_liveHelp_domainsSettings()
         'id' => __('Indonesian', 'activehelper_livehelp'),
         'lt' => __('Lithuanian', 'activehelper_livehelp'), 
         'ro' => __('Romanian', 'activehelper_livehelp'),
-
         'sl' => __('Slovenian', 'activehelper_livehelp'),
         'et' => __('Estonian', 'activehelper_livehelp'),
-        
+        'lv' => __('Latvian', 'activehelper_livehelp'),
 	);
 
 	foreach ($activeHelper_liveHelp['languages'] as $language)
@@ -1623,7 +1622,7 @@ function activeHelper_liveHelp_domainsSettingsQuery($domain)
 			('smtp_port', '25', {$domain}),
 			('from_email', 'support@activehelper.com', {$domain}),
 			('login_timeout', '20', {$domain}),
-			('chat_background_img', 'grey', {$domain}),
+			('chat_background_img', 'activehelper', {$domain}),
 			('chat_invitation_img', 'initiate_dialog.gif', {$domain}),
 			('chat_button_img', 'send.gif', {$domain}),
 			('chat_button_hover_img', 'send_hover.gif', {$domain}),

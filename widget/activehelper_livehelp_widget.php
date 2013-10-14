@@ -6,7 +6,7 @@
 Plugin Name: ActiveHelper Live Help External Widget
 Plugin URI: http://www.activehelper.com
 Description: Provide superior service by real time chat with your website visitors and interact them through your website. Create a more efficient connection with your website visitors, increase your sales and customer satisfaction.
-Version: 1.0
+Version: 1.5
 Author: ActiveHelper Inc
 Author URI: http://www.activehelper.com
 */
@@ -130,9 +130,9 @@ class activeHelper_liveHelp_externalWidget extends WP_Widget
             'id' => __('Indonesian', 'activehelper_livehelp_externalwidget'),
             'lt' => __('Lithuanian', 'activehelper_livehelp_externalwidget'),
             'ro' => __('Romanian', 'activehelper_livehelp_externalwidget'),
-
 			'sl' => __('Slovenian', 'activehelper_livehelp'),
 			'et' => __('Estonian', 'activehelper_livehelp'),
+			'lv' => __('Latvian', 'activehelper_livehelp')
 		);
 
 		foreach ($__text as $code => $name)

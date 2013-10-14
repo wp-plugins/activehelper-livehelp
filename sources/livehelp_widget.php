@@ -197,9 +197,9 @@ class activeHelper_liveHelp_widget extends WP_Widget
             'id' => __('Indonesian', 'activehelper_livehelp'),
             'lt' => __('Lithuanian', 'activehelper_livehelp'), 
             'ro' => __('Romanian', 'activehelper_livehelp'),
-
 			'sl' => __('Slovenian', 'activehelper_livehelp'),
 			'et' => __('Estonian', 'activehelper_livehelp'),
+            'lv' => __('Latvian', 'activehelper_livehelp')
 		);
 
 		foreach ($__text as $code => $name)

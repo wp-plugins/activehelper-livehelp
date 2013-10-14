@@ -1,19 +1,21 @@
 === ActiveHelper LiveHelp Live Chat===
 Contributors: activehelper
-Tags: live chat, live help, live support, customer service, wordpress plugin, livechat,  customer service, visitor tracking, visitor statistics
+Tags: live chat, live help, live support, customer service, wordpress plugin, livechat plugin, visitor tracking, visitor chat
 Requires at least: 3.2
-Tested up to: 3.5.1
-Stable tag: 3.0.0
+Tested up to: 3.6.1
+Stable tag: 3.1.0
 
 ActiveHelper LiveHelp is a powerful Live Chat Server Plugin for WordPress. 
 
 == Description ==
 
+The most affordable and scalable Live Chat plugin for WordPress. ActiveHelper LiveHelp Live Chat System is perfect for small and medium WordPress sites. 
+
 Monitor in real time your website visitors. Know how many visitors are in the website, who referred, where are from, what keywords we reused to find the website and the visitors navigation history. Know decisive information of your website visitors patterns, conversations and agents service.
 
 Geo Location based on IP to location for the visitors on your website. See the visitors hometown map. Run the Live Help on your web server having 100% control over your data and many domains that you have.
 
-The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system is translated to English, Spanish, German, Portuguese, Italian, French, Czech, Swedish, Norwegian, Turkey, Farsi, Greek, Hebrew, Serbo-Croatian, Russian , Hungarian ,Dutch, Finnish, Danish, Traditional Chinese, Simplified Chinese , Arab , Polish , Bulgarian , Slovak , Lithuanian ,  Croatian , Indonesian , Romanian, Slovenian and Estonian.
+The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system is translated to English, Spanish, German, Portuguese, Italian, French, Czech, Swedish, Norwegian, Turkey, Farsi, Greek, Hebrew, Serbo-Croatian, Russian , Hungarian ,Dutch, Finnish, Danish, Traditional Chinese, Simplified Chinese , Arab , Polish , Bulgarian , Slovak , Lithuanian ,  Croatian , Indonesian , Romanian, Slovenian, Estonian and Latvian.
 
 = Main Features =
 
@@ -65,6 +67,7 @@ The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system i
 * Support panel mobile for your Android phone and tablet
 * Support panel mobile for your BlackBerry PlayBook
 * Customizable Look & Feel
+* Skin Support
 
 
 <h4>Try Free</h4>
@@ -105,7 +108,7 @@ For further help you may choose any of following options:
 1.  Multi Language Status Indicator as Widget
 2.  Chat Window
 3.  Proactive Invitation
-4.  Offline Form Multi Language Support
+4.  Live Chat from a Mobile Device
 5.  LiveHelp Server Dashboard - Plugin admin area
 6.  Support Panel Desktop App
 7.  Support Panel Mobile App
@@ -230,6 +233,15 @@ For further help you may choose any of following options:
 * Core security update
 * Other small improvements and bug fixes
 
+= 3.1.0 =
+* Improved tracking performance
+* Reduce Server consume around 45%
+* New Live Chat default skin
+* New Latvian Language
+* Core security update
+* Other small improvements and bug fixes
+
+
 == Upgrade Notice ==
 
 = 2.6.0 =
@@ -347,5 +359,13 @@ For further help you may choose any of following options:
 * Enhanced "client info" window
 * Fixed live chat scroll issue on IOS Iphone/Ipad
 * Fixed proactive messages in third-party domains
+* Core security update
+* Other small improvements and bug fixes
+
+= 3.1.0 =
+* Improved tracking performance
+* Reduce Server consume around 45%
+* New Live Chat default skin
+* New Latvian Language
 * Core security update
 * Other small improvements and bug fixes

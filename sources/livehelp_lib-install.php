@@ -1,7 +1,7 @@
 <?php
 /**
  * @package ActiveHelper Live Help
- * @Version 2.9.2 
+ * @Version 3.1.0 
  */
 
 if (!defined('ACTIVEHELPER_LIVEHELP'))
@@ -246,9 +246,9 @@ function activeHelper_liveHelp_installQuery()
         INSERT INTO wp_livehelp_languages VALUES ('id', 'Indonesian', 'utf-8');
         INSERT INTO wp_livehelp_languages VALUES ('lt', 'Lithuanian', 'utf-8');
         INSERT INTO wp_livehelp_languages VALUES ('ro', 'Romanian', 'utf-8');
-
 		INSERT INTO wp_livehelp_languages VALUES ('sl', 'Slovenian', 'utf-8');
 		INSERT INTO wp_livehelp_languages VALUES ('et', 'Estonian', 'utf-8');
+        INSERT INTO wp_livehelp_languages VALUES ('lv', 'Latvian', 'utf-8');
 
 		CREATE TABLE IF NOT EXISTS `wp_livehelp_languages_domain` (
 			`Id_domain` int(11) NOT NULL default '0',
@@ -414,9 +414,7 @@ function activeHelper_liveHelp_installQuery()
 		INSERT INTO wp_livehelp_settings VALUES (34, 'smtp_port', '25', 0);
 		INSERT INTO wp_livehelp_settings VALUES (35, 'from_email', 'support@activehelper.com', 0);
 		INSERT INTO wp_livehelp_settings VALUES (36, 'login_timeout', '20', 0);
-
-		INSERT INTO wp_livehelp_settings VALUES (37, 'chat_background_img', 'grey', 0);
-
+		INSERT INTO wp_livehelp_settings VALUES (37, 'chat_background_img', 'activehelper', 0);
 		INSERT INTO wp_livehelp_settings VALUES (38, 'chat_invitation_img', 'initiate_dialog.gif', 0);
 		INSERT INTO wp_livehelp_settings VALUES (39, 'chat_button_img', 'send.gif', 0);
 		INSERT INTO wp_livehelp_settings VALUES (40, 'chat_button_hover_img', 'send_hover.gif', 0);
@@ -437,7 +435,7 @@ function activeHelper_liveHelp_installQuery()
 		INSERT INTO wp_livehelp_settings VALUES (55, 'disable_agent_bannner', 0, 0);        
         INSERT INTO wp_livehelp_settings VALUES (56, 'company', '0', 0);
         INSERT INTO wp_livehelp_settings VALUES (57, 'phone', '0', 0);
-		INSERT INTO wp_livehelp_settings VALUES (58, 'database_version', '3.0.0', 0);
+		INSERT INTO wp_livehelp_settings VALUES (58, 'database_version', '3.1.0', 0);
 
 		CREATE TABLE IF NOT EXISTS `wp_livehelp_statuses` (
 			`id_status` int(11) NOT NULL default '0',
@@ -834,8 +832,57 @@ function activeHelper_liveHelp_updateDatabase($database_version, $plugin_version
   if ($database_version != $plugin_version) {
 	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-	dbDelta("ALTER TABLE `{$wpdb->prefix}livehelp_users` ADD answers int(1) DEFAULT '1' AFTER status");
-	dbDelta("ALTER TABLE `{$wpdb->prefix}livehelp_sessions` ADD id_agent BIGINT(20) AFTER id_domain");
+    if ($database_version == "2.9.5") {
+        
+     $table_name = $wpdb->prefix . "livehelp_users";
+
+	 $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+			`id` bigint(20) NOT NULL auto_increment,
+			`username` varchar(50) NOT NULL default '',
+			`password` varchar(100) NOT NULL default '',
+			`firstname` varchar(50) NOT NULL default '',
+			`lastname` varchar(50) NOT NULL default '',
+			`email` varchar(50) NOT NULL default '',
+			`department` varchar(100) NOT NULL default '',
+			`datetime` datetime NOT NULL default '0000-00-00 00:00:00',
+			`refresh` datetime NOT NULL default '0000-00-00 00:00:00',
+			`disabled` int(1) NOT NULL default '0',
+			`privilege` int(1) NOT NULL default '0', 
+			`photo` varchar(10) DEFAULT NULL,
+			`status` bigint(20) NOT NULL default '0',
+			`answers` int(1) NOT NULL default '1',
+		   	PRIMARY KEY (`id`),
+			UNIQUE KEY `uk_users_username` (`username`)
+		) ENGINE=MyISAM DEFAULT CHARSET=utf8;"; 
+
+     dbDelta($sql);
+    
+	 $table_name = $wpdb->prefix . "livehelp_sessions";
+	 
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+			`id` bigint(20) NOT NULL auto_increment,
+			`request` bigint(20) NOT NULL default '0',
+			`username` varchar(30) NOT NULL default '',
+			`datetime` datetime NOT NULL default '0000-00-00 00:00:00',
+			`refresh` datetime NOT NULL default '0000-00-00 00:00:00',
+			`email` varchar(50) NOT NULL default '',
+            `phone` varchar(20) DEFAULT NULL,
+            `company` varchar(30) DEFAULT NULL,
+			`server` varchar(100) NOT NULL default '',
+			`department` varchar(50) NOT NULL default '',
+			`rating` int(1) NOT NULL default '0',
+			`typing` int(1) NOT NULL default '0',
+			`transfer` int(1) NOT NULL default '0',
+			`active` int(1) NOT NULL default '0',
+			`language` char(2) NOT NULL default '',
+			`id_user` bigint(20) default NULL,
+			`id_domain` bigint(20) default NULL,
+			`id_agent` bigint(20) default NULL,
+			PRIMARY KEY (`id`),
+			KEY `IDX_R_SESSOION` (`request`)
+		) ENGINE=MyISAM AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;";
+    
+	 dbDelta($sql);
 
 	dbDelta("INSERT INTO {$wpdb->prefix}livehelp_languages VALUES ('sl', 'Slovenian', 'utf-8')");
 	dbDelta("INSERT INTO {$wpdb->prefix}livehelp_languages VALUES ('et', 'Estonian', 'utf-8')");
@@ -843,7 +890,22 @@ function activeHelper_liveHelp_updateDatabase($database_version, $plugin_version
 	$wpdb->query("UPDATE `{$wpdb->prefix}livehelp_settings` SET value ='grey' WHERE name ='chat_background_img'");
 
     $database_version = "3.0.0";
+    }
+    
+  if ($database_version == "3.0.0") {
+        
+	$table_name = $wpdb->prefix . "livehelp_requests";
+	
+    $sql = "CREATE INDEX IDX_R_REQUEST ON " . $table_name .  "  (refresh)";
+	$wpdb->query($sql);
+		
+    dbDelta("INSERT INTO {$wpdb->prefix}livehelp_languages VALUES ('lv', 'Latvian', 'utf-8')");
+     
+     $database_version = "3.1.0";
+      
+    }
   }
+  
 
   if ($database_version != $plugin_version) {
     $database_version = $plugin_version;
