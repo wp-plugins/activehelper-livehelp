@@ -330,13 +330,13 @@ if($_REQUEST['COMPLETE'] == '' || $error != '' || $invalid_email != '' || $inval
       <tr>
         <td align="left" >
             <p class="label"><span><?php echo($your_name_label); ?>:</span></p>
-            <input name="NAME" type="text" id="NAME" class="inputbox" value="<?php echo($name); ?>" size="40" style="width:210px" />
+            <input name="NAME" type="text" id="NAME" class="inputbox" value="<?php echo(htmlspecialchars($name)); ?>" size="40" style="width:210px" />
         </td>
       </tr>
       <tr>
         <td align="left" >
             <p class="label"><span><?php echo($your_email_label); ?>:</span></p>
-            <input name="EMAIL" type="text" id="EMAIL" class="inputbox" value="<?php echo($email); ?>" size="40" style="width:210px" />
+            <input name="EMAIL" type="text" id="EMAIL" class="inputbox" value="<?php echo(htmlspecialchars($email)); ?>" size="40" style="width:210px" />
         </td>
       </tr>
       
@@ -344,7 +344,7 @@ if($_REQUEST['COMPLETE'] == '' || $error != '' || $invalid_email != '' || $inval
       <tr>
          <td align="left" >  
             <p class="label"><span><?php echo($your_phone_label); ?>:</span></p>   
-             <input name="PHONE" type="text" id="PHONE" class="inputbox" value="<?php echo($phone); ?>" size="40" style="width:210px" />               
+             <input name="PHONE" type="text" id="PHONE" class="inputbox" value="<?php echo(htmlspecialchars($phone)); ?>" size="40" style="width:210px" />
          </td>
       </tr>
       
@@ -356,7 +356,7 @@ if($_REQUEST['COMPLETE'] == '' || $error != '' || $invalid_email != '' || $inval
       <tr>
         <td align="left" >
             <p class="label"><span><?php echo($your_company_label); ?>:</span></p>                        
-            <input name="COMPANY" type="text" id="COMPANY" class="inputbox" value="<?php echo($company); ?>" size="40" style="width:210px" />                                    
+            <input name="COMPANY" type="text" id="COMPANY" class="inputbox" value="<?php echo(htmlspecialchars($company)); ?>" size="40" style="width:210px" />
         </td>
       </tr>
      
@@ -365,7 +365,7 @@ if($_REQUEST['COMPLETE'] == '' || $error != '' || $invalid_email != '' || $inval
       <tr>
         <td align="left" >
           <p class="label" style="width:100%"><span><?php echo($message_label); ?>:</span></p>
-          <textarea name="MESSAGE" cols="30" rows="4" id="MESSAGE" style="width:360px; height: 72px; vertical-align: middle; font-family:<?php echo($chat_font_type); ?>; font-size:<?php echo($guest_chat_font_size); ?>;"><?php echo($message); ?></textarea>
+          <textarea name="MESSAGE" cols="30" rows="4" id="MESSAGE" style="width:360px; height: 72px; vertical-align: middle; font-family:<?php echo($chat_font_type); ?>; font-size:<?php echo($guest_chat_font_size); ?>;"><?php echo(htmlspecialchars($message)); ?></textarea>
         </td>
       </tr>
       
@@ -520,13 +520,13 @@ if($_REQUEST['COMPLETE'] == '' || $error != '' || $invalid_email != '' || $inval
         <tr>
             <td valign="bottom">
                 <p class="label"><span><?php echo($your_email_label); ?>:</span></p>
-                <em><?php echo($email); ?></em>
+                <em><?php echo(htmlspecialchars($email)); ?></em>
             </td>
         </tr>
         <tr>
             <td valign="bottom">
                 <p class="label"><span><?php echo($your_name_label); ?>:</span></p>
-                <em><?php echo($name); ?></em>
+                <em><?php echo(htmlspecialchars($name)); ?></em>
             </td>
         </tr>
         <tr>
@@ -535,7 +535,7 @@ if($_REQUEST['COMPLETE'] == '' || $error != '' || $invalid_email != '' || $inval
         <tr>
             <td align="right" valign="top">
                 <div align="center">
-                <textarea name="MESSAGE" cols="20" rows="6" id="MESSAGE" style="width:340px; font-family:<?php echo($chat_font_type); ?>; font-size:<?php echo($guest_chat_font_size); ?>;"><?php echo($message); ?></textarea>
+                <textarea name="MESSAGE" cols="20" rows="6" id="MESSAGE" style="width:340px; font-family:<?php echo($chat_font_type); ?>; font-size:<?php echo($guest_chat_font_size); ?>;"><?php echo(htmlspecialchars($message)); ?></textarea>
                 </div>
             </td>
         </tr>

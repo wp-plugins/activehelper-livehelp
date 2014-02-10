@@ -1,7 +1,7 @@
 <?php
 /**
  * @package ActiveHelper Live Help
- * @Version 3.1.0 
+ * @Version 3.1.5 
  */
 
 if (!defined('ACTIVEHELPER_LIVEHELP'))
@@ -906,6 +906,11 @@ function activeHelper_liveHelp_updateDatabase($database_version, $plugin_version
     }
   }
   
+   if ($database_version == "3.1.0") {
+     
+     $database_version = "3.1.5";
+      
+  }
 
   if ($database_version != $plugin_version) {
     $database_version = $plugin_version;
