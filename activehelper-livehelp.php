@@ -6,7 +6,7 @@
 Plugin Name: ActiveHelper Live Help
 Plugin URI: http://www.activehelper.com
 Description: Provide superior service by real time chat with your website visitors and interact them through your website. Create a more efficient connection with your website visitors, increase your sales and customer satisfaction.
-Version: 3.1.5
+Version: 3.2.0
 Author: ActiveHelper Inc
 Author URI: http://www.activehelper.com
 */
@@ -14,6 +14,7 @@ Author URI: http://www.activehelper.com
 Developer: Marco Florian (marco@marcorfg.com)
 Developer URI: http://www.marcorfg.com
 Updates  : Activehelper Inc.
+
 */
 
 // make sure we don't expose any info if called directly
@@ -52,6 +53,7 @@ require_once($activeHelper_liveHelp['sourcesDir'] . '/livehelp_agents.php');
 require_once($activeHelper_liveHelp['sourcesDir'] . '/livehelp_monthly-chats.php');
 require_once($activeHelper_liveHelp['sourcesDir'] . '/livehelp_time-by-chat.php');
 require_once($activeHelper_liveHelp['sourcesDir'] . '/livehelp_failed-chats.php');
+require_once($activeHelper_liveHelp['sourcesDir'] . '/livehelp_unanswered-chats.php');
 require_once($activeHelper_liveHelp['sourcesDir'] . '/livehelp_chats-by-department.php');
 require_once($activeHelper_liveHelp['sourcesDir'] . '/livehelp_chats-by-country.php');
 require_once($activeHelper_liveHelp['sourcesDir'] . '/livehelp_chats-by-keyword.php');
@@ -130,6 +132,7 @@ function activeHelper_liveHelp_mainPost()
 		strtolower('activeHelper_liveHelp_monthlyChats') => 'activeHelper_liveHelp_monthlyChatsPost',
 		strtolower('activeHelper_liveHelp_timeByChat') => 'activeHelper_liveHelp_timeByChatPost',
 		strtolower('activeHelper_liveHelp_failedChats') => 'activeHelper_liveHelp_failedChatsPost',
+        strtolower('activeHelper_liveHelp_unansweredChats') => 'activeHelper_liveHelp_unansweredChatsPost',
 		strtolower('activeHelper_liveHelp_chatsByDepartment') => 'activeHelper_liveHelp_chatsByDepartmentPost',
 		strtolower('activeHelper_liveHelp_chatsByCountry') => 'activeHelper_liveHelp_chatsByCountryPost',
 		strtolower('activeHelper_liveHelp_chatsByKeyword') => 'activeHelper_liveHelp_chatsByKeywordPost',
@@ -210,6 +213,16 @@ function activeHelper_liveHelp_mainMenu()
 		strtolower('activeHelper_liveHelp_failedChats'), // id
 		'activeHelper_liveHelp_failedChats' // callback
 	);
+    
+    	add_submenu_page(
+		strtolower('activeHelper_liveHelp'), // parent
+		__('Unanswered chats', 'activehelper_livehelp') . ' ‹ ActiveHelper LiveHelp', // page title
+		__('Unanswered chats', 'activehelper_livehelp'), // menu title
+		'manage_options', // type
+		strtolower('activeHelper_liveHelp_unansweredChats'), // id
+		'activeHelper_liveHelp_unansweredChats' // callback
+	);
+    
 	add_submenu_page(
 		strtolower('activeHelper_liveHelp'), // parent
 		__('Chats by department', 'activehelper_livehelp') . ' ‹ ActiveHelper LiveHelp', // page title
@@ -437,6 +450,12 @@ function activeHelper_liveHelp_welcome()
 							<a style="display: block;" href="admin.php?page=' . strtolower('activeHelper_liveHelp_failedChats') . '">
 								<img style="margin: 0 auto .5ex auto; display: block;" src="' . $activeHelper_liveHelp['imagesUrl'] . '/down-32.png" />
 								<span style="display: inline-block;">' . __('Failed chats', 'activehelper_livehelp') . '</span>
+							</a>
+						</div>
+     	                <div style="margin-top: 15px; float: left; padding-right: 5ex; text-align: center;">
+							<a style="display: block;" href="admin.php?page=' . strtolower('activeHelper_liveHelp_unansweredChats') . '">
+								<img style="margin: 0 auto .5ex auto; display: block;" src="' . $activeHelper_liveHelp['imagesUrl'] . '/unanswered.png" />
+								<span style="display: inline-block;">' . __('Unanswered chats', 'activehelper_livehelp') . '</span>
 							</a>
 						</div>
 						<div style="margin-top: 15px; float: left; padding-right: 5ex; text-align: center;">
@@ -764,7 +783,7 @@ function activeHelper_liveHelp_about()
 							<table><tbody><tr><td class="first t">
 								' . __('Version', 'activehelper_livehelp') . '
 							</td><td class="b">
-								' . __('3.1.5', 'activehelper_livehelp') . '
+								' . __('3.2.0', 'activehelper_livehelp') . '
 							</td></tr></tbody></table>
 							<table><tbody><tr><td class="first t">
 								' . __('Check for Update', 'activehelper_livehelp') . '

@@ -314,6 +314,8 @@ function initgeo(geoDict)
   var _vloffline =<?php echo($offline); ?>;
   var _vlinitiated  = 0;
   var _vldisableinvitation = 0;
+  
+  
     
    
 function none()
@@ -649,8 +651,9 @@ var newTargetX = this.scrollLeft + this.leftMargin;
 					var trkUrl = "";
           //var declineTrackerStatus = new Image;
           var time = currentTime();
+                                 
 
-          trkUrl = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Declined';
+           trkUrl = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Declined';
           declineTrackerStatus.src = trkUrl;
 
           if ( ie4 )document.all['initiateChatResponse_' + s_id].location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Declined';
@@ -724,7 +727,10 @@ $initiate_request_flag = 0;
 $query = "SELECT `initiate` FROM " . $table_prefix . "requests WHERE `id` = '$request_id'";
 $row = $SQL->selectquery($query);
 if (is_array($row)) {
+        // Only allow to show the invitation one time
         $initiate_request_flag = $row['initiate'];
+        
+    
 }
 
 // settings new
@@ -1135,7 +1141,7 @@ if (is_array($row)) {
                          
 ?>            
 
-<?php if (($time_refresh !=0) and ($disable_invitation !=1)) {  ?>
+<?php if (($time_refresh !=0) and ($disable_invitation !=1) and ($initiate_request_flag !=-3)) {  ?>
 
 if ( _vloffline !=1 && _vlinitiated !=1) {
 document.writeln('<script type="text/javascript">');
