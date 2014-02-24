@@ -252,6 +252,10 @@ For further help you may choose any of following options:
 * Core security update
 * Other small improvements and bug fixes
 
+= 3.2.1 =
+* Fixed Missing files
+
+
 
 == Upgrade Notice ==
 
@@ -392,3 +396,5 @@ For further help you may choose any of following options:
 * Core security update
 * Other small improvements and bug fixes
 
+= 3.2.1 =
+* Fixed Missing files
