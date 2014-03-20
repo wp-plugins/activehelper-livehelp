@@ -100,10 +100,10 @@ function statusClass (s_id) {
 }
 if ($installed == true) {
 
-$department = $_REQUEST['DEPARTMENT'];
+$department = mysql_real_escape_string($_REQUEST['DEPARTMENT']);
 $tracker_enabled = $_REQUEST['TRACKER'];
 $title = $_REQUEST['TITLE'];
-$referer = $_SERVER['HTTP_REFERER'];
+$referer = mysql_real_escape_string($_SERVER['HTTP_REFERER']);
 
 if ($tracker_enabled == '') { $tracker_enabled = true; }
 
@@ -146,7 +146,7 @@ if ($request_id > 0) {
                         }
                 }
 
-                $page = urldecode(trim($page));
+                $page = mysql_real_escape_string(urldecode(trim($page)));
                 $path = $row['path'];
                 $previouspath = explode('; ', $path);
 
@@ -158,7 +158,7 @@ if ($request_id > 0) {
                         $query = "UPDATE " . $table_prefix . "requests SET `request` = NOW(), `url` = '$referer', `status` = '0' WHERE `id` = '$request_id'";
                         $SQL->miscquery($query);
                 }
-                $query = "UPDATE " . $table_prefix . "requests SET services = '<".str_replace(",", "><", $_REQUEST['services']).">'  WHERE `id` = '$request_id'";
+                $query = "UPDATE " . $table_prefix . "requests SET services = '<".str_replace(",", "><", mysql_real_escape_string($_REQUEST['services'])).">'  WHERE `id` = '$request_id'";
                 $sql_rez = $SQL->miscquery($query);
 
         }
@@ -174,7 +174,7 @@ if (($domain_id == 0) && (isset($_SERVER['HTTP_REFERER'])))
 {
       $array = parse_url($_SERVER['HTTP_REFERER']);
       $domain_name = $array['host'];
-      $domain_name = str_ireplace("www.", "",$domain_name);
+      $domain_name = mysql_real_escape_string(str_ireplace("www.", "",$domain_name));
       
     if  ($domain_name != '') { 
         $query = "SELECT `id_domain` FROM " . $table_prefix . "domains WHERE `name` LIKE '%$domain_name%' LIMIT 1";

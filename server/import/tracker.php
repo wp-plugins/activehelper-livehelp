@@ -42,12 +42,16 @@ include_once('config.php');
                 
 
 //$domainIsValid = true;
-$title = $_REQUEST['TITLE'];
-$url = $_REQUEST['URL'];
+//$title = $_REQUEST['TITLE'];
+//$url = $_REQUEST['URL'];
+$title = mysql_real_escape_string($_REQUEST['TITLE']);
+$url = mysql_real_escape_string(urldecode(trim($_REQUEST['URL'])));
+
 $initiate = $_REQUEST['INITIATE'];
 $referrer = $_REQUEST['REFERRER'];
 $width = $_REQUEST['WIDTH'];
 $height = $_REQUEST['HEIGHT'];
+
 $userid = $_REQUEST['USERID'] = (int) $_REQUEST['USERID'];
 $service_id = $_REQUEST['service_id'] = (int) $_REQUEST['service_id'];
 // Google geo
@@ -113,7 +117,9 @@ if ($request_id > 0) {
         //if ($width != '' && $height != '' && $title != '' && $url != '') {
         if ($width != '' && $height != ''&& $url != '') {
 
-                $page = $_REQUEST['URL'];
+                //$page = $_REQUEST['URL'];
+                $page = mysql_real_escape_string(urldecode(trim($_REQUEST['URL'])));
+
                 for ($i = 0; $i < 3; $i++) {
                         $pos = strpos($page, '/');
                         if ($pos === false) {
@@ -153,11 +159,11 @@ if ($request_id > 0) {
                     $request_id = $SQL->insertquery($query);
 
                     $session = array();
-                    $session['REQUEST'] = $request_id;
-                    $session['CHARSET'] = CHARSET;
-                    $session['USERID'] = $_REQUEST['USERID'];
+                    $session['REQUEST']  = $request_id;
+                    $session['CHARSET']  = CHARSET;
+                    $session['USERID']   = mysql_real_escape_string($_REQUEST['USERID']);
                     $session['DOMAINID'] = $domain_id;
-                    $session['AGENTID'] = $agent_id;
+                    $session['AGENTID']  = $agent_id;
                          
                     if (isset($_REQUEST['LANGUAGE'])){
                       $session['LANGUAGE'] = $_REQUEST['LANGUAGE'];
@@ -165,7 +171,7 @@ if ($request_id > 0) {
                       $session['LANGUAGE'] = LANGUAGE_TYPE;
                     }
 
-                    $session['SERVICE'] = $_REQUEST['SERVICE'];
+                    $session['SERVICE'] = mysql_real_escape_string($_REQUEST['SERVICE']);
 
                     //$session['ACCOUNT'] = $account;
                     //$session['TRACKING'] = $tracking;

@@ -3,13 +3,13 @@ Contributors: activehelper
 Tags: live chat, live help, live support, customer service, wordpress plugin, livechat plugin, visitor tracking, visitor chat
 Requires at least: 3.2
 Tested up to: 3.8.1
-Stable tag: 3.2.2
+Stable tag: 3.4.0
 
 ActiveHelper LiveHelp is a powerful Live Chat Server Plugin for WordPress. 
 
 == Description ==
 
-The most affordable and scalable Live Chat plugin for WordPress. ActiveHelper LiveHelp Live Chat System is perfect for small and medium WordPress sites. 
+The most affordable and scalable Live Chat plugin for WordPress. ActiveHelper LiveHelp Live Chat System is perfect for small and medium WordPress sites. Answer Live chats from any location, Desktop and mobile are included, Windows and Mac, IOS and Android too.
 
 Monitor in real time your website visitors. Know how many visitors are in the website, who referred, where are from, what keywords we reused to find the website and the visitors navigation history. Know decisive information of your website visitors patterns, conversations and agents service.
 
@@ -27,13 +27,13 @@ The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system i
 * SSL Support
 * Chat Re-branding
 * Image for each agent
+* Agent to Agent chat
 * Multi Language WordPress admin panel
 * Real-time Chats
 * Multiple Chat Requests
 * Auto Save Transcripts
 * Capture Visitor Data
 * Chat Queue Line
-* Chat Between Agents
 * Offline Messages
 * Disable chat module in Offline mode
 * Record Offline Messages
@@ -62,10 +62,10 @@ The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system i
 * Proxy support
 * Multi Language Images
 * 25 Language Translations.
+* Agent spellchecker 
 * Support Panel desktop for Windows and MAC 
 * Support panel mobile for your iPhone/ipad 
 * Support panel mobile for your Android phone and tablet
-* Support panel mobile for your BlackBerry PlayBook
 * Customizable Look & Feel
 * Skin Support
 
@@ -252,11 +252,14 @@ For further help you may choose any of following options:
 * Core security update
 * Other small improvements and bug fixes
 
-= 3.2.1 =
-* Fixed Missing files
-
 = 3.2.2 =
 * Fixed Missing files on the update
+
+= 3.4.0 =
+* Agent to Agent Chat
+* MariaDB connection issue fixed.
+* Security Patch
+* Other small improvements and bug fixes
 
 
 == Upgrade Notice ==
@@ -398,8 +401,13 @@ For further help you may choose any of following options:
 * Core security update
 * Other small improvements and bug fixes
 
-= 3.2.1 =
-* Fixed Missing files
-
 = 3.2.2 =
 * Fixed Missing files on the update
+
+= 3.4.0 =
+* Agent to Agent Chat
+* MariaDB connection issue fixed.
+* Security Patch
+* Other small improvements and bug fixes
+
+

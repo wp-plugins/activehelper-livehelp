@@ -35,14 +35,19 @@ if ($database) {
 if($domainIsValid == false){
   exit;
 }
+// Get Agent ID
+$agent_id =0;
+if (isset($_REQUEST['AGENTID'])){
+          $agent_id = (int) $_REQUEST['AGENTID'];                             
+        }
+ 
 
-
-$service_id = $_REQUEST['service_id'];
+$service_id = mysql_real_escape_string($_REQUEST['service_id']);
 
 if (!isset($_REQUEST['oUSERID'])){ $_REQUEST['oUSERID'] = null; } else $_REQUEST['oUSERID'] = (int) $_REQUEST['oUSERID'];
 
 if(isset($_REQUEST['oUSERID'])) {
-        $query = "SELECT id_domain FROM " . $table_prefix . "domain_user WHERE id_user = ".$_REQUEST['oUSERID']." Limit 1";
+        $query = "SELECT id_domain FROM " . $table_prefix . "domain_user WHERE id_user = ".mysql_real_escape_string($_REQUEST['oUSERID'])." Limit 1";
         $rows = $SQL->selectquery($query);
         $row = mysql_fetch_array($rows);
         $domain_id = $rows["id_domain"];
@@ -67,10 +72,10 @@ if ($installed == false) {
         exit();
 }
 
-$department = $_REQUEST['DEPARTMENT'];
+$department = mysql_real_escape_string($_REQUEST['DEPARTMENT']);
 $status_enabled = $_REQUEST['STATUS'];
-$userid = $_REQUEST['USERID'];
-$ouserid = $_REQUEST['oUSERID'];
+$userid = mysql_real_escape_string($_REQUEST['USERID']);
+$ouserid = mysql_real_escape_string($_REQUEST['oUSERID']);
 
 if ($status_enabled == '') { $status_enabled = 'true'; }
 
@@ -119,7 +124,22 @@ if ($status_enabled == true) {
         }
         // Counts the total number of support users within each Online/Offline/BRB/Away status mode
         $query = "SELECT DISTINCT `status`, count(`id`) FROM " . $table_prefix . "users WHERE (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(`refresh`)) < '$connection_timeout' And id in (" . $users_set . ")";
-        if($department != '' && $departments) { $query .= " AND `department` LIKE '%$department%'"; }
+        
+        if($department != '' && $departments && $agent_id ==0) 
+          { $query .= " and  `answers`='1' and  `department` LIKE '%$department%'"; }
+        else         
+        if($agent_id ==0) 
+          { $query .= " and `answers`='1' "; }
+        else 
+        if($agent_id !=0) 
+        { $query .= " and `answers`='2' and `id`= $agent_id"; }
+        
+       /* error_log("department:".$department."\n", 3, "status.log");
+        error_log("departments:".$departments."\n", 3, "status.log");
+        error_log("agent_id:".$agent_id."\n", 3, "status.log");
+        error_log("$query:".$query."\n", 3, "status.log");
+        */
+        
         if($userid != '') { $query .= " AND id <> " . $userid; }
         $query .= " GROUP BY `status`";
         $rows = $SQL->selectall($query);

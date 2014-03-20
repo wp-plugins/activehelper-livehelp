@@ -29,7 +29,7 @@ $agent_id   = $_REQUEST['AGENTID'];
 
 $department =  htmlspecialchars_decode ($_REQUEST['DEPARTMENT'] , ENT_QUOTES );
 
-$referer    = $_REQUEST['URL'];
+$referer    = mysql_real_escape_string(urldecode(trim($_REQUEST['URL'])));
 $ip_address = $_SERVER['REMOTE_ADDR'];
 $domain_id  = !isset( $domain_id ) ? 0 : (int) $domain_id;
 
@@ -71,7 +71,7 @@ if ($require_guest_details == true && $disable_login_details == false) {
         }
 }
 
-if ($department == '') { $department  = $_REQUEST['DEPARTMENT'];  }
+if ($department == '') { $department  = mysql_real_escape_string($_REQUEST['DEPARTMENT']);}
 
 // Query to see if panel/Operators are Online
 $query = "SELECT UNIX_TIMESTAMP(`datetime`) AS `datetime` FROM " . $table_prefix . "users WHERE (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(`refresh`)) < '$connection_timeout' AND `status` = '1'";
