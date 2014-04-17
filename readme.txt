@@ -1,15 +1,15 @@
 === ActiveHelper LiveHelp Live Chat===
 Contributors: activehelper
-Tags: live chat, live help, live support, customer service, wordpress plugin, livechat plugin, visitor tracking, visitor chat
+Tags: wordpress livechat,  live chat, live help, live support, customer service, wordpress plugin, livechat plugin, visitor tracking, visitor chat, floating
 Requires at least: 3.2
-Tested up to: 3.8.1
-Stable tag: 3.4.0
+Tested up to: 3.9
+Stable tag: 3.4.5
 
 ActiveHelper LiveHelp is a powerful Live Chat Server Plugin for WordPress. 
 
 == Description ==
 
-The most affordable and scalable Live Chat plugin for WordPress. ActiveHelper LiveHelp Live Chat System is perfect for small and medium WordPress sites. Answer Live chats from any location, Desktop and mobile are included, Windows and Mac, IOS and Android too.
+WordPress Live Chat Plugin is the most affordable and scalable Live Chat. ActiveHelper LiveHelp Live Chat System is perfect for small and medium WordPress sites. Answer Live chats from any location, Desktop and mobile are included, Windows and Mac, IOS and Android too.
 
 Monitor in real time your website visitors. Know how many visitors are in the website, who referred, where are from, what keywords we reused to find the website and the visitors navigation history. Know decisive information of your website visitors patterns, conversations and agents service.
 
@@ -78,9 +78,14 @@ We offer a 30 days free trial.
 
 Visit the <a href="http://www.activehelper.com/">ActiveHelper LiveHelp website</a> for more information about ActiveHelper LiveHelp.
 
-<h4>Support Panel Console</h4>
+<h4>Support Panel Desktop</h4>
 
 Download the Support Panel Multi Platform Console, the agent app is available in the follow link for Windows and MAC: <a href="http://www.activehelper.com/extensions/wordpress-live-chat.html">Download Area</a>.
+
+<h4>Support Panel Mobile</h4>
+
+Download the Support Panel Mobile for Iphone and Ipad, the agent app is available in the follow link via Itunes: <a href="http://itunes.apple.com/us/app/live-help/id515929709?mt=8">Itunes download area</a>.
+Download the Support Panel Mobile for Android, the agent app is available in the follow link via Google Play: <a href="https://play.google.com/store/apps/details?id=air.com.activehelper.supportpanel">Google Play download area</a>.
 
 <h4>Support Panel Multi Platform Console Guide</h4>
 Visit the follow link to see the <a href="http://www.slideshare.net/activehelper/support-panel-console-3-user-guide"> user guide.</a>
@@ -111,7 +116,7 @@ For further help you may choose any of following options:
 4.  Live Chat from a Mobile Device
 5.  LiveHelp Server Dashboard - Plugin admin area
 6.  Support Panel Desktop App
-7.  Support Panel Mobile App
+7.  Support Panel Multi Platform ( Windows, MAC, IOS, Android)
 
 == Changelog ==
 
@@ -259,6 +264,10 @@ For further help you may choose any of following options:
 * Agent to Agent Chat
 * MariaDB connection issue fixed.
 * Security Patch
+* Other small improvements and bug fixes
+
+= 3.4.5 =
+* WordPress 3.9 Support
 * Other small improvements and bug fixes
 
 
@@ -410,4 +419,6 @@ For further help you may choose any of following options:
 * Security Patch
 * Other small improvements and bug fixes
 
-
+= 3.4.5 =
+* WordPress 3.9 Support
+* Other small improvements and bug fixes
