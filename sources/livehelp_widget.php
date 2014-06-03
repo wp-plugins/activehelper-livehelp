@@ -1,9 +1,9 @@
 <?php
 /**
  * @package ActiveHelper Live Help
- * @version   : 2.9.5
+ * @version   : 3.5
  * @author    : ActiveHelper Inc.
- * @copyright : (C) 2013- ActiveHelper Inc.
+ * @copyright : (C) 2014- ActiveHelper Inc.
  * @license   : GNU/GPL http://www.gnu.org/copyleft/gpl.html
  */
 
@@ -55,12 +55,23 @@ class activeHelper_liveHelp_widget extends WP_Widget
 		$instance['script_language'] = !empty($instance['script_language']) ? $instance['script_language'] : 'en';
 		$instance['script_tracking'] = isset($instance['script_tracking']) ? $instance['script_tracking'] : 1;
 		$instance['script_status'] = isset($instance['script_status']) ? $instance['script_status'] : 1;
+        $instance['script_footer'] = isset($instance['script_footer']) ? $instance['script_footer'] : 0;
+        
 
 		// pinrt widget
 		echo $before_widget;
 
 		if ($title)
 			echo $before_title . $title . $after_title;
+            
+       if ($instance['script_footer'] ==1)
+          echo '<p class="pin"><span style="font-size: 10pt;"><div style="position: fixed; bottom: 0px; right:0px; z-index:999999999999; display:block;"> ';
+         
+       if ($instance['script_footer'] ==2)
+      	  echo '<p class="pin"><span style="font-size: 10pt;"><div style="position: fixed; bottom: 0px; left:0px; z-index:999999999999; display:block;"> '; 
+            
+       if ($instance['script_footer'] ==3)
+      	  echo '<p class="pin"><span style="font-size: 10pt;"><div style="position: fixed; bottom: 0px; center:0px; z-index:999999999999; display:block;"> ';                           
 
 		echo '<script type="text/javascript" src="' . $activeHelper_liveHelp['serverUrl'] . '/import/javascript.php"></script>
 <script type="text/javascript">
@@ -85,7 +96,9 @@ class activeHelper_liveHelp_widget extends WP_Widget
 		$instance['script_language'] = strip_tags($new_instance['script_language']);
 		$instance['script_tracking'] = strip_tags($new_instance['script_tracking']);
 		$instance['script_status'] = strip_tags($new_instance['script_status']);
-		return $instance;
+        $instance['script_footer'] = strip_tags($new_instance['script_footer']);
+		
+        return $instance;
 	}
 
 	function form( $instance )
@@ -121,6 +134,7 @@ class activeHelper_liveHelp_widget extends WP_Widget
 		$instance['script_language'] = !empty($instance['script_language']) ? $instance['script_language'] : 'en';
 		$instance['script_tracking'] = isset($instance['script_tracking']) ? $instance['script_tracking'] : 1;
 		$instance['script_status'] = isset($instance['script_status']) ? $instance['script_status'] : 1;
+        $instance['script_footer'] = isset($instance['script_footer']) ? $instance['script_footer'] : 0;
 
 		echo '
 		<p>
@@ -146,21 +160,6 @@ class activeHelper_liveHelp_widget extends WP_Widget
 			<label for="' . $this->get_field_id( 'script_agent' ) . '">' . __( 'Agent', 'activehelper_livehelp' ) . ':</label> 
 			<input class="widefat" id="' . $this->get_field_id( 'script_agent' ) . '" name="' . $this->get_field_name('script_agent') . '" type="text" value="' . $instance['script_agent'] . '" />
 		</p>';
-
-		/*
-		echo '
-		<p>
-			<label for="' . $this->get_field_id( 'script_domain' ) . '">' . __( 'Domain', 'activehelper_livehelp' ) . ':</label> 
-			<select class="widefat" style="width:100%;" id="' . $this->get_field_id( 'script_domain' ) . '" name="' . $this->get_field_name('script_domain') . '">';
-
-		foreach ($domains as $domain)
-			echo '
-				<option ' . ($domain['id_domain'] == $instance['script_domain'] ? 'selected="selected"' : '') . ' value="' . $domain['id_domain'] . '">' . $domain['name'] . '</option>';
-
-		echo '
-			</select>
-		</p>';
-		*/
 
 		echo '
 		<p>
@@ -218,7 +217,25 @@ class activeHelper_liveHelp_widget extends WP_Widget
 			<label>' . __( 'Status indicator', 'activehelper_livehelp' ) . ':</label> 
 			<br /><label><input style="width: auto;" class="widefat" ' . ($instance['script_status'] == 1 ? 'checked="checked"' : '') . ' name="' . $this->get_field_name('script_status') . '" type="radio" value="1" /> ' . __( 'Enable', 'activehelper_livehelp' ) . '</label> 
 			<label style="padding-left: 4px;"><input style="width: auto;" class="widefat" ' . ($instance['script_status'] == 0 ? 'checked="checked"' : '') . ' name="' . $this->get_field_name('script_status') . '" type="radio" value="0" /> ' . __( 'Disable', 'activehelper_livehelp' ) . '</label> 
-		</p>';
+		</p>
+        <p>
+			<label for="' . $this->get_field_id( 'script_footer' ) . '">' . __( 'Footer', 'activehelper_livehelp_externalwidget' ) . ':</label> 
+			<select class="widefat" style="width:100%;" id="' . $this->get_field_id( 'script_footer' ) . '" name="' . $this->get_field_name('script_footer') . '">';
+
+		$__text = array(
+			0 => __('None', 'activehelper_livehelp_externalwidget'),
+			1 => __('Right', 'activehelper_livehelp_externalwidget'),
+			2 => __('Left', 'activehelper_livehelp_externalwidget'),
+            3 => __('Center', 'activehelper_livehelp_externalwidget')
+		);
+
+		foreach ($__text as $code => $name)
+			echo '
+				<option ' . ($code == $instance['script_footer'] ? 'selected="selected"' : '') . ' value="' . $code . '">' . $name . '</option>';
+
+		echo '
+			</select>
+            	</p>';
 	}
 }
 

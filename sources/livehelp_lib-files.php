@@ -8,28 +8,32 @@ if (!defined('ACTIVEHELPER_LIVEHELP'))
 
 function activeHelper_liveHelp_filesDuplicate($source, $destination)
 {
-	if (is_dir($source))
-	{
-		@mkdir($destination);
+     // Simple copy for a file
+    if (is_file($source)) {
+        return copy($source, $destination);
+       }  
+    
+    if (is_dir($source))
+	 {
+		@mkdir($destination, 0755);
+        
+        // Loop through the folder
 		$dir = dir($source);
-
-		while (false !== ($file = $dir->read()))
-		{
-			if ($file == '.' || $file == '..' )
-				continue;
-
-			$path = $source . '/' . $file;
-
-			if (is_dir($path))
-				activeHelper_liveHelp_filesDuplicate($path, $destination . '/' . $file);
-			else
-				copy($path, $destination . '/' . $file);
-		}
-
+       
+       while (false !== ($file = $dir->read())) { 
+        if (( $file != '.' ) && ( $file != '..' )) { 
+            if ( is_dir($source . '/' . $file) ) { 
+                activeHelper_liveHelp_filesDuplicate($source . '/' . $file,$destination . '/' . $file); 
+                } 
+            else { 
+                copy($source . '/' . $file,$destination . '/' . $file); 
+            } 
+        } 
+    } 
 		$dir->close();
+        return true;
 	}
-	else
-		copy($source, $destination);
+  
 }
 
 function activeHelper_liveHelp_filesDelete($source)

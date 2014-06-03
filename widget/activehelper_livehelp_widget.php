@@ -1,12 +1,16 @@
 <?php
 /**
  * @package ActiveHelper Live Help External Widget
+ * @version   : 3.5
+ * @author    : ActiveHelper Inc.
+ * @copyright : (C) 2014- ActiveHelper Inc.
+ * @license   : GNU/GPL http://www.gnu.org/copyleft/gpl.html
  */
 /*
 Plugin Name: ActiveHelper Live Help External Widget
 Plugin URI: http://www.activehelper.com
-Description: Provide superior service by real time chat with your website visitors and interact them through your website. Create a more efficient connection with your website visitors, increase your sales and customer satisfaction.
-Version: 1.5
+Description: WordPress Live Chat widget for the ActiveHelper LiveHelp Server. Displays the chat button in your website.  
+Version: 2.0
 Author: ActiveHelper Inc
 Author URI: http://www.activehelper.com
 */
@@ -43,12 +47,22 @@ class activeHelper_liveHelp_externalWidget extends WP_Widget
 		$instance['script_language'] = !empty($instance['script_language']) ? $instance['script_language'] : 'en';
 		$instance['script_tracking'] = isset($instance['script_tracking']) ? $instance['script_tracking'] : 1;
 		$instance['script_status'] = isset($instance['script_status']) ? $instance['script_status'] : 1;
+        $instance['script_footer'] = !empty($instance['script_footer']) ? $instance['script_footer'] : 0;
 
 		// pinrt widget
 		echo $before_widget;
 
 		if ($title)
 			echo $before_title . $title . $after_title;
+            
+       if ($instance['script_footer'] ==1)
+          echo '<p class="pin"><span style="font-size: 10pt;"><div style="position: fixed; bottom: 0px; right:0px; z-index:999999999999; display:block;"> ';
+         
+       if ($instance['script_footer'] ==2)
+      	  echo '<p class="pin"><span style="font-size: 10pt;"><div style="position: fixed; bottom: 0px; left:0px; z-index:999999999999; display:block;"> ';              
+
+       if ($instance['script_footer'] ==3)
+      	  echo '<p class="pin"><span style="font-size: 10pt;"><div style="position: fixed; bottom: 0px; center:0px; z-index:999999999999; display:block;"> '; 
 
 		echo '<script type="text/javascript" src="{liveHelp_externalWidget_serverUrl}/import/javascript.php"></script>
 <script type="text/javascript">
@@ -72,6 +86,7 @@ class activeHelper_liveHelp_externalWidget extends WP_Widget
 		$instance['script_language'] = strip_tags($new_instance['script_language']);
 		$instance['script_tracking'] = strip_tags($new_instance['script_tracking']);
 		$instance['script_status'] = strip_tags($new_instance['script_status']);
+        $instance['script_footer'] = strip_tags($new_instance['script_footer']);
 		return $instance;
 	}
 
@@ -86,6 +101,7 @@ class activeHelper_liveHelp_externalWidget extends WP_Widget
 		$instance['script_language'] = !empty($instance['script_language']) ? $instance['script_language'] : 'en';
 		$instance['script_tracking'] = isset($instance['script_tracking']) ? $instance['script_tracking'] : 1;
 		$instance['script_status'] = isset($instance['script_status']) ? $instance['script_status'] : 1;
+        $instance['script_footer'] = isset($instance['script_footer']) ? $instance['script_footer'] : 0;
 
 		echo '
 		<p>
@@ -141,7 +157,7 @@ class activeHelper_liveHelp_externalWidget extends WP_Widget
 
 		echo '
 			</select>
-		</p>
+		</p>       
 		<p>
 			<label>' . __( 'Tracking', 'activehelper_livehelp_externalwidget' ) . ':</label> 
 			<br /><label><input style="width: auto;" class="widefat" ' . ($instance['script_tracking'] == 1 ? 'checked="checked"' : '') . ' name="' . $this->get_field_name('script_tracking') . '" type="radio" value="1" /> ' . __( 'Enable', 'activehelper_livehelp_externalwidget' ) . '</label> 
@@ -151,7 +167,25 @@ class activeHelper_liveHelp_externalWidget extends WP_Widget
 			<label>' . __( 'Status indicator', 'activehelper_livehelp_externalwidget' ) . ':</label> 
 			<br /><label><input style="width: auto;" class="widefat" ' . ($instance['script_status'] == 1 ? 'checked="checked"' : '') . ' name="' . $this->get_field_name('script_status') . '" type="radio" value="1" /> ' . __( 'Enable', 'activehelper_livehelp_externalwidget' ) . '</label> 
 			<label style="padding-left: 4px;"><input style="width: auto;" class="widefat" ' . ($instance['script_status'] == 0 ? 'checked="checked"' : '') . ' name="' . $this->get_field_name('script_status') . '" type="radio" value="0" /> ' . __( 'Disable', 'activehelper_livehelp_externalwidget' ) . '</label> 
-		</p>';
+		</p>
+         <p>
+			<label for="' . $this->get_field_id( 'script_footer' ) . '">' . __( 'Footer', 'activehelper_livehelp_externalwidget' ) . ':</label> 
+			<select class="widefat" style="width:100%;" id="' . $this->get_field_id( 'script_footer' ) . '" name="' . $this->get_field_name('script_footer') . '">';
+
+		$__text = array(
+			0 => __('None', 'activehelper_livehelp_externalwidget'),
+			1 => __('Right', 'activehelper_livehelp_externalwidget'),
+			2 => __('Left', 'activehelper_livehelp_externalwidget'),
+            3 => __('Center', 'activehelper_livehelp_externalwidget')
+		);
+
+		foreach ($__text as $code => $name)
+			echo '
+				<option ' . ($code == $instance['script_footer'] ? 'selected="selected"' : '') . ' value="' . $code . '">' . $name . '</option>';
+
+		echo '
+			</select>
+            	</p>';                
 	}
 }
 

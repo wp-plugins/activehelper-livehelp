@@ -1,15 +1,17 @@
 <?php
 /**
  * @package ActiveHelper Live Help
+ * @Version 3.5.0 
+ * @Autor ActiveHelper Inc
  */
 
 if (!defined('ACTIVEHELPER_LIVEHELP'))
 	die('Hi there! I\'m just a plugin, not much I can do when called directly.');
-
+    
 function activeHelper_liveHelp_agents()
 {
 	global $wpdb, $activeHelper_liveHelp;
-
+            
 	$actions = array(
 		'list' => 'activeHelper_liveHelp_agentsList',
 		'edit' => 'activeHelper_liveHelp_agentsRegister',
@@ -784,8 +786,51 @@ function activeHelper_liveHelp_agentsInfo()
 							<input tabindex="' . $tabindex++ . '" maxlength="255" type="text" style="width: 96%;" value="' . $clientInfo_ssl . '" />
 						</td></tr></tbody></table>
 					</div>
+				</div></div>    
+			</div></div></div>
+            
+            <div id="post-body"><div id="post-body-content"><div class="meta-box-sortables ui-sortable">
+				<div class="stuffbox postbox"><div id="postcustomstuff" style="padding: .6ex 0;">
+					<div class="handlediv" title="' . __('Click to toggle', 'activehelper_livehelp') . '"><br /></div>
+					<h3 style="cursor: default;">
+						' . __('Downloads', 'activehelper_livehelp') . '</h3>
+					<div class="inside">
+					<table><tbody><tr><td class="first t">
+								' . __('Support Panel Desktop for Windows : ', 'activehelper_livehelp') . '
+							</td><td class="b">
+								' . __('<a target="_blank" href="http://www.activehelper.com/downloads/client/windows/installer-supportpanel.exe">Download</a>', 'activehelper_livehelp') . '
+							</td>
+                            </td><td class="b">
+								' . __('<a target="_blank" href="http://www.slideshare.net/activehelper/support-panel-console-3-user-guide">User Guide</a>', 'activehelper_livehelp') . '
+							</td></tr></tbody></table>
+                            <table><tbody><tr><td class="first t">
+								' . __('Support Panel Desktop for MAC   : ', 'activehelper_livehelp') . '
+							</td><td class="b">
+								' . __('<a target="_blank" href="http://www.activehelper.com/downloads/client/mac/installer-supportpanel.dmg">Download</a>', 'activehelper_livehelp') . '
+							</td>
+                            </td><td class="b">
+								' . __('<a target="_blank" href="http://www.slideshare.net/activehelper/support-panel-console-3-user-guide">User Guide</a>', 'activehelper_livehelp') . '
+							</td></tr></tbody></table>
+                              <table><tbody><tr><td class="first t">
+								' . __('Support Panel Mobile for IOS   : ', 'activehelper_livehelp') . '
+							</td><td class="b">
+								' . __('<a target="_blank" href="https://itunes.apple.com/us/app/live-help/id515929709?mt=8">Download</a>', 'activehelper_livehelp') . '
+							</td>
+                            </td><td class="b">
+								' . __('<a target="_blank" href="http://www.slideshare.net/activehelper/support-panel-mobile-user-guide-for-iphone-and-ipad-english">User Guide</a>', 'activehelper_livehelp') . '
+							</td>
+                            </tr></tbody></table>
+                              <table><tbody><tr><td class="first t">
+								' . __('Support Panel mobile for Android : ', 'activehelper_livehelp') . '
+							</td><td class="b">
+								' . __('<a target="_blank" href="https://play.google.com/store/apps/details?id=air.com.activehelper.supportpanel">Download</a>', 'activehelper_livehelp') . '
+							</td></td><td class="b">
+								' . __('<a target="_blank" href="http://www.slideshare.net/activehelper/support-panel-mobile-user-guide-for-android-english">User Guide</a>', 'activehelper_livehelp') . '
+							</td></tr></tbody></table>
+					</div>
 				</div></div>
 			</div></div></div>
+            
 			<br />
 		</div>';
 
@@ -827,40 +872,74 @@ function activeHelper_liveHelp_agentsSettingsPost() {
 	", ARRAY_A);
 
 	$agent_dir = $activeHelper_liveHelp['agentsDir'] . '/' . $_REQUEST['id'] . '/i18n/' . $_REQUEST['lang'];
+     
 
+ if (isset($_POST['submit']))
+	{
+      include($activeHelper_liveHelp['importDir'] . '/constants.php');            
+    }
+    
 	while (!empty($_FILES['online']['tmp_name'])) {
-		activeHelper_liveHelp_imagesDelete($agent_dir, 'online.gif');
+		activeHelper_liveHelp_imagesDelete($agent_dir, 'online.' .$status_indicator_img_type);
 
-		activeHelper_liveHelp_imagesUpload($agent_dir, 'online', $_FILES['online'], '.gif');
+		activeHelper_liveHelp_imagesUpload($agent_dir, 'online', $_FILES['online'], '.' . $status_indicator_img_type);
 		unset($_FILES['online']);
 	}
 
 	while (!empty($_FILES['offline']['tmp_name'])) {
-		activeHelper_liveHelp_imagesDelete($agent_dir, 'offline.gif');
+		activeHelper_liveHelp_imagesDelete($agent_dir, 'offline.' .$status_indicator_img_type );
 
-		activeHelper_liveHelp_imagesUpload($agent_dir, 'offline', $_FILES['offline'], '.gif');
+		activeHelper_liveHelp_imagesUpload($agent_dir, 'offline', $_FILES['offline'], '.' . $status_indicator_img_type);
 		unset($_FILES['offline']);
 	}
 	
 	while (!empty($_FILES['away']['tmp_name'])) {
-		activeHelper_liveHelp_imagesDelete($agent_dir, 'away.gif');
+		activeHelper_liveHelp_imagesDelete($agent_dir, 'away.' .$status_indicator_img_type );
 
-		activeHelper_liveHelp_imagesUpload($agent_dir, 'away', $_FILES['away'], '.gif');
+		activeHelper_liveHelp_imagesUpload($agent_dir, 'away', $_FILES['away'], '.' . $status_indicator_img_type);
 		unset($_FILES['away']);
 	}
 
 	while (!empty($_FILES['brb']['tmp_name'])) {
-		activeHelper_liveHelp_imagesDelete($agent_dir, 'brb.gif');
+		activeHelper_liveHelp_imagesDelete($agent_dir, 'brb.' .$status_indicator_img_type);
 
-		activeHelper_liveHelp_imagesUpload($agent_dir, 'brb', $_FILES['brb'], '.gif');
+		activeHelper_liveHelp_imagesUpload($agent_dir, 'brb', $_FILES['brb'], '.' . $status_indicator_img_type);
 		unset($_FILES['brb']);
 	}
+        
+   // update Time_schedule 
+   
+   	while (!empty($_POST['int_time']['end_time'])) {
+    	$wpdb->query("
+			UPDATE {$wpdb->prefix}livehelp_users
+			SET schedule     = '{$_POST['schedule']}',
+                initial_time = '{$_POST['int_time']}',
+                final_time   = '{$_POST['end_time']}'                
+	      WHERE id           = '{$_REQUEST['id']}'
+		");
+        
+      unset($_POST['int_time']);               
+  }
+  
+     
 }
 
 function activeHelper_liveHelp_agentsSettings()
 {
 	global $wpdb, $activeHelper_liveHelp;
-
+    
+          // status indicator file type
+          
+ if (!isset($_POST['submit']))
+	{
+      include($activeHelper_liveHelp['importDir'] . '/constants.php');
+          
+    $f_online   = "online." . $status_indicator_img_type;
+    $f_offline  = "offline." . $status_indicator_img_type;
+    $f_away     = "away." . $status_indicator_img_type;
+    $f_brb      = "brb." . $status_indicator_img_type;    
+    }
+    
 	$_REQUEST['id'] = !empty($_REQUEST['id']) ? (int) $_REQUEST['id'] : 0;
 	$_REQUEST['lang'] = !empty($_REQUEST['lang']) ? (string) $_REQUEST['lang'] : 'en';
 
@@ -870,11 +949,20 @@ function activeHelper_liveHelp_agentsSettings()
 	$agent_imgs_paths = array_filter(glob($agent_dir . '/i18n/' . $_REQUEST['lang'] . '/*'), 'is_file');
 	$agent_imgs = array();
 	foreach ($agent_imgs_paths as $path) {
-		$agent_imgs[basename($path, '.gif')] = basename($path, '.gif');
+		$agent_imgs[basename($path, '.' .$status_indicator_img_type)] = basename($path, '.' .$status_indicator_img_type);
 	}
 
 	$tabindex = 1;
+    
+    
 
+	$agent_schedule = $wpdb->get_row("
+		SELECT schedule, initial_time as int_time, final_time as end_time
+		FROM {$wpdb->prefix}livehelp_users
+		WHERE id = '{$_REQUEST['id']}'
+		LIMIT 1
+	", ARRAY_A);
+        
 	echo '
 <div class="wrap">
 	<div id="icon-edit" class="icon32 icon32-posts-post"><br /></div>
@@ -945,12 +1033,14 @@ function activeHelper_liveHelp_agentsSettings()
         'id' => __('Indonesian', 'activehelper_livehelp'),
         'lt' => __('Lithuanian', 'activehelper_livehelp'),
         'ro' => __('Romanian', 'activehelper_livehelp'),
-
         'sl' => __('Slovenian', 'activehelper_livehelp'),
         'et' => __('Estonian', 'activehelper_livehelp'),
         
 	);
+        
 
+
+    
 	foreach ($__text as $code => $language)
 		echo '
 								<option value="' . $code . '" ' . ($_REQUEST['lang'] == $code ? 'selected="selected"' : '') . '>
@@ -961,38 +1051,43 @@ function activeHelper_liveHelp_agentsSettings()
 							<div style="clear: both;"></div>
 						</td></tr></tbody></table>
 
+                             <table><tbody><tr><td class="first t">
+								' . __('', 'activehelper_livehelp') . '
+							</td><td class="b">
+								' . __('<a target="_blank" href="http://www.activehelper.com/Icons/icon-store.html#free">	Get more chat buttons here</a>', 'activehelper_livehelp') . '
+							</td></tr></tbody>
 						<table style="margin-top: 1.5ex;"><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
-							' . __('Online image (gif)', 'activehelper_livehelp') . '
-						</th></thead><tbody><tr><td id="newmetaleft" class="left">' . (!empty($agent_imgs['offline']) ? '
-							<div style="float: right; padding: .5ex 1ex .5ex 1ex;">
-								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $agent_url . 'offline.gif" alt="" />
-							</div>' : '') . '
-							<input type="file" tabindex="' . $tabindex++ . '" style="width: auto;" size="35" name="offline">
-						</td></tr></tbody></table>
-
-						<table style="margin-top: 1.5ex;"><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
-							' . __('Offline image (gif)', 'activehelper_livehelp') . '
+							' . __('Online image (' .$status_indicator_img_type .')', 'activehelper_livehelp') . '
 						</th></thead><tbody><tr><td id="newmetaleft" class="left">' . (!empty($agent_imgs['online']) ? '
 							<div style="float: right; padding: .5ex 1ex .5ex 1ex;">
-								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $agent_url . 'online.gif" alt="" />
+								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $agent_url .$f_online .'" alt="" />
 							</div>' : '') . '
 							<input type="file" tabindex="' . $tabindex++ . '" style="width: auto;" size="35" name="online">
 						</td></tr></tbody></table>
 
 						<table style="margin-top: 1.5ex;"><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
-							' . __('Away image (gif)', 'activehelper_livehelp') . '
+							' . __('Offline image (' . $status_indicator_img_type .')', 'activehelper_livehelp') . '
+						</th></thead><tbody><tr><td id="newmetaleft" class="left">' . (!empty($agent_imgs['offline']) ? '
+							<div style="float: right; padding: .5ex 1ex .5ex 1ex;">
+								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $agent_url . $f_offline .'" alt="" />
+							</div>' : '') . '
+							<input type="file" tabindex="' . $tabindex++ . '" style="width: auto;" size="35" name="offline">
+						</td></tr></tbody></table>
+
+						<table style="margin-top: 1.5ex;"><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
+							' . __('Away image ('.$status_indicator_img_type.')', 'activehelper_livehelp') . '
 						</th></thead><tbody><tr><td id="newmetaleft" class="left">' . (!empty($agent_imgs['away']) ? '
 							<div style="float: right; padding: .5ex 1ex .5ex 1ex;">
-								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $agent_url . 'away.gif" alt="" />
+								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $agent_url . $f_away .'" alt="" />
 							</div>' : '') . '
 							<input type="file" tabindex="' . $tabindex++ . '" style="width: auto;" size="35" name="away">
 						</td></tr></tbody></table>
 
 						<table style="margin-top: 1.5ex;"><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
-							' . __('BRB image (gif)', 'activehelper_livehelp') . '
+							' . __('BRB image ('.$status_indicator_img_type.')', 'activehelper_livehelp') . '
 						</th></thead><tbody><tr><td id="newmetaleft" class="left">' . (!empty($agent_imgs['brb']) ? '
 							<div style="float: right; padding: .5ex 1ex .5ex 1ex;">
-								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $agent_url . 'brb.gif" alt="" />
+								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $agent_url . $f_brb .'" alt="" />
 							</div>' : '') . '
 							<input type="file" tabindex="' . $tabindex++ . '" style="width: auto;" size="35" name="brb">
 						</td></tr></tbody></table>
@@ -1000,6 +1095,38 @@ function activeHelper_liveHelp_agentsSettings()
 					</div>
 				</div></div>
 			</div></div></div>
+           
+            <div id="post-body"><div id="post-body-content"><div class="meta-box-sortables ui-sortable">
+				<div class="stuffbox postbox"><div id="postcustomstuff" style="padding: .6ex 0;">
+					<div class="handlediv" title="' . __('Click to toggle', 'activehelper_livehelp') . '"><br /></div>
+					<h3 style="cursor: default;">
+						' . __('Time Schedule', 'activehelper_livehelp') . '</h3>
+					<div class="inside">
+                    
+                    	<table style="margin-top: 1.5ex;"><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
+							' . __('Allow to sign in only for an specific time', 'activehelper_livehelp') . '
+						</th></thead><tbody><tr><td id="newmetaleft" class="left" style="padding: 1ex;">
+							<label style="margin-left: .5ex; display: block; float: left; margin-right: 1ex; line-height: 15px;">
+								<input style="float: left;  margin: 0 .5ex 0 0; width: auto;"" tabindex="' . $tabindex++ . '" type="radio" name="schedule" ' . (!empty($agent_schedule['schedule']) ? 'checked="checked"' : '') . ' value="1" /> ' . __('Enable', 'activehelper_livehelp') . '</label>
+							<label style="display: block; margin: 0 .5ex 0 0; float: left; line-height: 15px;">
+								<input style="float: left;  margin: 0 .5ex 0 0; width: auto;"" tabindex="' . $tabindex++ . '" type="radio" name="schedule" ' . (empty($agent_schedule['schedule']) ? 'checked="checked"' : '') . ' value="0" /> ' . __('Disable', 'activehelper_livehelp') . '</label>
+							<div style="clear: both;"></div>
+						</td></tr></tbody></table>
+
+                  	<table><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
+							<label for="int_time">' . __('Inital Time ( 24H 00:00:00 )', 'activehelper_livehelp') . '</label>
+						</th></thead><tbody><tr><td id="newmetaleft" class="left">
+							<input tabindex="' . $tabindex++ . '" maxlength="255" type="text" style="width: 96%;" value="' . $agent_schedule['int_time'] . '" id="int_time" name="int_time" />' . (isset($errors['int_time']) ? '
+							<p style="color: #f00;">' . __('Error', 'activehelper_livehelp') . ': <code style="background-color: #FAF0F0;">' . $errors['int_time'] . '</code></p>' : '') . '
+						</td></tr></tbody></table>
+
+						<table style="margin-top: 1.5ex;"><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
+							<label for="end_time">' . __('End Time ( 24H 23:59:59)', 'activehelper_livehelp') . '</label>
+						</th></thead><tbody><tr><td id="newmetaleft" class="left">
+							<input tabindex="' . $tabindex++ . '" maxlength="255" type="text" style="width: 96%;" value="' . $agent_schedule['end_time'] . '" id="end_time" name="end_time" />' . (isset($errors['end_time']) ? '
+							<p style="color: #f00;">' . __('Error', 'activehelper_livehelp') . ': <code style="background-color: #FAF0F0;">' . $errors['end_time'] . '</code></p>' : '') . '
+						</td></tr></tbody></table>                                                                     
+	       </div></div></div>
 			<br />
 		</div>';
 
@@ -1028,5 +1155,11 @@ function activeHelper_liveHelp_agentsSettings()
 		});
 	</script>
 </div>';
+
+ if (isset($_POST['submit']))
+	{
+      wp_redirect('admin.php?page=' . strtolower('activeHelper_liveHelp_agents'));
+		exit;
+     }
 }
 

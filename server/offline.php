@@ -162,9 +162,13 @@ if($_REQUEST['COMPLETE'] == true) {
                                 }
                                 $to_email = $offline_email;
                                 $subject = "Livehelp Offline Message";
+                                
+                                $headers = "Mime-Version: 1.0\n";
+                                $headers .= "Content-Type: text/plain;charset=UTF-8\n";
                                 $headers = "From: " . $from_name . " <" . $from_email . ">\n";
                                 $headers .= "Reply-To: " . $from_name . " <" . $from_email . ">\n";
                                 $headers .= "Return-Path: " . $from_name . " <" . $from_email . ">\n";
+                                
                                 
                                 $msg      = mysql_real_escape_string($message);
                                 
@@ -180,7 +184,8 @@ if($_REQUEST['COMPLETE'] == true) {
                                         $headers = str_replace("\n", "\r\n", $headers);
                                         $message = str_replace("\n", "\r\n", $message);
                                 }
-                                mail($to_email, $subject, $message, $headers);
+                                //mail($to_email, $subject, $message, $headers);
+                                mail($to_email, '=?utf-8?B?'.base64_encode($subject).'?=' , $message, $headers);
                                 
                                 // save the offline email in the database
                                 

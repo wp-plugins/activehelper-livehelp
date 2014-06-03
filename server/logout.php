@@ -119,10 +119,12 @@ else {
 // Send transcription
 
 if ($send_session == true) {  
-    
- $headers = "From: " . str_ireplace("www.", "", $from_name). " <" . $from_email . ">\n";   
+ 
+ $headers = "Mime-Version: 1.0\n";
+ $headers .= "Content-Type: text/plain;charset=UTF-8\n";   
+ $headers .= "From: " . str_ireplace("www.", "", $from_name). " <" . $from_email . ">\n";   
  $subject = str_ireplace("www.", "", $from_name). " " . $chat_transcript_label . ' (' . $guest_login_id . ' )'; 
- mail($email, $subject, $msg, $headers);
+ mail($email, '=?utf-8?B?'.base64_encode($subject).'?=' , $msg, $headers);
  
  }
  

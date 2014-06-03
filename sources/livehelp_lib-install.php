@@ -1,7 +1,7 @@
 <?php
 /**
  * @package ActiveHelper Live Help
- * @Version 3.4.5 
+ * @Version 3.5.0 
  */
 
 if (!defined('ACTIVEHELPER_LIVEHELP'))
@@ -56,36 +56,34 @@ function activeHelper_liveHelp_resetSettings()
 	// Create constant file
 	$settingsFile = $activeHelper_liveHelp['importDir'] . '/constants.php';
 
-	$content = '<?php 
+	$content = '<?php  
+       if (!defined(\'__CONSTANTS_INC\')) {  
+       define(\'__CONSTANTS_INC\', 1);   
+       include_once(\'jlhconst.php\');  
  
-if (!defined(\'__CONSTANTS_INC\')) {  
-define(\'__CONSTANTS_INC\', 1);  
+       $eserverHostname = J_HOST;  
+       $eserverName = "server";
+       $domainSettings =J_DOMAIN_SET_PATH;  
+       $server_directory =J_DIR_PATH;  
+       $ssl =J_CONF_SSL;  
  
-include_once(\'jlhconst.php\');  
+       $install_directory = $server_directory."/".$eserverName;
  
-$eserverHostname = J_HOST;  
-$eserverName = "server";
-$domainSettings =J_DOMAIN_SET_PATH;  
-$server_directory =J_DIR_PATH;  
-$ssl =J_CONF_SSL;  
+      // Set advanced settings, ie. timers  
  
-$install_directory = $server_directory."/".$eserverName;
+       $connection_timeout = 60;
+       $keep_alive_timeout = 30;
+       $guest_login_timeout= 60;
+       $chat_refresh_rate = 6;
+       $user_panel_refresh_rate = 10;
+       $sound_alert_new_message = 1;
+       $status_indicator_img_type = "gif";
+       $invitation_position = "center";
+       $sound_alert_new_pro_msg =1;
  
-// Set advanced settings, ie. timers  
+        } /* __CONSTANTS_INC */
  
-$connection_timeout = 60;
-$keep_alive_timeout = 30;
-$guest_login_timeout= 60;
-$chat_refresh_rate = 6;
-$user_panel_refresh_rate = 10;
-$sound_alert_new_message = 1;
-$status_indicator_img_type = "gif";
-$invitation_position = "right";
-$sound_alert_new_pro_msg =1;
- 
-} /* __CONSTANTS_INC */
- 
-?>';
+     ?>';
 
 	$fhandle = fopen($settingsFile, "w");
 	fwrite($fhandle, $content);
@@ -134,13 +132,13 @@ if (!defined(\'__CONFIG_DATABASE_INC\'))
 	$hostFile = $activeHelper_liveHelp['baseDir'] . '/server/import/jlhconst.php';
 	$hostContent = '<?php
 
-define("J_HOST", "' . $host . '");
-define("J_DOMAIN_SET_PATH", "' . $activeHelper_liveHelp['domainsDir'] . '");
-define("J_DIR_PATH", "' . $path . '");
-define("J_CONF_PATH", "' . $rootPath . '");
-define("J_CONF_SSL", ' . $secureHost . ');
+      define("J_HOST", "' . $host . '");
+      define("J_DOMAIN_SET_PATH", "' . $activeHelper_liveHelp['domainsDir'] . '");
+      define("J_DIR_PATH", "' . $path . '");
+      define("J_CONF_PATH", "' . $rootPath . '");
+      define("J_CONF_SSL", ' . $secureHost . ');
 
-?>';
+     ?>';
 
 	$fhandle = fopen($hostFile, "w");
 	fwrite($fhandle, $hostContent);
@@ -466,6 +464,9 @@ function activeHelper_liveHelp_installQuery()
 			`photo` varchar(10) DEFAULT NULL,
 			`status` bigint(20) NOT NULL default '0',
 			`answers` int(1) NOT NULL default '1',
+             schedule` int(1) DEFAULT '0',
+            `initial_time` time DEFAULT NULL,
+            `final_time` time DEFAULT NULL,
 			PRIMARY KEY  (`id`),
 			UNIQUE KEY `uk_users_username` (`username`)
 		) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -790,47 +791,9 @@ function activeHelper_liveHelp_uninstallQuery()
 function activeHelper_liveHelp_updateDatabase($database_version, $plugin_version) {
   global $wpdb;
 
-  /*
-  Para consultas comunes (INSERT, SELECT, UPDATE, DELETE):
-    $wpdb->query($query);
-  Para cualquier consulta común y que involucre tablas (CREATE, ALTER, DROP):
-    dbDelta($query);
-  */
-
-  /*
-  // Por ejemplo, si estamos actualmente en la versión 2.9.5 y vamos a la 2.9.6
-  if ($database_version == "2.9.1") {
-    $wpdb->query("UPDATE __tabla__ SET __valor__ = 'nuevo valor' WHERE __nombre__ = 'condicion'");
-    // Aquí colocamos la versión después de las consultas.
-    $database_version = "2.9.2";
-  }
-   */
-
-/*  // Ahora, supongamos que actualizamos de la versión 2.9.5 a la versión 2.9.8
-  // ya que el usuario no descargó la versión 2.9.6 ni 2.9.7, así que tendrá
-  // que actualizar la DB primero a la 2.9.6, y luego a la 2.9.7 y finalmente a la 2.9.8
-  if ($database_version == "2.9.5") {
-    $wpdb->query("UPDATE __tabla__ SET __valor__ = 'nuevo valor' WHERE __nombre__ = 'condicion'");
-    // Aquí colocamos la versión después de las consultas.
-    $database_version = "2.9.6";
-  }
-  if ($database_version == "2.9.6") {
-    dbDelta("ALTER TABLE __tabla__ ALTER COLUMN __nombre__ VARCHAR(120)");
-    // Aquí colocamos la versión después de las consultas.
-    $database_version = "2.9.7";
-  }
-  if ($database_version == "2.9.7") {
-    // Para la versión 2.9.7 no hay actualizaciones al pasar a la 2.9.8
-    // así que esto lo podemos dejar sin consultas, o simplemente no colocar ningún condicional
-    // ya que al final la versión se auto ajusta a la actual versión del plugin
-
-    // Aquí colocamos la versión después de las consultas.
-    $database_version = "2.9.8";
-  }
-*/
-
   if ($database_version != $plugin_version) {
-	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+	
+    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
     if ($database_version == "2.9.5") {
         
@@ -934,6 +897,37 @@ function activeHelper_liveHelp_updateDatabase($database_version, $plugin_version
    if ($database_version == "3.4.0") {
      
      $database_version = "3.4.5";
+      
+   }
+   
+   if ($database_version == "3.4.5") {
+     
+      $table_name = $wpdb->prefix . "livehelp_users";
+
+	 $sql = "CREATE TABLE $table_name (
+			 id bigint(20) NOT NULL auto_increment,
+			 username varchar(50) NOT NULL default '',
+			 password varchar(100) NOT NULL default '',
+			 firstname varchar(50) NOT NULL default '',
+			 lastname varchar(50) NOT NULL default '',
+			 email varchar(50) NOT NULL default '',
+			 department varchar(100) NOT NULL default '',
+			 datetime datetime NOT NULL default '0000-00-00 00:00:00',
+			 refresh datetime NOT NULL default '0000-00-00 00:00:00',
+			 disabled int(1) NOT NULL default '0',
+			 privilege int(1) NOT NULL default '0', 
+			 photo varchar(10) DEFAULT NULL,
+			 status bigint(20) NOT NULL default '0',
+			 answers int(1) NOT NULL default '1',
+             schedule int(1) DEFAULT '0',
+             initial_time time DEFAULT NULL,
+             final_time time DEFAULT NULL,
+   	         PRIMARY KEY  (id),
+			 UNIQUE KEY  uk_users_username (username)
+             );"; 
+       
+             dbDelta( $sql );     
+             $database_version = "3.5.0";
       
    }
    

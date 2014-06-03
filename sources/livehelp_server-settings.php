@@ -37,6 +37,7 @@ function activeHelper_liveHelp_serverSettingsPost()
 	$_POST['sound_alert_new_message'] = !empty($_POST['sound_alert_new_message']) ? (int) $_POST['sound_alert_new_message'] : 1;
 
 	include($activeHelper_liveHelp['importDir'] . '/constants.php');
+    
 	if (!isset($_POST['submit']))
 	{
 		$_POST = array(

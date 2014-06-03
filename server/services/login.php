@@ -65,7 +65,7 @@ header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // Date in the past
   }
 
   //Verifica el password
-  $query = "SELECT `id`, `firstname`, `lastname`, `privilege`, `department` FROM " . $table_prefix .
+  $query = "SELECT `id`, `firstname`, `lastname`, `privilege`, `department`  , `schedule` FROM " . $table_prefix .
            "users WHERE `username` REGEXP BINARY '^" . $_REQUEST['USERNAME'] . "$' AND `password` = '" .
            $_REQUEST['PASSWORD']."'";
 
@@ -76,19 +76,35 @@ header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // Date in the past
     printError($password_incorrect);
     exit;
   }
-
- //--
-   $operator_login_id = $row['id'];
+  
+ //-- operator settings
+   $operator_login_id  = $row['id'];   
    $current_first_name = $row['firstname'];
-   $current_last_name = $row['lastname'];
-   $current_privilege = $row['privilege'];
+   $current_last_name  = $row['lastname'];
+   $current_privilege  = $row['privilege'];
    $current_department = $row['department'];
-   $current_account = $_REQUEST['ACCOUNT'];
+   $current_account    = $_REQUEST['ACCOUNT'];
+   $operator_schedule  = $row['schedule'];
 
+ //Verifica el schedule
+ 
+ if ($operator_schedule == 1){
+  $query = "SELECT `id` FROM " . $table_prefix .
+   "users  WHERE `id` = " .$operator_login_id. " and CURTIME() BETWEEN initial_time  AND final_time ";
+           
+  $row = $SQL->selectquery($query);
+  //deniedRequest($row, $password_incorrect);
+  if (!is_array($row))
+  {
+   // error_log("SQL ". $query."\n", 3, "login.log");
+    printError($schedule_time_incorrect);
+    exit;
+  }
+   }
    //error_log("1. operator_login_id: ".$operator_login_id."\n", 3, "login.log");
 
    //Verifica si la session expiro
-   $query = "SELECT ((UNIX_TIMESTAMP(NOW())  - UNIX_TIMESTAMP(refresh))) as time_session FROM " . $table_prefix .
+   $query = "SELECT FLOOR((UNIX_TIMESTAMP(NOW())  - UNIX_TIMESTAMP(refresh))) as time_session FROM " . $table_prefix .
             "users WHERE `username` REGEXP BINARY '^" . $_REQUEST['USERNAME'] . "$' AND `password` = '" .
             $_REQUEST['PASSWORD']."'";
 

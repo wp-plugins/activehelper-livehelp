@@ -1,9 +1,9 @@
 <?php
 
   $seconds = 'Seconds';
-  $session_expired = 'La session de Livehelp esta activa. La sesion expirara en ';
   $session_expired = 'The Livehelp session is active. The session will be expired in ';
   $password_incorrect = 'Password incorrect';
+  $schedule_time_incorrect ='Access not allowed at this time';
   $login_account_incorrect = 'Login or account incorrect';
 
   $unavailable_label = 'Unavailable';

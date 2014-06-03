@@ -6,7 +6,7 @@
 Plugin Name: ActiveHelper Live Help
 Plugin URI: http://www.activehelper.com
 Description: Provide superior service by real time chat with your website visitors and interact them through your website. Create a more efficient connection with your website visitors, increase your sales and customer satisfaction.
-Version: 3.4.5
+Version: 3.5.0
 Author: ActiveHelper Inc
 Author URI: http://www.activehelper.com
 */
@@ -776,44 +776,49 @@ function activeHelper_liveHelp_about()
 								' . __('Info', 'activehelper_livehelp') . '
 							</p>
 							<table><tbody><tr class="first"><td class="first t">
-								' . __('Name', 'activehelper_livehelp') . '
+								' . __('Name : ', 'activehelper_livehelp') . '
 							</td><td class="b">
-								' . __('LiveHelp system for WordPress', 'activehelper_livehelp') . '
+								' . __('LiveHelp Server for WordPress', 'activehelper_livehelp') . '
 							</td></tr></tbody></table>
 							<table><tbody><tr><td class="first t">
-								' . __('Version', 'activehelper_livehelp') . '
+								' . __('Version : ', 'activehelper_livehelp') . '
 							</td><td class="b">
-								' . __('3.4.5', 'activehelper_livehelp') . '
+								' . __('3.5.0', 'activehelper_livehelp') . '
 							</td></tr></tbody></table>
 							<table><tbody><tr><td class="first t">
-								' . __('Check for Update', 'activehelper_livehelp') . '
+								' . __('Check for Update : ', 'activehelper_livehelp') . '
 							</td><td class="b">
-								' . __('<a href="http://www.activehelper.com/">http://www.activehelper.com/</a>', 'activehelper_livehelp') . '
+								' . __('<a target="_blank" href="http://www.activehelper.com/extensions/wordpress-live-chat.html">http://www.activehelper.com/</a>', 'activehelper_livehelp') . '
 							</td></tr></tbody></table>
 							<table><tbody><tr><td class="first t">
-								' . __('Help', 'activehelper_livehelp') . '
+								' . __('Help : ', 'activehelper_livehelp') . '
 							</td><td class="b">
-								' . __('<a href="http://www.activehelper.com/faq.html">http://www.activehelper.com/faq.html</a>', 'activehelper_livehelp') . '
+								' . __('<a target="_blank" href="http://www.activehelper.com/faq.html">http://www.activehelper.com/faq.html</a>', 'activehelper_livehelp') . '
 							</td></tr></tbody></table>
 							<table><tbody><tr><td class="first t">
-								' . __('Support Forum', 'activehelper_livehelp') . '
+								' . __('Forum : ', 'activehelper_livehelp') . '
 							</td><td class="b">
-								' . __('<a href="http://www.activehelper.com/forum/wordpress-extension">http://www.activehelper.com/forum/wordpress-extension</a>', 'activehelper_livehelp') . '
+								' . __('<a target="_blank" href="http://www.activehelper.com/forum/wordpress-extension">http://www.activehelper.com/forum/wordpress-extension</a>', 'activehelper_livehelp') . '
 							</td></tr></tbody></table>
 							<table><tbody><tr><td class="first t">
-								' . __('Follow at Twitter', 'activehelper_livehelp') . '
+								' . __('Twitter : ', 'activehelper_livehelp') . '
 							</td><td class="b">
-								' . __('<a href="https://twitter.com/activehelper">https://twitter.com/activehelper</a>', 'activehelper_livehelp') . '
+								' . __('<a target="_blank" href="https://twitter.com/activehelper">https://twitter.com/activehelper</a>', 'activehelper_livehelp') . '
+							</td></tr></tbody></table>
+                            <table><tbody><tr><td class="first t">
+								' . __('Facebook : ', 'activehelper_livehelp') . '
+							</td><td class="b">
+								' . __('<a target="_blank" href="https://www.facebook.com/activehelpersystem">https://www.facebook.com/activehelpersystem</a>', 'activehelper_livehelp') . '
 							</td></tr></tbody></table>
 							<table><tbody><tr><td class="first t">
-								' . __('License', 'activehelper_livehelp') . '
+								' . __('License : ', 'activehelper_livehelp') . '
 							</td><td class="b">
-								' . __('GNU/GPL v2 - <a href="http://www.activehelper.com/license.txt">http://www.activehelper.com/license.txt</a>', 'activehelper_livehelp') . '
+								' . __('GNU/GPL v2 - <a target="_blank" href="http://www.activehelper.com/license.txt">http://www.activehelper.com/license.txt</a>', 'activehelper_livehelp') . '
 							</td></tr></tbody></table>
 							<table><tbody><tr><td class="first t">
 								' . __('Copyright', 'activehelper_livehelp') . '
 							</td><td class="b">
-								' . __('Copyright © 2010 - 2012. Activehelper - 2010 - 2012 - All Rights Reserved', 'activehelper_livehelp') . '
+								' . __('Copyright © 2010 - 2012. Activehelper - 2010 - 2014 - All Rights Reserved', 'activehelper_livehelp') . '
 							</td></tr></tbody></table>
 						</div>
 						<div style="clear: both;"></div>
@@ -857,6 +862,7 @@ function activehelper_livehelp_uninstall()
 		</div>
 	</div>
 </div>';
+
 }
 
 function activehelper_livehelp_plugin_backup()
@@ -866,6 +872,7 @@ function activehelper_livehelp_plugin_backup()
 	@mkdir( $t );
 
 	activeHelper_liveHelp_filesDuplicate( $f . '/server/domains', $t . '/domains' );
+	activeHelper_liveHelp_filesDuplicate( $f . '/server/agents', $t . '/agents' );
 	activeHelper_liveHelp_filesDuplicate( $f . '/server/import/config_database.php', $t . '/config_database.php' );
 	activeHelper_liveHelp_filesDuplicate( $f . '/server/import/constants.php', $t . '/constants.php' );
 	activeHelper_liveHelp_filesDuplicate( $f . '/server/import/jlhconst.php', $t . '/jlhconst.php' );
@@ -877,6 +884,7 @@ function activehelper_livehelp_plugin_recover()
 	$t = dirname( __FILE__ ) . '';
 
 	activeHelper_liveHelp_filesDuplicate( $f . '/domains', $t . '/server/domains' );
+	activeHelper_liveHelp_filesDuplicate( $f . '/agents', $t . '/server/agents' );
 	activeHelper_liveHelp_filesDuplicate( $f . '/config_database.php', $t . '/server/import/config_database.php' );
 	activeHelper_liveHelp_filesDuplicate( $f . '/constants.php', $t . '/server/import/constants.php' );
 	activeHelper_liveHelp_filesDuplicate( $f . '/jlhconst.php', $t . '/server/import/jlhconst.php' );

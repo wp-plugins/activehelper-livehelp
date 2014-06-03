@@ -1,9 +1,9 @@
 <?php
 /**
  * @package ActiveHelper Live Help
- * @Version 2.9.5
+ * @Version   : 3.5.0
  * @author    : ActiveHelper Inc.
- * @copyright : (C) 2013- ActiveHelper Inc.
+ * @copyright : (C) 2014 - ActiveHelper Inc.
  * @license   : GNU/GPL http://www.gnu.org/copyleft/gpl.html 
  */
 
@@ -269,6 +269,24 @@ function activeHelper_liveHelp_domainsGenerateScript()
 								<input style="float: left;  margin: 0 .5ex 0 0; width: auto;"" tabindex="' . $tabindex++ . '" type="radio" id="script_status_disable" name="script_status" value="0" /> ' . __('Disable', 'activehelper_livehelp') . '</label>
 							<div style="clear: both;"></div>
 						</td></tr></tbody></table>
+                        
+                	<table><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
+							' . __('Footer Position', 'activehelper_livehelp') . '
+						</th></thead><tbody><tr><td id="newmetaleft" class="left">
+							<select size="1" id="scriptFooter" style="width: 200px;" name="scriptFooter" tabindex="' . $tabindex++ . '">';
+
+	echo '
+								<option value="0">' . __('None', 'activehelper_livehelp')   . '</option>
+								<option value="1">' . __('Right', 'activehelper_livehelp')  . '</option>
+                                <option value="2">' . __('Center', 'activehelper_livehelp') . '</option>
+                                <option value="3">' . __('Left', 'activehelper_livehelp')   . '</option>';
+                                
+
+	echo '
+							</select>
+							<div style="clear: both;"></div>
+						</td></tr></tbody></table>
+                        
 					</div></div>
 				</div>
 				<div class="stuffbox postbox">
@@ -289,10 +307,25 @@ function activeHelper_liveHelp_domainsGenerateScript()
 		var scriptTracking = 1;
 		var scriptStatus = 1;
 		var agentID = 0;
+        var scriptFooter_Pos =0;
+                
 		function generateScript()
 		{
-			var html = "<" + "script type=\"text/javascript\" src=\"' . $activeHelper_liveHelp['serverUrl'] . '/import/javascript.php\">";
-			html += "</" + "script>\n";
+		  
+           if (scriptFooter_Pos == 1) {
+                   var s_footer = "<p class=\"pin\"><span style=\"font-size: 10pt;\"><div style=\"position: fixed; bottom: 0px; right:0px; z-index:999999999999; display:block;\"> ";
+                }  else 
+           if (scriptFooter_Pos ==2) {
+                  var s_footer = "<p class=\"pin\"><span style=\"font-size: 10pt;\"><div style=\"position: fixed; bottom: 0px; center:0px; z-index:999999999999; display:block;\"> ";
+                }  else 
+             if (scriptFooter_Pos ==3) {
+                  var s_footer = "<p class=\"pin\"><span style=\"font-size: 10pt;\"><div style=\"position: fixed; bottom: 0px; left:0px; z-index:999999999999; display:block;\"> ";
+                }else 
+               {var s_footer = " ";}
+              
+          var html =s_footer + "\n";
+            html += "<" + "script type=\"text/javascript\" src=\"' . $activeHelper_liveHelp['serverUrl'] . '/import/javascript.php\">\n";			
+            html += "</" + "script>\n";
 			html += "<" + "script type=\"text/javascript\">\n";
 			html += "	_vlDomain = ' . $_REQUEST['id'] . ';\n";
 			html += "	_vlAgent = " + agentID + ";\n";
@@ -302,6 +335,9 @@ function activeHelper_liveHelp_domainsGenerateScript()
 			html += "	_vlStatus_indicator = " + scriptStatus + ";\n";
 			html += "	startLivehelp();\n";
 			html += "</" + "script>";
+            
+          
+            
 
 			jQuery("#script_generated").val(html);
 		}
@@ -338,6 +374,9 @@ function activeHelper_liveHelp_domainsGenerateScript()
 			$("#script_tracking_disable").click(function(){ scriptTracking = 0; generateScript(); });
 
 			$("#script_language").change(function(){ scriptLanguage = $(this).val(); generateScript(); });
+            
+            $("#scriptFooter").change(function(){ scriptFooter_Pos = $(this).val(); generateScript(); });
+            
 		});
 	</script>
 </div>';
@@ -735,6 +774,11 @@ function activeHelper_liveHelp_domainsRegister()
 function activeHelper_liveHelp_domainsSettingsPost()
 {
 	global $wpdb, $activeHelper_liveHelp;
+    
+ if (isset($_POST['submit']))
+	{
+      include($activeHelper_liveHelp['importDir'] . '/constants.php');            
+    }
 
 	$_REQUEST['id'] = !empty($_REQUEST['id']) ? (int) $_REQUEST['id'] : 0;
 
@@ -908,22 +952,22 @@ function activeHelper_liveHelp_domainsSettingsPost()
 
 		while (!empty($_FILES['domain_image_online']['tmp_name']))
 		{
-			activeHelper_liveHelp_imagesUpload($domainsPicturesDir, 'online', $_FILES['domain_image_online'], '.gif');
+			activeHelper_liveHelp_imagesUpload($domainsPicturesDir, 'online', $_FILES['domain_image_online'], '.'.$status_indicator_img_type);
 			unset($_FILES['domain_image_online']);
 		}
 		while (!empty($_FILES['domain_image_offline']['tmp_name']))
 		{
-			activeHelper_liveHelp_imagesUpload($domainsPicturesDir, 'offline', $_FILES['domain_image_offline'], '.gif');
+			activeHelper_liveHelp_imagesUpload($domainsPicturesDir, 'offline', $_FILES['domain_image_offline'], '.'.$status_indicator_img_type);
 			unset($_FILES['domain_image_offline']);
 		}
 		while (!empty($_FILES['domain_image_away']['tmp_name']))
 		{
-			activeHelper_liveHelp_imagesUpload($domainsPicturesDir, 'away', $_FILES['domain_image_away'], '.gif');
+			activeHelper_liveHelp_imagesUpload($domainsPicturesDir, 'away', $_FILES['domain_image_away'], '.'.$status_indicator_img_type);
 			unset($_FILES['domain_image_away']);
 		}
 		while (!empty($_FILES['domain_image_brb']['tmp_name']))
 		{
-			activeHelper_liveHelp_imagesUpload($domainsPicturesDir, 'brb', $_FILES['domain_image_brb'], '.gif');
+			activeHelper_liveHelp_imagesUpload($domainsPicturesDir, 'brb', $_FILES['domain_image_brb'], '.'.$status_indicator_img_type);
 			unset($_FILES['domain_image_brb']);
 		}
 
@@ -935,6 +979,16 @@ function activeHelper_liveHelp_domainsSettingsPost()
 function activeHelper_liveHelp_domainsSettings()
 {
 	global $activeHelper_liveHelp;
+    
+     if (!isset($_POST['submit']))
+	{
+      include($activeHelper_liveHelp['importDir'] . '/constants.php');
+          
+    $f_online   = "online." . $status_indicator_img_type;
+    $f_offline  = "offline." . $status_indicator_img_type;
+    $f_away     = "away." . $status_indicator_img_type;
+    $f_brb      = "brb." . $status_indicator_img_type;    
+    }
 
 	if (!empty($activeHelper_liveHelp['errors']))
 		$errors = $activeHelper_liveHelp['errors'];
@@ -1406,39 +1460,45 @@ function activeHelper_liveHelp_domainsSettings()
 					<div class="handlediv" title="' . __('Click to toggle', 'activehelper_livehelp') . '"><br /></div>
 					<h3 style="cursor: pointer;">' . __('Images', 'activehelper_livehelp') . '</h3>
 					<div class="inside" style="display: none;"><div id="postcustomstuff" style="padding: .6ex 0;">
+                    
+                       <table><tbody><tr><td class="first t">
+								' . __('', 'activehelper_livehelp') . '
+							</td><td class="b">
+								' . __('<a target="_blank" href="http://www.activehelper.com/Icons/icon-store.html#free">	Get more chat buttons, themes and invitations here</a>', 'activehelper_livehelp') . '
+							</td></tr></tbody>
 
 						<table><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
-							' . __('Online image (gif)', 'activehelper_livehelp') . '
+							' . __('Online image ('.$status_indicator_img_type.')', 'activehelper_livehelp') . '
 						</th></thead><tbody><tr><td id="newmetaleft" class="left">
 							<div style="float: right; padding: .5ex 1ex .5ex 1ex;">
-								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $activeHelper_liveHelp['domainsUrl'] . '/' . $_REQUEST['id'] . '/i18n/' . $activeHelper_liveHelp['domain']['domain_language'] . '/pictures/online.gif" class="domain_image_online" alt="" />
+								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $activeHelper_liveHelp['domainsUrl'] . '/' . $_REQUEST['id'] . '/i18n/' . $activeHelper_liveHelp['domain']['domain_language'] . '/pictures/' .$f_online.'" class="domain_image_online" alt="" />
 							</div>
 							<input type="file" tabindex="' . $tabindex++ . '" style="width: auto;" size="35" name="domain_image_online">
 						</td></tr></tbody></table>
 
 						<table style="margin-top: 1.5ex;"><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
-							' . __('Offline image (gif)', 'activehelper_livehelp') . '
+							' . __('Offline image ('.$status_indicator_img_type.')', 'activehelper_livehelp') . '
 						</th></thead><tbody><tr><td id="newmetaleft" class="left">
 							<div style="float: right; padding: .5ex 1ex .5ex 1ex;">
-								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $activeHelper_liveHelp['domainsUrl'] . '/' . $_REQUEST['id'] . '/i18n/' . $activeHelper_liveHelp['domain']['domain_language'] . '/pictures/offline.gif" class="domain_image_offline" alt="" />
+								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $activeHelper_liveHelp['domainsUrl'] . '/' . $_REQUEST['id'] . '/i18n/' . $activeHelper_liveHelp['domain']['domain_language'] . '/pictures/'.$f_offline.'" class="domain_image_offline" alt="" />
 							</div>
 							<input type="file" tabindex="' . $tabindex++ . '" style="width: auto;" size="35" name="domain_image_offline">
 						</td></tr></tbody></table>
 
 						<table style="margin-top: 1.5ex;"><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
-							' . __('Away image (gif)', 'activehelper_livehelp') . '
+							' . __('Away image ('.$status_indicator_img_type.')', 'activehelper_livehelp') . '
 						</th></thead><tbody><tr><td id="newmetaleft" class="left">
 							<div style="float: right; padding: .5ex 1ex .5ex 1ex;">
-								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $activeHelper_liveHelp['domainsUrl'] . '/' . $_REQUEST['id'] . '/i18n/' . $activeHelper_liveHelp['domain']['domain_language'] . '/pictures/away.gif" class="domain_image_away" alt="" />
+								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $activeHelper_liveHelp['domainsUrl'] . '/' . $_REQUEST['id'] . '/i18n/' . $activeHelper_liveHelp['domain']['domain_language'] . '/pictures/'.$f_away.'" class="domain_image_away" alt="" />
 							</div>
 							<input type="file" tabindex="' . $tabindex++ . '" style="width: auto;" size="35" name="domain_image_away">
 						</td></tr></tbody></table>
 
 						<table style="margin-top: 1.5ex;"><thead><tr><th style="font-size: 12px; font-weight: normal; text-align: left;">
-							' . __('BRB image (gif)', 'activehelper_livehelp') . '
+							' . __('BRB image ('.$status_indicator_img_type.')', 'activehelper_livehelp') . '
 						</th></thead><tbody><tr><td id="newmetaleft" class="left">
 							<div style="float: right; padding: .5ex 1ex .5ex 1ex;">
-								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $activeHelper_liveHelp['domainsUrl'] . '/' . $_REQUEST['id'] . '/i18n/' . $activeHelper_liveHelp['domain']['domain_language'] . '/pictures/brb.gif" class="domain_image_brb" alt="" />
+								<img style="margin: 4px 2px; border: 1px solid #ccc; background: #fff; padding: 2px;" src="' . $activeHelper_liveHelp['domainsUrl'] . '/' . $_REQUEST['id'] . '/i18n/' . $activeHelper_liveHelp['domain']['domain_language'] . '/pictures/'.$f_brb.'" class="domain_image_brb" alt="" />
 							</div>
 							<input type="file" tabindex="' . $tabindex++ . '" style="width: auto;" size="35" name="domain_image_brb">
 						</td></tr></tbody></table>

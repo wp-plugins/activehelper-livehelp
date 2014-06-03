@@ -90,7 +90,7 @@ if ($action == 'send')
                 
   if (($from_email != '') && ($from_name != '') && ($email != ''))
     { 
-        mail($email, $subject, $message, $headers);
+        mail($email,  '=?utf-8?B?'.base64_encode($subject).'?=' , $message, $headers);
   ?>
        
        <Messages>
