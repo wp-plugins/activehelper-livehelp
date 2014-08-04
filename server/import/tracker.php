@@ -151,7 +151,10 @@ if ($request_id > 0) {
                 if ((isset($domain_id)) && (!(strripos($domainName, $refDomain) === false)))
                 {
 
-                  $query = "SELECT 1 FROM " . $table_prefix . "requests WHERE ipaddress = '$ipaddress' And useragent = '$useragent' And resolution = '$width x $height' And (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(`datetime`)) < '5'";
+                    
+                    // increase the refresh value from 5 to 30 in order to support safari third-party cookies restriction.
+                    
+                  $query = "SELECT 1 FROM " . $table_prefix . "requests WHERE ipaddress = '$ipaddress' And useragent = '$useragent' And resolution = '$width x $height' And (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(`datetime`)) < 30";
                   $row = $SQL->selectquery($query);
                   if (!is_array($row))
                   {

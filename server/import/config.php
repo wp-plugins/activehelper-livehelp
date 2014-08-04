@@ -7,14 +7,6 @@ if (!defined('__CONFIG_INC')) {
         include_once('class.mysql.php');
         include_once('string_util.php');
 
-/*
-        foreach ($_REQUEST as $key => $value) {
-          error_log($key.":".$value."\n", 3, "../error.log");
-        }
-
-*/       // $session = unserialize($_COOKIE['www19216826']);
-         // error_log("REQUEST:".$session["REQUEST"]."\n", 3, "../error.log");
-
         if (isset($_SERVER['PATH_TRANSLATED']) && $_SERVER['PATH_TRANSLATED'] != '') { $env_path = $_SERVER['PATH_TRANSLATED']; } else { $env_path = $_SERVER['SCRIPT_FILENAME']; }
         $full_path = str_replace("\\\\", "\\", $env_path);
         $livehelp_path = $_SERVER['PHP_SELF'];
@@ -56,7 +48,7 @@ if (!defined('__CONFIG_INC')) {
         if (!isset($_REQUEST['SERVER'])){ $_REQUEST['SERVER'] = ''; } else $_REQUEST['SERVER'] = htmlspecialchars( (string) $_REQUEST['SERVER'], ENT_QUOTES );
 
         // Set a custom cookie domain or automatically create domain inc. sub domains.
-        $cookie_domain = '.' . $_SERVER['HTTP_HOST'];
+        $cookie_domain = $_SERVER['HTTP_HOST'];
 
 
 
@@ -65,7 +57,7 @@ if (!defined('__CONFIG_INC')) {
                 $cookie_domain = '';
         }
         elseif ($_REQUEST['COOKIE'] != '') {
-                $cookie_domain = '.' . $_REQUEST['COOKIE'];
+                $cookie_domain = $_REQUEST['COOKIE'];
         }
         else {
                 // Set session cookie timeout and domain
@@ -75,14 +67,14 @@ if (!defined('__CONFIG_INC')) {
                                 preg_match('/[^\.\/]+\.[^\.\/]+(\.[^\.\/]{2})?$/', $hostname, $matches);
 
                                 if (count($matches) != 0) {
-                                        $cookie_domain = '.' . $matches[0];
+                                        $cookie_domain = $matches[0];
                                 }
                         }
                 }
         }
 
-        // Remove .www. if at the start of string
-        if (substr($cookie_domain, 0,5) == '.www.') {
+        // Remove www. if at the start of string
+        if (substr($cookie_domain, 0,4) == 'www.') {
                 $cookie_domain = substr($cookie_domain, 4);
         }
 
@@ -115,6 +107,67 @@ if (!defined('__CONFIG_INC')) {
 
         $cookieName = str_replace(".", "", $refDomain);
 
+        //  new condition and refresh value from 5 to 30 in order to support safari third-party cookies restriction
+
+        if (!isset($_COOKIE[$cookieName])) {
+          $domainIsValid = false;
+          if(isset($domain_id) && ($domain_id != ''))
+          {
+            $query = "SELECT name FROM " . $table_prefix . "domains WHERE id_domain = '".$domain_id."'";
+            $row = $SQL->selectquery($query);
+            $domainName = $row['name'];
+            if ((!(strripos($domainName, $refDomain) === false)))
+            {
+              $domainIsValid = true;
+            }
+          }
+
+                           
+            if ((isset($domain_id)) && (!(strripos($domainName, $refDomain) === false)))
+            {
+              if (!isset($_REQUEST['WIDTH'])){ $_REQUEST['WIDTH'] = ''; } else $_REQUEST['WIDTH'] = (int) $_REQUEST['WIDTH'];
+              if (!isset($_REQUEST['HEIGHT'])){ $_REQUEST['HEIGHT'] = ''; } else $_REQUEST['HEIGHT'] = (int) $_REQUEST['HEIGHT'];
+
+              $ipaddress = $_SERVER['REMOTE_ADDR'];
+              $useragent = $_SERVER['HTTP_USER_AGENT'];
+              $width = $_REQUEST['WIDTH'];
+              $height = $_REQUEST['HEIGHT'];
+
+              // Buscar un registro en los últimos 60 segundos, no 5.
+              $query = "SELECT * FROM " . $table_prefix . "requests WHERE ipaddress = '$ipaddress' And useragent = '$useragent' And resolution = '$width x $height' And (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(`datetime`)) < 30";
+              $row = $SQL->selectquery($query);
+
+              if (is_array($row))
+              {
+                $request_id = $row['id'];
+                $session = array();
+                $session['REQUEST']  = $request_id;
+                $session['CHARSET']  = CHARSET;
+                $session['USERID']   = mysql_real_escape_string($_REQUEST['USERID']);
+                $session['DOMAINID'] = $domain_id;
+                $session['AGENTID']  = $agent_id;
+
+                if (isset($_REQUEST['LANGUAGE'])){
+                  $session['LANGUAGE'] = $_REQUEST['LANGUAGE'];
+                }else{
+                  $session['LANGUAGE'] = LANGUAGE_TYPE;
+                }
+
+                $session['SERVICE'] = mysql_real_escape_string($_REQUEST['SERVICE']);
+
+                //$session['ACCOUNT'] = $account;
+                //$session['TRACKING'] = $tracking;
+                //$session['STATUS_INDICATOR'] = $status_indicator;
+
+                $data = serialize($session);
+
+                setCookie($cookieName, $data, false, '/', $cookie_domain, $ssl);
+                header("P3P: CP='$p3p'");
+
+                $_COOKIE[$cookieName] = $data;
+              }
+            }
+        }
 
         // Retrieve COOKIE variables and unserialize
         if (isset($_COOKIE[$cookieName])) {
@@ -157,28 +210,13 @@ if (!defined('__CONFIG_INC')) {
               
                 if (isset($session['AGENTID']) && $session['AGENTID'] != 0){
                   $agent_id = $session['AGENTID'];
-                //  error_log("agent_id config:".$agent_id."\n", 3, "config.log");
+                
                 }
                 
                                
                 $user_id = $session['USERID'];
                 $webCall_id = $session['WEBCALLID'];
                 unset($session);
-        }else{
-
-          $domainIsValid = false;
-          if(isset($domain_id) && ($domain_id != ''))
-          {
-            $query = "SELECT name FROM " . $table_prefix . "domains WHERE id_domain = '".$domain_id."'";
-            $row = $SQL->selectquery($query);
-            $domainName = $row['name'];
-            if ((!(strripos($domainName, $refDomain) === false)))
-            {
-              $domainIsValid = true;
-            }
-          }
-
-
         }
 
         if(($command != 'tracker') &&($domain_id != 0) && ($domain_id != '')){

@@ -6,15 +6,9 @@
 Plugin Name: ActiveHelper Live Help
 Plugin URI: http://www.activehelper.com
 Description: Provide superior service by real time chat with your website visitors and interact them through your website. Create a more efficient connection with your website visitors, increase your sales and customer satisfaction.
-Version: 3.5.0
+Version: 3.6.0
 Author: ActiveHelper Inc
 Author URI: http://www.activehelper.com
-*/
-/*
-Developer: Marco Florian (marco@marcorfg.com)
-Developer URI: http://www.marcorfg.com
-Updates  : Activehelper Inc.
-
 */
 
 // make sure we don't expose any info if called directly
@@ -65,6 +59,29 @@ add_action('init', 'activeHelper_liveHelp_mainLanguages');
 add_action('admin_init', 'activeHelper_liveHelp_mainInstall');
 add_action('admin_init', 'activeHelper_liveHelp_mainPost');
 add_action('admin_menu', 'activeHelper_liveHelp_mainMenu');
+
+add_action('admin_head', 'activeHelper_liveHelp_adminHead');
+
+function activeHelper_liveHelp_adminHead()
+{
+	echo '
+	<style>
+		.column-2 {
+			float: left; width: 50%; border: 0; padding: 0 .5em 0 0; box-sizing: border-box;
+		}
+		.column-2.last {
+			padding: 0 0 0 .5em;
+		}
+
+		@media screen and (max-width: 782px) {
+			.column-2, .column-2.last {
+				float: none;
+				width: auto;
+				padding: 0;
+			}
+		}
+	</style>';
+}
 
 function activeHelper_liveHelp_mainLanguages()
 {
@@ -298,6 +315,59 @@ function activeHelper_liveHelp_welcomePost()
 function activeHelper_liveHelp_welcome()
 {
 	global $wpdb, $activeHelper_liveHelp;
+    
+    
+   	$montly_chats = $wpdb->get_var("    
+             SELECT count(*) chats 
+                   FROM {$wpdb->prefix}livehelp_sessions 
+                   where `datetime` between DATE_FORMAT(CURDATE(), '%Y-%m-01') and LAST_DAY(DATE_FORMAT(CURDATE(), '%Y-%m-%d'))                  		
+                   ");
+    
+   	$last_month_chats = $wpdb->get_var("
+          	  SELECT count(*) chats 
+                    FROM {$wpdb->prefix}livehelp_sessions 
+                    WHERE datetime >= DATE_FORMAT( CURRENT_DATE - INTERVAL 1 MONTH, '%Y/%m/01' ) AND 
+                    datetime < DATE_FORMAT( CURRENT_DATE, '%Y/%m/01' )
+	              ");
+                  
+     $last_week_chats = $wpdb->get_var("
+                  SELECT count(*) chats 
+                    FROM {$wpdb->prefix}livehelp_sessions 
+                    WHERE datetime >= DATE_SUB(DATE(NOW()), INTERVAL DAYOFWEEK(NOW())+6 DAY) AND datetime <  DATE_SUB(DATE(NOW()), INTERVAL DAYOFWEEK(NOW())-1 DAY)
+	              ");                  
+
+
+     $current_week_chats = $wpdb->get_var("
+                   SELECT  count(*) chats 
+                     FROM {$wpdb->prefix}livehelp_sessions 
+                     WHERE WEEK(datetime) = WEEK(CURRENT_DATE()) AND DAYOFWEEK(datetime) IN (1,2,3,4,5,6,7)
+	              "); 
+                  
+     $current_week_offline_messages = $wpdb->get_var("
+                   SELECT  COUNT(*) messages 
+                     FROM  {$wpdb->prefix}livehelp_offline_messages
+                     WHERE WEEK(datetime) = WEEK(CURRENT_DATE()) AND DAYOFWEEK(datetime) IN (1,2,3,4,5,6,7)
+	              ");       
+                  
+    $last_month_offline_messages = $wpdb->get_var("
+                  SELECT  COUNT(*) messages 
+                     FROM  {$wpdb->prefix}livehelp_offline_messages
+                     WHERE datetime >= DATE_FORMAT( CURRENT_DATE - INTERVAL 1 MONTH, '%Y/%m/01' ) AND datetime < DATE_FORMAT( CURRENT_DATE, '%Y/%m/01' )
+	              ");  
+                  
+    $weekly_failed_chats = $wpdb->get_var("
+                   SELECT COUNT(jls.id)       
+                      FROM  {$wpdb->prefix}livehelp_sessions jls
+                     WHERE WEEK(jls.datetime) = WEEK(CURRENT_DATE()) AND DAYOFWEEK(jls.datetime) IN (2,3,4,5,6) and  
+                     jls.active <> 0 and jls.id not in (SELECT jlm.session  FROM {$wpdb->prefix}livehelp_messages  jlm 
+                     where  WEEK(jlm.datetime) = WEEK(CURRENT_DATE()) AND DAYOFWEEK(jlm.datetime) IN (2,3,4,5,6))
+	              ");  
+                  
+   $weekly_unanswred_chats = $wpdb->get_var("
+                   SELECT count(jls.id)        
+                     FROM  {$wpdb->prefix}livehelp_sessions jls 
+                    WHERE WEEK(jls.datetime) = WEEK(CURRENT_DATE()) AND DAYOFWEEK(jls.datetime) IN (2,3,4,5,6) and jls.active = 0
+	              ");                                                                                    
 
 	$domains = $wpdb->get_var("
 		SELECT COUNT(*)
@@ -507,238 +577,191 @@ function activeHelper_liveHelp_welcome()
 				<div id="dashboard_right_now" class="stuffbox postbox">
 					<div class="handlediv" title="' . __('Click to toggle', 'activehelper_livehelp') . '"><br /></div>
 					<h3 style="cursor: default;">' . __('General stats', 'activehelper_livehelp') . '</h3>
-					<div class="inside" style="padding-top: 0;">
-						<div class="table table_content" style="width: 48%; border: 0;">
-							<table><tbody><tr class="first"><td class="first t">
-								' . __('Domains', 'activehelper_livehelp') . '
-							</td><td class="b">
-								' . $domains . '
-							</td></tr></tbody></table>
-							<table><tbody><tr><td class="first t">
-								' . __('Departments', 'activehelper_livehelp') . '
-							</td><td class="b">
-								' . $departments . '
-							</td></tr></tbody></table>
-							<table><tbody><tr><td class="first t">
-								' . __('Chats today', 'activehelper_livehelp') . '
-							</td><td class="b">
-								' . $chats_today . '
-							</td></tr></tbody></table>
-							<table><tbody><tr><td class="first t">
-								' . __('Latest aggent connected', 'activehelper_livehelp') . '
-							</td><td class="b">
-								' . (!empty($latest_aggent) ? $latest_aggent : __('No records found', 'activehelper_livehelp')) . '
-							</td></tr></tbody></table>
-							<table><tbody><tr><td class="first t">
-								' . __('Failed chats', 'activehelper_livehelp') . '
-							</td><td class="b">
-								' . $fail_chats . '
-							</td></tr></tbody></table>
+					<div class="inside" style="padding: 0 1em 1em 1em;">
+						<div class="column-2">';
+
+	$rows = array();
+	$rows[] = array(__('Domains', 'activehelper_livehelp'), $domains);
+	$rows[] = array(__('Departments', 'activehelper_livehelp'), $departments);
+	$rows[] = array(__('Chats today', 'activehelper_livehelp'), $chats_today);
+	$rows[] = array(__('Latest aggent connected', 'activehelper_livehelp'),
+			(!empty($latest_aggent) ? $latest_aggent : __('No records found', 'activehelper_livehelp')));
+	$rows[] = array(__('Failed chats', 'activehelper_livehelp'), $fail_chats);
+
+	activehelper_livehelp_tableTwoColumns($rows);
+
+	echo '
 						</div>
-						<div class="table table_discussion" style="width: 48%; border: 0;">
-							<table><tbody><tr class="first"><td class="first t">
-								' . __('Agents', 'activehelper_livehelp') . '
-							</td><td class="b">
-								' . $agents . '
-							</td></tr></tbody></table>
-							<table><tbody><tr><td class="first t">
-								' . __('Chats', 'activehelper_livehelp') . '
-							</td><td class="b">
-								' . $chats . '
-							</td></tr></tbody></table>
-							<table><tbody><tr><td class="first t">
-								' . __('Visitors today', 'activehelper_livehelp') . '
-							</td><td class="b">
-								' . $visitors_today . '
-							</td></tr></tbody></table>
-							<table><tbody><tr><td class="first t">
-								' . __('Oldest aggent connected', 'activehelper_livehelp') . '
-							</td><td class="b">
-								' . (!empty($oldest_aggent) ? $oldest_aggent : __('No records found', 'activehelper_livehelp')) . '
-							</td></tr></tbody></table>
-							<table><tbody><tr><td class="first t">
-								' . __('AVG chat rating', 'activehelper_livehelp') . '
-							</td><td class="b">
-								' . $avg_chat_rating . '
-							</td></tr></tbody></table>
+						<div class="column-2 last">';
+
+	$rows = array();
+	$rows[] = array(__('Agents', 'activehelper_livehelp'), $agents);
+	$rows[] = array(__('Chats', 'activehelper_livehelp'), $chats);
+	$rows[] = array(__('Visitors today', 'activehelper_livehelp'), $visitors_today);
+	$rows[] = array(__('Oldest aggent connected', 'activehelper_livehelp'), (!empty($oldest_aggent) ? $oldest_aggent : __('No records found', 'activehelper_livehelp')));
+	$rows[] = array(__('AVG chat rating', 'activehelper_livehelp'), $avg_chat_rating);
+
+	activehelper_livehelp_tableTwoColumns($rows);
+
+	echo '
 						</div>
-						<div style="clear: both;"></div>
+						<div style="clear: both;"></div>                                                
 					</div>
+				</div>
+
+
+				<!-- Divide in two columns. -->
+				<div class="column-2">
+
+	                <div id="dashboard_right_now" class="closed stuffbox postbox">
+						<div class="handlediv" title="' . __('Click to toggle', 'activehelper_livehelp') . '"><br /></div>
+						<h3 style="cursor: default;">' . __('Monthly and Weekly Stats', 'activehelper_livehelp') . '</h3>
+						<div class="inside" style="display: none; padding: 0 1em 1em 1em;">';
+
+	$rows = array();
+	$rows[] = array(__('Monthly Chats', 'activehelper_livehelp'), $montly_chats);
+	$rows[] = array(__('Last Month Chats', 'activehelper_livehelp'), $last_month_chats);
+	$rows[] = array(__('Weekly Chats', 'activehelper_livehelp'), (!empty($current_week_chats) ? $current_week_chats : __('No records found', 'activehelper_livehelp')));
+	$rows[] = array(__('Last Week Chats', 'activehelper_livehelp'),(!empty($last_week_chats) ? $last_week_chats : __('No records found', 'activehelper_livehelp')));   
+    $rows[] = array(__('Weekly Offline Messages', 'activehelper_livehelp'), (!empty($current_week_offline_messages) ? $current_week_offline_messages : __('No records found', 'activehelper_livehelp')));
+    $rows[] = array(__('Last Month Offline Messages', 'activehelper_livehelp'), (!empty($last_month_offline_messages) ? $last_month_offline_messages : __('No records found', 'activehelper_livehelp')));
+    $rows[] = array(__('Weekly Failed Chats', 'activehelper_livehelp'), (!empty($weekly_failed_chats) ? $weekly_failed_chats : __('No records found', 'activehelper_livehelp'))); 
+    $rows[] = array(__('Weeekly Unanswred Chats', 'activehelper_livehelp'), (!empty($weekly_unanswred_chats) ? $weekly_unanswred_chats : __('No records found', 'activehelper_livehelp')));
+
+	activehelper_livehelp_tableTwoColumns($rows);
+
+	echo '
+							<div style="clear: both;"></div>
+						</div>
+					</div>
+
+					<div id="dashboard_right_now" class="closed stuffbox postbox">
+						<div class="handlediv" title="' . __('Click to toggle', 'activehelper_livehelp') . '"><br /></div>
+						<h3 style="cursor: default;">' . __('Top 5 most active domains', 'activehelper_livehelp') . '</h3>
+						<div class="inside" style="display: none; padding: 0 1em 1em 1em;">';
+
+	$head = array(__('Domain', 'activehelper_livehelp'), __('Chats', 'activehelper_livehelp'));
+
+	$rows = array();
+	foreach ($rowsdomains as $row) {
+		$rows[] = array($row['name'], $row['value']);
+	}
+
+	activehelper_livehelp_tableTwoColumns($rows, $head);
+
+	echo '
+							<div style="clear: both;"></div>
+						</div>
+					</div>
+
+					<div id="dashboard_right_now" class="closed stuffbox postbox">
+						<div class="handlediv" title="' . __('Click to toggle', 'activehelper_livehelp') . '"><br /></div>
+						<h3 style="cursor: default;">' . __('Top 5 avg agents raiting', 'activehelper_livehelp') . '</h3>
+						<div class="inside" style="display: none; padding: 0 1em 1em 1em;">';
+
+	$head = array(__('Username', 'activehelper_livehelp'), __('AVG raiting', 'activehelper_livehelp'));
+
+	$rows = array();
+	foreach ($rowsagents_rating as $row) {
+		$rows[] = array($row['name'], $row['value']);
+	}
+
+	activehelper_livehelp_tableTwoColumns($rows, $head);
+
+	echo '
+							<div style="clear: both;"></div>
+						</div>
+					</div>
+
+				</div>
+
+				<!-- Divide in two columns. -->
+				<div class="column-2 last">
+
+					<div id="dashboard_right_now" class="closed stuffbox postbox">
+						<div class="handlediv" title="' . __('Click to toggle', 'activehelper_livehelp') . '"><br /></div>
+						<h3 style="cursor: default;">' . __('Top 5 most active users', 'activehelper_livehelp') . '</h3>
+						<div class="inside" style="display: none; padding: 0 1em 1em 1em;">';
+
+	$head = array(__('Username', 'activehelper_livehelp'), __('Chats', 'activehelper_livehelp'));
+
+	$rows = array();
+	foreach ($rowuser_avg as $row) {
+		$rows[] = array($row['name'], $row['value']);
+	}
+
+	activehelper_livehelp_tableTwoColumns($rows, $head);
+	
+	echo '
+							<div style="clear: both;"></div>
+						</div>
+					</div>
+
+					<div id="dashboard_right_now" class="closed stuffbox postbox">
+						<div class="handlediv" title="' . __('Click to toggle', 'activehelper_livehelp') . '"><br /></div>
+						<h3 style="cursor: default;">' . __('Top 5 most active agents by duration', 'activehelper_livehelp') . '</h3>
+						<div class="inside" style="display: none; padding: 0 1em 1em 1em;">';
+
+	$head = array(__('Username', 'activehelper_livehelp'), __('Duration', 'activehelper_livehelp'));
+
+	$rows = array();
+	foreach ($rowsagents_duration as $row) {
+		$rows[] = array($row['name'], $row['value']);
+	}
+
+	activehelper_livehelp_tableTwoColumns($rows, $head);
+	
+	echo '
+							<div style="clear: both;"></div>
+						</div>
+					</div>
+
+					<div id="dashboard_right_now" class="closed stuffbox postbox">
+						<div class="handlediv" title="' . __('Click to toggle', 'activehelper_livehelp') . '"><br /></div>
+						<h3 style="cursor: default;">' . __('Top 5 most active agents', 'activehelper_livehelp') . '</h3>
+						<div class="inside" style="display: none; padding: 0 1em 1em 1em;">';
+
+	$head = array(__('Username', 'activehelper_livehelp'), __('Duration', 'activehelper_livehelp'));
+
+	$rows = array();
+	foreach ($rowsagents as $row) {
+		$rows[] = array($row['name'], $row['value']);
+	}
+
+	activehelper_livehelp_tableTwoColumns($rows, $head);
+
+	echo '
+							<div style="clear: both;"></div>
+						</div>
+					</div>
+
 				</div>
 			</div>
-
-			<div class="postbox-container" style="width:49%; padding-right: 0;"><div id="normal-sortables" class="meta-box-sortables ui-sortable">
-				<div id="dashboard_right_now" class="stuffbox postbox">
-					<div class="handlediv" title="' . __('Click to toggle', 'activehelper_livehelp') . '"><br /></div>
-					<h3 style="cursor: default;">' . __('Top 5 most active domains', 'activehelper_livehelp') . '</h3>
-					<div class="inside">
-						<div class="table table_content" style="width: 98%;">
-							<p class="sub">
-								' . __('Domain', 'activehelper_livehelp') . '
-							</p>
-							<p class="sub" style="right: 15px; left: auto;">
-								' . __('Chats', 'activehelper_livehelp') . '
-							</p>';
-
-	if (empty($rowsdomains))
-		echo '
-							<table><tbody><tr class="first"><td class="first t"></td><td class="b">
-								' . __('No records found', 'activehelper_livehelp') . '
-							</td></tr></tbody></table>';
-	else
-		foreach ($rowsdomains as $row)
-			echo '
-							<table><tbody><tr class="first"><td class="first t">
-								' . $row['name'] . '
-							</td><td class="b">
-								' . $row['value'] . '
-							</td></tr></tbody></table>';
-
-	echo '
-						</div>
-						<div style="clear: both;"></div>
-					</div>
-				</div>
-				<div id="dashboard_right_now" class="stuffbox postbox">
-					<div class="handlediv" title="' . __('Click to toggle', 'activehelper_livehelp') . '"><br /></div>
-					<h3 style="cursor: default;">' . __('Top 5 avg agents raiting', 'activehelper_livehelp') . '</h3>
-					<div class="inside">
-						<div class="table table_content" style="width: 98%;">
-							<p class="sub">
-								' . __('Username', 'activehelper_livehelp') . '
-							</p>
-							<p class="sub" style="right: 15px; left: auto;">
-								' . __('AVG raiting', 'activehelper_livehelp') . '
-							</p>';
-
-	if (empty($rowsagents_rating))
-		echo '
-							<table><tbody><tr class="first"><td class="first t"></td><td class="b">
-								' . __('No records found', 'activehelper_livehelp') . '
-							</td></tr></tbody></table>';
-	else
-		foreach ($rowsagents_rating as $row)
-			echo '
-							<table><tbody><tr class="first"><td class="first t">
-								' . $row['name'] . '
-							</td><td class="b">
-								' . $row['value'] . '
-							</td></tr></tbody></table>';
-
-	echo '
-						</div>
-						<div style="clear: both;"></div>
-					</div>
-				</div>
-				<div id="dashboard_right_now" class="stuffbox postbox">
-					<div class="handlediv" title="' . __('Click to toggle', 'activehelper_livehelp') . '"><br /></div>
-					<h3 style="cursor: default;">' . __('Top 5 most active users', 'activehelper_livehelp') . '</h3>
-					<div class="inside">
-						<div class="table table_content" style="width: 98%;">
-							<p class="sub">
-								' . __('Username', 'activehelper_livehelp') . '
-							</p>
-							<p class="sub" style="right: 15px; left: auto;">
-								' . __('Chats', 'activehelper_livehelp') . '
-							</p>';
-
-	if (empty($rowuser_avg))
-		echo '
-							<table><tbody><tr class="first"><td class="first t"></td><td class="b">
-								' . __('No records found', 'activehelper_livehelp') . '
-							</td></tr></tbody></table>';
-	else
-		foreach ($rowuser_avg as $row)
-			echo '
-							<table><tbody><tr class="first"><td class="first t">
-								' . $row['name'] . '
-							</td><td class="b">
-								' . $row['value'] . '
-							</td></tr></tbody></table>';
-
-	echo '
-						</div>
-						<div style="clear: both;"></div>
-					</div>
-				</div>
-			</div></div>
-
-			<div class="postbox-container" style="width:49%; float: right; padding-right: 0;"><div id="normal-sortables" class="meta-box-sortables ui-sortable">
-				<div id="dashboard_right_now" class="stuffbox postbox">
-					<div class="handlediv" title="' . __('Click to toggle', 'activehelper_livehelp') . '"><br /></div>
-					<h3 style="cursor: default;">' . __('Top 5 most active agents by duration', 'activehelper_livehelp') . '</h3>
-					<div class="inside">
-						<div class="table table_content" style="width: 98%;">
-							<p class="sub">
-								' . __('Username', 'activehelper_livehelp') . '
-							</p>
-							<p class="sub" style="right: 15px; left: auto;">
-								' . __('Duration', 'activehelper_livehelp') . '
-							</p>';
-
-	if (empty($rowsagents_duration))
-		echo '
-							<table><tbody><tr class="first"><td class="first t"></td><td class="b">
-								' . __('No records found', 'activehelper_livehelp') . '
-							</td></tr></tbody></table>';
-	else
-		foreach ($rowsagents_duration as $row)
-			echo '
-							<table><tbody><tr class="first"><td class="first t">
-								' . $row['name'] . '
-							</td><td class="b">
-								' . $row['value'] . '
-							</td></tr></tbody></table>';
-
-	echo '
-						</div>
-						<div style="clear: both;"></div>
-					</div>
-				</div>
-
-				<div id="dashboard_right_now" class="stuffbox postbox">
-					<div class="handlediv" title="' . __('Click to toggle', 'activehelper_livehelp') . '"><br /></div>
-					<h3 style="cursor: default;">' . __('Top 5 most active agents', 'activehelper_livehelp') . '</h3>
-					<div class="inside">
-						<div class="table table_content" style="width: 98%;">
-							<p class="sub">
-								' . __('Username', 'activehelper_livehelp') . '
-							</p>
-							<p class="sub" style="right: 15px; left: auto;">
-								' . __('Duration', 'activehelper_livehelp') . '
-							</p>';
-
-	if (empty($rowsagents))
-		echo '
-							<table><tbody><tr class="first"><td class="first t"></td><td class="b">
-								' . __('No records found', 'activehelper_livehelp') . '
-							</td></tr></tbody></table>';
-	else
-		foreach ($rowsagents as $row)
-			echo '
-							<table><tbody><tr class="first"><td class="first t">
-								' . $row['name'] . '
-							</td><td class="b">
-								' . $row['value'] . '
-							</td></tr></tbody></table>';
-
-	echo '
-						</div>
-						<div style="clear: both;"></div>
-					</div>
-				</div>
-			</div></div>
 		</div>
 	</div>
 	<script type="text/javascript">
 		jQuery(document).ready(function($){
 			$(".meta-box-sortables .postbox").each(function(){
 				var postbox = $(this);
-				$("h3", postbox).click(function(){
+				$("h3", postbox).click(function() {
 					$("div.inside", postbox).toggle();
+
+					if ($(this).parent().hasClass("closed")) {
+						$(this).parent().removeClass("closed");
+					}
+					else {
+						$(this).parent().addClass("closed");
+					}
 				});
-				$("div.handlediv", postbox).click(function(){
+				$("div.handlediv", postbox).click(function() {
 					$("div.inside", postbox).toggle();
+
+					if ($(this).parent().hasClass("closed")) {
+						$(this).parent().removeClass("closed");
+					}
+					else {
+						$(this).parent().addClass("closed");
+					}
 				});
 			});
 		});
@@ -783,7 +806,7 @@ function activeHelper_liveHelp_about()
 							<table><tbody><tr><td class="first t">
 								' . __('Version : ', 'activehelper_livehelp') . '
 							</td><td class="b">
-								' . __('3.5.0', 'activehelper_livehelp') . '
+								' . __('3.6.0', 'activehelper_livehelp') . '
 							</td></tr></tbody></table>
 							<table><tbody><tr><td class="first t">
 								' . __('Check for Update : ', 'activehelper_livehelp') . '
@@ -829,6 +852,49 @@ function activeHelper_liveHelp_about()
 		</div>
 	</div>
 </div>';
+}
+
+function activehelper_livehelp_tableTwoColumns($rows = array(), $head = null) {
+	echo '
+	<div class="metabox-holder" style="padding-bottom: 10px;">
+		<table cellspacing="0" class="wp-list-table widefat fixed">';
+
+	if (!empty($rows) && !empty($head)) {
+		echo '
+				<thead>
+					<tr>
+						<th class="manage-column" scope="col" style="text-align: left;">' . $head[0] . '</td>
+						<th class="manage-column" scope="col" style="text-align: right;">' . $head[1] . '</td>
+					</tr>
+				</thead>';
+	}
+
+	echo '
+			<tbody id="the-list">';
+
+	if (empty($rows)) {
+		echo '
+				<tr valign="top" class="' . ($alt ? 'alternate' : '') . ' format-default">
+					<td style="text-align: center;">' . __('No records found', 'activehelper_livehelp') . '</td>
+				</tr>';
+	}
+	else {
+		$alt = true;
+		foreach ($rows as $row) {
+			echo '
+				<tr valign="top" class="' . ($alt ? 'alternate' : '') . ' format-default">
+					<td>' . $row[0] . '</td>
+					<td style="text-align: right;">' . $row[1] . '</td>
+				</tr>';
+
+			$alt = !$alt;
+		}
+	}
+
+	echo '
+			</tbody>
+		</table>
+	</div>';
 }
 
 function activehelper_livehelp_uninstallPost()

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package ActiveHelper Live Help
- * @Version 3.5.0 
+ * @Version 3.6.0 
  */
 
 if (!defined('ACTIVEHELPER_LIVEHELP'))
@@ -247,6 +247,7 @@ function activeHelper_liveHelp_installQuery()
 		INSERT INTO wp_livehelp_languages VALUES ('sl', 'Slovenian', 'utf-8');
 		INSERT INTO wp_livehelp_languages VALUES ('et', 'Estonian', 'utf-8');
         INSERT INTO wp_livehelp_languages VALUES ('lv', 'Latvian', 'utf-8');
+        INSERT INTO wp_livehelp_languages VALUES ('ge', 'Georgian', 'utf-8');
 
 		CREATE TABLE IF NOT EXISTS `wp_livehelp_languages_domain` (
 			`Id_domain` int(11) NOT NULL default '0',
@@ -930,6 +931,13 @@ function activeHelper_liveHelp_updateDatabase($database_version, $plugin_version
              $database_version = "3.5.0";
       
    }
+   
+   if ($database_version == "3.5.0") {
+           
+       dbDelta("INSERT INTO {$wpdb->prefix}livehelp_languages VALUES ('ge', 'Georgian', 'utf-8')");
+       $database_version = "3.6.0";
+      
+     }   
    
  }
  

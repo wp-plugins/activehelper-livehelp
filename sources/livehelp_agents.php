@@ -1035,7 +1035,8 @@ function activeHelper_liveHelp_agentsSettings()
         'ro' => __('Romanian', 'activehelper_livehelp'),
         'sl' => __('Slovenian', 'activehelper_livehelp'),
         'et' => __('Estonian', 'activehelper_livehelp'),
-        
+        'lv' => __('Latvian', 'activehelper_livehelp'),
+        'ge' => __('Georgian', 'activehelper_livehelp'),        
 	);
         
 

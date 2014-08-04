@@ -1,7 +1,7 @@
 <?php
 /**
  * @package ActiveHelper Live Help External Widget
- * @version   : 3.5
+ * @version   : 3.6
  * @author    : ActiveHelper Inc.
  * @copyright : (C) 2014- ActiveHelper Inc.
  * @license   : GNU/GPL http://www.gnu.org/copyleft/gpl.html
@@ -59,14 +59,30 @@ class activeHelper_liveHelp_externalWidget extends WP_Widget
           echo '<p class="pin"><span style="font-size: 10pt;"><div style="position: fixed; bottom: 0px; right:0px; z-index:999999999999; display:block;"> ';
          
        if ($instance['script_footer'] ==2)
-      	  echo '<p class="pin"><span style="font-size: 10pt;"><div style="position: fixed; bottom: 0px; left:0px; z-index:999999999999; display:block;"> ';              
+      	  echo '<p class="pin"><span style="font-size: 10pt;"><div style="position: fixed; center: 0px; right:0px; z-index:999999999999; display:block;"> ';              
 
        if ($instance['script_footer'] ==3)
+      	  echo '<p class="pin"><span style="font-size: 10pt;"><div style="position: fixed; top: 0px; right:0px; z-index:999999999999; display:block;"> '; 
+
+       if ($instance['script_footer'] ==4)
       	  echo '<p class="pin"><span style="font-size: 10pt;"><div style="position: fixed; bottom: 0px; center:0px; z-index:999999999999; display:block;"> '; 
 
-		echo '<script type="text/javascript" src="{liveHelp_externalWidget_serverUrl}/import/javascript.php"></script>
+       if ($instance['script_footer'] ==5)
+      	  echo '<p class="pin"><span style="font-size: 10pt;"><div style="position: fixed; top: 0px; center:0px; z-index:999999999999; display:block;"> '; 
+
+       if ($instance['script_footer'] ==6)
+      	  echo '<p class="pin"><span style="font-size: 10pt;"><div style="position: fixed; bottom: 0px; left:0px; z-index:999999999999; display:block;"> '; 
+
+       if ($instance['script_footer'] ==7)
+      	  echo '<p class="pin"><span style="font-size: 10pt;"><div style="position: fixed; Center: 0px; left:0px; z-index:999999999999; display:block;"> '; 
+
+       if ($instance['script_footer'] ==8)
+      	  echo '<p class="pin"><span style="font-size: 10pt;"><div style="position: fixed; top: 0px; left:0px; z-index:999999999999; display:block;"> '; 
+   
+
+		echo '<script type="text/javascript" src="http://localhost/wp/wp-content/plugins/activehelper-livehelp/server/import/javascript.php"></script>
 <script type="text/javascript">
-	_vlDomain = {liveHelp_externalWidget_domain};
+	_vlDomain = 1;
 	_vlAgent = ' . $instance['script_agent'] . ';
 	_vlService = 1;
 	_vlLanguage = "' . $instance['script_language'] . '";
@@ -148,7 +164,8 @@ class activeHelper_liveHelp_externalWidget extends WP_Widget
             'ro' => __('Romanian', 'activehelper_livehelp_externalwidget'),
 			'sl' => __('Slovenian', 'activehelper_livehelp'),
 			'et' => __('Estonian', 'activehelper_livehelp'),
-			'lv' => __('Latvian', 'activehelper_livehelp')
+			'lv' => __('Latvian', 'activehelper_livehelp'),
+            'ge' => __('Georgian', 'activehelper_livehelp')
 		);
 
 		foreach ($__text as $code => $name)
@@ -169,14 +186,19 @@ class activeHelper_liveHelp_externalWidget extends WP_Widget
 			<label style="padding-left: 4px;"><input style="width: auto;" class="widefat" ' . ($instance['script_status'] == 0 ? 'checked="checked"' : '') . ' name="' . $this->get_field_name('script_status') . '" type="radio" value="0" /> ' . __( 'Disable', 'activehelper_livehelp_externalwidget' ) . '</label> 
 		</p>
          <p>
-			<label for="' . $this->get_field_id( 'script_footer' ) . '">' . __( 'Footer', 'activehelper_livehelp_externalwidget' ) . ':</label> 
+			<label for="' . $this->get_field_id( 'script_footer' ) . '">' . __( ' Absolute Position', 'activehelper_livehelp_externalwidget' ) . ':</label> 
 			<select class="widefat" style="width:100%;" id="' . $this->get_field_id( 'script_footer' ) . '" name="' . $this->get_field_name('script_footer') . '">';
 
 		$__text = array(
 			0 => __('None', 'activehelper_livehelp_externalwidget'),
-			1 => __('Right', 'activehelper_livehelp_externalwidget'),
-			2 => __('Left', 'activehelper_livehelp_externalwidget'),
-            3 => __('Center', 'activehelper_livehelp_externalwidget')
+			1 => __('Right_Bottom', 'activehelper_livehelp_externalwidget'),
+			2 => __('Right_Center', 'activehelper_livehelp_externalwidget'),
+            3 => __('Right_Top', 'activehelper_livehelp_externalwidget'),
+            4 => __('Center_Bottom', 'activehelper_livehelp_externalwidget'),
+            5 => __('Center_Top', 'activehelper_livehelp_externalwidget'),
+            6 => __('Left_Bottom', 'activehelper_livehelp_externalwidget'),
+            7 => __('Left_Center', 'activehelper_livehelp_externalwidget'),
+            8 => __('Left_Top', 'activehelper_livehelp_externalwidget')                          
 		);
 
 		foreach ($__text as $code => $name)

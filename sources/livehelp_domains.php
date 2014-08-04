@@ -209,6 +209,7 @@ function activeHelper_liveHelp_domainsGenerateScript()
         'sl' => __('Slovenian', 'activehelper_livehelp'),
         'et' => __('Estonian', 'activehelper_livehelp'),
         'lv' => __('Latvian', 'activehelper_livehelp'),
+        'ge' => __('Georgian', 'activehelper_livehelp'),
         
 	);
 
@@ -1067,6 +1068,7 @@ function activeHelper_liveHelp_domainsSettings()
         'sl' => __('Slovenian', 'activehelper_livehelp'),
         'et' => __('Estonian', 'activehelper_livehelp'),
         'lv' => __('Latvian', 'activehelper_livehelp'),
+        'ge' => __('Georgian', 'activehelper_livehelp'),
 	);
 
 	foreach ($activeHelper_liveHelp['languages'] as $language)

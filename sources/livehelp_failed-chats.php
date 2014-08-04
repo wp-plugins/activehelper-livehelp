@@ -1,6 +1,10 @@
 <?php
 /**
  * @package ActiveHelper Live Help
+ * @version   : 3.6
+ * @author    : ActiveHelper Inc.
+ * @copyright : (C) 2010- ActiveHelper Inc.
+ * @license   : GNU/GPL http://www.gnu.org/copyleft/gpl.html
  */
 
 if (!defined('ACTIVEHELPER_LIVEHELP'))
@@ -43,7 +47,7 @@ function activeHelper_liveHelp_failedChatsExportPost()
 	$failedChatsList = $wpdb->get_results("
 		SELECT
 			jls.id, CONCAT(jlu.firstname, ' ', jlu.lastname) AS name, jld.name AS domain,
-			jls.username AS username, jls.email AS email, jls.datetime
+			jls.username AS username, jls.email AS email, jls.phone, DATE_FORMAT(jls.datetime ,'%d-%m-%Y') as date
 		FROM
 			{$wpdb->prefix}livehelp_sessions AS jls,
 			{$wpdb->prefix}livehelp_domains AS jld,
@@ -53,7 +57,7 @@ function activeHelper_liveHelp_failedChatsExportPost()
 			AND DATE_FORMAT(jls.datetime, '%Y%m%d') <= DATE_FORMAT('" . date("Y-m-d", $timeEnd) . "', '%Y%m%d')
 			AND jls.id_user = jlu.id
 			AND jls.id_domain = jld.id_domain 
-			AND jls.id NOT INT (
+			AND jls.id NOT in (
 				SELECT
 					jlm.session
 				FROM
@@ -66,7 +70,7 @@ function activeHelper_liveHelp_failedChatsExportPost()
 		ORDER BY 5, 2, 3
 	", ARRAY_A);
 
-	$export = '"ID","Agent","Domain name","Visitor name","Visitor email","Date"';
+	$export = '"ID","Agent","Domain name","Visitor name","Visitor email","phone","date"';
 
 	if (!empty($failedChatsList))
 		foreach ($failedChatsList as $failedChats)
@@ -111,7 +115,7 @@ function activeHelper_liveHelp_failedChatsList()
 	$failedChatsList = $wpdb->get_results("
 		SELECT
 			jls.id, CONCAT(jlu.firstname, ' ', jlu.lastname) AS name, jld.name AS domain,
-			jls.username AS username, jls.email AS email, jls.datetime
+			jls.username AS username, jls.email AS email, jls.phone,  DATE_FORMAT(jls.datetime , '%d-%m-%Y') as date
 		FROM
 			{$wpdb->prefix}livehelp_sessions AS jls,
 			{$wpdb->prefix}livehelp_domains AS jld,
@@ -121,7 +125,7 @@ function activeHelper_liveHelp_failedChatsList()
 			AND DATE_FORMAT(jls.datetime, '%Y%m%d') <= DATE_FORMAT('" . date("Y-m-d", $timeEnd) . "', '%Y%m%d')
 			AND jls.id_user = jlu.id
 			AND jls.id_domain = jld.id_domain 
-			AND jls.id NOT INT (
+			AND jls.id NOT IN (
 				SELECT
 					jlm.session
 				FROM
@@ -178,8 +182,10 @@ function activeHelper_liveHelp_failedChatsList()
 						' . __('Visitor name', 'activehelper_livehelp') . '</th>
 					<th style="width: 25%" class="manage-column" scope="col">
 						' . __('Visitor email', 'activehelper_livehelp') . '</th>
+                    <th style="width: 25%" class="manage-column" scope="col">
+						' . __('Phone', 'activehelper_livehelp') . '</th>                        
 					<th style="width: 85px" class="manage-column" scope="col">
-						' . __('Date', 'activehelper_livehelp') . '</th>
+						' . __('date', 'activehelper_livehelp') . '</th>
 				</tr>
 			</thead>
 			<tfoot>
@@ -194,8 +200,10 @@ function activeHelper_liveHelp_failedChatsList()
 						' . __('Visitor name', 'activehelper_livehelp') . '</th>
 					<th class="manage-column" scope="col">
 						' . __('Visitor email', 'activehelper_livehelp') . '</th>
+                    <th class="manage-column" scope="col">
+						' . __('Phone', 'activehelper_livehelp') . '</th>                        
 					<th class="manage-column" scope="col">
-						' . __('Date', 'activehelper_livehelp') . '</th>
+						' . __('date', 'activehelper_livehelp') . '</th>
 				</tr>
 			</tfoot>
 			<tbody id="the-list">';
@@ -229,6 +237,9 @@ function activeHelper_liveHelp_failedChatsList()
 					<td style="padding: 1ex;">
 						' . $failedChats['email'] . '
 					</td>
+	                <td style="padding: 1ex;">
+						' . $failedChats['phone'] . '
+					</td>                    
 					<td style="padding: 1ex;">
 						' . $failedChats['date'] . '
 					</td>

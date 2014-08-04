@@ -1,6 +1,10 @@
 <?php
 /**
  * @package ActiveHelper Live Help
+ * @version   : 3.6
+ * @author    : ActiveHelper Inc.
+ * @copyright : (C) 2010- ActiveHelper Inc.
+ * @license   : GNU/GPL http://www.gnu.org/copyleft/gpl.html
  */
 
 if (!defined('ACTIVEHELPER_LIVEHELP'))
@@ -41,7 +45,7 @@ function activeHelper_liveHelp_unansweredChatsExportPost()
 	$timeStart = !empty($_REQUEST['export_start_date']) ? strtotime((string) $_REQUEST['export_start_date']) : mktime(0, 0, 0, date("n", $timeEnd) - 1, date("j", $timeEnd), date("Y", $timeEnd));
 
 	$unansweredChatsList = $wpdb->get_results("
-	SELECT jls.id , jls.username, jls.email , jls.server , jls.department , jls.datetime
+	SELECT jls.id , jls.username, jls.email , jls.server , jls.department , jls.phone, DATE_FORMAT(jls.datetime ,'%d-%m-%Y') as date
 		FROM
 			{$wpdb->prefix}livehelp_sessions AS jls,
 			{$wpdb->prefix}livehelp_messages AS jlm
@@ -63,6 +67,7 @@ function activeHelper_liveHelp_unansweredChatsExportPost()
 				$unansweredChats['email'] . '","' .
 				$unansweredChats['department'] . '","' .
 				$unansweredChats['server'] . '","' .
+                $unansweredChats['phone'] . '","' .
 				$unansweredChats['date'] .
 			'"';
 		}
@@ -96,7 +101,7 @@ function activeHelper_liveHelp_unansweredChatsList()
 
 	$unansweredChatsList = $wpdb->get_results("
 			SELECT
-			jls.id, jls.username , jls.email , jls.server , jls.department , jls.datetime
+			jls.id, jls.username , jls.email , jls.server , jls.department , jls.phone, DATE_FORMAT(jls.datetime ,'%d-%m-%Y') as date
 		FROM
 			{$wpdb->prefix}livehelp_sessions AS jls,
 			{$wpdb->prefix}livehelp_messages AS jlm
@@ -152,6 +157,8 @@ function activeHelper_liveHelp_unansweredChatsList()
 						' . __('Department', 'activehelper_livehelp') . '</th>
 					<th style="width: 25%" class="manage-column" scope="col">
 						' . __('Domain name', 'activehelper_livehelp') . '</th>
+	                <th style="width: 85px" class="manage-column" scope="col">
+						' . __('Phone', 'activehelper_livehelp') . '</th>                        
 					<th style="width: 85px" class="manage-column" scope="col">
 						' . __('Date', 'activehelper_livehelp') . '</th>
 				</tr>
@@ -168,6 +175,8 @@ function activeHelper_liveHelp_unansweredChatsList()
 						' . __('Department', 'activehelper_livehelp') . '</th>
 					<th class="manage-column" scope="col">
 						' . __('Domain name', 'activehelper_livehelp') . '</th>
+			        <th class="manage-column" scope="col">
+						' . __('Phone', 'activehelper_livehelp') . '</th>                        
 					<th class="manage-column" scope="col">
 						' . __('Date', 'activehelper_livehelp') . '</th>
 				</tr>
@@ -203,8 +212,11 @@ function activeHelper_liveHelp_unansweredChatsList()
 					<td style="padding: 1ex;">
 						' . $unansweredChats['server'] . '
 					</td>
+	               <td style="padding: 1ex;">
+						' . $unansweredChats['phone'] . '
+					</td>                    
 					<td style="padding: 1ex;">
-						' . $unansweredChats['datetime'] . '
+						' . $unansweredChats['date'] . '
 					</td>
 				</tr>';
 

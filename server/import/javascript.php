@@ -3,8 +3,6 @@
 include_once('constants.php');
 include_once('string_util.php');
 
-#error_log("\n1:"."\n", 3, "trackerror.log");
-
 if (!isset($_SERVER['DOCUMENT_ROOT'])){ $_SERVER['DOCUMENT_ROOT'] = ''; }
 if (!isset($_REQUEST['DEPARTMENT'])){ $_REQUEST['DEPARTMENT'] = ''; } else $_REQUEST['DEPARTMENT'] = htmlspecialchars( (string) $_REQUEST['DEPARTMENT'], ENT_QUOTES );
 if (!isset($_REQUEST['SERVER'])){ $_REQUEST['SERVER'] = ''; } else $_REQUEST['SERVER'] = htmlspecialchars( (string) $_REQUEST['SERVER'], ENT_QUOTES );
@@ -416,17 +414,19 @@ function statusClass (s_id, _vlDomain) {
 
           var time = currentTime();
 
-          trkUrl = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=' + s_id + '&TIME=' + time + '&INITIATE=Opened';
+           // new parameters (screen.width,screen.height) in order to support safari third-party cookies restriction.
+
+          trkUrl = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=' + s_id + '&TIME=' + time + '&INITIATE=Opened&WIDTH=' + screen.width + '&HEIGHT=' + screen.height + '';
           openingTrackerStatus.src = trkUrl;
 
           if ( ie4 )
-            document.all['initiateChatResponse_' + s_id].location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Opened';
+            document.all['initiateChatResponse_' + s_id].location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Opened&WIDTH=' + screen.width + '&HEIGHT=' + screen.height + '';
 
           if ( ns4 )
-            eval("document.initiateChatResponse_" + s_id + ".location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Opened'");
+            eval("document.initiateChatResponse_" + s_id + ".location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Opened&WIDTH=' + screen.width + '&HEIGHT=' + screen.height + ''");
 
           if ( ns6 )
-            document.getElementById('initiateChatResponse_' + s_id).location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Opened';
+            document.getElementById('initiateChatResponse_' + s_id).location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Opened&WIDTH=' + screen.width + '&HEIGHT=' + screen.height + '';
 
           floatRefresh();
         }
@@ -448,7 +448,7 @@ function get_vertical_scroll( )
                 // window.clearTimeout(timerTracker);
                 if (countTracker == 10000) {
                     var time = currentTime();
-                    trkUrl = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time;
+                    trkUrl = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&WIDTH=' + screen.width + '&HEIGHT=' + screen.height + '&TIME=' + time;
                     trackerStatus.onload = resetTimer;
                     trackerStatus.src = trkUrl;
                     countTracker = 0;
@@ -626,12 +626,12 @@ var newTargetX = this.scrollLeft + this.leftMargin;
                 var trkUrl = "";
                 //var acceptTrackerStatus = new Image;
                 var time = currentTime();
-                trkUrl = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Accepted';
+                trkUrl = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Accepted&WIDTH=' + screen.width + '&HEIGHT=' + screen.height + '';
                 acceptTrackerStatus.src = trkUrl;
 
-                if ( ie4 )document.all['initiateChatResponse_' + s_id].location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Accepted';
-                if ( ns4 )eval("document.initiateChatResponse_" + s_id + ".location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Accepted'");
-                if ( ns6 )document.getElementById('initiateChatResponse_' + s_id).location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Accepted';
+                if ( ie4 )document.all['initiateChatResponse_' + s_id].location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Accepted&WIDTH=' + screen.width + '&HEIGHT=' + screen.height + '';
+                if ( ns4 )eval("document.initiateChatResponse_" + s_id + ".location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Accepted&WIDTH=' + screen.width + '&HEIGHT=' + screen.height + ''");
+                if ( ns6 )document.getElementById('initiateChatResponse_' + s_id).location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Accepted&WIDTH=' + screen.width + '&HEIGHT=' + screen.height + '';
 
                 if (initiateOpen == 1) {
 									if  ( has_message == true ) {
@@ -653,12 +653,12 @@ var newTargetX = this.scrollLeft + this.leftMargin;
           var time = currentTime();
                                  
 
-           trkUrl = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Declined';
+           trkUrl = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Declined&WIDTH=' + screen.width + '&HEIGHT=' + screen.height + '';
           declineTrackerStatus.src = trkUrl;
 
-          if ( ie4 )document.all['initiateChatResponse_' + s_id].location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Declined';
-          if ( ns4 )eval("document.initiateChatResponse_" + s_id + ".location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Declined'");
-          if ( ns6 )document.getElementById('initiateChatResponse_' + s_id).location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Declined';
+          if ( ie4 )document.all['initiateChatResponse_' + s_id].location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Declined&WIDTH=' + screen.width + '&HEIGHT=' + screen.height + '';
+          if ( ns4 )eval("document.initiateChatResponse_" + s_id + ".location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Declined&WIDTH=' + screen.width + '&HEIGHT=' + screen.height + ''");
+          if ( ns6 )document.getElementById('initiateChatResponse_' + s_id).location = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=s_id&TIME=' + time + '&INITIATE=Declined&WIDTH=' + screen.width + '&HEIGHT=' + screen.height + '';
 
           if (initiateOpen == 1) {
 							if ( has_message == true )
@@ -792,7 +792,7 @@ function checkInitiate_json(data) {
 			 if ( typeof( jQuery ) == "undefined" ) {
 
 				  var time = currentTime();
-				  var ajax_request_url = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?json&status_id=' + s_id + '&TIME=' + time + '&USERID=<?=$_REQUEST['USERID']?>&services=<?=$_REQUEST['services']?>'+ '&DOMAINID=' + _vlDomain + '&LANGUAGE=' + _vlLanguage + '&SERVICE=' + _vlService + '&GET_INVITATION_MESSAGE=1&callback=?';
+				  var ajax_request_url = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?json&status_id=' + s_id + '&TIME=' + time + '&WIDTH=' + screen.width + '&HEIGHT=' + screen.height + '&USERID=<?=$_REQUEST['USERID']?>&services=<?=$_REQUEST['services']?>'+ '&DOMAINID=' + _vlDomain + '&LANGUAGE=' + _vlLanguage + '&SERVICE=' + _vlService + '&GET_INVITATION_MESSAGE=1&callback=?';
 			  
 				  var head= document.getElementsByTagName('head')[0];
 				  var script= document.createElement('script');
@@ -817,7 +817,7 @@ function checkInitiate_json(data) {
 					}
 				  };
 						var time = currentTime();
-						var ajax_request_url = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?json&status_id=' + s_id + '&TIME=' + time + '&USERID=<?=$_REQUEST['USERID']?>&services=<?=$_REQUEST['services']?>'+ '&DOMAINID=' + _vlDomain + '&LANGUAGE=' + _vlLanguage + '&SERVICE=' + _vlService + '&GET_INVITATION_MESSAGE=1&callback=?';					
+						var ajax_request_url = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?json&status_id=' + s_id + '&WIDTH=' + screen.width + '&HEIGHT=' + screen.height + '&TIME=' + time + '&USERID=<?=$_REQUEST['USERID']?>&services=<?=$_REQUEST['services']?>'+ '&DOMAINID=' + _vlDomain + '&LANGUAGE=' + _vlLanguage + '&SERVICE=' + _vlService + '&GET_INVITATION_MESSAGE=1&callback=?';					
 
 						ajax_request.open( "GET", ajax_request_url, true );
 						ajax_request.send( null );
@@ -827,7 +827,7 @@ function checkInitiate_json(data) {
 			  else {
 			  
 				  var time = currentTime();
-				  var ajax_request_url = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?json&status_id=' + s_id + '&TIME=' + time + '&USERID=<?=$_REQUEST['USERID']?>&services=<?=$_REQUEST['services']?>'+ '&DOMAINID=' + _vlDomain + '&LANGUAGE=' + _vlLanguage + '&SERVICE=' + _vlService + '&GET_INVITATION_MESSAGE=1&callback=?';
+				  var ajax_request_url = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?json&status_id=' + s_id + '&WIDTH=' + screen.width + '&HEIGHT=' + screen.height + '&TIME=' + time + '&USERID=<?=$_REQUEST['USERID']?>&services=<?=$_REQUEST['services']?>'+ '&DOMAINID=' + _vlDomain + '&LANGUAGE=' + _vlLanguage + '&SERVICE=' + _vlService + '&GET_INVITATION_MESSAGE=1&callback=?';
 				  
 				  jQuery.getJSON(ajax_request_url); // the result is going to call checkInitiate_json(data)
 				
@@ -1035,7 +1035,7 @@ if (($num_support_available_users == $num_support_hidden_users || $num_support_a
    
                 switch(s_id) {
                         case 1 : {
-                                var winLiveHelp = window.open('<?php echo($server); ?><?= $install_directory ?>/index.php?' + 'DOMAINID=' + _vlDomain + '&AGENTID=' + _vlAgent + '&URL=' + document.location<?php if ($department != '') { echo(" + '&DEPARTMENT=" . $department . "' "); } ?> + '&TITLE=' + title + '&SERVER=<?php echo($server); ?>&COOKIE=<?php echo($cookie_domain); ?>&LANGUAGE=' + _vlLanguage + '&CHARSET=<?php echo(CHARSET); ?>', 'SUPPORTER' + s_id + '_<?=$domain_id?>', size)
+                                var winLiveHelp = window.open('<?php echo($server); ?><?= $install_directory ?>/index.php?' + 'DOMAINID=' + _vlDomain + '&WIDTH=' + screen.width + '&HEIGHT=' + screen.height + '&AGENTID=' + _vlAgent + '&URL=' + document.location<?php if ($department != '') { echo(" + '&DEPARTMENT=" . $department . "' "); } ?> + '&TITLE=' + title + '&SERVER=<?php echo($server); ?>&COOKIE=<?php echo($cookie_domain); ?>&LANGUAGE=' + _vlLanguage + '&CHARSET=<?php echo(CHARSET); ?>', 'SUPPORTER' + s_id + '_<?=$domain_id?>', size)
                                 break
                         }
                         case 4 : {
@@ -1071,7 +1071,7 @@ if ($tracker_enabled == true) {
                 }
                 else {
                   if (trackerLoaded == 1) {
-                    trkUrl = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=' + s_id + '&TIME=' + time + '&USERID=<?=$_REQUEST['USERID']?>&services=<?=$_REQUEST['services']?>'+ '&DOMAINID=' + _vlDomain + '&AGENTID=' + _vlAgent + '&LANGUAGE=' + _vlLanguage + '&SERVICE=' + _vlService;
+                    trkUrl = '<?php echo($server); ?><?= $install_directory ?>/import/tracker.php?status_id=' + s_id + '&TIME=' + time + '&WIDTH=' + screen.width + '&HEIGHT=' + screen.height + '&USERID=<?=$_REQUEST['USERID']?>&services=<?=$_REQUEST['services']?>'+ '&DOMAINID=' + _vlDomain + '&AGENTID=' + _vlAgent + '&LANGUAGE=' + _vlLanguage + '&SERVICE=' + _vlService;
                     trackerStatus.onload = checkInitiate;
                     trackerStatus.src = trkUrl;
                   }

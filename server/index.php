@@ -158,11 +158,12 @@ if ($installed == true) {
                         $SQL->insertquery($query);
                 }
         }
-        if (!isset($_COOKIE[$cookieName])) {
-                //TODO - Revisar este codigo debe mejorarse cuando el usuario va directamente al archivo index.php
-                header('Location: ' . $install_directory . '/cookies.php?SERVER=' . $_REQUEST['SERVER'] . '&COOKIE=true'.'&DOMAINID='.$domain_id);
-                exit();
-        }
+                // new condition in order to support safari third-party cookies restriction.
+          if (empty($request_id) && !isset($_COOKIE[$cookieName])) {
+                //TODO - Revisar este codigo debe mejorarse cuando el usuario va directamente al archivo index.php              
+                    header('Location: ' . $install_directory . '/cookies.php?SERVER=' . $_REQUEST['SERVER'] . '&COOKIE=true'.'&DOMAINID='.$domain_id);
+                exit();              
+           }
 
         // Checks if any users in user table are online
         if ($error == '') {
