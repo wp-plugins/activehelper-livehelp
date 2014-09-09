@@ -2,14 +2,14 @@
 Contributors: activehelper
 Tags: wordpress livechat,  live chat, live help, live support, customer service, wordpress plugin, livechat plugin, visitor tracking, visitor chat, floating
 Requires at least: 3.2
-Tested up to: 3.9.1
-Stable tag: 3.6.0
+Tested up to: 4.0
+Stable tag: 3.7.0
 
-ActiveHelper LiveHelp is a powerful Live Chat Server Plugin for WordPress. 
+Powerful Live Chat Plugin for WordPress. 
 
 == Description ==
 
-WordPress Live Chat Plugin is the most affordable and scalable Live Chat. ActiveHelper LiveHelp Live Chat System is perfect for small and medium WordPress sites. Answer Live chats from any location, Desktop and mobile are included, Windows and Mac, IOS and Android too.
+WordPress Live Chat Plugin is the most affordable and scalable Live Chat. ActiveHelper Live Chat System is perfect for small and medium WordPress sites. Answer Live chats from any location, Desktop and mobile are included, Windows and Mac, IOS and Android too.
 
 Monitor in real time your website visitors. Know how many visitors are in the website, who referred, where are from, what keywords we reused to find the website and the visitors navigation history. Know decisive information of your website visitors patterns, conversations and agents service.
 
@@ -78,7 +78,7 @@ We offer a 30 days free trial.
 
 <h4>More Information</h4>
 
-Visit the <a href="http://www.activehelper.com/">ActiveHelper LiveHelp website</a> for more information about ActiveHelper LiveHelp.
+Visit the <a href="http://www.activehelper.com">ActiveHelper Live Chat website</a> for more information.
 
 <h4>Support Panel Desktop</h4>
 
@@ -306,6 +306,11 @@ For further help you may choose any of following options:
 * Core Security update.
 * Other small improvements and bug fixes
 
+= 3.7.0 =
+* Support Wordpress 4.0
+* Core Security update.
+* Other small improvements and bug fixes
+
 Upgrade:
 Before to make any upgrade of the ActiveHelper LiveHelp Server is necessary to follow a couple steps in order to avoid loss the working configuration:
 How to upgrade the LiveHelp Server plugin safely <a href="http://www.activehelper.com/kunena/37-general-discussion-wordpress/11898-steps-to-do-a-successful-upgrade-please-read#12339"> user guide.</a>
@@ -482,5 +487,10 @@ How to upgrade the LiveHelp Server plugin safely <a href="http://www.activehelpe
 * Portuguese language updated.
 * Portuguese invitation spelling issue fixed.
 * Third-Party cookies support enhanced for Safari.
+* Core Security update.
+* Other small improvements and bug fixes
+
+= 3.7.0 =
+* Support Wordpress 4.0
 * Core Security update.
 * Other small improvements and bug fixes
