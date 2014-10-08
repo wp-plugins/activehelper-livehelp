@@ -3,7 +3,7 @@ Contributors: activehelper
 Tags: wordpress livechat,  live chat, live help, live support, customer service, wordpress plugin, livechat plugin, visitor tracking, visitor chat, floating
 Requires at least: 3.2
 Tested up to: 4.0
-Stable tag: 3.7.0
+Stable tag: 3.8.0
 
 Powerful Live Chat Plugin for WordPress. 
 
@@ -311,6 +311,12 @@ For further help you may choose any of following options:
 * Core Security update.
 * Other small improvements and bug fixes
 
+= 3.8.0 =
+* Fixed issue with the Gzip Compression on the offline messages.
+* Core Update.
+* Core Security update.
+* Other small improvements and bug fixes.
+
 Upgrade:
 Before to make any upgrade of the ActiveHelper LiveHelp Server is necessary to follow a couple steps in order to avoid loss the working configuration:
 How to upgrade the LiveHelp Server plugin safely <a href="http://www.activehelper.com/kunena/37-general-discussion-wordpress/11898-steps-to-do-a-successful-upgrade-please-read#12339"> user guide.</a>
@@ -494,3 +500,9 @@ How to upgrade the LiveHelp Server plugin safely <a href="http://www.activehelpe
 * Support Wordpress 4.0
 * Core Security update.
 * Other small improvements and bug fixes
+
+= 3.8.0 =
+* Fixed issue with the Gzip Compression on the offline messages.
+* Core Update.
+* Core Security update.
+* Other small improvements and bug fixes.

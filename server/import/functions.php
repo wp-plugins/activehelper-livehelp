@@ -10,6 +10,7 @@ $current_account = '';
 $domains_set = '';
 $users_set = '';
 $services = '';
+$agent_id ='';
 
 function checkSession()
 {
@@ -22,6 +23,7 @@ function checkSession()
    global $domains_set;
    global $users_set;
    global $services;
+   global $agent_id;
 
    session_start();
 
@@ -38,6 +40,7 @@ function checkSession()
       $domains_set = $_SESSION["domains_set"];
       $users_set = $_SESSION["users_set"];
       $services = $_SESSION["services"];
+      $agent_id = $_SESSION["agent_id"];
 
       return $_SESSION["id"];
 
@@ -53,7 +56,7 @@ function checkSession()
 <Session>
   <status>Invalid session</status>
 </Session>
-<?
+<?php
       exit;
    }
 }
@@ -92,7 +95,7 @@ echo('<?xml version="1.0" encoding="' . $charset . '"?>' . "\n");
   <code>-1</code>
   <description><?php echo($message); ?></description>
 </error>
-<?
+<?php
       exit;
 
 }

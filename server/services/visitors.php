@@ -141,6 +141,8 @@ else
 {
    $query = "SELECT count(`id`) FROM " . $table_prefix . "requests WHERE (UNIX_TIMESTAMP(NOW()) ".
             " - UNIX_TIMESTAMP(`refresh`)) < '45' AND `status` = '0' and id_domain in (" . $domains_set . ")";
+            
+  // error_log("visitor.php:query ------------>>:".$query."\n", 3, "error.log");            
 }
 $row = $SQL->selectquery($query);
 if (is_array($row))
@@ -417,8 +419,8 @@ if (is_array($row))
 
 //error_log(current_session_username.":".$current_session_username."\n", 3, "../error.log");
 
-?><Visitor ID="<?php echo($current_request_id);?>" Session="<?php echo($current_session_id);?>" Active="<?php echo($current_session_active);?>" Username="<?php echo(xmlinvalidchars($current_session_username));?>" DATA="<?=$responceType?>">
-<?
+?><Visitor ID="<?php echo($current_request_id);?>" Session="<?php echo($current_session_id);?>" Active="<?php echo($current_session_active);?>" Username="<?php echo(xmlinvalidchars($current_session_username));?>" DATA="<?php echo $responceType; ?>">
+<?php
 
 
 
@@ -446,7 +448,7 @@ if (is_array($row))
 <latitude><?php echo($current_request_latitude);?></latitude>
 <longitude><?php echo($current_request_longitude);?></longitude>
 
-<?
+<?php
                }
                elseif($responceType == "standard")
                {
@@ -457,7 +459,7 @@ if (is_array($row))
 <NumberPages><?php echo($current_request_number_pages);?></NumberPages>
 <TimeOnSite><?php echo($current_request_sitetime);?></TimeOnSite>
 <TimeOnPage><?php echo($current_request_pagetime);?></TimeOnPage>
-<?
+<?php
                }
                elseif($responceType == "lite")
                {
@@ -465,7 +467,7 @@ if (is_array($row))
 <TimeOnPage><?php echo($current_request_pagetime);?></TimeOnPage>
 <TimeOnSite><?php echo($current_request_sitetime);?></TimeOnSite>
 <CurrentPageTitle><?php echo(xmlinvalidchars($current_request_current_page_title));?></CurrentPageTitle>
-<?
+<?php
                }
 ?>
 </Visitor>

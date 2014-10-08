@@ -1,4 +1,4 @@
- <?php
+<?php
 ob_start("ob_gzhandler");
 
 include('../import/config_database.php');
@@ -62,7 +62,6 @@ else {
 
 $charset = 'utf-8';
 header('Content-type: text/xml; charset=' . $charset);
-/*echo('<?xml version="1.0" encoding="' . $charset . '"?>' . "\n");*/
 
 # update the message status
 if ($action == 'update')
@@ -101,35 +100,41 @@ if ($action == 'update')
 <Messages>
 <?php
 
-      $rows = $SQL->selectall($query);
+    $rows = $SQL->selectall($query);
+    
       if (is_array($rows))
-      {
+       {
          foreach ($rows as $key => $row)
          {
 
             if (is_array($row))
             {
+                
                $current_message_id   = $row['id'];
                $current_message_name = $row['name'];
                $current_email        = $row['email'];               
                $current_date         = $row['date'];
                $current_domain       = $row['Domain'];
                $current_message      = $row['message'];
-               $current_company  = $row['company'];
-               $current_phone    = $row['phone'];
-            }  
+               $current_company      = $row['company'];
+               $current_phone        = $row['phone'];
+              
               
 ?>
 <Message>
 <Id><?php echo(xmlinvalidchars($current_message_id));?></Id>
 <Name><?php echo(xmlinvalidchars($current_message_name));?></Name>
 <Email><?php echo(xmlinvalidchars($current_email));?></Email>
-<Compnay><?php echo(xmlinvalidchars($current_company));?></Compnay>
+<Company><?php echo(xmlinvalidchars($current_company));?></Company>
 <Phone><?php echo(xmlinvalidchars($current_phone));?></Phone>
 <Date><?php echo(xmlinvalidchars($current_date));?></Date>
 <Domain><?php echo(xmlinvalidchars($current_domain));?></Domain>
 <Comment><?php echo(xmlinvalidchars($current_message));?></Comment>
 </Message>
+<?php
+  }
+?>
+
 <?php
  }
 ?>
@@ -137,6 +142,4 @@ if ($action == 'update')
  }
 ?>
 </Messages>
-<?php
-/*}*/
-?>
+

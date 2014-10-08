@@ -941,7 +941,11 @@ function activeHelper_liveHelp_updateDatabase($database_version, $plugin_version
      
   if ($database_version == "3.6.0") {                  
        $database_version = "3.7.0";      
-     }        
+     }  
+
+ if ($database_version == "3.7.0") {                  
+       $database_version = "3.8.0";      
+     }        	 
    
  }
  
