@@ -180,9 +180,9 @@ if (is_array($row))
                }
             case "standard":
                {
-                  $query = "SELECT r.id As rid, s.id As sid, s.active, s.username, r.ipaddress, r.url, r.title, r.number_pages, ".
+                  $query = "SELECT r.id As rid, s.id As sid, s.active, s.username, r.ipaddress, r.url, SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(r.url, '://', -1),'/',1),'www.', -1) as domain,  r.title , r.number_pages, ".
                            "(UNIX_TIMESTAMP(r.refresh) - UNIX_TIMESTAMP(r.datetime)) AS `sitetime`, (UNIX_TIMESTAMP(r.refresh) - ".
-                           "UNIX_TIMESTAMP(r.request)) AS `pagetime` FROM " . $table_prefix . "requests AS r LEFT JOIN ".
+                           "UNIX_TIMESTAMP(r.request)) AS `pagetime` , r.country FROM " . $table_prefix . "requests AS r LEFT JOIN ".
                            "(select id, request, active, username, department, rating from ".$table_prefix."sessions order by id desc) AS s on r.id = s.request WHERE DATE_FORMAT(r.datetime, '%Y-%m-%d') = '$date' AND `status` = '0' AND".
                            " `active` in (-1, -3) and id_domain in (" . $domains_set . ") " . ($visitorId == "" ? "": "And r.id=" .
                            $visitorId) . " group by r.id ORDER BY r.request LIMIT " . ( (int) $record ) . ", 100";
@@ -223,9 +223,9 @@ if (is_array($row))
                // new standard tracking SQL
             case "standard":
                {
-                  $query = "SELECT r.id As rid, s.id As sid, s.active, s.username, r.ipaddress, r.url, r.title, r.number_pages, ".
+                  $query = "SELECT r.id As rid, s.id As sid, s.active, s.username, r.ipaddress, r.url , SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(r.url, '://', -1),'/',1),'www.', -1) as domain ,  r.title, r.number_pages, ".
                   "(UNIX_TIMESTAMP(r.refresh) - UNIX_TIMESTAMP(r.datetime)) AS `sitetime`, (UNIX_TIMESTAMP(r.refresh) - UNIX_TIMESTAMP".
-                  "(r.request)) AS `pagetime` FROM " . $table_prefix . "requests AS r LEFT JOIN " .$table_prefix."sessions AS s on r.id = s.request".
+                  "(r.request)) AS `pagetime` , r.country  FROM " . $table_prefix . "requests AS r LEFT JOIN " .$table_prefix."sessions AS s on r.id = s.request".
                   " WHERE  r.refresh > SUBTIME(NOW(), '45')  AND r.status = '0' and ".
                   "r.id_domain in (".$domains_set . ") " . ($visitorId == "" ? "": "And r.id=" . $visitorId) .
                   " ORDER BY r.request LIMIT " . ( (int) $record ) . ", 100";
@@ -280,10 +280,10 @@ if (is_array($row))
                $current_request_user_agent = $row['useragent'];
                $current_request_resolution = $row['resolution'];
                $current_request_current_page = $row['url'];
+               $current_request_current_domain = $row['domain'];               
                $current_request_current_page_title = $row['title'];
                $current_request_referrer = $row['referrer'];
-
-
+          
 
                 if($current_request_referrer == 'Direct Visit / Bookmark'){
                   $current_request_referrer = '';
@@ -459,6 +459,8 @@ if (is_array($row))
 <NumberPages><?php echo($current_request_number_pages);?></NumberPages>
 <TimeOnSite><?php echo($current_request_sitetime);?></TimeOnSite>
 <TimeOnPage><?php echo($current_request_pagetime);?></TimeOnPage>
+<Country><?php echo($current_request_country);?></Country>
+<CurrentDomain><?php echo(xmlinvalidchars($current_request_current_domain));?></CurrentDomain>
 <?php
                }
                elseif($responceType == "lite")

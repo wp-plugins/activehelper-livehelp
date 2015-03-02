@@ -18,25 +18,41 @@ header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // Date in the past
   {
      $_REQUEST['USERNAME'] = '';
   } else $_REQUEST['USERNAME'] = htmlspecialchars( (string) $_REQUEST['USERNAME'], ENT_QUOTES );
+  
   if (!isset($_REQUEST['PASSWORD']))
   {
      $_REQUEST['PASSWORD'] = '';
   } else $_REQUEST['PASSWORD'] = htmlspecialchars( (string) $_REQUEST['PASSWORD'], ENT_QUOTES );
+
   if (!isset($_REQUEST['ACCOUNT']))
   {
      $_REQUEST['ACCOUNT'] = '';
   } else $_REQUEST['ACCOUNT'] = htmlspecialchars( (string) $_REQUEST['ACCOUNT'], ENT_QUOTES );
+
   if (!isset($_REQUEST['SERVER']))
   {
      $_REQUEST['SERVER'] = '';
   } else $_REQUEST['SERVER'] = htmlspecialchars( (string) $_REQUEST['SERVER'], ENT_QUOTES );
+
   if (!isset($_REQUEST['LANGUAGE']))
   {
      $_REQUEST['LANGUAGE'] = '';
   } else $_REQUEST['LANGUAGE'] = htmlspecialchars( (string) $_REQUEST['LANGUAGE'], ENT_QUOTES );
 
-  $login_timeout = 20;
+// New parameters
 
+  if (!isset($_REQUEST['DEVICE']))
+  {
+     $_REQUEST['DEVICE'] = '';
+  } else $_REQUEST['DEVICE'] = htmlspecialchars( (string) $_REQUEST['DEVICE'], ENT_QUOTES );
+
+  if (!isset($_REQUEST['DEVICE_ID']))
+  {
+     $_REQUEST['DEVICE_ID'] = '';
+  } else $_REQUEST['DEVICE_ID'] = htmlspecialchars( (string) $_REQUEST['DEVICE_ID'], ENT_QUOTES );
+
+
+  $login_timeout = 20;
   $language = $_REQUEST['LANGUAGE'];
   define('LANGUAGE_TYPE', $language);
 
@@ -85,6 +101,9 @@ header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // Date in the past
    $current_department = $row['department'];
    $current_account    = $_REQUEST['ACCOUNT'];
    $operator_schedule  = $row['schedule'];
+   $operator_device    = $_REQUEST['DEVICE'];
+   $operator_device_id = $_REQUEST['DEVICE_ID'];
+   
 
  //Verifica el schedule
  
@@ -169,7 +188,7 @@ header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // Date in the past
   $users_set = substr($users_set, 0, - 1);
 
    // Update operator session to database
-   $query = "UPDATE " . $table_prefix . "users SET `datetime` = NOW(), `refresh` = NOW(), `status` = '0' WHERE `id` = '$operator_login_id'";
+   $query = "UPDATE " . $table_prefix . "users SET `datetime` = NOW(), `refresh` = NOW(), `status` = '0' , `device` = '$operator_device' , `device_id` = '$operator_device_id'   WHERE `id` = '$operator_login_id'";
 
    $SQL->miscquery($query);
 

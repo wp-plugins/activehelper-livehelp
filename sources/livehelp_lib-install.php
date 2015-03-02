@@ -1,7 +1,7 @@
 <?php
 /**
  * @package ActiveHelper Live Help
- * @Version 3.7.0 
+ * @Version 3.9.0 
  */
 
 if (!defined('ACTIVEHELPER_LIVEHELP'))
@@ -468,6 +468,8 @@ function activeHelper_liveHelp_installQuery()
              schedule` int(1) DEFAULT '0',
             `initial_time` time DEFAULT NULL,
             `final_time` time DEFAULT NULL,
+			`device` varchar(20) DEFAULT NULL,
+            `device_id` varchar(60) DEFAULT NULL,
 			PRIMARY KEY  (`id`),
 			UNIQUE KEY `uk_users_username` (`username`)
 		) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -945,7 +947,41 @@ function activeHelper_liveHelp_updateDatabase($database_version, $plugin_version
 
  if ($database_version == "3.7.0") {                  
        $database_version = "3.8.0";      
-     }        	 
+     }
+
+if ($database_version == "3.8.0") {
+     
+      $table_name = $wpdb->prefix . "livehelp_users";
+
+	 $sql = "CREATE TABLE $table_name (
+			 id bigint(20) NOT NULL auto_increment,
+			 username varchar(50) NOT NULL default '',
+			 password varchar(100) NOT NULL default '',
+			 firstname varchar(50) NOT NULL default '',
+			 lastname varchar(50) NOT NULL default '',
+			 email varchar(50) NOT NULL default '',
+			 department varchar(100) NOT NULL default '',
+			 datetime datetime NOT NULL default '0000-00-00 00:00:00',
+			 refresh datetime NOT NULL default '0000-00-00 00:00:00',
+			 disabled int(1) NOT NULL default '0',
+			 privilege int(1) NOT NULL default '0', 
+			 photo varchar(10) DEFAULT NULL,
+			 status bigint(20) NOT NULL default '0',
+			 answers int(1) NOT NULL default '1',
+             schedule int(1) DEFAULT '0',
+             initial_time time DEFAULT NULL,
+             final_time time DEFAULT NULL,
+			 device varchar(20) DEFAULT NULL,
+             device_id varchar(60) DEFAULT NULL,
+   	         PRIMARY KEY  (id),
+			 UNIQUE KEY  uk_users_username (username)
+             );"; 
+       
+             dbDelta( $sql );     
+             $database_version = "3.9.0";
+      
+   }
+   	 
    
  }
  
