@@ -43,7 +43,7 @@ $offline_support_label = 'Offline Support';
 $redirecting_label = 'Redirecting to Offline Support System in 15 seconds';
 $now_chatting_with_label = 'You are now chatting with';
 $joined_conversation_label = 'has joined the conversation.';
-$unfortunately_offline_label = 'Unfortunately all our agents are offline.';
+$unfortunately_offline_label = 'Please leave a message and we will come back to you as soon as possible.';
 $fill_details_below_label = 'Please enter your name, e-mail address and question so our staff contact you when they are available';
 $leave_msg_label = 'Leave a Message';
 $your_name_label = 'Name';
@@ -68,7 +68,7 @@ $send_copy_session ='Send a copy of this chat session.';
 $chat_transcript ='Your Chat Transcript (ChatID: ';
 
 $logout_message_label = 'Thank you for using our Live Chat Service.';
-$further_assistance_label = 'We are glad to assistance you today. If you require further assistance do not hesitate to contact our support staff.';
+$further_assistance_label = 'We are glad to assistance you today, please rate this chat session';
 $below_print_transcript_label = 'Below you may print your chat transcript for future reference';
 $please_rate_service_label = 'If you could take a few seconds to rate your experience with our Live Help  as well as my overall performance,  that would help us to improve our customer service.';
 $rate_service_label = 'Rate your experience';

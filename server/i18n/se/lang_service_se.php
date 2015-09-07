@@ -1,7 +1,6 @@
 <?php
 
-  $seconds = 'Seconds';
-  $session_expired = 'La session de Livehelp esta activa. La sesion expirara en ';
+  $seconds = 'Sekunder';
   $session_expired = 'Chattsession är aktiverad, denna kommer avslutas om ';
   $password_incorrect = 'Fel lösenord';
   $login_account_incorrect = 'Ditt användarnamn eller dina uppgifter är fel';

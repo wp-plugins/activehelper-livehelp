@@ -3,6 +3,7 @@
   $seconds = 'Sekuntia';
   $session_expired = 'La session de Livehelp esta activa. La sesion expirara en ';
   $session_expired = 'Livehelp sessio on aktiivinen. Sessio vanhentuu ';
+  $schedule_time_incorrect ='P‰‰sy kielletty t‰ll‰ hetkell‰';
   $password_incorrect = 'V&auml;&auml;r&auml; salasana';
   $login_account_incorrect = 'Login tai tili virheellinen';
 

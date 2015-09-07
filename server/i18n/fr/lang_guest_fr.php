@@ -23,7 +23,7 @@ $our_live_help_label = "l'aide en ligne.";
 $enter_guest_details_label = "Nous nous ferons un plaisir de répondre à vos questions. Merci de remplir ce formulaire pour accéder à l'aide en direct.";
 $else_send_message_label = "Vous pouvez également contacter notre équipe en envoyant un ";
 $offline_message_label = "message hors-ligne";
-$continue_label = "Commencer la discussion";
+$continue_label = "Commencer";
 $select_language_label = "Langue";
 
 $logout_label = "Déconnecter";

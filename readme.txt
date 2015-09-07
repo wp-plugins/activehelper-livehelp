@@ -1,13 +1,15 @@
 === ActiveHelper LiveHelp Live Chat===
 Contributors: activehelper
-Tags: wordpress livechat,  live chat, live help, live support, customer service, wordpress plugin, livechat plugin, visitor tracking, visitor chat, floating
+Tags: wordpress livechat,  live chat, live help, live support, chat plugin, visitor tracking, visitor chat, phone live chat
 Requires at least: 3.2
-Tested up to: 4.1.1
-Stable tag: 3.9.0
+Tested up to: 4.3
+Stable tag: 3.9.5
 
-Powerful Live Chat Plugin for WordPress. 
+Wordpress Live Chat plugin. Manage all your wordpress sites from your desktop or mobile. 
 
 == Description ==
+
+LiveChat - Live chat plugin software. Worpress Live chat allows to engage website visitors to contact you in real-time to your computer desktop or mobile device.
 
 WordPress Live Chat Plugin is the most affordable and scalable Live Chat. ActiveHelper Live Chat System is perfect for small and medium WordPress sites. Answer Live chats from any location, Desktop and mobile are included, Windows and Mac, IOS and Android too.
 
@@ -62,13 +64,15 @@ The ActiveHelper LiveHelp Server is UTF-8 multi language. The Live Chat system i
 * Online/Offline status images
 * Proxy support
 * Multi Language Images
-* 32 Language Translations.
+* 32 Language Translations
 * Agent spellchecker 
-* Support Panel desktop for Windows and MAC 
+* Support Panel desktop for Windows
+* Support Panel desktop for MAC 
 * Support panel mobile for your iPhone/ipad 
 * Support panel mobile for your Android phone and tablet
 * Customizable Look & Feel
 * Skin Support
+* Live chat Responsive design 
 * Floating chat button
 
 
@@ -325,6 +329,17 @@ For further help you may choose any of following options:
 * Core Security update.
 * Other small improvements and bug fixes.
 
+= 3.9.5 =
+* Suppport Wordpress 4.3x
+* Live Chat window responsive design for Mobile browsers.
+* Enhanced mobile support.
+* Enhanced Live Chat window.
+* Enhanced Script loading
+* New Online/Offline images.
+* Core Update.
+* Core Security update.
+* Other small improvements and bug fixes.
+
 
 Upgrade:
 Before to make any upgrade of the ActiveHelper LiveHelp Server is necessary to follow a couple steps in order to avoid loss the working configuration:
@@ -520,6 +535,17 @@ How to upgrade the LiveHelp Server plugin safely <a href="http://www.activehelpe
 * Support Domain visitors grouping.
 * Support Country visitors grouping.
 * Support Visitors IP/Hostname filtering.
+* Core Update.
+* Core Security update.
+* Other small improvements and bug fixes.
+
+= 3.9.5 =
+* Suppport Wordpress 4.3x
+* Live Chat window responsive design for Mobile browsers.
+* Enhanced mobile support.
+* Enhanced Live Chat window.
+* Enhanced Script loading
+* New Online/Offline images.
 * Core Update.
 * Core Security update.
 * Other small improvements and bug fixes.

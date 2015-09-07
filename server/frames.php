@@ -224,6 +224,8 @@ if(!stripos("-".$campaign_image, "http") == 1){
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title><?php echo($livehelp_name); ?></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <script language="JavaScript" type="text/JavaScript" src="frames.js.php?LANGUAGE=<?php echo LANGUAGE_TYPE; ?>&URL=<?php echo urlencode( $URL ); ?>&DOMAINID=<?php echo($domain_id); ?>">
 </script>
 
@@ -231,6 +233,27 @@ if(!stripos("-".$campaign_image, "http") == 1){
 <script language="JavaScript" type="text/JavaScript">
   jQuery.noConflict();
   jQuery(document).ready(function(){
+    jQuery(window).resize(function(){
+        if (screen.width > 480) {
+            jQuery('.background').css({width : '480px'});
+        } else {
+            jQuery('.background').css({width : '100%'});
+        }
+        if(jQuery('.background').width() > 460) {
+            jQuery('.resize').css({width: '72%'});
+        }
+        if(jQuery('.background').width() <= 460) {
+            jQuery('.resize').css({width: '68%'});
+        }
+        if(jQuery('.background').width() <= 400) {
+            jQuery('.resize').css({width: '65%'});
+        }
+        if(jQuery('.background').width() <= 360) {
+            jQuery('.resize').css({width: '60%'});
+        }
+    });
+    jQuery(window).resize();
+
       w = jQuery('.background').width() + 45;//550;
       h = jQuery('.background').height() + 90;//515;
       wleft = (screen.width - w) / 2;
@@ -258,10 +281,12 @@ div.background {
         background:#e1e1e1 url(./pictures/skins/<?php echo($chat_background_img); ?>/bg.png) repeat-x;
         width:20px auto 0;
         position: relative;
-        width:480px;
+        max-width:480px;
+        width: 100%;
+        min-width: 320px;
         height:380px;
         border:1px solid #d4d4d4;
-        border-radius:5px
+        border-radius:5px;
 }
 
 textarea { background-color: #f8f8f8; border:1px solid #d4d4d4; border-radius:5px}
@@ -273,10 +298,10 @@ textarea { background-color: #f8f8f8; border:1px solid #d4d4d4; border-radius:5p
 </head>
 <body text="<?php echo($font_color); ?>" link="<?php echo($font_link_color); ?>" vlink="<?php echo($font_link_color); ?>" alink="<?php echo($font_link_color); ?>" onLoad="preloadImages('<?php echo $install_directory; ?>./domains/<?php echo($domain_id); ?>/i18n/<?php echo(LANGUAGE_TYPE); ?>/pictures/send_hover.gif'); LoadMessages();" onUnload="windowLogout();" onBeforeUnload="windowLogout();" oncontextmenu="return true;"  bottommargin="0">
 <div class="background">
-<div style="POSITION: absolute; LEFT: 18px; TOP: 19px;">
-    <table width="350" border="0" cellpadding="0" cellspacing="0" style="background-color: #f8f8f8; border:1px solid #d4d4d4; border-radius:0">
-        <tr>      
-            <td width="350" height="225">
+<div style="POSITION: absolute; LEFT: 18px; TOP: 19px; width: 72%;" class="resize">
+    <table border="0" cellpadding="0" cellspacing="0" style="background-color: #f8f8f8; border:1px solid #d4d4d4; border-radius:0; width: 100%;">
+        <tr>
+            <td height="225">
                 <iframe name="displayFrame" id="displayFrame" src="displayer.php?LANGUAGE=<?php echo LANGUAGE_TYPE; ?>&URL=<?php echo urlencode( $referer ); ?><?php echo('&DOMAINID='.$domain_id); ?>" frameborder="0" width="100%" height="100%" style="border-style:none">
                     <script language="JavaScript" type="text/JavaScript">top.location.href = 'offline.php?LANGUAGE=<?php echo LANGUAGE_TYPE; ?><?php echo('&DOMAINID='.$domain_id); ?>';</script>
                 </iframe>
@@ -284,7 +309,7 @@ textarea { background-color: #f8f8f8; border:1px solid #d4d4d4; border-radius:5p
         </tr>
     </table>
 </div>
-<div style="POSITION: absolute; LEFT: 375px; TOP: 30px;">
+<div style="POSITION: absolute; RIGHT: 12px; TOP: 30px; text-align: left; width: 95px;">
     <p style="margin: 0 0 20px;"><a href="logout.php?client_domain_id=<?php echo($domain_id); ?>&URL=<?php echo($_REQUEST['URL']); ?>&LANGUAGE=<?php echo LANGUAGE_TYPE; ?><?php echo('&DOMAINID='.$domain_id); ?>" onClick="manualLogout();" target="_top" class="normlink" style="font-weight:700; text-decoration: underline;"><?php echo($logout_label); ?></a></p>
       
 </div>
@@ -301,7 +326,7 @@ textarea { background-color: #f8f8f8; border:1px solid #d4d4d4; border-radius:5p
 if ($agent_bannner == 0) {
  
 ?>
-<div style="POSITION: absolute; LEFT: 373px; TOP: 50px;">
+<div style="POSITION: absolute; right: 12px; TOP: 50px; width: 95px; text-align: left;">
         <a href="<?php echo($campaign_link); ?>" target="_blank"><img id="ImageID" src="./domains/<?php echo($domain_id);?>/i18n/<?php echo LANGUAGE_TYPE; ?>/pictures/<?php echo($campaign_image); ?>" border="0"></a>
 </div>
 
@@ -348,10 +373,10 @@ if ($agent_bannner == 0) {
                 </tr>
                 </table>
         </div>
-         <div style="POSITION: absolute; LEFT: 20px; TOP: 292px;">
-            <textarea name="MESSAGE" cols="55" rows="3" onKeyPress="return checkEnter(event);" onBlur="typing(false)" style="width:350px; height:78px; font-family:<?php echo($chat_font_type); ?>; font-size:<?php echo($guest_chat_font_size); ?>; padding:8px" disabled="true"></textarea>
+         <div style="POSITION: absolute; LEFT: 20px; TOP: 292px; width: 72%;" class="resize">
+            <textarea name="MESSAGE" cols="55" rows="3" onKeyPress="return checkEnter(event);" onBlur="typing(false)" style="width:100%; height:78px; font-family:<?php echo($chat_font_type); ?>; font-size:<?php echo($guest_chat_font_size); ?>; padding:8px" disabled="true"></textarea>
         </div>
-        <div style="POSITION: absolute; LEFT: 375px; TOP: 295px;">
+        <div style="POSITION: absolute; right: 12px; TOP: 295px; width: 95px;">
             <a href="#" onMouseOut="swapImgRestore()" onMouseOver="swapImage('Send','','./domains/<?php echo($domain_id); ?>/i18n/<?php echo(LANGUAGE_TYPE); ?>/pictures/<?php echo($chat_button_hover_img); ?>',1)" onClick="return processForm();"><img src="./domains/<?php echo($domain_id); ?>/i18n/<?php echo(LANGUAGE_TYPE); ?>/pictures/<?php echo($chat_button_img); ?>" alt="<?php echo($send_msg_label); ?>" name="Send" border="0"></a>
         </div>
       <?php

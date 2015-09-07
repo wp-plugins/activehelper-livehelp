@@ -4,6 +4,7 @@
   $session_expired = 'La session de Livehelp esta activa. La sesion expirara en ';
   $session_expired = 'Η συνεδρία με  το Livehelp είναι ενεργή. Η συνεδρία θα λήξει το ';
   $password_incorrect = 'Κωδικός πρόσβασης εσφαλμένος';
+  $schedule_time_incorrect ='Η πρόσβαση δεν επιτρέπεται αυτή τη στιγμή';
   $login_account_incorrect = ' το όνομα χρήστη ή  ο λογαριασμός  είναι εσφαλμένα';
 
   $unavailable_label = ' Μη Διαθέσιμο';

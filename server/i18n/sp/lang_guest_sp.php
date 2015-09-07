@@ -26,7 +26,7 @@ $our_live_help_label = 'ayuda en vivo.';
 $enter_guest_details_label = 'Por Favor entre su nombre y email para continuar.';
 $else_send_message_label = 'Como alternativa usted puede enviar un email a nuestro personal usando un';
 $offline_message_label = 'mensaje offline';
-$continue_label = 'Continuar';
+$continue_label = 'Iniciar Chat';
 
 $logout_label = 'Salir';
 

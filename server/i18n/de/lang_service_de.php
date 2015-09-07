@@ -3,6 +3,7 @@
   $seconds = 'Sekunden';
   $session_expired = 'Die Livehelp Sitzung ist aktiv. Die Sitzung wird inaktiv in ';
   $password_incorrect = 'Passwort ungültig';
+  $schedule_time_incorrect ='Der Zugang zu diesem Zeitpunkt nicht erlaubt';
   $login_account_incorrect = 'Anmeldung oder Konto sind nicht korrekt';
 
   $unavailable_label = 'Nicht verfügbar';

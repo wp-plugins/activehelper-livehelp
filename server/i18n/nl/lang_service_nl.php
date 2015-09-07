@@ -4,6 +4,7 @@
   $session_expired = 'De LiveHelp sessie is actief. De sessie wordt beeindigd in ';
   $password_incorrect = 'wachtwoord verkeerd';
   $login_account_incorrect = 'Login of account incorrect';
+  $schedule_time_incorrect ='Toegang niet toegestaan ??op dit moment';
   $unavailable_label = 'niet beschikbaar';
   $initiated_default_label = 'Live Help verzoek is niet geinitieerd';
   $initiated_sending_label = 'De Live Help Verzoek initiatie wordt verstuurd...';

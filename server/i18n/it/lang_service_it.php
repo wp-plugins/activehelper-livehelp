@@ -6,6 +6,7 @@ header("Content-type: text/html; charset=utf-8");
   $session_expired = 'La sessione di Livehelp è attiva. La sessione terminerà tra ';
   $session_expired = 'La sessione di Livehelp è attiva. La sessione terminerà tra ';
   $password_incorrect = 'Password NON corretta';
+  $schedule_time_incorrect ='Accesso non consentito in questo momento';
   $login_account_incorrect = 'Login o account non corretti';
 
   $unavailable_label = 'non disponibile';

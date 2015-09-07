@@ -247,15 +247,7 @@ function initgeo(geoDict)
    region      = geoDict['RegionName'];
   }
 
-//--- BEGIN GEO LOCATION  ---
 
- var _vlGeolocationoff =<?php echo($disable_geolocation); ?>;
-
-  if(_vlGeolocationoff !=1){
-    document.writeln('<script src="http://s99.velaio.com/iplocation/ip_query.php?output=json&callback=initgeo" type="text/javascript"></script>');
-  }
-  
-//--- END GEO LOCATION  ---
 
 // JavaScript Check Status Functions
   var topMargin = 10;
@@ -1161,6 +1153,16 @@ document.writeln('</script>');
 
 function startLivehelp()
 {
+	
+	//--- BEGIN GEO LOCATION  ---
+
+ var _vlGeolocationoff =<?php echo($disable_geolocation); ?>;
+
+  if(_vlGeolocationoff !=1){
+    document.writeln('<script src="http://s99.velaio.com/iplocation/ip_query.php?output=json&callback=initgeo" type="text/javascript"></script>');
+  }
+  
+//--- END GEO LOCATION  ---
 
 //  loadGeoLocation();
   document.writeln('<script>');

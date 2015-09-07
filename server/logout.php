@@ -134,6 +134,7 @@ if ($send_session == true) {
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title><?php echo($livehelp_name); ?></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="<?php echo $install_directory; ?>/style/styles.php?<?php echo('DOMAINID='.$domainId);?>" rel="stylesheet" type="text/css">
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -162,15 +163,17 @@ if ($send_session == true) {
 <!--
 .background { background-color:#f2f2f2; font: 12px/16px arial;}
 -->
-.frm_logout { background:#e1e1e1 url(./pictures/skins/<?php echo($chat_background_img); ?>/bg.png) repeat-x 0 50%; width:460px; margin:0 auto; border:1px solid #d4d4d4; border-radius:5px}
+.frm_logout { background:#e1e1e1 url(./pictures/skins/<?php echo($chat_background_img); ?>/bg.png) repeat-x 0 50%; max-width:460px; width: 100%; min-width: 320px; margin:0 auto; border:1px solid #d4d4d4; border-radius:5px}
 .frm_logout .top { border-bottom: 1px dotted #ccc; padding-bottom: 20px;}
-.frm_logout .label { color:#0095e1; text-transform:uppercase; font-size: 11px; float:left; width:185px; float:left; line-height: 25px;}
+.frm_logout .label { color:#0095e1; text-transform:capitalize; font-size: 11px; float:left; width:50%; max-width: 180px; float:left; line-height: 25px;}
 .frm_logout td { padding:5px 0}
 
 .bt_rate { background: #222 url(./pictures/skins/<?php echo($chat_background_img); ?>/overlayy.png) repeat-x; display: inline-block; padding: 2px 10px 3px; color: #fff; text-decoration: none; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius:5px; -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5); -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5); text-shadow: 0 -1px 1px rgba(0,0,0,0.25);  position: relative; font-family:Calibri, Arial, sans-serif;}
 
-.frm_logout .inputbox { background-color: #f8f8f8; border:1px solid #d4d4d4; height: 26px; line-height:26px; width:232px; padding-left:5px; float:right; border-radius:5px}
+.frm_logout .inputbox { background-color: #f8f8f8; border:1px solid #d4d4d4; height: 26px; line-height:26px; max-width:232px; min-width: 200px; width: 50%; padding-left:5px; float:left; border-radius:5px}
 .frm_logout .title {  color:#0095e1; font-size: 12px; margin: 15px;}
+
+.text { color:#131313; font-family: Helvetica,Arial,Verdana,sans-serif; font-size: 12px;}
 
 select.f_styled { height:27px}
 span.select { background: url(./pictures/skins/<?php echo($chat_background_img); ?>/select2.png) no-repeat; padding: 0 0 0 5px; width:142px; position: absolute; height:27px; line-height:27px; overflow: hidden; float:left}
@@ -325,14 +328,14 @@ else {
     <table border="0" cellspacing="0" cellpadding="0" align="center">
         <tr>
             <td colspan="2" align="left" class="top">
-               <p><?php echo($please_rate_service_label); ?>:</p>
+               <p><?php echo($further_assistance_label); ?></p>
            </td>
       </tr>
       <tr>
      
         <td align="left" width="0">
             <p class="label"><span><?php echo($rate_service_label); ?>:</span></p>
-            <div style="float:left">
+            <div style="float:left; width: 200px;">
             <select name="RATING" id="RATING" class="f_styled"
 
             <?php
@@ -363,7 +366,7 @@ else {
       
       <tr>
         <td>
-            <p><?php echo($further_assistance_label); ?></p>
+            
         </td>
     </tr>   
                                                             

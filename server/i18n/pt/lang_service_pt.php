@@ -4,6 +4,7 @@
   $session_expired = 'A sessão LiveHelp está ativa. A sessão irá expirar em ';
   $session_expired = 'A sessão LiveHelp está ativa. A sessão será expirada em ';
   $password_incorrect = 'Senha Inválida';
+  $schedule_time_incorrect ='O acesso não é permitido neste momento';
   $login_account_incorrect = 'Login ou conta inválida';
 
   $unavailable_label = 'Indisponível';

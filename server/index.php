@@ -240,6 +240,7 @@ include_once('import/settings_default.php');
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title><?php echo($livehelp_name); ?></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="<?php echo $install_directory; ?>/style/styles.php?<?php echo('DOMAINID='.$domain_id); ?>" rel="stylesheet" type="text/css">
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -483,21 +484,25 @@ if ($error == 'empty') {
 <!--
 body { background-color: #f2f2f2; font-family: arial;}
 
-.background {margin: 5px auto 0; background:#e1e1e1 url(./pictures/skins/<?php echo($chat_background_img); ?>/bg.png) repeat-x; border:1px solid #d4d4d4; border-radius:5px; position: relative;width:380px;}
+.background {margin: 5px auto 0; background:#e1e1e1 url(./pictures/skins/<?php echo($chat_background_img); ?>/bg.png) repeat-x; border:1px solid #d4d4d4; border-radius:5px; position: relative;max-width:380px; width: 100%; min-width: 320px;}
 
 #login a { text-decoration: underline; color:#2794c7}
 
+.tbl_login {width: 100%;}
+
 .frm_login td{ padding:2px 0}
-.frm_login .inputbox { border:1px solid #d4d4d4; background-color: #f8f8f8; height:25px; line-height: 25px; padding-left:5px; width:200px; border-radius:5px}
-.frm_login .label { color:#0095e1; text-transform:uppercase; font-size: 11px; float:left; width:145px;}
+.frm_login .inputbox { border:1px solid #d4d4d4; background-color: #f8f8f8; height:25px; line-height: 25px; padding-left:5px; max-width:200px; width: 50%; border-radius:5px}
+.frm_login .label { color:#0095e1; text-transform:capitalize; font-size: 11px; float:left; width:50%;}
 .frm_login .subheader { border-bottom:1px dotted #ccc; padding:0 0 15px}
 
 
-.frm_login .bt_submit { background: url(./pictures/skins/<?php echo($chat_background_img); ?>/bg-submit-chat.png) no-repeat; width: 146px; height: 40px; position: absolute; right:55px; bottom: -20px; padding:6px 0 0}
+.frm_login .bt_submit { background: url(./pictures/skins/<?php echo($chat_background_img); ?>/bg-submit-chat.png) no-repeat; width: 130px; height: 40px; position: absolute; right:15%; bottom: -20px; padding:6px 0 0; text-align: center; }
 .bt_chat { background: #222 url(./pictures/skins/<?php echo($chat_background_img); ?>/overlayy.png) repeat-x; display: inline-block; padding: 5px 10px 6px; color: #fff; text-decoration: none; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius:5px; -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5); -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5); text-shadow: 0 -1px 1px rgba(0,0,0,0.25);  position: relative; font-family:Calibri, Arial, sans-serif;}
 
+.text { color:#131313; font-family: Helvetica,Arial,Verdana,sans-serif; font-size: 12px;}
+
 select.f_styled { height:27px}
-span.select { background: url(./pictures/skins/<?php echo($chat_background_img); ?>/select2.png) no-repeat; padding: 0 0 0 5px; width:150px; position: absolute; height:27px; line-height:27px; overflow: hidden;}
+span.select { background: url(./pictures/skins/<?php echo($chat_background_img); ?>/select2.png) no-repeat; padding: 0 0 0 5px; width:150px; position: absolute; height:27px; line-height:27px; overflow: hidden; left: 50%;}
 /* .bt_chat { margin-left: 32px; } */
 -->
 </style>
@@ -507,15 +512,12 @@ span.select { background: url(./pictures/skins/<?php echo($chat_background_img);
 
     <div style="padding:10px">
     <input type="hidden" name="DOMAINID" value="<?php echo($domain_id); ?>"/>
-    <table border="0" align="center" cellspacing="0" class="tbl_login">
-            <tr>
-                <td><p class="title"><b><?php echo($welcome_to_label); ?> <?php echo($site_name);?> <?php echo($our_live_help_label); ?><b><br></p></td>
+    <table border="0" align="center" cellspacing="0" class="tbl_login">        
+            <tr>               
+				<p class="text"><?php  echo($enter_guest_details_label); ?> </p>  
             </tr>
             <tr>
-                <td><?php echo($enter_guest_details_label); ?></td>
-            </tr>
-            <tr>
-                <td class="subheader"><?php echo($else_send_message_label); ?> <a href="offline.php?SERVER=<?php echo($_REQUEST['SERVER']); ?>&URL=<?php echo urlencode( $_REQUEST['URL']); ?><?php echo('&DOMAINID='.$domain_id.'&LANGUAGE='.LANGUAGE_TYPE);?>" class="normlink"><?php echo($offline_message_label); ?></a></td>
+                <td class="subheader"><a href="offline.php?SERVER=<?php echo($_REQUEST['SERVER']); ?>&URL=<?php echo urlencode( $_REQUEST['URL']); ?><?php echo('&DOMAINID='.$domain_id.'&LANGUAGE='.LANGUAGE_TYPE);?>" class="normlink"><?php echo($offline_message_label); ?></a></td>
             </tr>
             <tr>
                 <td>
@@ -532,16 +534,16 @@ span.select { background: url(./pictures/skins/<?php echo($chat_background_img);
                     <p class="label"><span><?php echo($email_label); ?>:</span></p>
                     
                     <?php if ($email !='') { ?>
-                        <font face="arial" size="2"><input type="text"  value ="<?php echo($email); ?>" name="EMAIL" id="EMAIL"  READONLY ="TRUE"  style="filter:alpha(opacity=75);moz-opacity:0.75" class="inputbox/></font>
+                        <font face="arial" size="2"><input type="text"  value ="<?php echo($email); ?>" name="EMAIL" id="EMAIL"  READONLY ="TRUE"  style="filter:alpha(opacity=75); moz-opacity:0.75;" class="inputbox" /></font>
                     <?php } else { ?>
                         <font face="arial" size="2"><input type="text"  name="EMAIL" id="EMAIL" style="filter:alpha(opacity=75);moz-opacity:0.75" class="inputbox"/></font>
                     <?php } ?>
                 </td>
             </tr> 
-             <?php if  ($use_phone ==1) { ?>  
+             <?php if  ($use_phone ==1) { ?>
              <tr>
                 <td>
-                    <p class="label"><span><?php echo($your_phone_label); ?>:</span></p>                        
+                    <p class="label"><span><?php echo($your_phone_label); ?>:</span></p>
                     <?php if ($phone !='') { ?>
                     <font face="arial" size="2"><input type="text" name="PHONE" id="PHONE" style="filter:alpha(opacity=75);moz-opacity:0.75" class="inputbox"/></font>
                     <?php } ?>
@@ -549,18 +551,18 @@ span.select { background: url(./pictures/skins/<?php echo($chat_background_img);
             </tr> 
               <?php
                     } 
-               if  ($use_company ==1) {    
+               if  ($use_company ==1) {
                ?>
             
              <tr>
                 <td>
-                    <p class="label"><span><?php echo($your_company_label); ?>:</span></p>             
+                    <p class="label"><span><?php echo($your_company_label); ?>:</span></p>
                     <?php if ($company !='') { ?>
                     <font face="arial" size="2"><input type="text" name="COMPANY" id="COMPANY" style="filter:alpha(opacity=75);moz-opacity:0.75" class="inputbox"/></font>
                     <?php } ?>
                 </td>
-            </tr>  
-           <?php }  ?>                    
+            </tr>
+           <?php }  ?>
          <?php
          // Languague display option 
          
@@ -672,7 +674,7 @@ if ($_REQUEST['COOKIE'] != '') {
 ?>
 <tr>
 <td colspan="2" class="bt_submit">
-<div><div>	<div style="position: relative; left: 50%; float: left;">		<div style="position: relative; left: -50%; float: left;">
+<div><div>	<div style="position: relative;">		<div style="">
 			<input name="Submit" type="button" id="Submit" value="<?php echo($continue_label); ?>" onClick="return chForm()" class="bt_chat"/>
 			<!--<input name="Submit" type="button" id="Submit" value="<?php echo($continue_label); ?>" onClick="return chForm()" class="bt_chat"/>-->
 		</div>	</div></div></div>
