@@ -2,14 +2,16 @@
 Contributors: activehelper
 Tags: wordpress livechat,  live chat, live help, live support, chat plugin, visitor tracking, visitor chat, phone live chat
 Requires at least: 3.2
-Tested up to: 4.3
-Stable tag: 3.9.5
+Tested up to: 4.3.1
+Stable tag: 3.9.6
 
 Wordpress Live Chat plugin. Manage all your wordpress sites from your desktop or mobile. 
 
 == Description ==
 
-LiveChat - Live chat plugin software. Worpress Live chat allows to engage website visitors to contact you in real-time to your computer desktop or mobile device.
+Live Chat - Live chat plugin software. Worpress Live chat allows to engage website visitors to contact you in real-time to your computer desktop or mobile device.
+
+The ActiveHelper Live Chat Plugin is available for WordPress 3.2x, to 4.3x.
 
 WordPress Live Chat Plugin is the most affordable and scalable Live Chat. ActiveHelper Live Chat System is perfect for small and medium WordPress sites. Answer Live chats from any location, Desktop and mobile are included, Windows and Mac, IOS and Android too.
 
@@ -340,6 +342,12 @@ For further help you may choose any of following options:
 * Core Security update.
 * Other small improvements and bug fixes.
 
+= 3.9.6 =
+* Suppport Wordpress 4.3.1
+* Login form selection fields issue fixed.
+* Enhanced mobile support.
+* Other small improvements and bug fixes.
+
 
 Upgrade:
 Before to make any upgrade of the ActiveHelper LiveHelp Server is necessary to follow a couple steps in order to avoid loss the working configuration:
@@ -548,4 +556,10 @@ How to upgrade the LiveHelp Server plugin safely <a href="http://www.activehelpe
 * New Online/Offline images.
 * Core Update.
 * Core Security update.
+* Other small improvements and bug fixes.
+
+= 3.9.6 =
+* Suppport Wordpress 4.3.1
+* Login form selection fields issue fixed.
+* Enhanced mobile support.
 * Other small improvements and bug fixes.

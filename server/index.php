@@ -285,7 +285,7 @@ include_once('import/settings_default.php');
 
 <script language="JavaScript" type="text/JavaScript">
 
-var selectWidth = "200";
+var selectWidth = "142";
 
 /* No need to change anything after this */
 
